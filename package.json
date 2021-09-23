@@ -1,0 +1,80 @@
+{
+  "name": "jeteo-web",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "release": "standard-version",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{ts,tsx}\"",
+    "test": "jest --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Newbies-Workplace/jeteo-web.git"
+  },
+  "author": "rstnewbies",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": [
+        "npm lint",
+        "npm test"
+      ]
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react",
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "inline-react-svg"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.ts"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@babel/register": "^7.15.3",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.0",
+    "@types/jest": "^27.0.2",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-inline-react-svg": "^2.0.1",
+    "css-loader": "^6.3.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "husky": "^7.0.2",
+    "jest": "^27.2.1",
+    "standard-version": "^9.3.1",
+    "style-loader": "^3.3.0",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.2.1",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1",
+    "webpackbar": "^5.0.0-3"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.4.3"
+  }
+}
