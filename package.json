@@ -17,9 +17,6 @@
   },
   "author": "rstnewbies",
   "license": "ISC",
-  "eslintIgnore": [
-    "./*.js"
-  ],
   "husky": {
     "hooks": {
       "pre-commit": [
