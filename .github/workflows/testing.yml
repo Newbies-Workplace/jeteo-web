@@ -1,0 +1,53 @@
+name: Tests
+
+on: [ push, pull_request ]
+
+jobs:
+
+  unit-test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 16.10.0
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.10.0'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm test
+
+
+  lint:
+    name: ESLint check
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 16.10.0
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.10.0'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm lint
+
+
+  build:
+    name: Webpack build
+    needs: [unit-test]
+    runs-on: ubuntu-latest
+
+    permissions:
+      deployments: write
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 16.10.0
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.10.0'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build
