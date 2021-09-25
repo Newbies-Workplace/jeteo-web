@@ -6,5 +6,5 @@ test("Header contains correct text", () => {
     render(<App />);
 
     // no wories if this test fails, its just proof of concept
-    expect(screen.findAllByText("Hello world!")).toBeInTheDocument();
+    expect(screen.getByText("Hello universe!")).toBeInTheDocument();
 });

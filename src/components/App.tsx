@@ -7,7 +7,9 @@ export const App = () => {
     return (
         <h1>
             <Planet />
-            Hello universe!
+            <p>
+                Hello universe!
+            </p>
         </h1>
     )
 }
