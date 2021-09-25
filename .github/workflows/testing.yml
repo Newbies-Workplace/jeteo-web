@@ -31,7 +31,7 @@ jobs:
         node-version: '16.10.0'
         cache: 'npm'
     - run: npm ci
-    - run: npm lint
+    - run: npm run lint
 
 
   build:
