@@ -31,7 +31,10 @@ jobs:
         node-version: '16.10.0'
         cache: 'npm'
     - run: npm ci
-    - run: npm run lint
+    - name: Run linters
+      uses: wearerequired/lint-action@v1
+      with:
+        eslint: true
 
 
   build:
