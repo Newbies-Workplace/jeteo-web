@@ -36,6 +36,7 @@ jobs:
       with:
         eslint: true
         eslint_args: '"src/**/*.{ts,tsx}"'
+        eslint_dir: '"src/"'
         auto_fix: true
 
 
