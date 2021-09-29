@@ -7,8 +7,8 @@
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "release": "standard-version",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
     "test": "jest --passWithNoTests"
   },
   "repository": {
@@ -54,9 +54,9 @@
     ],
     "rules": {},
     "ignorePatterns": [
-      "webpack.*",
-      "node_modules",
-      "dist"
+      "./webpack.*",
+      "./node_modules/**",
+      "./dist/**"
     ]
   },
   "babel": {
