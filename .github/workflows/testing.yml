@@ -16,7 +16,7 @@ jobs:
         node-version: '16.10.0'
         cache: 'npm'
     - run: npm ci
-    - run: npm test
+    - run: npm run test
 
 
   lint:
@@ -31,12 +31,7 @@ jobs:
         node-version: '16.10.0'
         cache: 'npm'
     - run: npm ci
-    - name: Run linters
-      uses: wearerequired/lint-action@v1
-      with:
-        eslint: true
-        eslint_args: "src/**/*.{ts,tsx}"
-        auto_fix: true
+    - run: npm run lint
 
 
   build:
