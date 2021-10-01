@@ -22,7 +22,7 @@
   "husky": {
     "hooks": {
       "pre-commit": [
-        "npm lint",
+        "npm run lint",
         "npm test"
       ]
     }
