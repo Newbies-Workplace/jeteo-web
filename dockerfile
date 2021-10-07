@@ -3,17 +3,16 @@ FROM node:16.10.0-alpine
 LABEL org.opencontainers.image.source=https://github.com/Newbies-Workplace/jeteo
 
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 ENV CI=true
 ENV SERVER_PORT=8080
 EXPOSE 8080
 
 
-COPY ./package*.json .
-COPY ./server.js .
-RUN mkdir dist
-COPY ./dist ./dist
+COPY ./package*.json /app
+COPY ./server.js /app/
+COPY ./dist /app/dist
 
 RUN npm ci --only=production --ignore-scripts
 
