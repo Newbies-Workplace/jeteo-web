@@ -10,9 +10,10 @@ ENV SERVER_PORT=8080
 EXPOSE 8080
 
 
-COPY package*.json .
-COPY server.js .
-COPY dist dist
+COPY ./package*.json .
+COPY ./server.js .
+RUN mkdir dist
+COPY ./dist ./dist
 
 RUN npm ci --only=production --ignore-scripts
 
