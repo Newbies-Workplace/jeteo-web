@@ -12,7 +12,7 @@ EXPOSE 8080
 
 COPY package*.json .
 COPY server.js .
-COPY dist/*.* dist/
+COPY . .
 
 RUN npm ci --only=production --ignore-scripts
 

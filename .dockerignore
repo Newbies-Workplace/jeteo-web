@@ -1,0 +1,6 @@
+.husky
+.github
+.code
+.idea
+
+node_modules
