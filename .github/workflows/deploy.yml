@@ -1,10 +1,6 @@
 name: Deploy Docker Image
 
 on:
-  workflow_run:
-    workflows: ["Fork production builds"]
-    type:
-      - complete
   push:
     tags:
       - v*
@@ -53,4 +49,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-   
