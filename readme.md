@@ -1,10 +1,10 @@
 # jeteo-web
+## Development
 
-## Instalation
+### Instalation
 
 * Clone this repo
 * Install nodejs
-* Install nodejs<br/>
   * For linux users
   ```bash
   nvm use
@@ -16,16 +16,9 @@
     ```batch
     nvm use [paste here version from .nvmrc] 
     ```
-* npm i
+* `npm i`
 
-## Development
-
-1. init git hooks (husky) <br/>
-this will test and lint changes before commiting
-```bash
-npm run prepare
-```
-2. run dev server ig...
+### Dev server
 ```bash
 npm run dev
 ```
