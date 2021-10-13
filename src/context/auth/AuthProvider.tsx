@@ -4,12 +4,12 @@ import { AuthContextInterface, DefaultAuthContext } from "./AuthContext.interfac
 
 export const AuthContext = createContext<AuthContextInterface>(DefaultAuthContext);
 
-export const AuthProvider = () => {
+export const AuthProvider: React.FC = ({ children }) => {
 
     const isAuth = true;
 
     const getUserData = async () => {
-        return {};
+        return { name: 'test' };
     }
 
     const login = async () => {
@@ -29,7 +29,7 @@ export const AuthProvider = () => {
                 logout,
             }}
         >
-
+            {children}
         </AuthContext.Provider>
     )
 }

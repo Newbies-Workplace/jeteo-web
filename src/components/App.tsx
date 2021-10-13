@@ -3,13 +3,12 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Redirect
+    Route
 } from 'react-router-dom';
 
 import Planet from '../assets/images/planet.svg';
 
-export const App = () => {
+export const App: React.FC = () => {
 
     return (
         <Router>
