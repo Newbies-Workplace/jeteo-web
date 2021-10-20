@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./style.css";
 
-const RedirectAlert: React.FC<{}> = () => (
+const RedirectAlert: React.FC = () => (
     <div className={styles.container}>
         <h1 className={styles.headText}>
             Houston, mamy problem 😔
