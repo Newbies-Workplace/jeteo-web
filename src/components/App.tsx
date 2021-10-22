@@ -5,29 +5,12 @@ import {
     Switch,
     Route
 } from 'react-router-dom';
+import { AppRouter } from '../views/AppRouter';
 
-import Planet from '../assets/images/planet.svg';
 
 export const App: React.FC = () => {
 
     return (
-        <Router>
-            <Switch>
-                <Route path="/">
-                    <Planet />
-                    <p>
-                        Hello universe!
-                    </p>
-                </Route>
-
-                <Route path="/auth">
-
-                </Route>
-
-                <Route path="*">
-                    404
-                </Route>
-            </Switch>
-        </Router>
+        <AppRouter />
     )
 }
