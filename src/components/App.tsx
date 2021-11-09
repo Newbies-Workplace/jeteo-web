@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Error404 from "../pages/Error404/Error404";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export const App = () => {
 
     return (
-        <Error404 />
+        <NotFoundPage />
     )
 }
