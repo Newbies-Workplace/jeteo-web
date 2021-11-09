@@ -1,15 +1,10 @@
 import React from 'react';
 
-import Planet from '../assets/images/planet.svg';
+import NotFoundPage from "../pages/NotFoundPage";
 
 export const App = () => {
 
     return (
-        <h1>
-            <Planet />
-            <p>
-                Hello universe!
-            </p>
-        </h1>
+        <NotFoundPage />
     )
 }
