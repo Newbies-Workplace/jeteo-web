@@ -1,49 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
-import { authByGithub } from '../../../../common/auth/service/callback';
 import { useQuery } from '../../../../common/utils/useQuery';
-import jwt_decode from "jwt-decode";
-import { JwtData } from '../../../../common/auth/service/jwtData.interface';
-import axios from 'axios';
+import { useAuth } from '../../../../common/auth/context/useAuth.hook';
+import Providers from '../../../../common/models/ProvidersList';
 
 /**
  * Most advanced auth component
  */
 export const GithubCallback: React.FC = () => {
-
-    const [content, setContent] = useState<JSX.Element>(<p>Hold on for 10 sec</p>);
+    const { auth, user } = useAuth();
 
     const query = useQuery();
+    const token = query.get('code');
+
+    const [content, setContent] = useState<JSX.Element>(<p>Authorizing...</p>);
 
     useEffect(() => {
-        const token = query.get('code');
 
         if (token) {
-            authByGithub(axios, token)
-                .catch(console.error)
-                .then((res) => {
-                    console.log(res);
-                    if (res)
-                        setContent(
-                            <p>
-                                Sup <b>{(jwt_decode(res.access_token) as JwtData).nickname}</b>!
-                                <br />
-                                <i>Redirect in 5 sec</i>
-                            </p>
-                        )
-
+            auth(Providers.github, token)
+                .then(() => {
+                    setContent(() => <p>Redirect in 10s</p>)
                     setTimeout(() => { setContent(<Redirect to="/" />) }, 5 * 1000);
                 })
+                .catch(console.error)
         }
-        else {
-            throw new Error('expected token!');
-        }
-
-    }, [query.get('code')])
+    }, [token])
 
     return (
         <>
-            <h1>Hi back!</h1>
+            {user ? <> Sup <b>{user.nickname}</b>! </> : "Hold on"}
             {content}
         </>
     )

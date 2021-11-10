@@ -4,15 +4,19 @@ import React, { useEffect, useState } from "react";
 import Providers from "../../models/ProvidersList";
 import { User } from "../../models/User";
 import { AuthResponse } from "../service/authResponse.interface";
-import { authByGithub } from "../service/callback";
+import { authByProvidersToken, refreshToken as refreshApiToken } from "../service/Auth";
 import { JwtData } from "../service/jwtData.interface";
 import { AuthContext } from "./AuthContext";
 
 // wanna change api's ip? >> go to webpack.dev.js <<
 const API_URL = 'http://127.0.0.1:8080';
 
+const AXIOS_CONFIG = {
+    baseURL: API_URL
+}
+
 export const AuthContextProvider: React.FC = ({ children }) => {
-    const [axiosInstance, setAxiosInstance] = useState<AxiosInstance>(() => axios.create({ baseURL: process.env.BACKEND_API }));
+    const [axiosInstance, setAxiosInstance] = useState<AxiosInstance>(() => axios.create(AXIOS_CONFIG));
 
     const [user, setUser] = useState<User | null>(null);
 
@@ -21,6 +25,8 @@ export const AuthContextProvider: React.FC = ({ children }) => {
      * @param authRes auth request's response
      */
     const handleAuth = (authRes: AuthResponse): User => {
+        console.log(authRes);
+
         axiosInstance.defaults.headers.common["Authorization"] = authRes.access_token;
 
         localStorage.setItem("refresh_token", authRes.refresh_token);
@@ -39,16 +45,23 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         return user;
     }
 
+    // setup interceptor for 401
     useEffect(() => {
         const _axiosInstance = axiosInstance; // React 17.0.0 C:
 
         const interceptorId = _axiosInstance.interceptors.response.use(response => response, async (error) => {
             const code = error.response ? error.response.status : null;
+            const refresh_token = localStorage.getItem("refresh_token");
 
-            if (code != 401)
+            if (code != 401 || !refresh_token)
                 return Promise.reject(error);
 
+            // clear to prevent endless loop 
+            // next line will override refresh_token anyway
+            localStorage.setItem("refresh_token", "");
+            const authRes = await refreshApiToken(axiosInstance, refresh_token)
 
+            handleAuth(authRes);
         })
 
         return () => {
@@ -57,18 +70,28 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         }
     }, [axiosInstance]);
 
+    // get token at app start
+    useEffect(() => {
+        const refresh_token = localStorage.getItem("refresh_token");
+
+        if (refresh_token)
+            refreshApiToken(axiosInstance, refresh_token)
+                .then(handleAuth)
+    }, [])
+
     const auth = async (provider: Providers, code: string): Promise<User> => {
-        const authRes = await authByGithub(axiosInstance, code, provider);
+        const authRes = await authByProvidersToken(axiosInstance, code, provider);
 
         if (!authRes)
             throw new Error("Auth failed!");
-
 
         return handleAuth(authRes);
     }
 
     const logout = () => {
-        setAxiosInstance(() => axios.create())
+        setAxiosInstance(() => axios.create(AXIOS_CONFIG));
+        setUser(() => null);
+        localStorage.setItem("refresh_token", "");
     }
 
     return (
@@ -77,7 +100,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
                 auth,
                 logout,
                 user,
-                axios
+                axios: axiosInstance
             }}>
             {children}
         </AuthContext.Provider>
