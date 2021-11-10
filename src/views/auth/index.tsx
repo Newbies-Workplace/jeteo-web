@@ -10,23 +10,19 @@ import { SigninView } from './signin/SigninView';
 import { SignupView } from './signup/SignupView';
 
 export const AuthRouter: React.FC = () => {
-
     const { path } = useRouteMatch();
 
-
     return (
-        <Router>
-            <Switch>
-                <Route path={`${path}/signin`}>
-                    <SigninView />
-                </Route>
-                <Route path={`${path}/signup`}>
-                    <SignupView />
-                </Route>
-                <Route path={`${path}/callback/*`}>
-                    <CallbackRouter />
-                </Route>
-            </Switch>
-        </Router>
+        <Switch>
+            <Route path={`${path}/signin`}>
+                <SigninView />
+            </Route>
+            <Route path={`${path}/signup`}>
+                <SignupView />
+            </Route>
+            <Route path={`${path}/callback`}>
+                <CallbackRouter />
+            </Route>
+        </Switch>
     )
-}
+};

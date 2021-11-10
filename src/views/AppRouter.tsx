@@ -2,7 +2,8 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    Link
 } from 'react-router-dom';
 
 import Planet from '../assets/images/planet.svg';
@@ -13,14 +14,15 @@ export const AppRouter: React.FC = () => {
     return (
         <Router>
             <Switch>
-                <Route path="/">
+                <Route exact path="/">
                     <Planet />
                     <p>
                         Hello universe!
                     </p>
+                    <Link to="/auth/signin">Login Page</Link>
                 </Route>
 
-                <Route path="/auth/*">
+                <Route path="/auth">
                     <AuthRouter />
                 </Route>
 

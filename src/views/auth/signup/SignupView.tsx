@@ -8,4 +8,4 @@ export const SignupView: React.FC = () => {
             <p>Oh, hi!</p>
         </>
     )
-}
+};

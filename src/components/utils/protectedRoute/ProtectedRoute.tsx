@@ -1,12 +1,11 @@
 import React from 'react';
 import { Redirect, Route, RouteProps } from "react-router";
+import { useAuth } from '../../../common/auth/context/useAuth.hook';
 
 export const ProtectedRoute: React.FC<RouteProps> = ({ path, children, ...rest }) => {
+    const { user } = useAuth();
 
-    //todo(DiD3n):  auth hook
-    const isAuth = true;
-
-    return isAuth ? (
+    return user ? (
         <Route path={path} {...rest}>
             {children}
         </Route>

@@ -10,13 +10,18 @@ module.exports = {
     devtool: 'eval-source-map',
 
     // reduce shitpost in terminal
-    stats: 'minimal',
+    stats: 'debug',
 
     devServer: {
-        // proxy: {
-        //     '/api': 'http://localhost:3000'
-        // },
+        proxy: {
+            '/oauth': {
+                target: 'http://51.38.131.25:8080/',
+                onProxyReq: proxyReq => {
+                    console.log(proxyReq);
+                }
+            }
+        },
         static: path.join(__dirname, 'public'),
-        historyApiFallback: true
+        historyApiFallback: true,
     }
 }
