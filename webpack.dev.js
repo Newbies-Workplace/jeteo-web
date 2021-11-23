@@ -1,5 +1,6 @@
 const config = require('./webpack.config');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     ...config,
@@ -22,5 +23,12 @@ module.exports = {
         },
         static: path.join(__dirname, 'public'),
         historyApiFallback: true,
-    }
+    },
+
+    plugins: [
+        ...config.plugins,
+        new webpack.DefinePlugin({
+            ["process.env.API_URL"]: 'http://127.0.0.1:8080',
+        })
+    ],
 }

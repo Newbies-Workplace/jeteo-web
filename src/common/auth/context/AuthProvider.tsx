@@ -8,11 +8,8 @@ import { authByProvidersToken, refreshToken as refreshApiToken } from "../servic
 import { JwtData } from "../service/jwtData.interface";
 import { AuthContext } from "./AuthContext";
 
-// wanna change api's ip? >> go to webpack.dev.js <<
-const API_URL = 'http://127.0.0.1:8080';
-
 const AXIOS_CONFIG = {
-    baseURL: API_URL
+    baseURL: process.env.API_URL
 }
 
 export const AuthContextProvider: React.FC = ({ children }) => {
