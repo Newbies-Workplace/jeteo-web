@@ -9,7 +9,6 @@ module.exports = {
     // switch to 'eval' for fastest rebuild
     devtool: 'eval-source-map',
 
-    // reduce shitpost in terminal
     stats: 'debug',
 
     devServer: {

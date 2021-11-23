@@ -25,8 +25,6 @@ export const AuthContextProvider: React.FC = ({ children }) => {
      * @param authRes auth request's response
      */
     const handleAuth = (authRes: AuthResponse): User => {
-        console.log(authRes);
-
         axiosInstance.defaults.headers.common["Authorization"] = authRes.access_token;
 
         localStorage.setItem("refresh_token", authRes.refresh_token);

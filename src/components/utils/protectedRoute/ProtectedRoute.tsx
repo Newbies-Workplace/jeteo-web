@@ -2,14 +2,16 @@ import React from 'react';
 import { Redirect, Route, RouteProps } from "react-router";
 import { useAuth } from '../../../common/auth/context/useAuth.hook';
 
-export const ProtectedRoute: React.FC<RouteProps> = ({ path, children, ...rest }) => {
+interface ProtectedRouteProps extends RouteProps {
+    fallback?: JSX.Element;
+}
+
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ path, fallback, ...rest }) => {
     const { user } = useAuth();
 
     return user ? (
-        <Route path={path} {...rest}>
-            {children}
-        </Route>
+        <Route path={path} {...rest} />
     ) : (
-        <Redirect to={`/auth/login?redirect=${path}`} />
+        fallback || <Redirect to={`/auth/login?redirect=${path}`} />
     )
 }
