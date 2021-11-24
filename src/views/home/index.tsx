@@ -9,7 +9,7 @@ import Planet from '../../assets/images/planet.svg';
 export const HomeView: React.FC = () => {
 
     const { user, logout } = useAuth()
-    console.log(user);
+
     return (
         <>
             <Planet />
