@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { render as renderReact, waitFor, screen, act } from "@testing-library/react";
 
 import { AuthContextProvider } from '../context/AuthProvider';
