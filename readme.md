@@ -27,8 +27,7 @@ We recommend using the prepared Docker image [>link< ](https://github.com/Newbie
 
 ### Docker
 Here's [image link](https://github.com/Newbies-Workplace/jeteo-web/pkgs/container/jeteo-web).
-```
-docker pull
+```bash
 docker run --name web -e API_URL=https://api.domain.tld jeteo-web:latest
 ```
 

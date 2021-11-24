@@ -5,7 +5,6 @@ import { GithubCallback } from './github';
 
 
 export const CallbackRouter: React.FC = () => {
-
     const { path } = useRouteMatch();
 
     return (
