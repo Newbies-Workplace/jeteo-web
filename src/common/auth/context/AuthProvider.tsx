@@ -30,7 +30,6 @@ export const AuthContextProvider: React.FC = ({ children }) => {
 
         //todo(DiD3n): convince 'backend guy' to include user in response
         const user = {
-            createAt: 0,
             id: decodedToken.id,
             nickname: authRes.username,
             tags: ["dev", "***** ***", "i use arch btw"]
