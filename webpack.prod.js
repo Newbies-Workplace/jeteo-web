@@ -9,7 +9,7 @@ module.exports = {
     plugins: [
         ...config.plugins,
         new webpack.DefinePlugin({
-            ["process.env.API_URL"]: process.env.API_URL,
+            ["process.env.API_URL"]: `"${process.env.API_URL}"`,
         })
     ],
 
