@@ -7,5 +7,5 @@ export interface JwtData {
     iat: number;
     iss: string; // service name
     roles: string[],
-    sub: string; // nickanme
+    sub: string;
 }
