@@ -1,15 +1,12 @@
 import React from 'react';
+import { AuthContextProvider } from '../common/auth/context/AuthProvider';
+import { AppRouter } from '../views/AppRouter';
 
-import Planet from '../assets/images/planet.svg';
-
-export const App = () => {
+export const App: React.FC = () => {
 
     return (
-        <h1>
-            <Planet />
-            <p>
-                Hello universe!
-            </p>
-        </h1>
-    )
-}
+        <AuthContextProvider>
+            <AppRouter />
+        </AuthContextProvider>
+    );
+};

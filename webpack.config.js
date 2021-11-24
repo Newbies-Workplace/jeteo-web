@@ -7,6 +7,11 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg', '.json']
     },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].bundle.js',
+        publicPath: "/"
+    },
     target: "web",
     module: {
         rules: [
