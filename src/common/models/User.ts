@@ -8,5 +8,4 @@ export interface User {
     id: string,
     nickname: string,
     tags: string[],
-    createAt: number,
 }
