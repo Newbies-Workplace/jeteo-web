@@ -1,36 +1,38 @@
 .container {
-    margin-top: 96px;
-    background-color: #FFFFFF;
-    border-radius: 16px;
-    border: 1px solid #FFFFFF;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 28px 56px;
 }
 
 .headText {
     font-family: lato;
-    font-size: 28px;
+    color: #FFFFFF;
+    font-size: 36px;
     margin-block-start: 0px;
     margin-block-end: 0px;
 }
 
 .subText {
     font-family: lato;
-    font-size: 16px;
+    font-size: 20px;
+    color: #FFFFFF;
 }
 
 .button {
     font-family: lato;
     font-size: 18px;
-    color: #071018;
-    border: 2px solid #071018;
+    color: #FFFFFF;
+    border: 2px solid transparent;
     border-radius: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 20px;
-    background-color: transparent;
+    padding: 10px 32px;
+    background-color: #009BF9;
     margin-top: 24px;
+    width: fit-content;
+    transition: transform .3s ease-out;
+}
+
+.button:hover {
+    transform: scale(1.1);
 }

@@ -1,8 +1,27 @@
-.error404 {
+.contentContainer {
     width: 100%;
-    height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.textContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wherePlanet {
+    margin-left: 288px;
 }

@@ -5,7 +5,7 @@ import styles from "./styles.css";
 const RedirectAlert: React.FC = () => (
     <div className={styles.container}>
         <h1 className={styles.headText}>
-            Houston, mamy problem 😔
+            Gdzie ja to miałem? 🤔
         </h1>
         <h2 className={styles.subText}>
             Strona, ktorej szukałeś, zagubiła się na innej<br />planecie. Nasz zespół astronautów już trenuje<br /> do misji poszukiwawczej!
