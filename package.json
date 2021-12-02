@@ -2,6 +2,7 @@
   "name": "jeteo-web",
   "version": "0.1.0",
   "description": "",
+  "private": "true",
   "main": "src/index.ts",
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
@@ -26,6 +27,9 @@
         "npm test"
       ]
     }
+  },
+  "standard-version": {
+    "releaseCommitMessageFormat": "[skip ci] chore(release): {{currentTag}}"
   },
   "eslintConfig": {
     "env": {
