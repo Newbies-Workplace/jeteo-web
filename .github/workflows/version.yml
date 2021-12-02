@@ -26,6 +26,6 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run release
+      - run: npm run release --no-verify
 
       - run: git push --tags
