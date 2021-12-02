@@ -10,22 +10,21 @@ jobs:
   bump:
     name: standard-version
     runs-on: ubuntu-latest
-    permissions: write-all
 
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.PAT_REPO }}
 
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_REPO }}
 
       - name: Configure git credentials
         uses: OleksiyRudenko/gha-git-credentials@v2
         with:
           name: 'standard-version'
           email: 'newbies@newbies.pl'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_REPO }}
 
       - name: Use Node.js 16.10.0
         uses: actions/setup-node@v2
