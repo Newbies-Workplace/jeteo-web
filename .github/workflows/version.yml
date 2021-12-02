@@ -11,18 +11,21 @@ jobs:
     name: standard-version
     runs-on: ubuntu-latest
     permissions:
-      issues: write 
+      issues: write
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Configure git credentials
         uses: OleksiyRudenko/gha-git-credentials@v2
         with:
           name: 'standard-version'
           email: 'newbies@newbies.pl'
-          actor: 'standard-version'
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Use Node.js 16.10.0
@@ -35,4 +38,4 @@ jobs:
 
       - run: npm run release --no-verify
 
-      - run: git push --tags
+      - run: git push --follow-tags origin master
