@@ -1,5 +1,5 @@
-const fallback = require('express-history-api-fallback')
-const express = require('express')
+const fallback = require('express-history-api-fallback');
+const express = require('express');
 const path = require('path');
 
 const app = express();
