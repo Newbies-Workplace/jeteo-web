@@ -52,7 +52,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
 
             // clear to prevent endless loop 
             // next line will override refresh_token anyway
-            localStorage.setItem("refresh_token", "");
+            localStorage.removeItem("refresh_token");
             const authRes = await refreshApiToken(axiosInstance, refresh_token)
 
             handleAuth(authRes);
@@ -71,6 +71,10 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         if (refresh_token)
             refreshApiToken(axiosInstance, refresh_token)
                 .then(handleAuth)
+                .catch((err) => {
+                    console.error(err);
+                    localStorage.removeItem('refresh_token')
+                })
     }, [])
 
     const auth = async (provider: Providers, code: string): Promise<User> => {

@@ -7,7 +7,7 @@ export const SigninView: React.FC = () => {
         <>
             <p>Placeholder signin view</p>
 
-            <a href="http://51.38.131.25:8080/oauth/login/github?redirect_uri=http://127.0.0.1:8080/auth/callback/github">Github login thing</a>
+            <a href={`${process.env.API_URL}/oauth/login/github`}>Github login thing</a>
         </>
     )
 }
