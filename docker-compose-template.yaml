@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  jeteo-web:
+    build: .
+    restart: always
+    container_name: jeteo-web
+    ports:
+      - "80:8080"
+    environment:
+      API_URL: ''
