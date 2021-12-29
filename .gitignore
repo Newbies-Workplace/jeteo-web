@@ -29,3 +29,4 @@ logs
 .env
 .env.test
 .env.production
+docker-compose.yaml
