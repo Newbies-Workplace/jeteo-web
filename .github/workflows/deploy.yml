@@ -95,7 +95,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           build-args:
-            API_URL: ${{API_URL}}
+            API_URL: ${{ env.API_URL }}
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
