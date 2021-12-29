@@ -3,10 +3,10 @@ name: Tests & Code Quality
 on:
   push:
     tags-ignore:
-      - *
+      - '*'
     branches-ignore:
-      - master
-      - main
+      - 'master'
+      - 'main'
 
 jobs:
 
