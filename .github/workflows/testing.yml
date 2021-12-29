@@ -1,6 +1,12 @@
 name: Tests & Code Quality
 
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - *
+    branches-ignore:
+      - master
+      - main
 
 jobs:
 

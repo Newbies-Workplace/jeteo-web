@@ -2,10 +2,17 @@ version: "3"
 
 services:
   jeteo-web:
-    build: .
+
+    build:
+      context: .
+      args:
+        API_URL: '' # API_URL is backed in static files
+
     restart: always
     container_name: jeteo-web
     ports:
       - "80:8080"
+
+    # in future API_URL will be located here
     environment:
       API_URL: ''
