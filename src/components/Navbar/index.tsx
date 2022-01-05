@@ -1,17 +1,19 @@
 import React from "react";
 
+import { NavLink } from "react-router-dom";
+
 import JeteoLogo from "../JeteoLogo";
 import MenuBar from "../MenuBar";
 
 import styles from "./styles.css";
 
-const AppBar: React.FC = function() {
-    return (
-        <div className={styles.container}>
+const Navbar: React.FC = () => (
+    <div className={styles.container}>
+        <NavLink className={styles.link} to="/">
             <JeteoLogo />
-            <MenuBar />
-        </div>
-    );
-};
+        </NavLink>
+        <MenuBar />
+    </div>
+);
 
-export default AppBar;
+export default Navbar;

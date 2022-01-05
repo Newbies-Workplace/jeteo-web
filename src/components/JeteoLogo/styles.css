@@ -1,13 +1,18 @@
 .text {
     font-family: Oswald;
     font-size: 24px;
-    color: #FFFFFF;
     margin-left: 12px;
+}
+
+.text.light {
+    color: #FFFFFF;
+}
+
+.text.dark {
+    color: #000000;
 }
 
 .container {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: center;
 }

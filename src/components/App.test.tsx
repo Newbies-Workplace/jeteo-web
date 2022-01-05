@@ -1,10 +1,11 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { App } from "./App";
+import { render } from "@testing-library/react";
+import App from "../App";
 
-test("Header contains correct text", () => {
+test("<App/> render app", () => {
+    expect(document.querySelector('body')?.hasChildNodes()).toBe(false);
+
     render(<App />);
 
-    // no wories if this test fails, its just proof of concept
-    expect(screen.getByText("Hello universe!")).toBeInTheDocument();
+    expect(document.querySelector('body')?.hasChildNodes()).toBe(true);
 });
