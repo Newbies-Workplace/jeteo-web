@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 import SocialMedia from "../../types/socialMedia";
 
@@ -6,10 +6,10 @@ import styles from "./styles.css";
 
 interface Props {
     socialMedia: SocialMedia;
-    onClick?: () => void;
+    onClick: () => void;
 }
 
-export const SocialMediaProvider: React.FC<Props> = ({ socialMedia, onClick }) => {
+export const SignInWithSocialMediaButton: FC<Props> = function({ socialMedia, onClick }) {
     return (
         <div onClick={onClick} className={styles.provider}>
             {socialMedia}
@@ -17,4 +17,4 @@ export const SocialMediaProvider: React.FC<Props> = ({ socialMedia, onClick }) =
     );
 };
 
-export default SocialMediaProvider;
+export default SignInWithSocialMediaButton;

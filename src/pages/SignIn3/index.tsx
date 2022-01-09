@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 
-import BackgroundWrapper from '../../../components/BackgroundWrapper';
-import Navbar from "../../../components/Navbar"
-import PageContentContainer from '../../../components/PageContentContainer';
-import AuthContainer from '../../../components/AuthContainer';
-import JeteoLogo from '../../../components/JeteoLogo';
-import AuthHeadline from '../../../components/AuthHeadline';
-import AuthPrimaryButton from '../../../components/AuthPrimaryButton';
+import BackgroundWrapper from '../../components/BackgroundWrapper';
+import Navbar from "../../components/Navbar"
+import PageContentContainer from '../../components/PageContentContainer';
+import AuthContainer from '../../components/AuthContainer';
+import JeteoLogo from '../../components/JeteoLogo';
+import AuthHeadline from '../../components/AuthHeadline';
+import AuthPrimaryButton from '../../components/AuthPrimaryButton';
 
 // import { useHistory } from 'react-router-dom';
-import AuthSubtitle from '../../../components/AuthSubtitle';
-import AuthButtonsContainer from '../../../components/AuthButtonsContainer';
-import AuthSecondaryButton from '../../../components/AuthSecondaryButton';
-import { useAuth } from '../../../common/auth/context/useAuth.hook';
+import AuthSubtitle from '../../components/AuthSubtitle';
+import AuthButtonsContainer from '../../components/AuthButtonsContainer';
+import AuthSecondaryButton from '../../components/AuthSecondaryButton';
+import { useAuth } from '../../common/auth/context/useAuth.hook';
 
-export const SignupView3: React.FC = () => {
+export const SignIn3: React.FC = () => {
     // const { push } = useHistory();
     const { user } = useAuth();
 
@@ -47,4 +47,4 @@ export const SignupView3: React.FC = () => {
     )
 };
 
-export default SignupView3;
+export default SignIn3;

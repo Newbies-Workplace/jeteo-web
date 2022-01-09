@@ -2,7 +2,11 @@ import { AxiosInstance } from 'axios';
 import { AuthResponse } from './authResponse.interface';
 
 export const authByProvidersToken = async (axios: AxiosInstance, token: string, provider: string): Promise<AuthResponse> =>
-    axios.get<AuthResponse>(`/oauth/callback/${provider}?code=${token}`)
+    axios.get<AuthResponse>(`/oauth/callback/${provider}`, {
+        params: {
+            code: token
+        }
+    })
         .then(res => res.data);
 
 

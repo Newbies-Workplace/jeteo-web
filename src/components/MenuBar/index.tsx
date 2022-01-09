@@ -1,13 +1,15 @@
-import React from "react";
+import { FC } from "react";
+
+import Bar from "./Bar";
 
 import styles from "./styles.css";
 
-const MenuBar: React.FC = function() {
+export const MenuBar: FC = function() {
     return (
         <div className={styles.container}>
-            <div className={styles.bar}></div>
-            <div className={styles.bar}></div>
-            <div className={styles.bar}></div>
+            <Bar />
+            <Bar />
+            <Bar />
         </div>
     );
 };

@@ -1,16 +1,15 @@
-import React from 'react';
+import { FC } from "react";
 
-import { AuthContextProvider } from './common/auth/context/AuthProvider';
+import { AuthContextProvider } from "./common/auth/context/AuthProvider";
 
-import Router from './views/Router';
+import Router from "./Router";
 
-export const App: React.FC = function() {
+export const App: FC = function() {
     return (
         <AuthContextProvider>
             <Router />
         </AuthContextProvider>
     );
 };
-
 
 export default App;

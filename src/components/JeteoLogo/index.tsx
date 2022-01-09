@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 import PlanetBlueLogo from "../../assets/vectors/planet-blue-logo.svg"
 
@@ -12,7 +12,7 @@ interface Props {
     theme?: Theme;
 }
 
-const JeteoLogo: React.FC<Props> = ({ theme }) => {
+export const JeteoLogo: FC<Props> = function({ theme }) {
     return (
         <div className={styles.container}>
             <PlanetBlueLogo />
@@ -20,7 +20,7 @@ const JeteoLogo: React.FC<Props> = ({ theme }) => {
                 Jeteo
             </p>
         </div>
-    )
+    );
 };
 
 export default JeteoLogo;

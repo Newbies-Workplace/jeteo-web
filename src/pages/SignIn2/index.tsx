@@ -1,20 +1,20 @@
 import React from 'react';
 
-import BackgroundWrapper from '../../../components/BackgroundWrapper';
-import Navbar from "../../../components/Navbar"
-import PageContentContainer from '../../../components/PageContentContainer';
-import AuthContainer from '../../../components/AuthContainer';
-import JeteoLogo from '../../../components/JeteoLogo';
-import AuthHeadline from '../../../components/AuthHeadline';
-import AuthInputForm from '../../../components/AuthInputForm';
-import AuthPrimaryButton from '../../../components/AuthPrimaryButton';
+import BackgroundWrapper from '../../components/BackgroundWrapper';
+import Navbar from "../../components/Navbar"
+import PageContentContainer from '../../components/PageContentContainer';
+import AuthContainer from '../../components/AuthContainer';
+import JeteoLogo from '../../components/JeteoLogo';
+import AuthHeadline from '../../components/AuthHeadline';
+import AuthInputForm from '../../components/AuthInputForm';
+import AuthPrimaryButton from '../../components/AuthPrimaryButton';
 
 import { useHistory } from 'react-router-dom';
 
-export const SignupView2: React.FC = () => {
+export const SignIn2: React.FC = () => {
     const { push } = useHistory();
 
-    const navigateToNextStep = () => push("/register/3");
+    const navigateToNextStep = () => push("/sign-in/3");
 
     return (
         <BackgroundWrapper>
@@ -35,4 +35,4 @@ export const SignupView2: React.FC = () => {
     )
 };
 
-export default SignupView2;
+export default SignIn2;
