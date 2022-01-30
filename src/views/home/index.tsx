@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '../../common/auth/context/useAuth.hook';
+import { useAuth } from '../../common/auth/useAuth.hook';
 
 import Planet from '../../assets/images/planet.svg';
 

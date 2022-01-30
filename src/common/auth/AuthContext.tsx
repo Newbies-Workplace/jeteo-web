@@ -1,12 +1,29 @@
 import axios, { AxiosInstance } from "axios";
 import jwtDecode from "jwt-decode";
-import React, { useEffect, useState } from "react";
-import Providers from "../../models/ProvidersList";
-import { User } from "../../models/User";
-import { AuthResponse } from "../service/authResponse.interface";
-import { authByProvidersToken, refreshToken as refreshApiToken } from "../service/Auth";
-import { JwtData } from "../service/jwtData.interface";
-import { AuthContext } from "./AuthContext";
+import React, {createContext, useEffect, useState} from "react";
+import Providers from "../models/ProvidersList";
+import { User } from "../models/User";
+import { AuthResponse } from "./service/authResponse.interface";
+import { authByProvidersToken, refreshToken as refreshApiToken } from "./service/Auth";
+import { JwtData } from "./service/jwtData.interface";
+
+
+export interface AuthContextInterface {
+    auth(provider: string, code: string, state?: string): Promise<User>;
+    logout(): void;
+
+    user: User | null; // undefined == not authorized
+
+    axios?: AxiosInstance;
+}
+const defaultAuthContext: AuthContextInterface = {
+    auth: async () => { throw new Error("Context not initialized") },
+    logout: () => { throw new Error("Context not initialized") },
+    user: null,
+}
+
+export const AuthContext = createContext<AuthContextInterface>(defaultAuthContext);
+
 
 const AXIOS_CONFIG = {
     baseURL: process.env.API_URL
@@ -22,11 +39,11 @@ export const AuthContextProvider: React.FC = ({ children }) => {
      * @param authRes auth request's response
      */
     const handleAuth = (authRes: AuthResponse): User => {
-        axiosInstance.defaults.headers.common["Authorization"] = authRes.access_token;
+        axiosInstance.defaults.headers.common["Authorization"] = authRes.accessToken;
 
-        localStorage.setItem("refresh_token", authRes.refresh_token);
+        localStorage.setItem("refresh_token", authRes.accessToken);
 
-        const decodedToken: JwtData = jwtDecode(authRes.access_token);
+        const decodedToken: JwtData = jwtDecode(authRes.accessToken);
 
         //todo(DiD3n): convince 'backend guy' to include user in response
         const user = {
@@ -68,17 +85,21 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     useEffect(() => {
         const refresh_token = localStorage.getItem("refresh_token");
 
-        if (refresh_token)
+
+        if (refresh_token && refresh_token != "undefined")
             refreshApiToken(axiosInstance, refresh_token)
                 .then(handleAuth)
                 .catch((err) => {
-                    console.error(err);
-                    localStorage.removeItem('refresh_token')
+                    console.error(err)
+                    localStorage.removeItem("refresh_token");
                 })
+        else
+            localStorage.removeItem("refresh_token");
+
     }, [])
 
-    const auth = async (provider: Providers, code: string): Promise<User> => {
-        const authRes = await authByProvidersToken(axiosInstance, code, provider);
+    const auth = async (provider: Providers, code: string, state?: string): Promise<User> => {
+        const authRes = await authByProvidersToken(axiosInstance, provider, code, state);
 
         if (!authRes)
             throw new Error("Auth failed!");

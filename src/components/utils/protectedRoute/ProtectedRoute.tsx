@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, RouteProps } from "react-router";
-import { useAuth } from '../../../common/auth/context/useAuth.hook';
+import { useAuth } from '../../../common/auth/useAuth.hook';
 
 interface ProtectedRouteProps extends RouteProps {
     fallback?: JSX.Element;

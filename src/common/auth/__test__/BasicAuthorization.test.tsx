@@ -1,15 +1,14 @@
 import React from "react";
 import { render as renderReact, waitFor, screen, act } from "@testing-library/react";
 
-import { AuthContextProvider } from '../context/AuthProvider';
-import { useAuth } from "../context/useAuth.hook";
-import { AuthContextInterface } from "../context/AuthContext";
+import { AuthContextProvider, AuthContextInterface } from '../AuthContext';
+import { useAuth } from "../useAuth.hook";
 import MockAxios from "jest-mock-axios";
 
 import authRes from './authResponse.json';
 import userEvent from "@testing-library/user-event";
 
-describe('Authorization Contect', () => {
+describe('Authorization Context', () => {
 
     let testContext: AuthContextInterface | null = null;
 
