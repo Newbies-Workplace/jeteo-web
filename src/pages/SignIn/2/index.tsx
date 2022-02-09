@@ -1,13 +1,13 @@
 import React from 'react';
 
-import BackgroundWrapper from '../../components/BackgroundWrapper';
-import Navbar from "../../components/Navbar"
-import PageContentContainer from '../../components/PageContentContainer';
-import AuthContainer from '../../components/AuthContainer';
-import JeteoLogo from '../../components/JeteoLogo';
-import AuthHeadline from '../../components/AuthHeadline';
-import AuthInputForm from '../../components/AuthInputForm';
-import AuthPrimaryButton from '../../components/AuthPrimaryButton';
+import BackgroundWrapper from '../../../components/BackgroundWrapper';
+import Navbar from "../../../components/Navbar"
+import PageContentContainer from '../../../components/PageContentContainer';
+import AuthContainer from '../../../components/AuthContainer';
+import JeteoLogo from '../../../components/JeteoLogo';
+import AuthHeadline from '../../../components/AuthHeadline';
+import AuthInputForm from '../../../components/AuthInputForm';
+import AuthPrimaryButton from '../../../components/AuthPrimaryButton';
 
 import { useHistory } from 'react-router-dom';
 

@@ -4,9 +4,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
-import SignIn1 from './pages/SignIn1';
-import SignIn2 from './pages/SignIn2';
-import SignIn3 from './pages/SignIn3';
+import SignIn1 from './pages/SignIn/1';
+import SignIn2 from './pages/SignIn/2';
+import SignIn3 from './pages/SignIn/3';
 
 export const Router: FC = function() {
     return (

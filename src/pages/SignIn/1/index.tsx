@@ -1,14 +1,14 @@
 import React from 'react';
 
-import BackgroundWrapper from '../../components/BackgroundWrapper';
-import Navbar from "../../components/Navbar"
-import PageContentContainer from '../../components/PageContentContainer';
-import AuthContainer from '../../components/AuthContainer';
-import JeteoLogo from '../../components/JeteoLogo';
-import AuthHeadline from '../../components/AuthHeadline';
-import AuthSubtitle from '../../components/AuthSubtitle';
-import SocialMediaProvidersContainer from '../../components/SocialMediaProvidersContainer';
-import SignInWithSocialMediaButton from '../../components/SignInWithSocialMediaButton';
+import BackgroundWrapper from '../../../components/BackgroundWrapper';
+import Navbar from "../../../components/Navbar"
+import PageContentContainer from '../../../components/PageContentContainer';
+import AuthContainer from '../../../components/AuthContainer';
+import JeteoLogo from '../../../components/JeteoLogo';
+import AuthHeadline from '../../../components/AuthHeadline';
+import AuthSubtitle from '../../../components/AuthSubtitle';
+import SocialMediaProvidersContainer from '../../../components/SocialMediaProvidersContainer';
+import SignInWithSocialMediaButton from '../../../components/SignInWithSocialMediaButton';
 
 import { useHistory } from 'react-router-dom';
 
