@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 import { useQuery } from '../../../../common/utils/useQuery';
-import { useAuth } from '../../../../common/auth/context/useAuth.hook';
+import { useAuth } from '../../../../common/auth/useAuth.hook';
 import Providers from '../../../../common/models/ProvidersList';
 
 /**
@@ -12,13 +12,14 @@ export const GithubCallback: React.FC = () => {
 
     const query = useQuery();
     const token = query.get('code');
+    const state = query.get('state') || undefined;
 
     const [content, setContent] = useState<JSX.Element>(<p>Authorizing...</p>);
 
     useEffect(() => {
 
         if (token) {
-            auth(Providers.github, token)
+            auth(Providers.github, token, state)
                 .then(() => {
                     setContent(() => <p>Redirect in 10s</p>)
                     setTimeout(() => { setContent(<Redirect to="/" />) }, 5 * 1000);

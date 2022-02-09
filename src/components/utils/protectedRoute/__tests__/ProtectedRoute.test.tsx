@@ -4,9 +4,9 @@ import { Link, MemoryRouter, Redirect, Route, Switch } from "react-router-dom"
 import userEvent from '@testing-library/user-event'
 import MockAxios from "jest-mock-axios";
 import { render as renderReact, screen, waitFor, act } from "@testing-library/react";
-import { AuthContextProvider } from "../../../../common/auth/context/AuthProvider"
+import { AuthContextProvider } from "../../../../common/auth/AuthContext"
 import { ProtectedRoute } from "../ProtectedRoute";
-import { useAuth } from "../../../../common/auth/context/useAuth.hook";
+import { useAuth } from "../../../../common/auth/useAuth.hook";
 
 import authRes from './authResponse.json';
 

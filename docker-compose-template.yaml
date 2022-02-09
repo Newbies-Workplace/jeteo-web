@@ -3,6 +3,7 @@ version: "3"
 services:
   jeteo-web:
 
+    image: jeteo-web_compose
     build:
       context: .
       args:
