@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.headText {
+    font-family: lato;
+    color: #FFFFFF;
+    font-size: 36px;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.subText {
+    font-family: lato;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.button {
+    font-family: lato;
+    font-size: 18px;
+    color: #FFFFFF;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 32px;
+    background-color: #009BF9;
+    margin-top: 24px;
+    width: fit-content;
+    transition: transform .3s ease-out;
+}
+
+.button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

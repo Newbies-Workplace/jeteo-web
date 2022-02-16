@@ -1,0 +1,10 @@
+.textContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wherePlanet {
+    margin-left: 288px;
+}

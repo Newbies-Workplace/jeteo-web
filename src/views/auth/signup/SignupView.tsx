@@ -9,3 +9,5 @@ export const SignupView: React.FC = () => {
         </>
     )
 };
+
+export default SignupView;

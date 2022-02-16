@@ -11,3 +11,5 @@ export const SigninView: React.FC = () => {
         </>
     )
 }
+
+export default SigninView;
