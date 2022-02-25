@@ -121,8 +121,10 @@
     "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.9",
     "@babel/runtime": "^7.15.4",
     "express": "^4.17.1",
-    "express-history-api-fallback": "^2.2.1"
+    "express-history-api-fallback": "^2.2.1",
+    "graphql": "^16.3.0"
   }
 }
