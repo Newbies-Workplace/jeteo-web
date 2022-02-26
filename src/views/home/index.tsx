@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../common/auth/useAuth.hook';
 
-import Planet from '../../assets/images/planet.svg';
+import Planet from '../../assets/images/planet.svg?component';
 
 
 export const HomeView: React.FC = () => {
