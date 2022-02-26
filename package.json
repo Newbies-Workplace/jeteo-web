@@ -5,6 +5,7 @@
   "private": "true",
   "main": "src/index.ts",
   "scripts": {
+    "vite:dev": "vite --host",
     "dev": "webpack serve --config webpack.dev.js",
     "prod": "npm run build && node server.js",
     "build": "webpack --config webpack.prod.js",
@@ -96,6 +97,7 @@
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
     "@babel/register": "^7.15.3",
+    "@honkhonk/vite-plugin-svgr": "^1.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
     "@testing-library/user-event": "^13.5.0",
@@ -132,7 +134,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
+    "@vitejs/plugin-react": "^1.2.0",
     "express": "^4.17.1",
-    "express-history-api-fallback": "^2.2.1"
+    "express-history-api-fallback": "^2.2.1",
+    "vite": "^2.8.4"
   }
 }
