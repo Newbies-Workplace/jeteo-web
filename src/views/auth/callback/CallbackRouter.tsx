@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
 
 import { GithubCallback } from './github';
+import {GithubDevCallback} from "./githubdev/GithubDevCallback";
 
 
 export const CallbackRouter: React.FC = () => {
@@ -11,6 +12,10 @@ export const CallbackRouter: React.FC = () => {
         <Switch>
             <Route path={`${path}/github`}>
                 <GithubCallback />
+            </Route>
+
+            <Route path={`${path}/devgithub`}>
+                <GithubDevCallback />
             </Route>
 
             <Route path="*">
