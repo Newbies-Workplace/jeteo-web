@@ -1,9 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
-
 import { GithubCallback } from './github';
-import {GithubDevCallback} from "./githubdev/GithubDevCallback";
-
+import { GithubDevCallback } from "./githubdev/GithubDevCallback";
 
 export const CallbackRouter: React.FC = () => {
     const { path } = useRouteMatch();
@@ -14,9 +12,11 @@ export const CallbackRouter: React.FC = () => {
                 <GithubCallback />
             </Route>
 
-            <Route path={`${path}/devgithub`}>
-                <GithubDevCallback />
-            </Route>
+            {process.env.NODE_ENV === 'development' &&
+                <Route path={`${path}/devgithub`}>
+                    <GithubDevCallback />
+                </Route>
+            }
 
             <Route path="*">
                 <Redirect to={`/auth/error?error=unknown`} />
