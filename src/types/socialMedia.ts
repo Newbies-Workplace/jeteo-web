@@ -1,3 +1,3 @@
-export type SocialMedia = "Twitter" | "Facebook" | "Github" | "Google";
+export type SocialMedia = "twitter" | "facebook" | "github" | "google";
 
 export default SocialMedia;

@@ -27,4 +27,7 @@ export const Router: FC = function() {
     );
 };
 
+// LAZY LOADING
+// TODO: PRZYWROCIC DO VIEWS
+
 export default Router;

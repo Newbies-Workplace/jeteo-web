@@ -12,12 +12,14 @@ import SignInWithSocialMediaButton from '../../../components/SignInWithSocialMed
 
 import { useHistory } from 'react-router-dom';
 
+// /auth/callback/github?code=cb5e4c60b9418cf301e9&state=34207b859e18ecb0
+
 export const SignIn1: React.FC = () => {
 
     const { push } = useHistory();
 
-    const navigateToNextStep = () => push("/sign-in/2");
-    const connectToGithub = () => push("/signin");
+    // const navigateToNextStep = () => push("/sign-in/2");
+    // const connectToGithub = () => push("/signin");
 
     return (
         <BackgroundWrapper>
@@ -32,10 +34,10 @@ export const SignIn1: React.FC = () => {
                         Kontynuuj przez:
                     </AuthSubtitle>
                     <SocialMediaProvidersContainer>
-                        <SignInWithSocialMediaButton onClick={navigateToNextStep} socialMedia="Twitter" />
-                        <SignInWithSocialMediaButton onClick={navigateToNextStep} socialMedia="Facebook" />
-                        <SignInWithSocialMediaButton onClick={connectToGithub} socialMedia="Github" />
-                        <SignInWithSocialMediaButton onClick={navigateToNextStep} socialMedia="Google" />
+                        <SignInWithSocialMediaButton socialMedia="twitter" />
+                        <SignInWithSocialMediaButton socialMedia="facebook" />
+                        <SignInWithSocialMediaButton socialMedia="github" />
+                        <SignInWithSocialMediaButton socialMedia="google" />
                     </SocialMediaProvidersContainer>
                     <AuthSubtitle>
                         Nie ma tu twojej ulubionej domeny?

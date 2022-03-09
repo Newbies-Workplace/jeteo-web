@@ -6,14 +6,13 @@ import styles from "./SignInWithSocialMediaButton.css";
 
 interface Props {
     socialMedia: SocialMedia;
-    onClick: () => void;
 }
 
-export const SignInWithSocialMediaButton: FC<Props> = function({ socialMedia, onClick }) {
+export const SignInWithSocialMediaButton: FC<Props> = function({ socialMedia }) {
     return (
-        <div onClick={onClick} className={styles.provider}>
-            {socialMedia}
-        </div>
+        <a href={`${process.env.API_URL}/oauth/login/${socialMedia}`} className={styles.provider}>
+            {socialMedia.charAt(0).toUpperCase()}{socialMedia.substring(1)}
+        </a>
     );
 };
 
