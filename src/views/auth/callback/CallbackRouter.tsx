@@ -1,26 +1,25 @@
 import React from 'react';
-import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import { GithubCallback } from './github';
 import { GithubDevCallback } from "./githubdev/GithubDevCallback";
 
 export const CallbackRouter: React.FC = () => {
-    const { path } = useRouteMatch();
 
     return (
-        <Switch>
-            <Route path={`${path}/github`}>
-                <GithubCallback />
-            </Route>
+        <Routes>
+            <Route
+                element={<GithubCallback/>}
+                path="github"/>
 
             {process.env.NODE_ENV === 'development' &&
-                <Route path={`${path}/devgithub`}>
-                    <GithubDevCallback />
-                </Route>
+                <Route
+                    element={<GithubDevCallback/>}
+                    path="devgithub"/>
             }
 
-            <Route path="*">
-                <Redirect to={`/auth/error?error=unknown`} />
-            </Route>
-        </Switch>
+            <Route
+                path="*"
+                element={() => <Navigate to={`/auth/error?error=unknown`} />}/>
+        </Routes>
     )
 };
