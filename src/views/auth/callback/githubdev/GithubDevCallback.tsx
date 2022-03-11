@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router';
+import { Navigate } from 'react-router';
 import { useQuery } from '../../../../common/utils/useQuery';
 import { useAuth } from '../../../../common/auth/useAuth.hook';
 import Providers from '../../../../common/models/ProvidersList';
@@ -19,7 +19,7 @@ export const GithubDevCallback: React.FC = () => {
             auth(Providers.githubDev, token, state)
                 .then(() => {
                     setContent(() => <p>Redirect in 10s</p>)
-                    setTimeout(() => { setContent(<Redirect to="/" />) }, 5 * 1000);
+                    setTimeout(() => { setContent(<Navigate to="/" />) }, 5 * 1000);
                 })
                 .catch(console.error)
         }

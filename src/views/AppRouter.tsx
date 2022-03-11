@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route
 } from 'react-router-dom';
 
@@ -12,19 +12,19 @@ export const AppRouter: React.FC = () => {
 
     return (
         <Router>
-            <Switch>
-                <Route exact path="/">
-                    <HomeView />
-                </Route>
+            <Routes>
+                <Route
+                    element={<HomeView/>}
+                    path="/"/>
 
-                <Route path="/auth">
-                    <AuthRouter />
-                </Route>
+                <Route
+                    element={<AuthRouter/>}
+                    path="/auth/*"/>
 
                 <Route path="*">
                     404
                 </Route>
-            </Switch>
+            </Routes>
         </Router>
     )
 }
