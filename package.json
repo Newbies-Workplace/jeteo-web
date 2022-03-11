@@ -71,7 +71,11 @@
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
       "<rootDir>/jest-setup.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.s?[ca]ss$": "<rootDir>/src/__mocks__/css.js",
+      "\\.(pnga?|web[pm]|jpe?g|mp4)$": "<rootDir>/src/__mocks__/assets.js"
+    }
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
