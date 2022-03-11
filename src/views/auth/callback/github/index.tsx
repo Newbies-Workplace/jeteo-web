@@ -3,35 +3,38 @@ import { Navigate } from 'react-router';
 import { useQuery } from '../../../../common/utils/useQuery';
 import { useAuth } from '../../../../common/auth/useAuth.hook';
 import Providers from '../../../../common/models/ProvidersList';
+import {useNavigate} from "react-router-dom";
 
 /**
  * Most advanced auth component
  */
 export const GithubCallback: React.FC = () => {
-    const { auth, user } = useAuth();
+    const { auth } = useAuth();
+    const navigator = useNavigate();
 
     const query = useQuery();
-    const token = query.get('code');
+    const code = query.get('code');
+    const error = query.get('error');
     const state = query.get('state') || undefined;
 
-    const [content, setContent] = useState<JSX.Element>(<p>Authorizing...</p>);
-
     useEffect(() => {
+        if (error)
+            return navigator(`/auth/error?message=${error}`, {replace: true});
 
-        if (token) {
-            auth(Providers.github, token, state)
-                .then(() => {
-                    setContent(() => <p>Redirect in 10s</p>)
-                    setTimeout(() => { setContent(<Navigate to="/" />) }, 5 * 1000);
-                })
-                .catch(console.error)
+        if (code && state) {
+            auth(Providers.github, code, state)
+                .then(() =>
+                    navigator("/auth/signup")
+                )
+                .catch((err) =>
+                    navigator(`/auth/error?message=${err.message}`, {replace: true})
+                );
         }
-    }, [token])
+        else
+            navigator("/auth/error?message=Missing+code+or+state", {replace: true});
+    }, [])
 
     return (
-        <>
-            {user ? <> Sup <b>{user.nickname}</b>! </> : "Hold on"}
-            {content}
-        </>
+        <p>Connecting with github...</p>
     )
 };
