@@ -2,8 +2,7 @@ import React from "react";
 import { Link, MemoryRouter, Navigate, Route, Routes } from "react-router-dom"
 import userEvent from '@testing-library/user-event'
 import MockAxios from "jest-mock-axios";
-import {createMemoryHistory, MemoryHistory} from 'history';
-import { render as renderReact, screen, waitFor, act, logDOM } from "@testing-library/react";
+import { render as renderReact, screen, waitFor, act } from "@testing-library/react";
 
 import { AuthContextProvider } from "../../../../common/auth/AuthContext"
 import { RequireAuth } from "../RequireAuth";
