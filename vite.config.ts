@@ -1,32 +1,32 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import svgr from 'vite-plugin-svgr'
+import { svgrComponent } from 'vite-plugin-svgr-component'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-    plugins: [svgr({
-        svgrOptions: {
-            typescript: true
-        }
-    }), react()],
+export default defineConfig(({command, mode}) => {
 
-    root: 'src',
+    return {
+        plugins: [svgrComponent(), react()],
 
-    build: {
-        outDir: '../dist'
-    },
+        root: 'src',
 
-    define: {
-        "__API_URL__": "'http://jeteo.newbies.pl:8080'"
-    },
+        build: {
+            outDir: '../dist'
+        },
 
-    server: {
-        proxy: {
-            '/oauth': {
-                target: 'http://jeteo.newbies.pl:8080/',
-            },
-            '/api': {
-                target: 'http://jeteo.newbies.pl:8080/',
+        define: {
+            "__API_URL__": "'http://jeteo.newbies.pl:8080'",
+            "__DEV__": command === "build" ? "production" : "development",
+        },
+
+        server: {
+            proxy: {
+                '/oauth': {
+                    target: 'http://jeteo.newbies.pl:8080/',
+                },
+                '/api': {
+                    target: 'http://jeteo.newbies.pl:8080/',
+                }
             }
         }
     }
