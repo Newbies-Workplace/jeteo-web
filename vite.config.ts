@@ -1,13 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import svgr from '@honkhonk/vite-plugin-svgr'
+import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [svgr(), react()],
+    plugins: [svgr({
+        svgrOptions: {
+            typescript: true
+        }
+    }), react()],
+
     root: 'src',
 
-    // apis
     define: {
         "__API_URL__": "'http://jeteo.newbies.pl:8080'"
     },
