@@ -70,16 +70,24 @@
   "jest": {
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
-      "<rootDir>/jest-setup.ts"
+      "<rootDir>/src/jest-setup.ts"
     ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "globals": {
+      "__API_URL__": "http://localhost/",
+      "__DEV__": true
+    },
     "moduleNameMapper": {
-      "\\.s?[ca]ss$": "<rootDir>/src/__mocks__/css.js",
-      "\\.(pnga?|web[pm]|jpe?g|mp4)$": "<rootDir>/src/__mocks__/assets.js"
+      "\\.s?[ca]ss$": "<rootDir>/src/__mocks__/css.ts",
+      "\\.(pnga?|web[pm]|jpe?g|mp4)$": "<rootDir>/src/__mocks__/assets.ts",
+      "\\.svg(\\?component)?$": "<rootDir>/src/__mocks__/svg.tsx"
     }
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.1.0",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
     "@types/react": "^17.0.24",
