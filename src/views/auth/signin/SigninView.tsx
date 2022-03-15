@@ -7,10 +7,9 @@ export const SigninView: React.FC = () => {
         <>
             <p>Placeholder signin view</p>
 
-            <a href={`${__API_URL__}/oauth/login/github`}>Github login thing</a>
             <ol>
                 <li>
-                    <a href={`${process.env.API_URL}/oauth/login/github`}>Github login thing</a>
+                    <a href={`${__API_URL__}/oauth/login/github`}>Github login thing</a>
                 </li>
 
                 {__DEV__ === 'development' &&
