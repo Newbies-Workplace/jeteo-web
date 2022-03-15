@@ -20,14 +20,6 @@
   },
   "author": "rstnewbies",
   "license": "ISC",
-  "husky": {
-    "hooks": {
-      "pre-commit": [
-        "npm run lint",
-        "npm test"
-      ]
-    }
-  },
   "standard-version": {
     "releaseCommitMessageFormat": "[skip ci] chore(release): {{currentTag}}"
   },
@@ -113,7 +105,6 @@
     "file-loader": "^6.2.0",
     "formik": "^2.2.9",
     "html-webpack-plugin": "^5.3.2",
-    "husky": "^7.0.2",
     "jest": "^27.2.1",
     "jest-mock-axios": "^4.4.1",
     "jwt-decode": "^3.1.2",
