@@ -12,6 +12,10 @@ export default defineConfig({
 
     root: 'src',
 
+    build: {
+        outDir: '../dist'
+    },
+
     define: {
         "__API_URL__": "'http://jeteo.newbies.pl:8080'"
     },
