@@ -18,7 +18,7 @@ export default defineConfig(({command, mode}) => {
 
         define: {
             "__API_URL__": "'http://jeteo.newbies.pl:8080'",
-            "__DEV__": command === "build" ? "'production'" : "'development'",
+            "__DEV__": command === "serve",
         },
     }
 })

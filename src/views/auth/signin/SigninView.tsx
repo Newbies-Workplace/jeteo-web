@@ -12,7 +12,7 @@ export const SigninView: React.FC = () => {
                     <a href={`${__API_URL__}/oauth/login/github`}>Github login thing</a>
                 </li>
 
-                {__DEV__ === 'development' &&
+                {__DEV__ &&
                     <li>
                         <a href={`${__API_URL__}/oauth/login/devgithub`}>Github [dev 🚧] login thing</a>
                     </li>
