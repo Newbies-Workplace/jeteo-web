@@ -11,8 +11,7 @@
     "release": "standard-version",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
-    "test": "jest --passWithNoTests",
-    "prepare": "husky install"
+    "test": "jest --passWithNoTests"
   },
   "repository": {
     "type": "git",
