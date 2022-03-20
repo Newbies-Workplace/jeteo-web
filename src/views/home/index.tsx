@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../common/auth/useAuth.hook';
 
 import Planet from '../../assets/images/planet.svg';
+import {BaseButton} from "../../components/containers/BaseButton/BaseButton";
 
 
 export const HomeView: React.FC = () => {
@@ -13,6 +14,9 @@ export const HomeView: React.FC = () => {
     return (
         <>
             <Planet />
+            <BaseButton onClick={() => alert("Works!")}>
+                SASS Btn Text
+            </BaseButton>
             <p>
                 Hello universe!
             </p>
