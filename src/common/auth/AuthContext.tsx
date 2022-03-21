@@ -41,7 +41,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     const handleAuth = (authRes: AuthResponse): User => {
         axiosInstance.defaults.headers.common["Authorization"] = authRes.accessToken;
 
-        localStorage.setItem("refresh_token", authRes.accessToken);
+        localStorage.setItem("refresh_token", authRes.refreshToken);
 
         const decodedToken: JwtData = jwtDecode(authRes.accessToken);
 

@@ -12,5 +12,5 @@ export const authByProvidersToken = async (axios: AxiosInstance, provider: strin
 
 
 export const refreshToken = (axios: AxiosInstance, refresh_token: string): Promise<AuthResponse> =>
-    axios.post<AuthResponse>(`/api/refresh`, refresh_token)
+    axios.post<AuthResponse>(`/api/v1/refresh`, refresh_token)
         .then(res => res.data);
