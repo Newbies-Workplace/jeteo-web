@@ -3,14 +3,14 @@
 }
 
 .card {
-    --padding: 16px;
+    --padding: 14px;
 
     box-sizing: border-box;
     position: relative;
 
     margin: 8px;
     min-height: 113px;
-    padding: var(--padding);
+    padding: var(--padding) var(--padding);
 
     border-radius: 16px;
     box-shadow: 0 2px 24px rgba(7, 16, 24, 0.3);
