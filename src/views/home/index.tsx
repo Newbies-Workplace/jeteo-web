@@ -6,7 +6,7 @@ import { useAuth } from '../../common/auth/useAuth.hook';
 import Planet from '../../assets/images/planet.svg';
 import {LectureCard} from "../../components/containers/LectureCard/LectureCard";
 
-import exampleimg from '../../assets/images/photos/example_flowers.png'
+import exampleimg from '../../assets/images/photos/test_img1.jpg'
 
 
 export const HomeView: React.FC = () => {

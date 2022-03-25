@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 import jwtDecode from "jwt-decode";
 import React, {createContext, useEffect, useState} from "react";
 import Providers from "../models/ProvidersList";
@@ -6,6 +6,9 @@ import { User } from "../models/User";
 import { AuthResponse } from "./service/authResponse.interface";
 import { authByProvidersToken, refreshToken as refreshApiToken } from "./service/Auth";
 import { JwtData } from "./service/jwtData.interface";
+import { createAxiosClient } from "./axiosService";
+import {ApolloClient, ApolloProvider, InMemoryCache, NormalizedCacheObject} from "@apollo/client";
+import {createApolloClient} from "./apolloService";
 
 
 export interface AuthContextInterface {
@@ -24,13 +27,9 @@ const defaultAuthContext: AuthContextInterface = {
 
 export const AuthContext = createContext<AuthContextInterface>(defaultAuthContext);
 
-
-const AXIOS_CONFIG = {
-    baseURL: process.env.API_URL
-}
-
 export const AuthContextProvider: React.FC = ({ children }) => {
-    const [axiosInstance, setAxiosInstance] = useState<AxiosInstance>(() => axios.create(AXIOS_CONFIG));
+    const [axiosClient, setAxiosClient] = useState<AxiosInstance>(() => createAxiosClient());
+    const [apolloClient, setApolloClient] = useState<ApolloClient<NormalizedCacheObject>>(() => createApolloClient());
 
     const [user, setUser] = useState<User | null>(null);
 
@@ -39,7 +38,13 @@ export const AuthContextProvider: React.FC = ({ children }) => {
      * @param authRes auth request's response
      */
     const handleAuth = (authRes: AuthResponse): User => {
-        axiosInstance.defaults.headers.common["Authorization"] = authRes.accessToken;
+        axiosClient.defaults.headers.common["Authorization"] = authRes.accessToken;
+        setApolloClient(() => createApolloClient({
+            cache: new InMemoryCache(),
+            headers: {
+                ["Authorization"]: authRes.accessToken
+            }
+        }))
 
         localStorage.setItem("refresh_token", authRes.refreshToken);
 
@@ -58,7 +63,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
 
     // setup interceptor for 401
     useEffect(() => {
-        const _axiosInstance = axiosInstance; // React 17.0.0 C:
+        const _axiosInstance = axiosClient; // React 17.0.0 C:
 
         const interceptorId = _axiosInstance.interceptors.response.use(response => response, async (error) => {
             const code = error.response ? error.response.status : null;
@@ -70,7 +75,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
             // clear to prevent endless loop 
             // next line will override refresh_token anyway
             localStorage.removeItem("refresh_token");
-            const authRes = await refreshApiToken(axiosInstance, refresh_token)
+            const authRes = await refreshApiToken(axiosClient, refresh_token)
 
             handleAuth(authRes);
         })
@@ -79,7 +84,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
             // now sure if gc will handle this 'in time'
             _axiosInstance.interceptors.response.eject(interceptorId);
         }
-    }, [axiosInstance]);
+    }, [axiosClient]);
 
     // get token at app start
     useEffect(() => {
@@ -87,7 +92,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
 
 
         if (refresh_token && refresh_token != "undefined")
-            refreshApiToken(axiosInstance, refresh_token)
+            refreshApiToken(axiosClient, refresh_token)
                 .then(handleAuth)
                 .catch((err) => {
                     console.error(err)
@@ -99,7 +104,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     }, [])
 
     const auth = async (provider: Providers, code: string, state?: string): Promise<User> => {
-        const authRes = await authByProvidersToken(axiosInstance, provider, code, state);
+        const authRes = await authByProvidersToken(axiosClient, provider, code, state);
 
         if (!authRes)
             throw new Error("Auth failed!");
@@ -108,20 +113,22 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     }
 
     const logout = () => {
-        setAxiosInstance(() => axios.create(AXIOS_CONFIG));
+        setAxiosClient(() => createAxiosClient());
         setUser(() => null);
         localStorage.setItem("refresh_token", "");
     }
 
     return (
-        <AuthContext.Provider
-            value={{
-                auth,
-                logout,
-                user,
-                axios: axiosInstance
-            }}>
-            {children}
-        </AuthContext.Provider>
+        <ApolloProvider client={apolloClient}>
+            <AuthContext.Provider
+                value={{
+                    auth,
+                    logout,
+                    user,
+                    axios: axiosClient
+                }}>
+                {children}
+            </AuthContext.Provider>
+        </ApolloProvider>
     )
 };
