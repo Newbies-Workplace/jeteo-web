@@ -1,7 +1,7 @@
 import {ApolloClient, ApolloClientOptions, InMemoryCache, NormalizedCacheObject} from "@apollo/client";
 
 const APOLLO_CONFIG: ApolloClientOptions<NormalizedCacheObject> = {
-    uri: `${process.env.API_URL}/graphql`,
+    uri: `${__GRAPHQL_URI__}/graphql`,
     cache: new InMemoryCache(),
 }
 

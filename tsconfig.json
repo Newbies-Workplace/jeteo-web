@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "out",
-        "target": "es5",
+        "target": "es6",
         "lib": [
             "dom",
             "dom.iterable",
@@ -28,7 +28,8 @@
         ]
     },
     "include": [
-        "src/"
+        "src/",
+        "vite.config.ts"
     ],
     "exclude": [
         "out/**"

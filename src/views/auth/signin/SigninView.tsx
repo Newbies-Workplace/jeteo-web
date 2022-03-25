@@ -9,12 +9,12 @@ export const SigninView: React.FC = () => {
 
             <ol>
                 <li>
-                    <a href={`${process.env.API_URL}/oauth/login/github`}>Github login thing</a>
+                    <a href={`${__RESTAPI_URI__}/oauth/login/github`}>Github login thing</a>
                 </li>
 
-                {process.env.NODE_ENV === 'development' &&
+                {__DEV__ &&
                     <li>
-                        <a href={`${process.env.API_URL}/oauth/login/devgithub`}>Github [dev 🚧] login thing</a>
+                        <a href={`${__RESTAPI_URI__}/oauth/login/devgithub`}>Github [dev 🚧] login thing</a>
                     </li>
                 }
             </ol>

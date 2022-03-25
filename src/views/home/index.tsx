@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../common/auth/useAuth.hook';
 
 import Planet from '../../assets/images/planet.svg';
-import {LectureCard} from "../../components/containers/LectureCard/LectureCard";
 
-import exampleimg from '../../assets/images/photos/test_img1.jpg'
+import {BaseButton} from "../../components/containers/BaseButton/BaseButton";
+import {EventList} from "../../components/ui/EventList/EventList";
 
 
 export const HomeView: React.FC = () => {
@@ -16,17 +16,16 @@ export const HomeView: React.FC = () => {
     return (
         <>
             <Planet />
+            <BaseButton onClick={() => alert("Works!")}>
+                SASS Btn Text
+            </BaseButton>
             <p>
                 Hello universe!
             </p>
-            <LectureCard
-                id="975a6fa7-dfae-432b-9e8b-623f356b73a1"
-                title="To się powinno ruszać?"
-                subtitle="Biologiczna analiza whopperflowers"
-                startDate={new Date("2022-02-24 20:08:42.000")}
-                image={exampleimg}
-                locationName={"online"}
-            />
+
+            <div style={{backgroundColor: '#f6f6f6'}}>
+                <EventList/>
+            </div>
             {user?.nickname}
             <p>
                 <Link to="/auth/signin">Login Page</Link>

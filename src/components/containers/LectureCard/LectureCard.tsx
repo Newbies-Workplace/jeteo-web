@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import styles from './LectureCard.css'
+import styles from './LectureCard.module.css'
 import {LocationChip} from "./chips/LocationChip";
 import {StartDateChip} from "./chips/StartDateChip";
 
@@ -13,7 +13,7 @@ interface LectureCardProps {
     color?: string,
     image?: string,
 
-    startDate: Date,
+    startDate?: Date,
     locationName?: string
 }
 

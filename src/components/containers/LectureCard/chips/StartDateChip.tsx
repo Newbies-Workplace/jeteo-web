@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./chipStyles.css";
+import styles from "./chipStyles.module.css";
 import ClockIcon from "../../../../assets/images/icons/clock.svg";
 
 interface StartDateChipProps {

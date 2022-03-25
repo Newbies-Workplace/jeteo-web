@@ -28,7 +28,9 @@ const defaultAuthContext: AuthContextInterface = {
 export const AuthContext = createContext<AuthContextInterface>(defaultAuthContext);
 
 export const AuthContextProvider: React.FC = ({ children }) => {
+    //todo(DiD3n): move to separate (axios) context
     const [axiosClient, setAxiosClient] = useState<AxiosInstance>(() => createAxiosClient());
+    //todo(DiD3n): move to separate (apollo) context
     const [apolloClient, setApolloClient] = useState<ApolloClient<NormalizedCacheObject>>(() => createApolloClient());
 
     const [user, setUser] = useState<User | null>(null);
@@ -42,8 +44,10 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         setApolloClient(() => createApolloClient({
             cache: new InMemoryCache(),
             headers: {
-                ["Authorization"]: authRes.accessToken
-            }
+                ["Authorization"]: authRes.accessToken,
+                ["Access-Control-Allow-Origin"]: 'true',
+            },
+            z
         }))
 
         localStorage.setItem("refresh_token", authRes.refreshToken);

@@ -1,7 +1,7 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from "axios";
 
 const AXIOS_CONFIG: AxiosRequestConfig = {
-    baseURL: process.env.API_URL
+    baseURL: __RESTAPI_URI__
 }
 
 export const createAxiosClient = (

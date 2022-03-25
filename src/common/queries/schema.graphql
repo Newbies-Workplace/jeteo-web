@@ -1,0 +1,144 @@
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type AddressResponse {
+    city: String!
+    coordinates: CoordinatesResponse
+    place: String!
+}
+
+type ContactResponse {
+    github: String
+    linkedin: String
+    mail: String
+    twitter: String
+}
+
+type CoordinatesResponse {
+    latitude: Float!
+    longitude: Float!
+}
+
+type LectureResponse {
+    address: AddressResponse
+    "Lecture creator"
+    author: UserResponse!
+    authorId: String!
+    createDate: Instant!
+    id: String!
+    "Is lecture followed by current user"
+    isFollowed: Boolean!
+    subtitle: String
+    tags: [TagResponse!]!
+    timeFrame: TimeFrameResponse!
+    title: String!
+    updateDate: Instant!
+}
+
+type Mutation {
+    "Create lecture with request"
+    createLecture(request: LectureRequestInput!): LectureResponse!
+    "Creates tag"
+    createTag(request: TagCreateRequestInput!): TagResponse!
+    "Delete lecture by id"
+    deleteLecture(id: String!): Boolean!
+    "Follow Lecture by id"
+    followLecture(id: String!): Boolean!
+    "Appends new tags to followed list"
+    followTags(request: [TagRequestInput!]!): [TagResponse!]!
+    "Replace lecture data with new data (PUT equivalent)"
+    replaceLecture(id: String!, request: LectureRequestInput!): LectureResponse!
+    "Replace user data with new data (PUT equivalent)"
+    replaceMyUser(request: UserRequestInput!): UserResponse!
+    "Unfollow lecture by id"
+    unfollowLecture(id: String!): Boolean!
+    "Removes tags from followed list"
+    unfollowTags(request: [TagRequestInput!]!): Boolean!
+}
+
+type Query {
+    "Get tags followed by user (paged)"
+    followedTags(page: Int, size: Int): [TagResponse!]!
+    "Get single lecture by its id"
+    lecture(id: String!): LectureResponse
+    "Get all lectures paged"
+    lectures(page: Int, size: Int): [LectureResponse!]!
+    "Get tag by id"
+    tag(id: String!): TagResponse
+    "Get all tags paged"
+    tags(page: Int, size: Int): [TagResponse!]!
+    "Get user by id"
+    user(id: String!): UserResponse
+    "Get all users paged"
+    users(page: Int, size: Int): [UserResponse!]!
+}
+
+type TagResponse {
+    id: String!
+    name: String!
+}
+
+type TimeFrameResponse {
+    finishDate: Instant
+    startDate: Instant!
+}
+
+type UserResponse {
+    contact: ContactResponse!
+    createDate: Instant!
+    description: String
+    id: String!
+    nickname: String!
+    updateDate: Instant!
+}
+
+"ISO date-time"
+scalar Instant
+
+input AddressRequestInput {
+    city: String!
+    coordinates: CoordinatesRequestInput
+    place: String!
+}
+
+input ContactRequestInput {
+    github: String
+    linkedin: String
+    mail: String
+    twitter: String
+}
+
+input CoordinatesRequestInput {
+    latitude: Float!
+    longitude: Float!
+}
+
+input LectureRequestInput {
+    address: AddressRequestInput
+    subtitle: String
+    tags: [TagRequestInput!]!
+    timeFrame: TimeFrameRequestInput!
+    title: String!
+}
+
+input TagCreateRequestInput {
+    name: String!
+}
+
+input TagRequestInput {
+    id: String!
+}
+
+input TimeFrameRequestInput {
+    finishDate: Instant
+    startDate: Instant!
+}
+
+input UserRequestInput {
+    contact: ContactRequestInput!
+    description: String
+    nickname: String!
+}

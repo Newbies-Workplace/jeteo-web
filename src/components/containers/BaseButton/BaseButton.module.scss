@@ -1,0 +1,38 @@
+
+.button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 180px;
+    padding: 10px 20px;
+    margin: 8px;
+
+    border-radius: var(--border-radius);
+    border: none;
+
+    background-color: #C4C4C44d;
+
+    transition: background-color .1s, transfrom .1s;
+
+    &:hover {
+        background-color: #C4C4C47d;
+    }
+
+    &:active {
+        background-color: #C4C4C4ad;
+        transition: none;
+    }
+}
+
+.icon {
+    height: 24px;
+    margin-right: 8px;
+}
+
+.text {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: var(--font);
+}
