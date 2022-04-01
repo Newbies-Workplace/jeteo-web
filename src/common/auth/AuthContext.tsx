@@ -26,7 +26,7 @@ export const AuthContext = createContext<AuthContextInterface>(defaultAuthContex
 
 
 const AXIOS_CONFIG = {
-    baseURL: process.env.API_URL
+    baseURL: __API_URL__
 }
 
 export const AuthContextProvider: React.FC = ({ children }) => {
