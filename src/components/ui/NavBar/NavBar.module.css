@@ -1,0 +1,11 @@
+
+.container {
+    /* limit width usable space */
+    max-width: var(--app-prefer-width);
+    margin: auto;
+
+    /* center content */
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+}
