@@ -7,6 +7,7 @@ export class SimpleLecture {
         public name: string,
         public description: string,
         public startDate: string,
+        public primaryColor: string,
     ) {
     }
 }
@@ -23,13 +24,15 @@ export class Lecture extends SimpleLecture {
         public latitude: number,
         public longitude: number,
         public agenda: AgendaEntry[] = [],
+        public primaryColor: string,
         public author?: User,
     ) {
         super(
             id,
             name,
             description,
-            startDate
+            startDate,
+            primaryColor,
         );
     }
 }

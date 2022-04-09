@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import styles from './LectureCard.module.css'
+import styles from './EventCard.module.scss'
 import {LocationChip} from "./chips/LocationChip";
 import {StartDateChip} from "./chips/StartDateChip";
 
@@ -17,14 +17,14 @@ interface LectureCardProps {
     locationName?: string
 }
 
-export const LectureCard: React.FC<LectureCardProps> = ({
+export const EventCard: React.FC<LectureCardProps> = ({
     id,
     title,
     subtitle,
     color,
     image,
     startDate,
-    locationName
+    locationName,
 }) => {
 
     const cardStyle: React.CSSProperties = {
@@ -32,10 +32,12 @@ export const LectureCard: React.FC<LectureCardProps> = ({
     }
 
     return (
-        <Link className={styles.link} to={`/lecture/${id}`}>
+        <Link className={styles.link} to={`/event/${id}`}>
             <div style={cardStyle} className={styles.card}>
+
                 {image &&
                     <img className={styles.bgImg} src={image} alt=""/>}
+
                 <div className={styles.name}>
                     <h2 className={styles.title}>
                         {title}
@@ -43,8 +45,8 @@ export const LectureCard: React.FC<LectureCardProps> = ({
                     <h3 className={styles.subtitle}>
                         {subtitle}
                     </h3>
-
                 </div>
+
                 <div className={styles.bottom}>
                     {locationName &&
                         <LocationChip>{locationName}</LocationChip>}

@@ -1,11 +1,11 @@
 
-export interface JwtData {
+export interface DecodedJwt {
     id: string;
     nickname: string;
 
     exp: number; // expire
     iat: number;
-    iss: string; // service name
+    iss: string; // api name
     roles: string[],
     sub: string;
 }

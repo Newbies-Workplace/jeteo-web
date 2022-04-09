@@ -6,12 +6,14 @@ import {
 } from 'react-router-dom';
 
 import { AuthRouter } from './auth';
-import { HomeView } from './home';
+import { HomeView } from './home/HomeView';
+import { EventView } from "./event/EventView";
 
 export const AppRouter: React.FC = () => {
 
     return (
         <Router>
+
             <Routes>
                 <Route
                     element={<HomeView/>}
@@ -20,6 +22,11 @@ export const AppRouter: React.FC = () => {
                 <Route
                     element={<AuthRouter/>}
                     path="/auth/*"/>
+
+                <Route
+                    element={<EventView/>}
+                    path="event/:id"/>
+
 
                 <Route path="*">
                     404

@@ -2,7 +2,7 @@ import React from "react";
 import { render as renderReact, waitFor, screen, act } from "@testing-library/react";
 
 import { AuthContextProvider, AuthContextInterface } from '../AuthContext';
-import { useAuth } from "../useAuth.hook";
+import { useAuth } from "../hooks/useAuth.hook";
 import MockAxios from "jest-mock-axios";
 
 import authRes from './authResponse.json';

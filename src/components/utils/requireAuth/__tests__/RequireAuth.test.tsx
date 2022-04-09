@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event'
 import MockAxios from "jest-mock-axios";
 import { render as renderReact, screen, waitFor, act } from "@testing-library/react";
 
-import { AuthContextProvider } from "../../../../common/auth/AuthContext"
+import { AuthContextProvider } from "../../../../contexts/auth/AuthContext"
 import { RequireAuth } from "../RequireAuth";
-import { useAuth } from "../../../../common/auth/useAuth.hook";
+import { useAuth } from "../../../../contexts/auth/hooks/useAuth.hook";
 
 import authRes from './authResponse.json';
 

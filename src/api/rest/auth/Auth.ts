@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { AuthResponse } from './authResponse.interface';
+import { AuthResponse } from './AuthResponse.interface';
 
 export const authByProvidersToken = async (axios: AxiosInstance, provider: string, token: string, state?: string): Promise<AuthResponse> =>
     axios.get<AuthResponse>(`/oauth/callback/${provider}`, {

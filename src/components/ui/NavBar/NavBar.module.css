@@ -8,4 +8,12 @@
     padding: 16px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.burgerButton {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: unset;
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import { gql, useQuery} from "@apollo/client";
-import {LectureCard} from "../../containers/LectureCard/LectureCard";
+import {EventCard} from "../../containers/LectureCard/EventCard";
 import exampleimg from "../../../assets/images/photos/test_img1.jpg";
 
-const GET_LECTURES = gql`
+const GET_EVENTS = gql`
     query getLectures($page: Int, $size: Int) {
-        lectures(page: $page, size: $size) {
+        events(page: $page, size: $size) {
             id
             title
             subtitle
@@ -15,16 +15,20 @@ const GET_LECTURES = gql`
             timeFrame {
                 startDate
             }
+            theme {
+                primaryColor
+                image
+            }
         }
     }
 `;
 
 export const EventList: React.FC = () => {
 
-    const {loading, error, data} = useQuery(GET_LECTURES, {
+    const {loading, error, data} = useQuery(GET_EVENTS, {
         variables: {
             page: 1,
-            size: 5,
+            size: 50,
         }
     });
 
@@ -33,16 +37,16 @@ export const EventList: React.FC = () => {
 
     return (
         <div>
-            {data && data.lectures.map((lecture: any) =>
-                <LectureCard
-                    key={lecture.id}
-                    id={lecture.id}
-                    title={lecture.title}
-                    subtitle={lecture.subtitle} //lecture?.author?.nickname
-                    startDate={new Date(lecture.timeFrame.startDate)}
-                    image={exampleimg}
+            {data && data.events.map((event: any) => //todo: convert to Model
+                <EventCard
+                    key={event.id}
+                    id={event.id}
+                    title={event.title}
+                    subtitle={event.subtitle} //lecture?.author?.nickname
+                    startDate={new Date(event.timeFrame.startDate)}
+                    color={event.theme.primaryColor}
+                    image={event.theme.image || exampleimg}
                 />)}
-
         </div>
     )
 }

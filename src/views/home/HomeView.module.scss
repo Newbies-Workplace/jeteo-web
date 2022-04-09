@@ -1,0 +1,10 @@
+.view {
+    max-width: var(--app-prefer-width);
+    margin: auto;
+    padding: 0 16px 16px;
+}
+
+.list {
+    max-width: calc(var(--app-prefer-width) * 0.85);
+    margin: auto;
+}

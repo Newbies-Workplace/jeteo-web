@@ -1,0 +1,172 @@
+input AddressRequestInput {
+    city: String!
+    coordinates: CoordinatesRequestInput
+    place: String!
+}
+
+type AddressResponse {
+    city: String!
+    coordinates: CoordinatesResponse
+    place: String!
+}
+
+input ContactRequestInput {
+    github: String
+    linkedin: String
+    mail: String
+    twitter: String
+}
+
+type ContactResponse {
+    github: String
+    linkedin: String
+    mail: String
+    twitter: String
+}
+
+input CoordinatesRequestInput {
+    latitude: Float!
+    longitude: Float!
+}
+
+type CoordinatesResponse {
+    latitude: Float!
+    longitude: Float!
+}
+
+input EventRequestInput {
+    address: AddressRequestInput
+    subtitle: String
+    tags: [TagRequestInput!]!
+    timeFrame: TimeFrameRequestInput!
+    title: String!
+}
+
+type EventResponse {
+    address: AddressResponse
+    authorId: String!
+    createDate: Instant!
+    id: String!
+    subtitle: String
+    tags: [TagResponse!]!
+    theme: ThemeResponse!
+    timeFrame: TimeFrameResponse!
+    title: String!
+    updateDate: Instant!
+
+    # Event creator
+    author: UserResponse!
+
+    # Is event followed by current user
+    isFollowed: Boolean!
+}
+
+input EventThemeRequestInput {
+    primaryColor: String
+    secondaryColor: String
+}
+
+# ISO date-time
+scalar Instant
+
+type Mutation {
+    # Creates tag
+    createTag(request: TagCreateRequestInput!): TagResponse!
+
+    # Appends new tags to followed list
+    followTags(request: [TagRequestInput!]!): [TagResponse!]!
+
+    # Removes tags from followed list
+    unfollowTags(request: [TagRequestInput!]!): Boolean!
+
+    # Create event with request
+    createEvent(request: EventRequestInput!): EventResponse!
+
+    # Delete event by id
+    deleteEvent(id: String!): Boolean!
+
+    # Follow event by id
+    followEvent(id: String!): Boolean!
+
+    # Replace event data with new data (PUT equivalent)
+    replaceEvent(id: String!, request: EventRequestInput!): EventResponse!
+
+    # Replace event theme with new one (PUT equivalent)
+    replaceEventTheme(
+        id: String!
+        request: EventThemeRequestInput!
+    ): EventResponse!
+
+    # Unfollow event by id
+    unfollowEvent(id: String!): Boolean!
+
+    # Replace user data with new data (PUT equivalent)
+    replaceMyUser(request: UserRequestInput!): UserResponse!
+}
+
+type Query {
+    # Get tags followed by user (paged)
+    followedTags(page: Int, size: Int): [TagResponse!]!
+
+    # Get tag by id
+    tag(id: String!): TagResponse
+
+    # Get all tags paged
+    tags(page: Int, size: Int): [TagResponse!]!
+
+    # Get single event by its id
+    event(id: String!): EventResponse
+
+    # Get all events paged
+    events(page: Int, size: Int): [EventResponse!]!
+
+    # Get user by id
+    user(id: String!): UserResponse
+
+    # Get all users paged
+    users(page: Int, size: Int): [UserResponse!]!
+}
+
+input TagCreateRequestInput {
+    name: String!
+}
+
+input TagRequestInput {
+    id: String!
+}
+
+type TagResponse {
+    id: String!
+    name: String!
+}
+
+type ThemeResponse {
+    image: String
+    primaryColor: String
+    secondaryColor: String
+}
+
+input TimeFrameRequestInput {
+    finishDate: Instant
+    startDate: Instant!
+}
+
+type TimeFrameResponse {
+    finishDate: Instant
+    startDate: Instant!
+}
+
+input UserRequestInput {
+    contact: ContactRequestInput!
+    description: String
+    nickname: String!
+}
+
+type UserResponse {
+    contact: ContactResponse!
+    createDate: Instant!
+    description: String
+    id: String!
+    nickname: String!
+    updateDate: Instant!
+}

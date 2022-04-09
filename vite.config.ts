@@ -14,17 +14,12 @@ export default defineConfig(({command, /* mode */}) => {
         },
         server: {
             port: 8080,
-            proxy: {
-                '/graphql': {
-                    target: "http://jeteo.newbies.pl:8080"
-                }
-            }
         },
 
         define: {
             "__RESTAPI_URI__": "'http://jeteo.newbies.pl:8080'",
-            "__GRAPHQL_URI__": command === "serve" ? "'http://localhost:8080'" : "'http://jeteo.newbies.pl:8080'",
+            "__GRAPHQL_URI__": "'http://jeteo.newbies.pl:8080'",
             "__DEV__": command === "serve",
         },
     }
-})
+});

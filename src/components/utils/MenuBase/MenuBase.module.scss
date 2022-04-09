@@ -1,0 +1,49 @@
+$local-z-index: 100;
+
+.base {
+    text-align: center;
+    font-size: 0;
+}
+
+// hook's purpose is only to change
+// `display: absolute`' pos' coords to local one
+.hook {
+    position: relative;
+
+    .content {
+
+        // detach from DOM's layout
+        position: absolute;
+        z-index: $local-z-index + 1;
+        // bc of hook we don't need to calc global pos
+        top: 0;
+        left: 0;
+
+        // mods:
+        &.horizontal-left {
+            transform: translateX(-100%);
+        }
+        &.horizontal-center {
+            transform: translateX(-50%);
+        }
+        &.horizontal-right {
+            transform: translateX(0%);
+        }
+    }
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: $local-z-index;
+
+    &.visible {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}

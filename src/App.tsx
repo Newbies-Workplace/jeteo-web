@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthContextProvider } from './common/auth/AuthContext';
+import { AuthContextProvider } from './contexts/auth/AuthContext';
 import { AppRouter } from './views/AppRouter';
 
 export const App: React.FC = () => {
