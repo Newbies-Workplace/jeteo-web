@@ -1,0 +1,41 @@
+
+.container {
+    width: 200px;
+    background-color: #135465;
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    margin: 8px;
+}
+
+.userInfo {
+    padding: 14px 14px 10px;
+    text-align: center;
+
+    color: #fff;
+
+    .username {
+        font-weight: 700;
+        font-size: 22px;
+        margin: 4px;
+    }
+
+    .role {
+        font-weight: 400;
+        font-size: 16px;
+        margin: 0;
+    }
+}
+
+.innerContainer {
+    padding: 14px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: var(--border-radius);
+}
+
+.separator {
+    margin: 2px 0;
+    height: 2px;
+    background-color: transparentize(#DBDCDD, 0.1);
+    border: none;
+}
