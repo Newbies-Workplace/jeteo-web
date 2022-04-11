@@ -25,7 +25,7 @@ export const AppRouter: React.FC = () => {
 
                 <Route
                     element={<EventView/>}
-                    path="event/:id"/>
+                    path="event/:name"/>
 
 
                 <Route path="*">

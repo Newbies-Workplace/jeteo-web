@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
 import styles from './EventCard.module.scss'
 import {LocationChip} from "./chips/LocationChip";
 import {StartDateChip} from "./chips/StartDateChip";
 
-interface LectureCardProps {
+interface EventCardProps {
     id: string,
     title: string,
     subtitle: string,
@@ -17,8 +15,7 @@ interface LectureCardProps {
     locationName?: string
 }
 
-export const EventCard: React.FC<LectureCardProps> = ({
-    id,
+export const EventCard: React.FC<EventCardProps> = ({
     title,
     subtitle,
     color,
@@ -32,29 +29,27 @@ export const EventCard: React.FC<LectureCardProps> = ({
     }
 
     return (
-        <Link className={styles.link} to={`/event/${id}`}>
-            <div style={cardStyle} className={styles.card}>
+        <div style={cardStyle} className={styles.card}>
 
-                {image &&
-                    <img className={styles.bgImg} src={image} alt=""/>}
+            {image &&
+                <img className={styles.bgImg} src={image} alt=""/>}
 
-                <div className={styles.name}>
-                    <h2 className={styles.title}>
-                        {title}
-                    </h2>
-                    <h3 className={styles.subtitle}>
-                        {subtitle}
-                    </h3>
-                </div>
-
-                <div className={styles.bottom}>
-                    {locationName &&
-                        <LocationChip>{locationName}</LocationChip>}
-
-                    {startDate &&
-                        <StartDateChip date={startDate}/>}
-                </div>
+            <div className={styles.name}>
+                <h2 className={styles.title}>
+                    {title}
+                </h2>
+                <h3 className={styles.subtitle}>
+                    {subtitle}
+                </h3>
             </div>
-        </Link>
+
+            <div className={styles.bottom}>
+                {locationName &&
+                    <LocationChip>{locationName}</LocationChip>}
+
+                {startDate &&
+                    <StartDateChip date={startDate}/>}
+            </div>
+        </div>
     )
 }
