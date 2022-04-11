@@ -67,8 +67,9 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "globals": {
-      "__API_URL__": "http://localhost/",
-      "__DEV__": true
+      "__RESTAPI_URI__": "'http://localhost:8080'",
+      "__GRAPHQL_URI__": "'http://localhost:8080'",
+      "__DEV__": false
     },
     "moduleNameMapper": {
       "\\.s?[ca]ss$": "<rootDir>/src/__mocks__/css.ts",
