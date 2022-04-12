@@ -1,7 +1,7 @@
 
-enum ProvidersList {
+enum Provider {
     github = 'github',
     githubDev = 'devgithub'
 }
 
-export default ProvidersList;
+export default Provider;

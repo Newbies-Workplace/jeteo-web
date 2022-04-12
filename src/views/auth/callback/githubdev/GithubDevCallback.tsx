@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router';
 import { useQuery } from '../../../../common/utils/useQuery';
 import { useAuth } from '../../../../contexts/auth/hooks/useAuth.hook';
-import Providers from '../../../../common/models/ProvidersList';
+import Providers from '../../../../api/rest/auth/oauth/Provider';
 
 export const GithubDevCallback: React.FC = () => {
     const { auth, user } = useAuth();

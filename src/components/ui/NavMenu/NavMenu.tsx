@@ -12,24 +12,28 @@ export const NavMenu: React.FC = () => {
     return (
         <div className={styles.container}>
 
-            <div className={styles.userInfo}>
-                <h3 className={styles.username}>{user?.nickname}</h3>
-                <p className={styles.role}>Użytkownik</p>
-            </div>
+            {user &&
+                <div className={styles.userInfo}>
+                    <h3 className={styles.username}>{user?.nickname}</h3>
+                    <p className={styles.role}>Użytkownik</p>
+                </div>
+            }
 
             <div className={styles.innerContainer}>
 
-                <NavMenuItemLink
-                    location="/studio">
-                    jeteo™ studio
-                </NavMenuItemLink>
-
-                <NavMenuItemLink
-                    location="/options">
-                    ustawienia
-                </NavMenuItemLink>
-
-                <hr className={styles.separator}/>
+                {user &&
+                    <>
+                        <NavMenuItemLink
+                            location="/studio">
+                            jeteo™ studio
+                        </NavMenuItemLink>
+                        <NavMenuItemLink
+                            location="/options">
+                            ustawienia
+                        </NavMenuItemLink>
+                        <hr className={styles.separator}/>
+                    </>
+                }
 
                 {user ? 
                     <NavMenuItemButton 

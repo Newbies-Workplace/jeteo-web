@@ -7,7 +7,7 @@ import {
     EventListQueryVars,
     GET_EVENTS_LIST_QUERY
 } from "../../../api/graphql/events/EventListQuery";
-import {Event} from "../../../common/models/SimpleEvent.model";
+import {Event} from "../../../common/models/Event";
 import {Link} from "react-router-dom";
 
 
