@@ -1,6 +1,4 @@
-import React from "React";
-
-import { FC, PropsWithChildren } from "react";
+import React, { FC } from "react";
 
 import styles from "./BackgroundWrapper.css";
 
