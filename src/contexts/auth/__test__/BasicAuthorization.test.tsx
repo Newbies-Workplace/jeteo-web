@@ -67,7 +67,7 @@ describe('Authorization Context', () => {
     })
 
     it('should login', async () => {
-        expect(testContext?.user).toBe(null);
+        expect(testContext?.user).toBe(undefined);
 
         act(() => {
             userEvent.click(screen.getByTestId('login'), { button: 0 })
@@ -82,7 +82,7 @@ describe('Authorization Context', () => {
     })
 
     it('should login & logout', async () => {
-        expect(testContext?.user).toBe(null);
+        expect(testContext?.user).toBe(undefined);
 
         act(() => {
             userEvent.click(screen.getByTestId('login'), { button: 0 })
@@ -91,13 +91,13 @@ describe('Authorization Context', () => {
 
         await waitFor(() => screen.getByTestId('id'));
 
-        expect(testContext?.user).not.toBe(null);
+        expect(testContext?.user).toBeDefined();
         expect(testContext?.user?.nickname).toBe(authRes.username);
 
         act(() => {
             userEvent.click(screen.getByTestId('logout'), { button: 0 });
         })
 
-        expect(testContext?.user).toBe(null);
+        expect(testContext?.user).toBe(undefined);
     })
 })

@@ -9,15 +9,14 @@ import Providers from "../../api/rest/auth/oauth/Provider";
 import { User } from "../../common/models/User";
 
 export interface AuthContextInterface {
-    auth(provider: string, code: string, state?: string): Promise<User>;
-    logout(): void;
-    user: User | null; // undefined == not authorized
-    refreshSession(): void;
-    axios: AxiosInstance,
+    auth(provider: string, code: string, state?: string): Promise<User>
+    logout(): void
+    user?: User
+    refreshSession(): void
+    axios: AxiosInstance
 }
 
 export const AuthContext = createContext<AuthContextInterface>({
-    user: null,
     auth: async () => { throw new Error("AuthContext not initialized") },
     logout: () => { throw new Error("AuthContext not initialized") },
     refreshSession: () => { throw new Error("AuthContext not initialized") },
@@ -25,7 +24,7 @@ export const AuthContext = createContext<AuthContextInterface>({
 });
 
 export const AuthContextProvider: React.FC = ({ children }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User|undefined>(undefined);
 
     const [axiosClient, setAxiosClient] = useState<AxiosInstance>(() => createAxiosClient());
     const [apolloClient, setApolloClient] = useState<ApolloClient<NormalizedCacheObject>>(() => createApolloClient());
@@ -67,7 +66,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         setApolloClient(() => createApolloClient());
         setAxiosClient(() => createAxiosClient());
 
-        setUser(() => null);
+        setUser(() => undefined);
         localStorage.setItem("refresh_token", "");
     }
 
