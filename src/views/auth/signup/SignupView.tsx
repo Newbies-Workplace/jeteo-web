@@ -1,7 +1,7 @@
 import React from 'react';
-import AuthHeadline from "../../../components/AuthHeadline/AuthHeadline";
-import AuthInputForm from "../../../components/AuthInputForm/AuthInputForm";
-import AuthPrimaryButton from "../../../components/AuthPrimaryButton/AuthPrimaryButton";
+import AuthHeadline from "../../../components/containers/AuthHeadline/AuthHeadline";
+import AuthInputForm from "../../../components/containers/AuthInputForm/AuthInputForm";
+import AuthPrimaryButton from "../../../components/containers/AuthPrimaryButton/AuthPrimaryButton";
 
 
 export const SignupView: React.FC = () => {

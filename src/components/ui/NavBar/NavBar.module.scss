@@ -1,0 +1,25 @@
+
+.container {
+    /* limit width usable space */
+    max-width: var(--app-prefer-width);
+    margin: auto;
+
+    /* center content */
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &.invert {
+        .burgerButton {
+            filter: invert(1);
+        }
+    }
+}
+
+.burgerButton {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: unset;
+}

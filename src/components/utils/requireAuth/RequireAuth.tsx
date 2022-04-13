@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, useLocation } from "react-router";
-import { useAuth } from '../../../common/auth/useAuth.hook';
+import { useAuth } from '../../../contexts/auth/hooks/useAuth.hook';
 
 interface RequireAuthProps {
     fallback?: JSX.Element;

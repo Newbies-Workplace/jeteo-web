@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router';
-import { GithubCallback } from './github';
+import { GithubCallback } from './github/GithubCallback';
 import { GithubDevCallback } from "./githubdev/GithubDevCallback";
 
 export const CallbackRouter: React.FC = () => {

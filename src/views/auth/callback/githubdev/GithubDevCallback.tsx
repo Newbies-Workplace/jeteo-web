@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { useQuery } from '../../../../common/utils/useQuery';
-import { useAuth } from '../../../../common/auth/useAuth.hook';
-import Providers from '../../../../common/models/ProvidersList';
 import {useNavigate} from "react-router-dom";
+import { useAuth } from '../../../../contexts/auth/hooks/useAuth.hook';
+import Providers from '../../../../api/rest/auth/oauth/Provider';
+import {useQuery} from "../../../../common/utils/useQuery";
 
 export const GithubDevCallback: React.FC = () => {
     const { auth } = useAuth();

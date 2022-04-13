@@ -17,8 +17,9 @@ export default defineConfig(({command, /* mode */}) => {
         },
 
         define: {
-            "__API_URL__": "'http://jeteo.newbies.pl:8080'",
+            "__RESTAPI_URI__": "'http://jeteo.newbies.pl:8080'",
+            "__GRAPHQL_URI__": "'http://jeteo.newbies.pl:8080'",
             "__DEV__": command === "serve",
         },
     }
-})
+});

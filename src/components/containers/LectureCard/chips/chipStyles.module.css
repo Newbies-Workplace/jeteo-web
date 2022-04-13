@@ -1,0 +1,14 @@
+
+.chip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.text {
+    margin-left: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FFFFFF;
+}

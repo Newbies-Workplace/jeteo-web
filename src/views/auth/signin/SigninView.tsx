@@ -1,12 +1,12 @@
 import React from 'react';
 
-import ProvidersList from "../../../common/models/ProvidersList";
+import ProvidersList from "../../../api/rest/auth/oauth/Provider";
 
-import AuthHeadline from "../../../components/AuthHeadline/AuthHeadline";
-import AuthSubtitle from "../../../components/AuthSubtitle/AuthSubtitle";
+import AuthHeadline from "../../../components/containers/AuthHeadline/AuthHeadline";
+import AuthSubtitle from "../../../components/containers/AuthSubtitle/AuthSubtitle";
 import SocialMediaProvidersContainer
-    from "../../../components/SocialMediaProvidersContainer/SocialMediaProvidersContainer";
-import SignInWithSocialMediaButton from "../../../components/SignInWithSocialMediaButton/SignInWithSocialMediaButton";
+    from "../../../components/containers/SocialMediaProvidersContainer/SocialMediaProvidersContainer";
+import SignInWithSocialMediaButton from "../../../components/containers/SignInWithSocialMediaButton/SignInWithSocialMediaButton";
 
 
 export const SigninView: React.FC = () => {

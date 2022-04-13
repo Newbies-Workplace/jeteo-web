@@ -1,0 +1,29 @@
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    // mods
+    &.invert {
+        color: white;
+
+        .logotype {
+            filter: invert(1);
+        }
+    }
+
+    &.vertical {
+        flex-direction: column;
+        gap: 6px;
+
+        .mark {
+            width: 64px;
+            height: 64px;
+        }
+    }
+}
+
+
