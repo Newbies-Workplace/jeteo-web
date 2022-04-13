@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 
 import PlanetBlueLogo from "../../assets/vectors/planet-blue-logo.svg"
 

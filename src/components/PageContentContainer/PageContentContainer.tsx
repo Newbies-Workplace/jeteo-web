@@ -1,8 +1,8 @@
-import { FC } from "react";
+import React, { FC } from "react";
 
 import styles from "./PageContentContainer.css";
 
-export const PageContentContainer: FC<React.PropsWithChildren<{}>> = function({ children }) {
+export const PageContentContainer: FC = function({ children }) {
     return (
         <div className={styles.contentContainer}>
             {children}
