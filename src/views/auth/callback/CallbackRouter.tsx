@@ -6,6 +6,7 @@ import { GithubDevCallback } from "./githubdev/GithubDevCallback";
 export const CallbackRouter: React.FC = () => {
 
     return (
+
         <Routes>
             <Route
                 element={<GithubCallback/>}
@@ -19,7 +20,7 @@ export const CallbackRouter: React.FC = () => {
 
             <Route
                 path="*"
-                element={() => <Navigate to={`/auth/error?error=unknown`} />}/>
+                element={() => <Navigate replace to={`/auth/error?error=Invalid+provider`} />}/>
         </Routes>
     )
 };

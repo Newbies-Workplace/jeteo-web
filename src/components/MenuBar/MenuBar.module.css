@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar {
+    width: 36px;
+    height: 6px;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+}
+
+.bar:not(:first-child) {
+    margin-top: 8px;
+}

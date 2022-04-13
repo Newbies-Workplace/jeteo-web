@@ -1,23 +1,44 @@
 import React from 'react';
 
+import ProvidersList from "../../../common/models/ProvidersList";
+
+import AuthHeadline from "../../../components/AuthHeadline/AuthHeadline";
+import AuthSubtitle from "../../../components/AuthSubtitle/AuthSubtitle";
+import SocialMediaProvidersContainer
+    from "../../../components/SocialMediaProvidersContainer/SocialMediaProvidersContainer";
+import SignInWithSocialMediaButton from "../../../components/SignInWithSocialMediaButton/SignInWithSocialMediaButton";
+
 
 export const SigninView: React.FC = () => {
 
     return (
         <>
-            <p>Placeholder signin view</p>
+            <AuthHeadline>
+                Zaczynamy przygodę 🚀
+            </AuthHeadline>
+            <AuthSubtitle>
+                Kontynuuj przez:
+            </AuthSubtitle>
 
-            <ol>
-                <li>
-                    <a href={`${__API_URL__}/oauth/login/github`}>Github login thing</a>
-                </li>
+            <SocialMediaProvidersContainer>
+
+                <SignInWithSocialMediaButton
+                    label="Github"
+                    provider={ProvidersList.github} />
 
                 {__DEV__ &&
-                    <li>
-                        <a href={`${__API_URL__}/oauth/login/devgithub`}>Github [dev 🚧] login thing</a>
-                    </li>
+                    <SignInWithSocialMediaButton
+                        label="Github Dev 🥓"
+                        provider={ProvidersList.githubDev} />
                 }
-            </ol>
+
+            </SocialMediaProvidersContainer>
+            <AuthSubtitle>
+                Nie ma tu twojej ulubionej domeny?
+            </AuthSubtitle>
+            <AuthSubtitle marginless bold>
+                Daj nam znać!
+            </AuthSubtitle>
         </>
     )
-}
+};
