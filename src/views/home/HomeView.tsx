@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAuth } from '../../contexts/auth/hooks/useAuth.hook';
 
-// import {EventList} from "../../components/ui/EventList/EventList";
-// import {NavBar} from "../../components/ui/NavBar/NavBar";
+import {EventList} from "../../components/ui/EventList/EventList";
+import {NavBar} from "../../components/ui/NavBar/NavBar";
 
 import styles from './HomeView.module.css';
 
@@ -12,7 +12,7 @@ export const HomeView: React.FC = () => {
 
     return (
         <>
-            {/*<NavBar/>*/}
+            <NavBar/>
             <div className={styles.view}>
                 <h1>
                     {user ?
@@ -20,7 +20,7 @@ export const HomeView: React.FC = () => {
                         : `Witaj, użytkowniku! 👋`}
                 </h1>
                 <div className={styles.list}>
-                    {/*<EventList/>*/}
+                    <EventList/>
                 </div>
             </div>
         </>
