@@ -1,7 +1,7 @@
 
-enum Provider {
+enum OAuthProviders {
     github = 'github',
     githubDev = 'devgithub'
 }
 
-export default Provider;
+export default OAuthProviders;

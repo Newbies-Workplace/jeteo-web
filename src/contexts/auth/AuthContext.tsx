@@ -5,7 +5,7 @@ import { authByProvidersToken, refreshToken as refreshApiToken } from "../../api
 import { AuthResponse } from "../../api/rest/auth/AuthResponse.interface";
 import { createAxiosClient } from "./axiosService";
 import { createApolloClient } from "./apolloService";
-import Providers from "../../api/rest/auth/oauth/Provider";
+import Providers from "../../api/rest/auth/oauth/OAuthProviders";
 import { User } from "../../common/models/User";
 
 export interface AuthContextInterface {

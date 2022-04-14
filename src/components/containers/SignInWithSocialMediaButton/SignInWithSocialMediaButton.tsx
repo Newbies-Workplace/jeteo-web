@@ -1,11 +1,11 @@
 import React from "react";
 
 import styles from "./SignInWithSocialMediaButton.module.css";
-import Provider from "../../../api/rest/auth/oauth/Provider";
+import OAuthProviders from "../../../api/rest/auth/oauth/OAuthProviders";
 
 interface Props {
     label: string;
-    provider: Provider;
+    provider: OAuthProviders;
 }
 
 export const SignInWithSocialMediaButton: React.FC<Props> = ({ label, provider }) => {

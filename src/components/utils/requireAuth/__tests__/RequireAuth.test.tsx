@@ -8,7 +8,7 @@ import { AuthContextProvider } from "../../../../contexts/auth/AuthContext"
 import { RequireAuth } from "../RequireAuth";
 import { useAuth } from "../../../../contexts/auth/hooks/useAuth.hook";
 
-import authRes from './authResponse.json';
+import authRes from '../../../../__mocks__/responses/authResponse.json';
 
 describe('<ProtectedRoute />', () => {
     const SecretPage = () => (

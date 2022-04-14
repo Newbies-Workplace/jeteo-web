@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProvidersList from "../../../api/rest/auth/oauth/Provider";
+import ProvidersList from "../../../api/rest/auth/oauth/OAuthProviders";
 
 import AuthHeadline from "../../../components/containers/AuthHeadline/AuthHeadline";
 import AuthSubtitle from "../../../components/containers/AuthSubtitle/AuthSubtitle";

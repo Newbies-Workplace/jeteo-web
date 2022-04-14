@@ -12,7 +12,7 @@ export const CallbackRouter: React.FC = () => {
                 element={<GithubCallback/>}
                 path="github"/>
 
-            {process.env.NODE_ENV === 'development' &&
+            {__DEV__ &&
                 <Route
                     element={<GithubDevCallback/>}
                     path="devgithub"/>

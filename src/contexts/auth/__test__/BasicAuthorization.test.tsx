@@ -5,7 +5,7 @@ import { AuthContextProvider, AuthContextInterface } from '../AuthContext';
 import { useAuth } from "../hooks/useAuth.hook";
 import MockAxios from "jest-mock-axios";
 
-import authRes from './authResponse.json';
+import authRes from '../../../__mocks__/responses/authResponse.json';
 import userEvent from "@testing-library/user-event";
 
 describe('Authorization Context', () => {
@@ -78,7 +78,6 @@ describe('Authorization Context', () => {
 
         expect(testContext?.user?.nickname).toBe(authRes.username);
         expect(testContext?.user?.nickname);
-        localStorage.length
     })
 
     it('should login & logout', async () => {
