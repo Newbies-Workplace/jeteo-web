@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useAuth} from "./useAuth.hook";
-import OAuthProviders from "../../../api/rest/auth/oauth/OAuthProviders";
+import OAuthProvider from "../../../api/rest/auth/oauth/OAuthProvider.enum";
 import {useQueryParams} from "../../../common/utils/useQueryParams";
 
 export enum OAuthStatus {
@@ -14,7 +14,7 @@ export interface OAuthCallbackRet {
     status: OAuthStatus
 }
 
-export const useGenericOAuthCallback = (provider: OAuthProviders): OAuthCallbackRet => {
+export const useGenericOAuthCallback = (provider: OAuthProvider): OAuthCallbackRet => {
     const [status, setStatus] = useState<OAuthStatus>(OAuthStatus.pending);
     const [error, setError] = useState<string|null>(null);
 

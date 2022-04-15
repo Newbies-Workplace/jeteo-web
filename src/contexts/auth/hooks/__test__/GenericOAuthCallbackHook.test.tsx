@@ -2,7 +2,7 @@ import React from "react";
 import {render, waitFor} from "@testing-library/react";
 import {AuthContextProvider} from "../../AuthContext";
 import {OAuthStatus, useGenericOAuthCallback} from "../useGenericOAuthCallback.hook";
-import OAuthProviders from "../../../../api/rest/auth/oauth/OAuthProviders";
+import OAuthProvider from "../../../../api/rest/auth/oauth/OAuthProvider.enum";
 import {MemoryRouter} from "react-router-dom";
 import {useAuth} from "../useAuth.hook";
 import MockAxios from "jest-mock-axios";
@@ -24,7 +24,7 @@ describe("Auth context's useGenericOAuth hook", () => {
 
         const Component = () => {
             const { user } = useAuth()
-            const { error, status } = useGenericOAuthCallback(OAuthProviders.githubDev);
+            const { error, status } = useGenericOAuthCallback(OAuthProvider.githubDev);
 
             testUser = user;
             testStatus = status;

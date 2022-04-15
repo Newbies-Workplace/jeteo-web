@@ -1,10 +1,10 @@
 import React from 'react';
 import {Navigate} from "react-router-dom";
 import {OAuthStatus, useGenericOAuthCallback} from "../../../../contexts/auth/hooks/useGenericOAuthCallback.hook";
-import OAuthProviders from "../../../../api/rest/auth/oauth/OAuthProviders";
+import OAuthProvider from "../../../../api/rest/auth/oauth/OAuthProvider.enum";
 
 export const GithubDevCallback: React.FC = () => {
-    const {error, status} = useGenericOAuthCallback(OAuthProviders.githubDev);
+    const {error, status} = useGenericOAuthCallback(OAuthProvider.githubDev);
 
     switch (status) {
         case OAuthStatus.error:
