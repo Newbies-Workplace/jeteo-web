@@ -11,14 +11,16 @@ import cs from "classnames";
 
 interface NavBarProps {
     invertColor?: boolean
+    withBackground?: boolean
 }
 
-export const NavBar: React.FC<NavBarProps> = ({ invertColor }) => {
+export const NavBar: React.FC<NavBarProps> = ({ invertColor, withBackground = false }) => {
 
     const [open, setOpen] = useState(false);
 
     return (
-        <div className={cs(styles.container, {[styles.invert]: invertColor})}>
+        <div className={cs({[styles.background]: withBackground})}>
+            <div className={cs(styles.container, {[styles.invert]: invertColor})}>
             <Link to={'/'}>
                 <AppLogo invert={invertColor}/>
             </Link>
@@ -36,6 +38,6 @@ export const NavBar: React.FC<NavBarProps> = ({ invertColor }) => {
                     <NavMenu/>
                 </MenuBase>
             </span>
-        </div>
+        </div></div>
     );
 };

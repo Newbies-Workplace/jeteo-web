@@ -1,0 +1,33 @@
+.button {
+    display: flex;
+    background-color: white;
+    margin-top: 15px;
+    padding-left: 10px;
+    min-height: 40px;
+    min-width: 175px;
+    align-items: center;
+    border-radius: 10px;
+    border: medium solid #00000000;
+    font-weight: bold;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+    user-select: none;
+
+    &.active {
+        border: medium solid #009BF9;
+        box-shadow: 0 8px 15px rgba(0, 155, 249, 0.2);
+    }
+}
+
+.text {
+    margin-left: 10px;
+}
+
+.button:hover {
+    background-color: lightgray;
+}
+
+.button:active {
+    background-color: darkgray;
+}
