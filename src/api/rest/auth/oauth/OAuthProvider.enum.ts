@@ -1,5 +1,5 @@
 
-enum OAuthProvider {
+const enum OAuthProvider {
     github = 'github',
     githubDev = 'devgithub'
 }
