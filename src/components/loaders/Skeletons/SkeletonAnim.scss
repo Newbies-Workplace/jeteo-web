@@ -1,0 +1,18 @@
+
+@mixin SkeletonBackgroundAnim($b-radius: 16px) {
+    border-radius: $b-radius;
+
+    // background
+    background: linear-gradient(90deg, #DCE0E5, #F0F2F4, #DCE0E5);
+    background-size: 200%;
+    animation: skeleton-background-loader-anim 1s infinite reverse;
+}
+
+@keyframes skeleton-background-loader-anim {
+    0% {
+        background-position: -100% 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
