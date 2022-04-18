@@ -39,7 +39,7 @@ describe('<ProtectedRoute />', () => {
                 data-testid="login-button"
                 onClick={() => {
                     auth("fake", "2137*****420***69");
-                    MockAxios.mockResponse({ data: authRes })
+                    MockAxios.mockResponse(authRes)
                 }}>
                 login-button
             </button>

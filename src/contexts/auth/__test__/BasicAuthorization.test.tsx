@@ -18,6 +18,7 @@ describe('Authorization Context', () => {
     })
 
     beforeEach(() => {
+        localStorage.clear();
 
         const ExampleComponent: React.FC = () => {
 
@@ -71,12 +72,12 @@ describe('Authorization Context', () => {
 
         act(() => {
             userEvent.click(screen.getByTestId('login'), { button: 0 })
-            MockAxios.mockResponse({ data: authRes })
+            MockAxios.mockResponse(authRes)
         })
 
         await waitFor(() => screen.getByTestId('id'));
 
-        expect(testContext?.user?.nickname).toBe(authRes.username);
+        expect(testContext?.user?.nickname).toBe(authRes.data.username);
         expect(testContext?.user?.nickname);
     })
 
@@ -85,13 +86,13 @@ describe('Authorization Context', () => {
 
         act(() => {
             userEvent.click(screen.getByTestId('login'), { button: 0 })
-            MockAxios.mockResponse({ data: authRes })
+            MockAxios.mockResponse(authRes)
         })
 
         await waitFor(() => screen.getByTestId('id'));
 
         expect(testContext?.user).toBeDefined();
-        expect(testContext?.user?.nickname).toBe(authRes.username);
+        expect(testContext?.user?.nickname).toBe(authRes.data.username);
 
         act(() => {
             userEvent.click(screen.getByTestId('logout'), { button: 0 });

@@ -66,7 +66,7 @@ describe("Auth context's useGenericOAuth hook", () => {
 
     it('should return success', async () => {
         renderEnv('/?code=123&state=123')
-        MockAxios.mockResponse({ data: authRes })
+        MockAxios.mockResponse(authRes)
 
         await waitFor(() => expect(testUser).toBeDefined());
 
