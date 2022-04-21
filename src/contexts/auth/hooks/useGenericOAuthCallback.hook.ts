@@ -19,7 +19,7 @@ export const useGenericOAuthCallback = (provider: OAuthProvider): OAuthCallbackR
     const [error, setError] = useState<string|null>(null);
 
     const { auth } = useAuth();
-    const query = useQueryParams();
+    const {error: errorParam, code: codeParam, state: stateParam} = useQueryParams();
 
     const setErrorWithState = (msg: string): void => {
         setError(msg);
@@ -27,32 +27,27 @@ export const useGenericOAuthCallback = (provider: OAuthProvider): OAuthCallbackR
     }
 
     useEffect(() => {
-        const errorParam = query.get('error');
-
         if (errorParam)
-            setErrorWithState(errorParam);
-
-    }, [query.get('error')])
+            setErrorWithState(errorParam.toString());
+    }, [errorParam])
 
     useEffect(() => {
-        if (error || query.get('error'))
+        if (error || errorParam)
             return;
 
-        const code = query.get('code');
-        if (!code)
+        if (!codeParam)
             return setErrorWithState('Code param is missing');
 
-        const state = query.get('state');
-        if (!state)
+        if (!stateParam)
             return setErrorWithState('State param is missing');
 
-        auth(provider, code, state)
+        auth(provider, codeParam.toString(), stateParam.toString())
             .then(() => {
                 setStatus(OAuthStatus.success);
             })
             .catch(err => setErrorWithState(`auth failed: ${err.message}`))
 
-    }, [query.get('code'), query.get('state')])
+    }, [codeParam, stateParam])
 
     return {
         error,
