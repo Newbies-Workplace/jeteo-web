@@ -5,7 +5,7 @@ import {
     Route
 } from 'react-router-dom';
 
-import { AuthRouter } from './auth';
+import { AuthRouter } from './auth/AuthView';
 import { HomeView } from './home/HomeView';
 import { EventView } from "./event/EventView";
 
