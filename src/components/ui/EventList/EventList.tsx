@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useQuery } from "@apollo/client";
 import { EventCard } from "../../containers/LectureCard/EventCard";
 import exampleimg from "../../../assets/images/photos/test_img1.jpg";
@@ -9,13 +9,12 @@ import {
 } from "../../../api/graphql/events/EventListQuery";
 import {Event} from "../../../common/models/Event";
 import {Link} from "react-router-dom";
-import {animated, useTransition, config, useSpringRef, useChain} from "react-spring";
 import {EventListSkeleton} from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
+import {PlaceholderSwitcher} from "../../utils/animations/PlaceholderSwitcher";
+import {AnimatedList} from "../../utils/animations/AnimatedList";
 
 
 export const EventList: React.FC = () => {
-
-    const [events, setEvents] = useState<Event[]>([]);
 
     const {loading, error, data} = useQuery<EventListQueryData, EventListQueryVars>(
         GET_EVENTS_LIST_QUERY, {
@@ -25,75 +24,39 @@ export const EventList: React.FC = () => {
         },
     });
 
+    const [events, setEvents] = useState<React.ReactNode[]>([]);
+
     useEffect(() => {
-        setEvents(data?.events?.map(Event.fromData) || [])
-    }, [loading])
 
-    const smoothListTransitionRef = useSpringRef();
-    const smoothListTransition = useTransition(events, {
-        ref: smoothListTransitionRef,
-        trail: 25,
-        from: { opacity: 0.1 },
-        enter: { opacity: 1 },
-        leave: { opacity: 0 },
-        config: config.gentle,
-    });
+        // if query doesn't return anything
+        // it is better to stay current state rather than nuke list
+        if (!data)
+            return;
 
-    const loaderTransitionRef = useSpringRef();
-    const loaderTransition = useTransition(loading, {
-        ref: loaderTransitionRef,
-        from: { opacity: 1 },
-        to: { opacity: 1},
-        leave: {opacity: 0},
-    });
-
-    useChain([loaderTransitionRef, smoothListTransitionRef]);
-
-    // if (loading)
-    //     return <EventListSkeleton/>;
+        setEvents(data.events.map(Event.fromData).map(event =>
+            <Link
+                key={event.id}
+                style={{textDecoration: 'none'}}
+                to={`/event/${event.vanityUrl}`}>
+                <EventCard
+                    id={event.id}
+                    title={event.title}
+                    subtitle={event.author.nickname}
+                    startDate={event.startDate}
+                    color={event.primaryColor}
+                    image={ event.image || exampleimg}/>
+            </Link>
+        ))
+    }, [data]);
 
     if (error)
         return <p>error <br/>{error.message}</p>;
 
     return (
-        <div style={{position: "relative"}}>
-            {loaderTransition(({ opacity }, loading) =>
-            loading ? (
-                <animated.div
-                    style={{
-                        width: '100%',
-                        position: 'absolute',
-                        opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }),
-                    }}>
-                    <EventListSkeleton/>
-                </animated.div>
-            ) : (
-                <animated.div
-                    style={{
-                        width: '100%',
-                        position: 'absolute',
-                        opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }),
-                    }}>
-                    {smoothListTransition((style, event) =>
-                        <animated.div
-                            style={style}>
-                            <Link
-                                key={event.id}
-                                style={{textDecoration: 'none'}}
-                                to={`/event/${event.vanityUrl}`}>
-                                <EventCard
-                                    id={event.id}
-                                    title={event.title}
-                                    subtitle={event.author.nickname}
-                                    startDate={event.startDate}
-                                    color={event.primaryColor}
-                                    image={ event.image || exampleimg}/>
-                            </Link>
-                        </animated.div>
-                    )}
-                </animated.div>
-            )
-            )}
-        </div>
+        <PlaceholderSwitcher
+            placeholder={<EventListSkeleton/>}
+            loading={loading}>
+            <AnimatedList items={events}/>
+        </PlaceholderSwitcher>
     )
 }
