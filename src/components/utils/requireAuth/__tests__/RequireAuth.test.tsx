@@ -8,7 +8,7 @@ import { AuthContextProvider } from "../../../../contexts/auth/AuthContext"
 import { RequireAuth } from "../RequireAuth";
 import { useAuth } from "../../../../contexts/auth/hooks/useAuth.hook";
 
-import authRes from './authResponse.json';
+import authRes from '../../../../__mocks__/responses/authResponse.json';
 
 describe('<ProtectedRoute />', () => {
     const SecretPage = () => (
@@ -39,7 +39,7 @@ describe('<ProtectedRoute />', () => {
                 data-testid="login-button"
                 onClick={() => {
                     auth("fake", "2137*****420***69");
-                    MockAxios.mockResponse({ data: authRes })
+                    MockAxios.mockResponse(authRes)
                 }}>
                 login-button
             </button>
