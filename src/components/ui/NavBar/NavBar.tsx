@@ -21,23 +21,24 @@ export const NavBar: React.FC<NavBarProps> = ({ invertColor, withBackground = fa
     return (
         <div className={cs({[styles.background]: withBackground})}>
             <div className={cs(styles.container, {[styles.invert]: invertColor})}>
-            <Link to={'/'}>
-                <AppLogo invert={invertColor}/>
-            </Link>
+                <Link to={'/'}>
+                    <AppLogo invert={invertColor}/>
+                </Link>
 
-            <span>
-                <button
-                    className={styles.burgerButton}
-                    onClick={() => setOpen(prev => !prev)}>
-                    <Burger/>
-                </button>
-                <MenuBase
-                    position="left"
-                    isOpen={open}
-                    setOpen={setOpen}>
-                    <NavMenu/>
-                </MenuBase>
-            </span>
-        </div></div>
+                <span>
+                    <button
+                        className={styles.burgerButton}
+                        onClick={() => setOpen(prev => !prev)}>
+                        <Burger/>
+                    </button>
+                    <MenuBase
+                        position="left"
+                        isOpen={open}
+                        setOpen={setOpen}>
+                        <NavMenu/>
+                    </MenuBase>
+                </span>
+            </div>
+        </div>
     );
 };

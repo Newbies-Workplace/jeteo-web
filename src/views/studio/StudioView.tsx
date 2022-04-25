@@ -18,14 +18,16 @@ export const StudioView: React.FC = () => {
 
                     <div className={styles.separator}/>
 
-                    <Routes>
-                        <Route
-                            element={<StudioDashboard/>}
-                            path="*"/>
-                        <Route
-                            element={<StudioEvents/>}
-                            path="/events"/>
-                    </Routes>
+                    <div className={styles.content}>
+                        <Routes>
+                            <Route
+                                element={<StudioDashboard/>}
+                                path="*"/>
+                            <Route
+                                element={<StudioEvents/>}
+                                path="/events"/>
+                        </Routes>
+                    </div>
                 </div>
             </div>
         </RequireAuth>
