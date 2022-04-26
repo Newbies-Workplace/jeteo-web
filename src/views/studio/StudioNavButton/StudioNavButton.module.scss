@@ -17,20 +17,20 @@
     text-decoration: none;
     user-select: none;
 
-    &.active {
+    &.selected {
         border: medium solid #009BF9;
         box-shadow: 0 8px 15px rgba(0, 155, 249, 0.2);
+    }
+
+    &:hover {
+        background-color: lightgray;
+    }
+
+    &:active {
+        background-color: darkgray;
     }
 }
 
 .text {
     margin-left: 10px;
-}
-
-.button:hover {
-    background-color: lightgray;
-}
-
-.button:active {
-    background-color: darkgray;
 }

@@ -13,7 +13,7 @@ interface StudioNavButtonProps {
 
 export const StudioNavButton: React.FC<StudioNavButtonProps> = ({icon, name, to}) => {
     return (
-        <NavLink className={({isActive}) => cs(styles.button, {[styles.active]: isActive})} to={to}>
+        <NavLink className={({isActive}) => cs(styles.button, {[styles.selected]: isActive})} to={to}>
             {icon} <span className={styles.text}>{name}</span>
         </NavLink>
     );
