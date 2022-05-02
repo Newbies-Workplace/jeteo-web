@@ -1,0 +1,19 @@
+.container {
+    min-height: 100vh;
+    background-color: #f3f3f3;
+}
+
+.pageContainer {
+    display: flex;
+}
+
+.content {
+    padding: 16px;
+}
+
+.separator {
+    width: 3px;
+    background-color: #e2e2e2;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

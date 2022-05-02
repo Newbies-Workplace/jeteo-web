@@ -11,31 +11,34 @@ import cs from "classnames";
 
 interface NavBarProps {
     invertColor?: boolean
+    withBackground?: boolean
 }
 
-export const NavBar: React.FC<NavBarProps> = ({ invertColor }) => {
+export const NavBar: React.FC<NavBarProps> = ({ invertColor, withBackground = false }) => {
 
     const [open, setOpen] = useState(false);
 
     return (
-        <div className={cs(styles.container, {[styles.invert]: invertColor})}>
-            <Link to={'/'}>
-                <AppLogo invert={invertColor}/>
-            </Link>
+        <div className={cs({[styles.background]: withBackground})}>
+            <div className={cs(styles.container, {[styles.invert]: invertColor})}>
+                <Link to={'/'}>
+                    <AppLogo invert={invertColor}/>
+                </Link>
 
-            <span>
-                <button
-                    className={styles.burgerButton}
-                    onClick={() => setOpen(prev => !prev)}>
-                    <Burger/>
-                </button>
-                <MenuBase
-                    position="left"
-                    isOpen={open}
-                    setOpen={setOpen}>
-                    <NavMenu/>
-                </MenuBase>
-            </span>
+                <span>
+                    <button
+                        className={styles.burgerButton}
+                        onClick={() => setOpen(prev => !prev)}>
+                        <Burger/>
+                    </button>
+                    <MenuBase
+                        position="left"
+                        isOpen={open}
+                        setOpen={setOpen}>
+                        <NavMenu/>
+                    </MenuBase>
+                </span>
+            </div>
         </div>
     );
 };

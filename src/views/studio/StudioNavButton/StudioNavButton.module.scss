@@ -1,0 +1,36 @@
+.button {
+    display: flex;
+    align-items: center;
+
+    min-height: 40px;
+    min-width: 175px;
+    margin: 7px 0;
+    padding-left: 10px;
+
+    border: 3px solid #00000000;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    user-select: none;
+
+    &.selected {
+        border: medium solid #009BF9;
+        box-shadow: 0 8px 15px rgba(0, 155, 249, 0.2);
+    }
+
+    &:hover {
+        background-color: lightgray;
+    }
+
+    &:active {
+        background-color: darkgray;
+    }
+}
+
+.text {
+    margin-left: 10px;
+}

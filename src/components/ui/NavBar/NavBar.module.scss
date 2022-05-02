@@ -5,7 +5,7 @@
     margin: auto;
 
     /* center content */
-    padding: 16px;
+    padding: 8px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,6 +15,10 @@
             filter: invert(1);
         }
     }
+}
+
+.background {
+    background-color: white;
 }
 
 .burgerButton {
