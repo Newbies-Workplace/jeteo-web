@@ -2,10 +2,11 @@ import React from 'react';
 import {NavBar} from "../../components/ui/NavBar/NavBar";
 import styles from './StudioView.module.scss';
 import {Route, Routes} from "react-router-dom";
-import {StudioEvents} from "./StudioEvents/StudioEvents";
 import {StudioDashboard} from "./StudioDashboard/StudioDashboard";
 import {RequireAuth} from "../../components/utils/requireAuth/RequireAuth";
 import {StudioNav} from "./StudioNav/StudioNav";
+import {StudioEventList} from "./StudioEventList/StudioEventList";
+import {StudioEventDetails} from "./StudioEventDetails/StudioEventDetails";
 
 export const StudioView: React.FC = () => {
 
@@ -24,8 +25,11 @@ export const StudioView: React.FC = () => {
                                 element={<StudioDashboard/>}
                                 path="*"/>
                             <Route
-                                element={<StudioEvents/>}
+                                element={<StudioEventList/>}
                                 path="/events"/>
+                            <Route
+                                element={<StudioEventDetails/>}
+                                path="/events/:name"/>
                         </Routes>
                     </div>
                 </div>

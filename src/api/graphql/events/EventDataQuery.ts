@@ -6,6 +6,7 @@ export const GET_EVENT_QUERY = gql`
             id
             title
             subtitle
+            vanityUrl
             author {
                 nickname
             }
@@ -24,6 +25,7 @@ export interface EventData {
     id: string
     title: string
     subtitle: string
+    vanityUrl: string
     author: {
         id: string
         nickname: string

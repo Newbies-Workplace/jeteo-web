@@ -1,18 +1,19 @@
 .button {
     background-color: #009BF9;
     color: #FFFFFF;
-    border: 0px;
-    border-radius: 16px;
-    font-size: 24px;
-    padding: 10px 72px;
-    transition: transform .5s;
-}
 
-.margin {
-    margin-top: 48px;
+    font-size: 24px;
+    text-align: center;
+
+    padding: 10px 72px;
+
+    border: 0;
+    border-radius: 16px;
+
+    transition: transform .3s;
 }
 
 .button:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     cursor: pointer;
 }

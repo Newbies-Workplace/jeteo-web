@@ -1,6 +1,10 @@
 .navigation {
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  max-width: 275px;
+
   margin-left: 15px;
   margin-right: 15px;
 }

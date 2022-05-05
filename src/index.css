@@ -2,6 +2,7 @@
 
 :root {
     --app-prefer-width: 1024px;
+    --app-extended-width: 1500px;
 
     --border-radius: 16px;
     --font: 'Lato', sans-serif;
