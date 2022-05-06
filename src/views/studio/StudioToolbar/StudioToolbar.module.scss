@@ -7,14 +7,14 @@
   justify-content: start;
   align-items: center;
 
-  border-radius: var(--border-radius);
-
   font-size: 24px;
   font-weight: bold;
-
-  background-color: white;
 }
 
 .backArrow {
   padding: 16px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

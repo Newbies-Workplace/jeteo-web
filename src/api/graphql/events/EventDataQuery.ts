@@ -21,6 +21,14 @@ export const GET_EVENT_QUERY = gql`
     }
 `;
 
+export interface EventQueryVars {
+    id: string
+}
+
+export interface EventQueryData {
+    event: EventData
+}
+
 export interface EventData {
     id: string
     title: string

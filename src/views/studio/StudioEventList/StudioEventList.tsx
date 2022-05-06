@@ -15,7 +15,6 @@ import exampleimg from "../../../assets/images/photos/test_img1.jpg";
 import PrimaryButton from "../../../components/ui/PrimaryButton/PrimaryButton";
 
 export const StudioEventList: React.FC = () => {
-
     const {loading, error, data} = useQuery<EventListQueryData, EventListQueryVars>(
         GET_EVENTS_LIST_QUERY, {
             variables: {
@@ -35,7 +34,9 @@ export const StudioEventList: React.FC = () => {
             <div className={styles.topBar}>
                 <b>Wydarzenia</b>
 
-                <PrimaryButton>Dodaj</PrimaryButton>
+                <Link to={"/studio/events/create"}>
+                    <PrimaryButton>Dodaj</PrimaryButton>
+                </Link>
             </div>
 
             {data && data.events
