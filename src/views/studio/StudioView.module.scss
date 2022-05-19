@@ -1,3 +1,7 @@
+:root {
+    --studio-top-bar-height: 48px
+}
+
 .container {
     min-height: 100vh;
 
@@ -14,7 +18,7 @@
 
 .content {
     width: 100%;
-    padding: 16px;
+    padding: 32px 16px;
 }
 
 .separator {

@@ -10,7 +10,14 @@
 }
 
 .logo {
+  display: flex;
   font-weight: bold;
+
+  height: var(--studio-top-bar-height);
+
+  align-items: center;
+
+
   padding-top: 32px;
   padding-bottom: 8px;
   margin: 0;

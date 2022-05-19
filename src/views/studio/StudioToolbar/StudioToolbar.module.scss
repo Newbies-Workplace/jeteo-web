@@ -1,20 +1,17 @@
 .container {
   display: flex;
 
-  height: 48px;
-  padding: 8px;
+  height: var(--studio-top-bar-height);
 
   justify-content: start;
   align-items: center;
 
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
 }
 
 .backArrow {
   padding: 16px;
 
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }

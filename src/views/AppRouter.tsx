@@ -4,17 +4,14 @@ import {
     Routes,
     Route
 } from 'react-router-dom';
-
 import { AuthRouter } from './auth/AuthView';
 import { HomeView } from './home/HomeView';
 import { EventView } from "./event/EventView";
-import {StudioView} from "./studio/StudioView";
+import { StudioView } from "./studio/StudioView";
 
 export const AppRouter: React.FC = () => {
-
     return (
         <Router>
-
             <Routes>
                 <Route
                     element={<HomeView/>}

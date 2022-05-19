@@ -4,13 +4,14 @@ import styles from "./StudioEventDetails.module.scss"
 import {StudioToolbar} from "../StudioToolbar/StudioToolbar";
 import {useQuery} from "@apollo/client";
 import {EventQueryData, EventQueryVars, GET_EVENT_QUERY} from "../../../api/graphql/events/EventDataQuery";
+import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
 
 export const StudioEventDetails: React.FC = () => {
     const { name } = useParams<{name: string}>()
     const {loading, error, data} = useQuery<EventQueryData, EventQueryVars>(
         GET_EVENT_QUERY, {
             variables: {
-                id: name?.split('-').pop() ?? ''
+                id: getIdFromVanityUrl(name)
             }
         }
     )

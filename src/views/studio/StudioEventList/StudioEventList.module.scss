@@ -1,10 +1,12 @@
 .topBar {
   display: flex;
 
+  height: var(--studio-top-bar-height);
+
   margin-bottom: 16px;
 
   align-items: center;
   justify-content: space-between;
 
-  font-size: 48px;
+  font-size: 32px;
 }
