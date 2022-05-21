@@ -7,6 +7,7 @@ export class Event {
         public id: string,
         public title: string,
         public subtitle: string,
+        public vanityUrl: string,
         public author: SimpleUser,
         public startDate: Date,
         public primaryColor: string,
@@ -14,19 +15,12 @@ export class Event {
     ) {
     }
 
-    get vanityUrl(): string {
-        const name = this.title
-            .toLowerCase()
-            .replaceAll(/[ \-_/?&<>=+]/mg, '-');
-
-        return [name, this.id].join('-')
-    }
-
     static fromData(data: EventData): Event {
         return new Event(
             data.id,
             data.title,
             data.subtitle,
+            data.vanityUrl,
             data.author as SimpleUser,
             new Date(data.timeFrame.startDate),
             data.theme.primaryColor,
