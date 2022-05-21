@@ -1,7 +1,7 @@
 .container {
   display: flex;
 
-  height: var(--studio-top-bar-height);
+  min-height: var(--studio-top-bar-height);
 
   justify-content: start;
   align-items: center;
@@ -11,7 +11,10 @@
 }
 
 .backArrow {
-  padding: 16px;
+  padding: 0 16px;
+
+  min-height: 24px;
+  min-width: 24px;
 
   cursor: pointer;
 }
