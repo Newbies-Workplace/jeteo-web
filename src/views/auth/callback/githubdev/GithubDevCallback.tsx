@@ -1,36 +1,19 @@
-import React, { useEffect } from 'react';
-import {useNavigate} from "react-router-dom";
-import { useAuth } from '../../../../contexts/auth/hooks/useAuth.hook';
-import Providers from '../../../../api/rest/auth/oauth/Provider';
-import {useQuery} from "../../../../common/utils/useQuery";
+import React from 'react';
+import {Navigate} from "react-router-dom";
+import {OAuthStatus, useGenericOAuthCallback} from "../../../../contexts/auth/hooks/useGenericOAuthCallback.hook";
+import OAuthProvider from "../../../../api/rest/auth/oauth/OAuthProvider.enum";
 
 export const GithubDevCallback: React.FC = () => {
-    const { auth } = useAuth();
-    const navigator = useNavigate();
+    const {error, status} = useGenericOAuthCallback(OAuthProvider.githubDev);
 
-    const query = useQuery();
-    const code = query.get('code');
-    const error = query.get('error');
-    const state = query.get('state') || undefined;
+    switch (status) {
+        case OAuthStatus.error:
+            return <Navigate replace to={`/auth/error?message=${error}`}/>
 
-    useEffect(() => {
-        if (error)
-            return navigator(`/auth/error?message=${error}`, {replace: true});
+        case OAuthStatus.pending:
+            return <p>Loader</p>
 
-        if (code && state) {
-            auth(Providers.githubDev, code, state)
-                .then(() =>
-                    navigator("/")
-                )
-                .catch((err) =>
-                    navigator(`/auth/error?message=${err.message}`, {replace: true})
-                );
-        }
-        else
-            navigator("/auth/error?message=Missing+code+or+state", {replace: true});
-    }, [])
-
-    return (
-        <p>Connecting with github...</p>
-    )
+        default:
+            return <Navigate to={`/`}/>
+    }
 };

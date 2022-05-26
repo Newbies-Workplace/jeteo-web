@@ -5,7 +5,7 @@ import { authByProvidersToken, refreshToken as refreshApiToken } from "../../api
 import { AuthResponse } from "../../api/rest/auth/AuthResponse.interface";
 import { createAxiosClient } from "./axiosService";
 import { createApolloClient } from "./apolloService";
-import Providers from "../../api/rest/auth/oauth/Provider";
+import Providers from "../../api/rest/auth/oauth/OAuthProvider.enum";
 import { User } from "../../common/models/User";
 
 export interface AuthContextInterface {
@@ -46,6 +46,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         }));
 
         localStorage.setItem("refresh_token", authRes.refreshToken);
+        localStorage.setItem("user_cache", JSON.stringify(authRes.user));
 
         const userModel = User.fromResponse(authRes.user)
 
@@ -80,16 +81,26 @@ export const AuthContextProvider: React.FC = ({ children }) => {
                     console.error(err)
                     localStorage.removeItem("refresh_token");
                 })
-        else
-            localStorage.removeItem("refresh_token");
     }
 
     // get token at app start
     useEffect(() => {
-        refreshToken();
+
+        if (localStorage.getItem("refresh_token")) {
+            refreshToken();
+
+            try {
+                const userCache = JSON.parse(localStorage.getItem("user_cache") || 'null') as User | null;
+                if (userCache)
+                    setUser(userCache);
+            } catch(err) {
+                console.log(err)
+            }
+        }
+
+        localStorage.removeItem('user_cache');
+        localStorage.removeItem('refresh_token');
     }, []);
-
-
 
     return (
         <ApolloProvider client={apolloClient}>

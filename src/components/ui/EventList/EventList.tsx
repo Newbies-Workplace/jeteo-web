@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useQuery } from "@apollo/client";
-import { EventCard } from "../../containers/LectureCard/EventCard";
+import { EventCard } from "../../containers/EventCard/EventCard";
 import exampleimg from "../../../assets/images/photos/test_img1.jpg";
 import {
     EventListQueryData,
