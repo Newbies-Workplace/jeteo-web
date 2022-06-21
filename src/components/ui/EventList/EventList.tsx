@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useQuery } from "@apollo/client";
 import { EventCard } from "../../containers/EventCard/EventCard";
 import exampleimg from "../../../assets/images/photos/test_img1.jpg";
 import {
+    EventFilterInput,
     EventListQueryData,
     EventListQueryVars,
     GET_EVENTS_LIST_QUERY
@@ -13,14 +14,21 @@ import { EventListSkeleton } from "../../loaders/Skeletons/EventListSkeleton/Eve
 import { PlaceholderSwitcher } from "../../utils/animations/PlaceholderSwitcher";
 import { AnimatedList } from "../../utils/animations/AnimatedList";
 
+export interface EventListProps {
+    page?: number
+    size?: number
+    filter?: EventFilterInput
+}
 
-export const EventList: React.FC = () => {
+export const EventList: React.FC<EventListProps> = ({ page, size, filter }) => {
 
     const { loading, error, data } = useQuery<EventListQueryData, EventListQueryVars>(
         GET_EVENTS_LIST_QUERY, {
         variables: {
-            page: 1,
-            size: 50,
+            // eslint workaround
+            page: page || 1,
+            size: size || 50,
+            filter,
         },
     });
 
@@ -54,4 +62,9 @@ export const EventList: React.FC = () => {
             <AnimatedList items={events} />
         </PlaceholderSwitcher>
     )
-}
+};
+
+EventList.defaultProps = {
+    page: 1,
+    size: 50,
+};
