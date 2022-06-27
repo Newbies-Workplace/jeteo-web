@@ -25,7 +25,7 @@ export const EventCard: React.FC<EventCardProps> = ({
 }) => {
 
     const cardStyle: React.CSSProperties = {
-        backgroundColor: color
+        backgroundColor: color ?? '#080736'
     }
 
     return (
@@ -53,6 +53,7 @@ export const EventCard: React.FC<EventCardProps> = ({
         </div>
     )
 }
+
 EventCard.defaultProps = {
     color: "#080736"
 }
