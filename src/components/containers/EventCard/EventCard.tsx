@@ -4,7 +4,6 @@ import {LocationChip} from "./chips/LocationChip";
 import {StartDateChip} from "./chips/StartDateChip";
 
 interface EventCardProps {
-    id: string,
     title: string,
     subtitle: string,
 
@@ -52,7 +51,4 @@ export const EventCard: React.FC<EventCardProps> = ({
             </div>
         </div>
     )
-}
-EventCard.defaultProps = {
-    color: "#080736"
-}
+};
