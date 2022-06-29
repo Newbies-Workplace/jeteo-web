@@ -34,18 +34,12 @@ export const EventCard: React.FC<EventCardProps> = ({
 
     return (
         <div style={cardStyle} className={styles.card}>
-
-            {/*{image &&*/}
-            {/*    <img className={styles.bgImg} src={image} alt=""/>}*/}
-
-            <div className={styles.name}>
-                <h2 className={styles.title}>
-                    {title}
-                </h2>
-                <h3 className={styles.subtitle}>
-                    {subtitle}
-                </h3>
-            </div>
+            <h2 className={styles.title}>
+                {title}
+            </h2>
+            <h3 className={styles.subtitle}>
+                {subtitle}
+            </h3>
 
             <div className={styles.bottom}>
                 {locationName &&
