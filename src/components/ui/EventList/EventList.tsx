@@ -1,18 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useQuery } from "@apollo/client";
-import { EventCard } from "../../containers/EventCard/EventCard";
+import React, {useMemo} from 'react';
+import {useQuery} from "@apollo/client";
+import {EventCard} from "../../containers/EventCard/EventCard";
 import exampleimg from "../../../assets/images/photos/test_img1.jpg";
 import {
     EventListQueryData,
     EventListQueryVars,
     GET_EVENTS_LIST_QUERY
 } from "../../../api/graphql/events/EventListQuery";
-import { Event } from "../../../common/models/Event";
-import { Link } from "react-router-dom";
-import { EventListSkeleton } from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
-import { PlaceholderSwitcher } from "../../utils/animations/PlaceholderSwitcher";
-import { AnimatedList } from "../../utils/animations/AnimatedList";
-
+import {Event} from "../../../common/models/Event";
+import {Link} from "react-router-dom";
+import {EventListSkeleton} from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
+import {PlaceholderSwitcher} from "../../utils/animations/PlaceholderSwitcher";
+import {AnimatedList} from "../../utils/animations/AnimatedList";
 
 export const EventList: React.FC = () => {
 
