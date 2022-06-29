@@ -34,7 +34,6 @@ export const PlaceholderSwitcher: React.FC<PlaceholderSwitcherProps> = ({
                 ) : (
                     <animated.div
                         style={{
-                            position: 'absolute',
                             width: '100%',
                             opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }),
                         }}>

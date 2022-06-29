@@ -34,8 +34,14 @@ type CoordinatesResponse {
     longitude: Float!
 }
 
+input EventFilterInput {
+    authorId: String
+    visibilityIn: [Visibility!]!
+}
+
 input EventRequestInput {
     address: AddressRequestInput
+    description: String
     subtitle: String
     tags: [TagRequestInput!]!
     timeFrame: TimeFrameRequestInput!
@@ -46,6 +52,7 @@ type EventResponse {
     address: AddressResponse
     authorId: String!
     createDate: Instant!
+    description: String
     id: String!
     subtitle: String
     tags: [TagResponse!]!
@@ -53,6 +60,8 @@ type EventResponse {
     timeFrame: TimeFrameResponse!
     title: String!
     updateDate: Instant!
+    vanityUrl: String!
+    visibility: Visibility!
 
     # Event creator
     author: UserResponse!
@@ -66,8 +75,34 @@ input EventThemeRequestInput {
     secondaryColor: String
 }
 
+input EventVisibilityRequestInput {
+    visibility: Visibility!
+}
+
 # ISO date-time
 scalar Instant
+
+input LectureFilterInput {
+    eventId: String!
+}
+
+input LectureRequestInput {
+    description: String
+    speakerIds: [String!]!
+    timeFrame: TimeFrameRequestInput!
+    title: String!
+}
+
+type LectureResponse {
+    author: UserResponse!
+    createDate: Instant!
+    description: String
+    id: String!
+    speakers: [UserResponse!]!
+    timeFrame: TimeFrameResponse!
+    title: String!
+    updateDate: Instant!
+}
 
 type Mutation {
     # Creates tag
@@ -78,6 +113,12 @@ type Mutation {
 
     # Removes tags from followed list
     unfollowTags(request: [TagRequestInput!]!): Boolean!
+
+    # Change event visibility
+    changeEventVisibility(
+        id: String!
+        request: EventVisibilityRequestInput!
+    ): EventResponse!
 
     # Create event with request
     createEvent(request: EventRequestInput!): EventResponse!
@@ -102,6 +143,18 @@ type Mutation {
 
     # Replace user data with new data (PUT equivalent)
     replaceMyUser(request: UserRequestInput!): UserResponse!
+
+    # Create lecture with request
+    createLecture(
+        eventId: String!
+        request: LectureRequestInput!
+    ): LectureResponse!
+
+    # Delete lecture by id
+    deleteLecture(id: String!): Boolean!
+
+    # Replace lecture data with new data (PUT equivalent)
+    replaceLecture(id: String!, request: LectureRequestInput!): LectureResponse!
 }
 
 type Query {
@@ -115,16 +168,22 @@ type Query {
     tags(page: Int, size: Int): [TagResponse!]!
 
     # Get single event by its id
-    event(id: String!): EventResponse
+    event(id: String!): EventResponse!
 
     # Get all events paged
-    events(page: Int, size: Int): [EventResponse!]!
+    events(page: Int, size: Int, filter: EventFilterInput): [EventResponse!]!
 
     # Get user by id
     user(id: String!): UserResponse
 
     # Get all users paged
     users(page: Int, size: Int): [UserResponse!]!
+
+    # Get single lecture by its id
+    lecture(id: String!): LectureResponse!
+
+    # Get all event lectures
+    lectures(filter: LectureFilterInput!): [LectureResponse!]!
 }
 
 input TagCreateRequestInput {
@@ -169,4 +228,10 @@ type UserResponse {
     id: String!
     nickname: String!
     updateDate: Instant!
+}
+
+enum Visibility {
+    PUBLIC
+    INVISIBLE
+    PRIVATE
 }
