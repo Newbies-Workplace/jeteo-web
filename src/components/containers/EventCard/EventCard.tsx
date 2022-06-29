@@ -1,10 +1,11 @@
 import React from 'react'
+
+import { LocationChip } from "./chips/LocationChip";
+import { StartDateChip } from "./chips/StartDateChip";
+
 import styles from './EventCard.module.scss'
-import {LocationChip} from "./chips/LocationChip";
-import {StartDateChip} from "./chips/StartDateChip";
 
 interface EventCardProps {
-    id: string,
     title: string,
     subtitle: string,
 
@@ -23,16 +24,19 @@ export const EventCard: React.FC<EventCardProps> = ({
     startDate,
     locationName,
 }) => {
+    // color fallback
+    if (!color) color = "#4340BE"
 
     const cardStyle: React.CSSProperties = {
-        backgroundColor: color
+        backgroundColor: `${color}`,
+        backgroundImage: `linear-gradient(90deg, ${color}c0, ${color}), url(${image})`,
     }
 
     return (
         <div style={cardStyle} className={styles.card}>
 
-            {image &&
-                <img className={styles.bgImg} src={image} alt=""/>}
+            {/*{image &&*/}
+            {/*    <img className={styles.bgImg} src={image} alt=""/>}*/}
 
             <div className={styles.name}>
                 <h2 className={styles.title}>
@@ -52,7 +56,4 @@ export const EventCard: React.FC<EventCardProps> = ({
             </div>
         </div>
     )
-}
-EventCard.defaultProps = {
-    color: "#080736"
 }

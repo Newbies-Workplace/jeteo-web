@@ -5,6 +5,10 @@
 .card {
     --padding: 14px;
 
+    background-position: left;
+    background-size: 51%, 50%;
+    background-repeat: no-repeat;
+
     box-sizing: border-box;
     position: relative;
 
@@ -14,6 +18,25 @@
 
     border-radius: 16px;
     box-shadow: 0 2px 24px rgba(7, 16, 24, 0.3);
+
+    .title {
+        margin: 0;
+        font-size: 24px;
+        line-height: 29px;
+
+        color: #FFFFFF;
+
+        font-family: var(--header-font);
+        font-weight: 600;
+    }
+    .subtitle {
+        margin: 0;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 500;
+
+        color: rgba(255, 255, 255, 0.8);
+    }
 }
 
 .bgImg {
@@ -27,28 +50,6 @@
 
     -webkit-mask-image: -webkit-gradient(linear, 50% top, right top, from(#FFF), to(transparent));
     mask-image: linear-gradient(90deg, #FFF 50%, transparent);
-}
-.title {
-    position: relative;
-    padding: 0;
-    margin: 0;
-
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
-
-    color: #FFFFFF;
-}
-.subtitle {
-    position: relative;
-    padding: 0;
-    margin: 0;
-
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: normal;
-
-    color: rgba(255, 255, 255, 0.8);
 }
 
 .bottom {
