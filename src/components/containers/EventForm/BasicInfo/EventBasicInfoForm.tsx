@@ -1,8 +1,8 @@
 import React from "react";
 import {Field, Form, Formik, FormikValues} from "formik";
-import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
+import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import styles from "./StudioEventBasicInfo.module.scss";
-import PrimaryButton from "../../../../components/ui/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
 import dayjs from "dayjs";
 import {useMutation} from "@apollo/client";
 import {
@@ -10,16 +10,26 @@ import {
     EventMutationData,
     EventMutationVars
 } from "../../../../api/graphql/events/EventCreateMutation";
+import {EventData} from "../../../../api/graphql/events/EventDataQuery";
 
 interface EventBasicInfoFormProps {
-    onSubmitted: (createdId: string) => void
+    event: EventData | null
+    onSubmitted: (event: EventData) => void
 }
 
 //todo validation
-export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({onSubmitted}) => {
+export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, onSubmitted}) => {
     const [createEvent] = useMutation<EventMutationData, EventMutationVars>(CREATE_EVENT_MUTATION)
 
-    const initialValues: EventCreateValues = {
+    const initialValues: EventCreateValues = event ? {
+        startDate: dayjs(event.timeFrame.startDate).format("YYYY-MM-DDTHH:mm"),
+        finishDate: event.timeFrame.finishDate ? dayjs(event.timeFrame.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
+        title: event.title,
+        subtitle: event.subtitle,
+        description: event.description,
+        address: undefined,
+        tags: [],
+    } : {
         startDate: dayjs().format("YYYY-MM-DDTHH:mm"),
         finishDate: dayjs().add(1, 'hour').format("YYYY-MM-DDTHH:mm"),
         title: "",
@@ -48,7 +58,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({onSubmitt
         })
             .then((res) => {
                 console.log(res)
-                onSubmitted(res.data?.createEvent?.id ?? '')
+                onSubmitted(res.data?.createEvent!)
             })
     }
 
