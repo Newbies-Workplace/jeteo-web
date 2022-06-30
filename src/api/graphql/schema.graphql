@@ -45,20 +45,6 @@ type CoordinatesResponse {
     longitude: Float!
 }
 
-input EventFilterInput {
-    authorId: String
-    visibilityIn: [Visibility!]!
-}
-
-input EventRequestInput {
-    address: AddressRequestInput
-    description: String
-    subtitle: String
-    tags: [TagRequestInput!]!
-    timeFrame: TimeFrameRequestInput!
-    title: String!
-}
-
 type EventResponse {
     address: AddressResponse
     "Event creator"
@@ -77,28 +63,6 @@ type EventResponse {
     updateDate: Instant!
     vanityUrl: String!
     visibility: Visibility!
-}
-
-type LectureResponse {
-    author: UserResponse!
-    createDate: Instant!
-    description: String
-    id: String!
-    speakers: [UserResponse!]!
-    timeFrame: TimeFrameResponse!
-    title: String!
-    updateDate: Instant!
-}
-
-input LectureFilterInput {
-    eventId: String!
-}
-
-input LectureRequestInput {
-    description: String
-    speakerIds: [String!]!
-    timeFrame: TimeFrameRequestInput!
-    title: String!
 }
 
 type LectureResponse {
@@ -162,12 +126,6 @@ type Query {
     user(id: String!): UserResponse
     "Get all users paged"
     users(page: Int, size: Int): [UserResponse!]!
-
-    # Get single lecture by its id
-    lecture(id: String!): LectureResponse!
-
-    # Get all event lectures
-    lectures(filter: LectureFilterInput!): [LectureResponse!]!
 }
 
 type TagResponse {
