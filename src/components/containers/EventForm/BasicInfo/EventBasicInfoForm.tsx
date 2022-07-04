@@ -7,8 +7,12 @@ import dayjs from "dayjs";
 import {useMutation} from "@apollo/client";
 import {
     CREATE_EVENT_MUTATION,
-    EventMutationData,
-    EventMutationVars
+    CreateEventMutationData,
+    CreateEventMutationVars,
+    EventRequestInput,
+    REPLACE_EVENT_MUTATION,
+    ReplaceEventMutationData,
+    ReplaceEventMutationVars
 } from "../../../../api/graphql/events/EventCreateMutation";
 import {EventData} from "../../../../api/graphql/events/EventDataQuery";
 
@@ -19,9 +23,10 @@ interface EventBasicInfoFormProps {
 
 //todo validation
 export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, onSubmitted}) => {
-    const [createEvent] = useMutation<EventMutationData, EventMutationVars>(CREATE_EVENT_MUTATION)
+    const [createEvent] = useMutation<CreateEventMutationData, CreateEventMutationVars>(CREATE_EVENT_MUTATION)
+    const [replaceEvent] = useMutation<ReplaceEventMutationData, ReplaceEventMutationVars>(REPLACE_EVENT_MUTATION)
 
-    const initialValues: EventCreateValues = event ? {
+    const initialValues: EventFormValues = event ? {
         startDate: dayjs(event.timeFrame.startDate).format("YYYY-MM-DDTHH:mm"),
         finishDate: event.timeFrame.finishDate ? dayjs(event.timeFrame.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
         title: event.title,
@@ -39,6 +44,23 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         tags: [],
     }
 
+    const submitFunction = (request: EventRequestInput): Promise<EventData> => {
+        if (event) {
+            return replaceEvent({
+                variables: {
+                    id: event.id,
+                    request: request,
+                }
+            }).then((res) => res.data?.replaceEvent!)
+        } else {
+            return createEvent({
+                variables: {
+                    request: request
+                }
+            }).then((res) => res.data?.createEvent!)
+        }
+    }
+
     const onSubmitClicked = (values: FormikValues) => {
         const request = {
             title: values.title,
@@ -51,14 +73,11 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
             address: undefined,
             tags: [],
         }
-        createEvent({
-            variables: {
-                request: request
-            }
-        })
-            .then((res) => {
-                console.log(res)
-                onSubmitted(res.data?.createEvent!)
+
+        submitFunction(request)
+            .then((event: EventData) => {
+                console.log(event)
+                onSubmitted(event)
             })
     }
 
@@ -69,7 +88,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                     <div className={styles.row}>
                         od
                         <Field type={"datetime-local"} id={"startDate"} name={"startDate"} />
-                        do
+                        do (opcjonalne)
                         <Field type={"datetime-local"} id={"finishDate"} name={"finishDate"} />
                     </div>
 
@@ -94,7 +113,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
     )
 }
 
-interface EventCreateValues {
+interface EventFormValues {
     startDate: string
     finishDate?: string
     title: string

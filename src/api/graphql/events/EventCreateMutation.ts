@@ -22,6 +22,27 @@ export const CREATE_EVENT_MUTATION = gql`
     }
 `;
 
+export const REPLACE_EVENT_MUTATION = gql`
+    mutation event($id: String!, $request: EventRequestInput!) {
+        replaceEvent(id: $id, request: $request) {
+            id
+            title
+            subtitle
+            vanityUrl
+            author {
+                nickname
+            }
+            timeFrame {
+                startDate
+            }
+            theme {
+                primaryColor
+                image
+            }
+        }
+    }
+`
+
 export interface EventRequestInput {
     title: string
     subtitle?: string
@@ -43,10 +64,19 @@ export interface EventRequestInput {
     }[]
 }
 
-export interface EventMutationVars {
+export interface CreateEventMutationVars {
     request: EventRequestInput
 }
 
-export interface EventMutationData {
+export interface ReplaceEventMutationVars {
+    id: string,
+    request: EventRequestInput
+}
+
+export interface CreateEventMutationData {
     createEvent: EventData
+}
+
+export interface ReplaceEventMutationData {
+   replaceEvent: EventData
 }
