@@ -29,7 +29,7 @@ export const EventCard: React.FC<EventCardProps> = ({
 
     const cardStyle: React.CSSProperties = {
         backgroundColor: `${color}`,
-        backgroundImage: `linear-gradient(90deg, ${color}c0, ${color}), url(${image})`,
+        backgroundImage: `linear-gradient(90deg, ${color}a0, ${color}), url(${image})`,
     }
 
     return (
