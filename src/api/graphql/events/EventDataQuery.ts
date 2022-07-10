@@ -13,6 +13,10 @@ export const GET_EVENT_QUERY = gql`
             timeFrame {
                 startDate
             }
+            address {
+                place,
+                city
+            }
             theme {
                 primaryColor
                 image
@@ -29,6 +33,11 @@ export interface EventQueryData {
     event: EventData
 }
 
+export interface EventLocationData {
+    place: string
+    city: string
+}
+
 export interface EventData {
     id: string
     title: string
@@ -41,6 +50,7 @@ export interface EventData {
     timeFrame: {
         startDate: string
     }
+    address: EventLocationData
     theme: {
         primaryColor: string
         image: string
