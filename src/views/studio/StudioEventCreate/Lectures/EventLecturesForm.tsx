@@ -9,12 +9,10 @@ interface EventLecturesFormProps {
 
 export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({eventId, onSubmitted}) => {
     return (
-        <div>
-            <StudioSection title={"lectures"}>
-                <PrimaryButton onClick={() => onSubmitted()}>
-                    test {eventId}
-                </PrimaryButton>
-            </StudioSection>
-        </div>
+        <StudioSection title={"lectures"}>
+            <PrimaryButton onClick={() => onSubmitted()}>
+                test {eventId}
+            </PrimaryButton>
+        </StudioSection>
     )
 }

@@ -9,12 +9,10 @@ interface EventThemeFormProps {
 
 export const EventThemeForm: React.FC<EventThemeFormProps> = ({eventId, onSubmitted}) => {
     return (
-        <div>
-            <StudioSection title={"theme"}>
-                <PrimaryButton onClick={() => onSubmitted()}>
-                    test {eventId}
-                </PrimaryButton>
-            </StudioSection>
-        </div>
+        <StudioSection title={"theme"}>
+            <PrimaryButton onClick={() => onSubmitted()}>
+                test {eventId}
+            </PrimaryButton>
+        </StudioSection>
     )
 }

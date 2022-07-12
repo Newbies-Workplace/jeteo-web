@@ -7,7 +7,7 @@ interface PrimaryButtonProps {
     onClick?: () => void;
 }
 
-export const PrimaryButton: React.FC<React.PropsWithChildren<PrimaryButtonProps>> = ({ children, type = undefined, onClick }) => {
+export const PrimaryButton: React.FC<React.PropsWithChildren<PrimaryButtonProps>> = ({ children, type, onClick }) => {
     return (
         <button
             type={type}
