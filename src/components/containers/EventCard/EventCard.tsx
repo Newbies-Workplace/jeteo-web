@@ -24,7 +24,7 @@ export const EventCard: React.FC<EventCardProps> = ({
 }) => {
 
     const cardStyle: React.CSSProperties = {
-        backgroundColor: color
+        backgroundColor: color ?? '#080736'
     }
 
     return (
