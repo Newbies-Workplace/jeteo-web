@@ -51,18 +51,24 @@ const displayCurrentStep = (
     setEvent: (event: EventData) => void,
     navigateUp: () => void,
 ) => {
-    switch (index) {
-        default:
-        case 0:
-            return <EventBasicInfoForm event={null} onSubmitted={(createdEvent) => {
+    if (event && index === 1) {
+        return <EventThemeForm
+            event={event}
+            onSubmitted={() => setIndex(2)}/>
+    } else if (event && index === 2) {
+        return <EventLecturesForm
+            event={event}
+            onSubmitted={() => setIndex(3)}/>
+    } else if (event && index === 3) {
+        return <EventVisibilityForm
+            event={event}
+            onSubmitted={() => navigateUp()}/>
+    } else {
+        return <EventBasicInfoForm
+            event={null}
+            onSubmitted={(createdEvent) => {
                 setEvent(createdEvent)
                 setIndex(1)
             }}/>
-        case 1:
-            return <EventThemeForm event={event!} onSubmitted={() => setIndex(2)}/>
-        case 2:
-            return <EventLecturesForm event={event!} onSubmitted={() => setIndex(3)}/>
-        case 3:
-            return <EventVisibilityForm event={event!} onSubmitted={() => navigateUp()}/>
     }
 }

@@ -21,7 +21,7 @@ const steps = [
 export const EventUpdateForm: React.FC = () => {
     const navigate = useNavigate()
     const [activeStepIndex, setActiveStepIndex] = useState(0)
-    const { name } = useParams<{name: string}>()
+    const {name} = useParams<{name: string}>()
 
     const {loading, error, data} = useQuery<EventQueryData, EventQueryVars>(
         GET_EVENT_QUERY, {
@@ -31,7 +31,7 @@ export const EventUpdateForm: React.FC = () => {
         }
     )
 
-    if (loading) return <>loading...</>;
+    if (loading || !data) return <>loading...</>;
     if (error) return <p>error <br/>{error.message}</p>;
 
     return (
@@ -49,8 +49,8 @@ export const EventUpdateForm: React.FC = () => {
                 {displayCurrentStep(
                     activeStepIndex,
                     (index: number) => setActiveStepIndex(index),
-                    data?.event!,
-                    (event: EventData) => {},
+                    data.event,
+                    () => {},
                     () => navigate(-1),
                 )}
             </div>

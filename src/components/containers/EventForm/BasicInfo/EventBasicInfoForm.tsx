@@ -51,13 +51,17 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                     id: event.id,
                     request: request,
                 }
-            }).then((res) => res.data?.replaceEvent!)
+            })
+                .then((res) => res.data ?? Promise.reject("no data"))
+                .then((data) => data.replaceEvent)
         } else {
             return createEvent({
                 variables: {
                     request: request
                 }
-            }).then((res) => res.data?.createEvent!)
+            })
+                .then((res) => res.data ?? Promise.reject("no data"))
+                .then((data) => data.createEvent)
         }
     }
 
