@@ -3,13 +3,12 @@
 }
 
 .card {
-    --padding: 14px;
+    box-sizing: border-box;
 
     background-position: left;
     background-size: 51%, 50%;
     background-repeat: no-repeat;
 
-    box-sizing: border-box;
 
     margin: 8px 0;
     min-height: 113px;
@@ -20,21 +19,22 @@
 
     .title {
         margin: 0;
-        font-size: 24px;
-        line-height: 29px;
 
         color: #FFFFFF;
 
+        font-size: 24px;
         font-family: var(--header-font);
         font-weight: 600;
+        line-height: 29px;
     }
     .subtitle {
         margin: 0;
+
+        color: rgba(255, 255, 255, 0.8);
+
         font-size: 16px;
         line-height: 19px;
         font-weight: 500;
-
-        color: rgba(255, 255, 255, 0.8);
     }
 
     .bottom {
