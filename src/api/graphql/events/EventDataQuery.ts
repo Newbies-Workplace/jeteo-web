@@ -1,4 +1,5 @@
 import {gql} from "@apollo/client";
+import {Visibility} from "./EventListQuery";
 
 export const GET_EVENT_QUERY = gql`
     query getEvent($id: String!) {
@@ -6,17 +7,20 @@ export const GET_EVENT_QUERY = gql`
             id
             title
             subtitle
+            description
             vanityUrl
             author {
                 nickname
             }
             timeFrame {
                 startDate
+                finishDate
             }
             theme {
                 primaryColor
                 image
             }
+            visibility
         }
     }
 `;
@@ -32,7 +36,8 @@ export interface EventQueryData {
 export interface EventData {
     id: string
     title: string
-    subtitle: string
+    subtitle?: string
+    description?: string
     vanityUrl: string
     author: {
         id: string
@@ -40,9 +45,11 @@ export interface EventData {
     }
     timeFrame: {
         startDate: string
+        finishDate?: string
     }
     theme: {
         primaryColor: string
         image: string
     }
+    visibility: Visibility
 }

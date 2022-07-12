@@ -6,7 +6,7 @@ export class Event {
     constructor(
         public id: string,
         public title: string,
-        public subtitle: string,
+        public subtitle: string | undefined,
         public vanityUrl: string,
         public author: SimpleUser,
         public startDate: Date,
