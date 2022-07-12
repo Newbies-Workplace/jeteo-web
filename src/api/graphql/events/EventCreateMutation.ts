@@ -78,5 +78,5 @@ export interface CreateEventMutationData {
 }
 
 export interface ReplaceEventMutationData {
-   replaceEvent: EventData
+    replaceEvent: EventData
 }
