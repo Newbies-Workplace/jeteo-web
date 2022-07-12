@@ -8,14 +8,16 @@ interface StartDateChipProps {
 }
 
 export const StartDateChip: React.FC<StartDateChipProps> = ({date}) => {
-    const startDate = dayjs(date)
+
+    // display date with year only if year is different from current year
+    const toFormattedLabel = (eventDate: Dayjs, currentDate = dayjs()) =>
+        eventDate.format(`D MMMM ${eventDate.year() !== currentDate.year() ? 'YYYY' : ''}, HH:mm`)
 
     return (
         <div className={styles.chip}>
             <ClockIcon/>
             <span className={styles.text}>
-                {/* display date with year only if year is different for current*/}
-                {startDate.format(`D MMMM ${startDate.year() !== dayjs().year() ? 'YYYY' : ''}, HH:mm`)}
+                {toFormattedLabel(dayjs(date))}
             </span>
         </div>
     )
