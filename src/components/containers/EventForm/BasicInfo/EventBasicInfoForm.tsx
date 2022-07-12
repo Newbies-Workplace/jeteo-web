@@ -1,7 +1,7 @@
 import React from "react";
 import {Field, Form, Formik, FormikValues} from "formik";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
-import styles from "./StudioEventBasicInfo.module.scss";
+import styles from "./EventBasicInfoForm.module.scss";
 import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
 import dayjs from "dayjs";
 import {useMutation} from "@apollo/client";
@@ -21,7 +21,7 @@ interface EventBasicInfoFormProps {
     onSubmitted: (event: EventData) => void
 }
 
-//todo validation
+//todo: validation
 export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, onSubmitted}) => {
     const [createEvent] = useMutation<CreateEventMutationData, CreateEventMutationVars>(CREATE_EVENT_MUTATION)
     const [replaceEvent] = useMutation<ReplaceEventMutationData, ReplaceEventMutationVars>(REPLACE_EVENT_MUTATION)
