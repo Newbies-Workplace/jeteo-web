@@ -1,4 +1,4 @@
-import {EventLocationData} from "../../api/graphql/events/EventDataQuery";
+import {EventAddressData} from "../../api/graphql/events/EventDataQuery";
 
 export class EventLocation {
 
@@ -10,10 +10,12 @@ export class EventLocation {
     ) {
     }
 
-    static fromData(data: EventLocationData): EventLocation {
+    static fromData(data: EventAddressData): EventLocation {
         return new EventLocation(
             data.place,
-            data.city
+            data.city,
+            data.coordinates?.latitude,
+            data.coordinates?.longitude,
         )
     }
 }
