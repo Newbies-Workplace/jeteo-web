@@ -1,7 +1,6 @@
 import React from 'react'
-
-import { LocationChip } from "./chips/LocationChip";
-import { StartDateChip } from "./chips/StartDateChip";
+import {LocationChip} from "./chips/LocationChip";
+import {StartDateChip} from "./chips/StartDateChip";
 
 import styles from './EventCard.module.scss'
 

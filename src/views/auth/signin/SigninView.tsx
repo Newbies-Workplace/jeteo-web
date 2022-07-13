@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import ProvidersList from "../../../api/rest/auth/oauth/OAuthProvider.enum";
 
@@ -7,9 +7,24 @@ import AuthSubtitle from "../../../components/containers/AuthSubtitle/AuthSubtit
 import SocialMediaProvidersContainer
     from "../../../components/containers/SocialMediaProvidersContainer/SocialMediaProvidersContainer";
 import SignInWithSocialMediaButton from "../../../components/containers/SignInWithSocialMediaButton/SignInWithSocialMediaButton";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
+import {useQueryParams} from "../../../common/utils/useQueryParams";
 
 
 export const SigninView: React.FC = () => {
+
+    const navigate = useNavigate();
+    const { user } = useAuth();
+    const { redirect } = useQueryParams();
+
+    // workaround for refreshing user's session
+    useEffect(() => {
+        if (user) {
+            if (typeof redirect === "string")
+                navigate(redirect);
+        }
+    }, [user?.id, redirect]);
 
     return (
         <>

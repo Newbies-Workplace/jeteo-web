@@ -7,6 +7,7 @@ import {RequireAuth} from "../../components/utils/requireAuth/RequireAuth";
 import {StudioNav} from "./StudioNav/StudioNav";
 import {StudioEventList} from "./StudioEventList/StudioEventList";
 import {StudioEventDetails} from "./StudioEventDetails/StudioEventDetails";
+import {EventCreateForm} from "./StudioEventCreate/EventCreateForm";
 
 export const StudioView: React.FC = () => {
     return (
@@ -27,8 +28,8 @@ export const StudioView: React.FC = () => {
                                 element={<StudioEventList/>}
                                 path="/events"/>
                             <Route
-                                element={<p>ekran tworzenia eventu</p>}
-                                path="/events/create"/>
+                                element={<EventCreateForm/>}
+                                path="/events/create/*"/>
                             <Route
                                 element={<StudioEventDetails/>}
                                 path="/events/:name"/>
