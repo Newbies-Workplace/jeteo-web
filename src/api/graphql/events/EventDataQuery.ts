@@ -36,3 +36,11 @@ export interface EventData {
         image: string
     }
 }
+
+export interface EventDataQueryData {
+    event: EventData;
+};
+
+export interface EventDataVars {
+    id: string;
+};
