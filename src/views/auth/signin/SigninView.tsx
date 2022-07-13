@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 import ProvidersList from "../../../api/rest/auth/oauth/OAuthProvider.enum";
 
@@ -7,7 +7,7 @@ import AuthSubtitle from "../../../components/containers/AuthSubtitle/AuthSubtit
 import SocialMediaProvidersContainer
     from "../../../components/containers/SocialMediaProvidersContainer/SocialMediaProvidersContainer";
 import SignInWithSocialMediaButton from "../../../components/containers/SignInWithSocialMediaButton/SignInWithSocialMediaButton";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
 import {useQueryParams} from "../../../common/utils/useQueryParams";
 
