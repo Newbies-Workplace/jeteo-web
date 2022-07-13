@@ -24,7 +24,7 @@ export const NavMenu: React.FC = () => {
                 {user &&
                     <>
                         <NavMenuItemLink
-                            location="/studio/dashboard">
+                            location="/studio/events">
                             jeteo™ studio
                         </NavMenuItemLink>
                         <NavMenuItemLink
