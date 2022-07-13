@@ -80,3 +80,11 @@ export interface EventData {
     visibility: Visibility
     tags: TagData[]
 }
+
+export interface EventDataQueryData {
+    event: EventData;
+};
+
+export interface EventDataVars {
+    id: string;
+};
