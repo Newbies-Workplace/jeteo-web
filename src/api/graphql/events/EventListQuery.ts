@@ -14,6 +14,10 @@ export const GET_EVENTS_LIST_QUERY = gql`
             timeFrame {
                 startDate
             }
+            address {
+                city
+                place
+            }
             theme {
                 primaryColor
                 image
