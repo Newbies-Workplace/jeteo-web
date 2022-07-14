@@ -2,7 +2,6 @@ const { svgrComponent } = require('vite-plugin-svgr-component')
 
 module.exports = {
   async viteFinal(config, { configType }) {
-    // return the customized config
     return {
       ...config,
       plugins: [...config.plugins, svgrComponent()]
