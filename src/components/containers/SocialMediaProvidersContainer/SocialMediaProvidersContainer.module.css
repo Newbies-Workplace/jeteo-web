@@ -4,8 +4,5 @@
     align-items: center;
     justify-content: center;
     margin-top: 24px;
-}
-
-.container:hover {
     cursor: pointer;
 }

@@ -1,0 +1,24 @@
+.welcomeHeader {
+    margin: 11px 0;
+    font-weight: normal;
+    b {
+        font-weight: 700;
+    }
+}
+
+.eventGroup {
+    margin: 22px 0 4px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.view {
+    max-width: var(--app-prefer-width);
+    margin: auto;
+    padding: 0 16px 16px;
+}
+
+.list {
+    max-width: calc(var(--app-prefer-width) * 0.85);
+    margin: auto;
+}

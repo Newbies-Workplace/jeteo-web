@@ -5,7 +5,7 @@ import { AuthContextProvider, AuthContextInterface } from '../AuthContext';
 import { useAuth } from "../hooks/useAuth.hook";
 import MockAxios from "jest-mock-axios";
 
-import authRes from './authResponse.json';
+import authRes from '../../../__mocks__/responses/authResponse.json';
 import userEvent from "@testing-library/user-event";
 
 describe('Authorization Context', () => {
@@ -18,6 +18,7 @@ describe('Authorization Context', () => {
     })
 
     beforeEach(() => {
+        localStorage.clear();
 
         const ExampleComponent: React.FC = () => {
 
@@ -71,14 +72,13 @@ describe('Authorization Context', () => {
 
         act(() => {
             userEvent.click(screen.getByTestId('login'), { button: 0 })
-            MockAxios.mockResponse({ data: authRes })
+            MockAxios.mockResponse(authRes)
         })
 
         await waitFor(() => screen.getByTestId('id'));
 
-        expect(testContext?.user?.nickname).toBe(authRes.username);
+        expect(testContext?.user?.nickname).toBe(authRes.data.username);
         expect(testContext?.user?.nickname);
-        localStorage.length
     })
 
     it('should login & logout', async () => {
@@ -86,13 +86,13 @@ describe('Authorization Context', () => {
 
         act(() => {
             userEvent.click(screen.getByTestId('login'), { button: 0 })
-            MockAxios.mockResponse({ data: authRes })
+            MockAxios.mockResponse(authRes)
         })
 
         await waitFor(() => screen.getByTestId('id'));
 
         expect(testContext?.user).toBeDefined();
-        expect(testContext?.user?.nickname).toBe(authRes.username);
+        expect(testContext?.user?.nickname).toBe(authRes.data.username);
 
         act(() => {
             userEvent.click(screen.getByTestId('logout'), { button: 0 });

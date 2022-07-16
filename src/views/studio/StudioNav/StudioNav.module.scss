@@ -1,0 +1,24 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 275px;
+
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.logo {
+  display: flex;
+  font-weight: bold;
+
+  height: var(--studio-top-bar-height);
+
+  align-items: center;
+
+
+  padding-top: 32px;
+  padding-bottom: 8px;
+  margin: 0;
+}

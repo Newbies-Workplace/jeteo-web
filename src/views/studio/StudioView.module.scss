@@ -1,0 +1,31 @@
+:root {
+    --studio-top-bar-height: 48px
+}
+
+.container {
+    min-height: 100vh;
+
+    background-color: #f3f3f3;
+}
+
+.pageContainer {
+    display: flex;
+    margin: auto;
+
+    width: 100%;
+    max-width: var(--app-extended-width);
+}
+
+.content {
+    width: 100%;
+    padding: 32px 16px;
+}
+
+.separator {
+    min-width: 3px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    background-color: #e2e2e2;
+}

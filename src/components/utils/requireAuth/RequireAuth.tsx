@@ -13,5 +13,5 @@ export const RequireAuth: React.FC<RequireAuthProps> = ({fallback, children}) =>
     if (user)
         return <>{children}</>;
 
-    return fallback || <Navigate to={`/auth/login?redirect=${pathname}`} />
+    return fallback || <Navigate to={`/auth/signin?redirect=${pathname}`} />
 }

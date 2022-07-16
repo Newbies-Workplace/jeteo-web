@@ -4,16 +4,14 @@ import {
     Routes,
     Route
 } from 'react-router-dom';
-
-import { AuthRouter } from './auth';
+import { AuthRouter } from './auth/AuthView';
 import { HomeView } from './home/HomeView';
 import { EventView } from "./event/EventView";
+import { StudioView } from "./studio/StudioView";
 
 export const AppRouter: React.FC = () => {
-
     return (
         <Router>
-
             <Routes>
                 <Route
                     element={<HomeView/>}
@@ -27,6 +25,9 @@ export const AppRouter: React.FC = () => {
                     element={<EventView/>}
                     path="event/:name"/>
 
+                <Route
+                    element={<StudioView/>}
+                    path="studio/*"/>
 
                 <Route path="*">
                     404

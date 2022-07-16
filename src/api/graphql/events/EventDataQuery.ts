@@ -6,11 +6,16 @@ export const GET_EVENT_QUERY = gql`
             id
             title
             subtitle
+            vanityUrl
             author {
                 nickname
             }
             timeFrame {
                 startDate
+            }
+            address {
+                place
+                city
             }
             theme {
                 primaryColor
@@ -20,10 +25,28 @@ export const GET_EVENT_QUERY = gql`
     }
 `;
 
+export interface EventQueryVars {
+    id: string
+}
+
+export interface EventQueryData {
+    event: EventData
+}
+
+export interface EventAddressData  {
+    place: string
+    city: string
+    coordinates?: {
+        longitude: number
+        latitude: number
+    }
+}
+
 export interface EventData {
     id: string
     title: string
     subtitle: string
+    vanityUrl: string
     author: {
         id: string
         nickname: string
@@ -31,6 +54,7 @@ export interface EventData {
     timeFrame: {
         startDate: string
     }
+    address: EventAddressData
     theme: {
         primaryColor: string
         image: string
