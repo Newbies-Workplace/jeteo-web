@@ -1,37 +1,39 @@
 import React from 'react';
-
-import { useQuery } from '@apollo/client';
-
 import { useParams, Navigate } from "react-router-dom";
 
-import { EventDataQueryData, EventDataVars, GET_EVENT_QUERY } from '../../api/graphql/events/EventDataQuery';
-
+import { useEvent } from "../../hooks/events/useEvent";
+import { EventHeadline } from "../../components/containers/EventHeadline/EventHeadline";
 import { NavBar } from "../../components/ui/NavBar/NavBar";
+import { getIdFromVanityUrl } from "../../common/utils/vanityUrlUtils";
 
-import EventDetails from '../../components/containers/EventDetails/EventDetails';
 
 export const EventView: React.FC = () => {
     const { name } = useParams<{name: string}>();
-    
-    const id = name?.match(/[a-zA-Z0-9_]+$/)?.at(0);
-    
-        if (!name || !id)
-            return <Navigate to="/"/>;
+    if (!name)
+        return <Navigate to="/"/>;
 
-    const { loading, error, data } = useQuery<EventDataQueryData, EventDataVars>(
-        GET_EVENT_QUERY, {
-        variables: {
-            id
-        }
-    });
+    const {event, loading, error} = useEvent(getIdFromVanityUrl(name));
 
-    if (loading) return <>loading...</>;
-    if (error) return <p>error <br/>{error.message}</p>;
+    if (error)
+        return <>
+            <NavBar/>
+            <i>error: {error.message}</i>
+        </>
+
+    if (loading || !event)
+        return <>
+            <NavBar/>
+            <i>loading</i>
+        </>
 
     return (
         <>
             <NavBar/>
-            <EventDetails event={data?.event} />
+            <EventHeadline
+                title={event.title}
+                subtitle={event.subtitle}
+                image={event.image}
+                color={event.primaryColor} />
         </>
     )
 };
