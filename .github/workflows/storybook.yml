@@ -8,6 +8,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Deploy storybook to Github Pages
-        run: npm run deploy-storybook -- --ci
+        run: |
+          npm install
+          npm run deploy-storybook -- --ci
         env:
           GH_TOKEN: Newbies-Workplace:${{ secrets.GITHUB_TOKEN }}
