@@ -14,7 +14,7 @@
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
     "test": "jest --passWithNoTests",
     "storybook": "start-storybook -p 6006",
-    "deploy-storybook": "storybook-to-ghpages"
+    "build-storybook": "build-storybook -o docs"
   },
   "repository": {
     "type": "git",
@@ -81,11 +81,6 @@
       "\\.svg(\\?component)?$": "<rootDir>/src/__mocks__/svg.tsx"
     }
   },
-  "storybook-deployer": {
-    "gitUsername": "Pages deployer",
-    "gitEmail": "bot@email.com",
-    "commitMessage": "Deploy Storybook [skip ci]"
-  },
   "devDependencies": {
     "@apollo/client": "^3.5.10",
     "@babel/core": "^7.18.6",
@@ -96,7 +91,6 @@
     "@storybook/addon-links": "^6.5.9",
     "@storybook/builder-vite": "^0.1.38",
     "@storybook/react": "^6.5.9",
-    "@storybook/storybook-deployer": "^2.8.11",
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
