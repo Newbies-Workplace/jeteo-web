@@ -11,7 +11,7 @@ jobs:
         run: |
           npm install
           npm run build-storybook
-          sed -i 's,assets/iframe,jeteo-web/assets/iframe,g'
+          sed -i 's,assets/iframe,jeteo-web/assets/iframe,g' docs/iframe.html
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
