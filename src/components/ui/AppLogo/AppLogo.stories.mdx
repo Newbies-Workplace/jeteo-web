@@ -1,0 +1,29 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {AppLogo} from "./AppLogo";
+
+<Meta title="branding/AppLogo" component={AppLogo}/>
+
+export const Template = (args) => <AppLogo {...args} />
+
+Logo
+
+<Canvas>
+    <Story
+        name="Normal"
+        args={{
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas>
+    <Story
+        name="Vertical"
+        args={{
+            vertical: true
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

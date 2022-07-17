@@ -1,25 +1,40 @@
 import React from "react";
 import {Field, Form, Formik, FormikValues} from "formik";
-import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
-import styles from "./StudioEventBasicInfo.module.scss";
-import PrimaryButton from "../../../../components/ui/PrimaryButton/PrimaryButton";
+import {StudioSection} from "../../../ui/StudioSection/StudioSection";
+import styles from "./EventBasicInfoForm.module.scss";
+import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
 import dayjs from "dayjs";
 import {useMutation} from "@apollo/client";
 import {
     CREATE_EVENT_MUTATION,
-    EventMutationData,
-    EventMutationVars
+    CreateEventMutationData,
+    CreateEventMutationVars,
+    EventRequestInput,
+    REPLACE_EVENT_MUTATION,
+    ReplaceEventMutationData,
+    ReplaceEventMutationVars
 } from "../../../../api/graphql/events/EventCreateMutation";
+import {EventData} from "../../../../api/graphql/events/EventDataQuery";
 
 interface EventBasicInfoFormProps {
-    onSubmitted: (createdId: string) => void
+    event: EventData | null
+    onSubmitted: (event: EventData) => void
 }
 
-//todo validation
-export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({onSubmitted}) => {
-    const [createEvent] = useMutation<EventMutationData, EventMutationVars>(CREATE_EVENT_MUTATION)
+//todo: validation
+export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, onSubmitted}) => {
+    const [createEvent] = useMutation<CreateEventMutationData, CreateEventMutationVars>(CREATE_EVENT_MUTATION)
+    const [replaceEvent] = useMutation<ReplaceEventMutationData, ReplaceEventMutationVars>(REPLACE_EVENT_MUTATION)
 
-    const initialValues: EventCreateValues = {
+    const initialValues: EventFormValues = event ? {
+        startDate: dayjs(event.timeFrame.startDate).format("YYYY-MM-DDTHH:mm"),
+        finishDate: event.timeFrame.finishDate ? dayjs(event.timeFrame.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
+        title: event.title,
+        subtitle: event.subtitle,
+        description: event.description,
+        address: undefined,
+        tags: [],
+    } : {
         startDate: dayjs().format("YYYY-MM-DDTHH:mm"),
         finishDate: dayjs().add(1, 'hour').format("YYYY-MM-DDTHH:mm"),
         title: "",
@@ -27,6 +42,27 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({onSubmitt
         description: undefined,
         address: undefined,
         tags: [],
+    }
+
+    const submitFunction = (request: EventRequestInput): Promise<EventData> => {
+        if (event) {
+            return replaceEvent({
+                variables: {
+                    id: event.id,
+                    request: request,
+                }
+            })
+                .then((res) => res.data ?? Promise.reject("no data"))
+                .then((data) => data.replaceEvent)
+        } else {
+            return createEvent({
+                variables: {
+                    request: request
+                }
+            })
+                .then((res) => res.data ?? Promise.reject("no data"))
+                .then((data) => data.createEvent)
+        }
     }
 
     const onSubmitClicked = (values: FormikValues) => {
@@ -41,14 +77,11 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({onSubmitt
             address: undefined,
             tags: [],
         }
-        createEvent({
-            variables: {
-                request: request
-            }
-        })
-            .then((res) => {
-                console.log(res)
-                onSubmitted(res.data?.createEvent?.id ?? '')
+
+        submitFunction(request)
+            .then((event: EventData) => {
+                console.log(event)
+                onSubmitted(event)
             })
     }
 
@@ -59,7 +92,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({onSubmitt
                     <div className={styles.row}>
                         od
                         <Field type={"datetime-local"} id={"startDate"} name={"startDate"} />
-                        do
+                        do (opcjonalne)
                         <Field type={"datetime-local"} id={"finishDate"} name={"finishDate"} />
                     </div>
 
@@ -84,7 +117,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({onSubmitt
     )
 }
 
-interface EventCreateValues {
+interface EventFormValues {
     startDate: string
     finishDate?: string
     title: string

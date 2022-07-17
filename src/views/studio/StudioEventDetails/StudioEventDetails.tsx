@@ -43,7 +43,7 @@ export const StudioEventDetails: React.FC = () => {
 
                 <div className={styles.actionBar}>
                     <Link className={styles.action} to={`/event/${event.vanityUrl}`}><b>Zobacz</b>wydarzenie</Link>
-                    <Link className={styles.action} to={`edit`}><b>Edytuj</b>wydarzenie</Link>
+                    <Link className={styles.action} to={`/studio/events/${event.vanityUrl}/edit`}><b>Edytuj</b>wydarzenie</Link>
                     <div className={styles.action} onClick={onEventDeleteClicked}><b>Usuń</b>wydarzenie</div>
                 </div>
             </>}
