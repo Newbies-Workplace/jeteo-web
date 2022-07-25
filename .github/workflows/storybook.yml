@@ -12,6 +12,7 @@ jobs:
           npm install
           npm run deploy-storybook -- --ci --dry-run --out ./docs
           sed -i 's,assets/iframe,jeteo-web/assets/iframe,g' docs/iframe.html
+          sed -i 's,assets,jeteo-web/assets,g' docs/assets/iframe.js
           npm run deploy-storybook -- --ci --existing-output-dir ./docs
         env:
           GH_TOKEN: Newbies-Workplace:${{ secrets.GITHUB_TOKEN }}
