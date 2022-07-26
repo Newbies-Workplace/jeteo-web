@@ -48,8 +48,8 @@ export interface EventData {
         finishDate?: string
     }
     theme: {
-        primaryColor: string
-        image: string
+        primaryColor?: string
+        image?: string
     }
     visibility: Visibility
 }

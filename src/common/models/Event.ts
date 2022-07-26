@@ -1,7 +1,6 @@
 import {SimpleUser} from "./User";
 import {EventData} from "../../api/graphql/events/EventDataQuery";
 
-
 export class Event {
     constructor(
         public id: string,
@@ -10,8 +9,8 @@ export class Event {
         public vanityUrl: string,
         public author: SimpleUser,
         public startDate: Date,
-        public primaryColor: string,
-        public image: string,
+        public primaryColor: string | undefined,
+        public image: string | undefined,
     ) {
     }
 
