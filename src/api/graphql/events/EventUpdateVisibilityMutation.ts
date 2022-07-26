@@ -1,24 +1,12 @@
 import {gql} from "@apollo/client";
-import {EventData} from "./EventDataQuery";
+import {CORE_EVENT_RESPONSE_FRAGMENT, EventData} from "./EventDataQuery";
 import {Visibility} from "./EventListQuery";
 
 export const CHANGE_EVENT_VISIBILITY_MUTATION = gql`
+    ${CORE_EVENT_RESPONSE_FRAGMENT}
     mutation changeEventVisibility($id: String!, $request: EventVisibilityRequestInput!) {
         changeEventVisibility(id: $id, request: $request) {
-            id
-            title
-            subtitle
-            vanityUrl
-            author {
-                nickname
-            }
-            timeFrame {
-                startDate
-            }
-            theme {
-                primaryColor
-                image
-            }
+            ...CoreEventResponse
         }
     }
 `;
