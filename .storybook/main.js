@@ -7,7 +7,6 @@ module.exports = {
       build: {
         ...config.build,
         rollupOptions: {
-          ...config.build.rollupOptions,
           output: {
             entryFileNames: `assets/[name].js`,
             chunkFileNames: `assets/[name].js`,
