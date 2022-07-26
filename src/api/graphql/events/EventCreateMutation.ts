@@ -1,23 +1,11 @@
 import {gql} from "@apollo/client";
-import {EventData} from "./EventDataQuery";
+import {CORE_EVENT_RESPONSE_FRAGMENT, EventData} from "./EventDataQuery";
 
 export const CREATE_EVENT_MUTATION = gql`
+    ${CORE_EVENT_RESPONSE_FRAGMENT}
     mutation event($request: EventRequestInput!) {
         createEvent(request: $request) {
-            id
-            title
-            subtitle
-            vanityUrl
-            author {
-                nickname
-            }
-            timeFrame {
-                startDate
-            }
-            theme {
-                primaryColor
-                image
-            }
+            ...CoreEventResponse
         }
     }
 `;
@@ -28,17 +16,24 @@ export const REPLACE_EVENT_MUTATION = gql`
             id
             title
             subtitle
+            description
             vanityUrl
             author {
                 nickname
             }
             timeFrame {
                 startDate
+                finishDate
+            }
+            address {
+                place
+                city
             }
             theme {
                 primaryColor
                 image
             }
+            visibility
         }
     }
 `
