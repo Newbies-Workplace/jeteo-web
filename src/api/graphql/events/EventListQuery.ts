@@ -1,27 +1,11 @@
 import {gql} from "@apollo/client";
-import {EventData} from "./EventDataQuery";
+import {CORE_EVENT_RESPONSE_FRAGMENT, EventData} from "./EventDataQuery";
 
 export const GET_EVENTS_LIST_QUERY = gql`
+    ${CORE_EVENT_RESPONSE_FRAGMENT}
     query getEventsList($page: Int, $size: Int, $filter: EventFilterInput) {
         events(page: $page, size: $size, filter: $filter) {
-            id
-            title
-            subtitle
-            vanityUrl
-            author {
-                nickname
-            }
-            timeFrame {
-                startDate
-            }
-            address {
-                city
-                place
-            }
-            theme {
-                primaryColor
-                image
-            }
+            ...CoreEventResponse
         }
     }
 `;

@@ -2,18 +2,17 @@ import {SimpleUser} from "./User";
 import {EventData} from "../../api/graphql/events/EventDataQuery";
 import {EventLocation} from "./EventLocation";
 
-
 export class Event {
     constructor(
         public id: string,
         public title: string,
-        public subtitle: string,
+        public subtitle: string | undefined,
         public vanityUrl: string,
         public author: SimpleUser,
         public startDate: Date,
-        public primaryColor?: string,
-        public image?: string,
-        public location?: EventLocation
+        public primaryColor: string | undefined,
+        public image: string | undefined,
+        public location: EventLocation | undefined,
     ) {
     }
 

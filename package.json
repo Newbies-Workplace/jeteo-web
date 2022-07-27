@@ -50,7 +50,10 @@
       "react",
       "@typescript-eslint"
     ],
-    "rules": {},
+    "rules": {
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/no-non-null-assertion": "off"
+    },
     "ignorePatterns": [
       "/__utils__/",
       "webpack.*.*",

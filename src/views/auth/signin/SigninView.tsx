@@ -4,8 +4,7 @@ import ProvidersList from "../../../api/rest/auth/oauth/OAuthProvider.enum";
 
 import AuthHeadline from "../../../components/containers/AuthHeadline/AuthHeadline";
 import AuthSubtitle from "../../../components/containers/AuthSubtitle/AuthSubtitle";
-import SocialMediaProvidersContainer
-    from "../../../components/containers/SocialMediaProvidersContainer/SocialMediaProvidersContainer";
+import SocialMediaProvidersContainer from "../../../components/containers/SocialMediaProvidersContainer/SocialMediaProvidersContainer";
 import SignInWithSocialMediaButton from "../../../components/containers/SignInWithSocialMediaButton/SignInWithSocialMediaButton";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
