@@ -17,7 +17,7 @@ import {
 import {EventData} from "../../../../api/graphql/events/EventDataQuery";
 
 interface EventBasicInfoFormProps {
-    event: EventData | null
+    event?: EventData
     onSubmitted: (event: EventData) => void
 }
 
