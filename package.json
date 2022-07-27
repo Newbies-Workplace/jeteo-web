@@ -89,7 +89,6 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.5.10",
-    "@babel/core": "^7.18.6",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-docs": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
