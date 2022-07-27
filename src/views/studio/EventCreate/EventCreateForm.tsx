@@ -55,16 +55,30 @@ const displayCurrentStep = (
         default:
         case 0:
             return <EventBasicInfoForm
-                event={null}
                 onSubmitted={(createdEvent) => {
                     setEvent(createdEvent)
                     setIndex(1)
-                }}/>
+                }} />
         case 1:
-            return <EventThemeForm event={event!} onSubmitted={() => setIndex(2)}/>
+            return <EventThemeForm
+                event={event!}
+                onSubmitted={(event) => {
+                    setEvent(event)
+                    setIndex(2)
+                }}/>
         case 2:
-            return <EventLecturesForm event={event!} onSubmitted={() => setIndex(3)}/>
+            return <EventLecturesForm
+                event={event!}
+                onSubmitted={(event) => {
+                    setEvent(event)
+                    setIndex(3)
+                }}/>
         case 3:
-            return <EventVisibilityForm event={event!} onSubmitted={() => navigateUp()}/>
+            return <EventVisibilityForm
+                event={event!}
+                onSubmitted={(event) => {
+                    setEvent(event)
+                    navigateUp()
+                }}/>
     }
 }

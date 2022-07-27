@@ -51,7 +51,6 @@ export const EventUpdateForm: React.FC = () => {
                     (index: number) => setActiveStepIndex(index),
                     data.event,
                     () => {},
-                    () => navigate(-1),
                 )}
             </div>
         </div>
@@ -63,20 +62,32 @@ const displayCurrentStep = (
     setIndex: (index: number) => void,
     event: EventData,
     setEvent: (event: EventData) => void,
-    navigateUp: () => void,
 ) => {
     switch (index) {
         default:
         case 0:
-            return <EventBasicInfoForm event={event} onSubmitted={(event) => {
-                setEvent(event)
-                setIndex(1)
-            }}/>
+            return <EventBasicInfoForm
+                event={event}
+                onSubmitted={(event) => {
+                    setEvent(event)
+                }}/>
         case 1:
-            return <EventThemeForm event={event} onSubmitted={() => setIndex(2)}/>
+            return <EventThemeForm
+                event={event}
+                onSubmitted={(event) => {
+                    setEvent(event)
+                }}/>
         case 2:
-            return <EventLecturesForm event={event} onSubmitted={() => setIndex(3)}/>
+            return <EventLecturesForm
+                event={event}
+                onSubmitted={(event) => {
+                    setEvent(event)
+                }}/>
         case 3:
-            return <EventVisibilityForm event={event} onSubmitted={() => navigateUp()}/>
+            return <EventVisibilityForm
+                event={event}
+                onSubmitted={(event) => {
+                    setEvent(event)
+                }}/>
     }
 }

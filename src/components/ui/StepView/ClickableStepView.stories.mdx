@@ -1,0 +1,20 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {ClickableStepView} from "./StepView";
+
+<Meta title="ui/ClickableStepView" component={ClickableStepView} />
+
+export const Template = (args) => <ClickableStepView {...args} />;
+
+Just a step component with example steps
+
+<Canvas>
+    <Story
+        name="Normal"
+        args={{
+            steps: ["Profil użytkownika", "Znajomi", "Polubione"],
+            activeStepIndex: 1
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

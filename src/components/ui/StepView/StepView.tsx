@@ -38,7 +38,7 @@ export const StepView: React.FC<StepViewProps> = ({steps, activeStepIndex}) => (
                     title={step}
                     isSelected={i === activeStepIndex}/>
 
-                {shouldPlaceArrow && <NextArrow width={28} height={28}/>}
+                {shouldPlaceArrow && <NextArrow width={24} height={24}/>}
             </div>
         })}
     </div>
