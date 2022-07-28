@@ -1,6 +1,6 @@
 import React from "react";
 
-export const StudioDashboard: React.FC = () => {
+export const Dashboard: React.FC = () => {
     return (
         <div>
             Dashboard

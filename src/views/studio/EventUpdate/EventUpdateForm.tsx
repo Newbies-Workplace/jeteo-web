@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from "./EventUpdateForm.module.scss";
-import {StudioToolbar} from "../StudioToolbar/StudioToolbar";
+import {Toolbar} from "../Toolbar/Toolbar";
 import {useNavigate, useParams} from "react-router-dom";
 import {ClickableStepView} from "../../../components/ui/StepView/StepView";
 import {EventBasicInfoForm} from "../../../components/containers/EventForm/BasicInfo/EventBasicInfoForm";
@@ -36,7 +36,7 @@ export const EventUpdateForm: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <StudioToolbar
+            <Toolbar
                 title={"Edycja wydarzenia"}
                 onBackPress={() => {navigate(-1)}}/>
 

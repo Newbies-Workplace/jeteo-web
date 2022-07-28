@@ -2,9 +2,9 @@ import React from "react";
 import {NavButton} from "../../../components/ui/NavButton/NavButton";
 import Dashboard from "../../../assets/images/icons/dashboard.svg";
 import Calendar from "../../../assets/images/icons/calendar.svg";
-import styles from './StudioNav.module.scss';
+import styles from './Navigation.module.scss';
 
-export const StudioNav: React.FC = () => {
+export const Navigation: React.FC = () => {
   return (
       <div className={styles.navigation}>
           <h1 className={styles.logo}>STUDIO</h1>

@@ -1,8 +1,8 @@
 import React, {CSSProperties} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { CallbackRouter } from './callback/CallbackRouter';
-import { SigninView } from './signin/SigninView';
-import { SignupView } from './signup/SignupView';
+import { SignInView } from './signIn/SignInView';
+import { SignUpView } from './signUp/SignUpView';
 import GalaxyBackground from "../../components/containers/GalaxyBackground/GalaxyBackground";
 import PageContentContainer from "../../components/containers/PageContentContainer/PageContentContainer";
 import AuthContainer from "../../components/containers/AuthContainer/AuthContainer";
@@ -36,10 +36,10 @@ export const AuthRouter: React.FC = () => {
 
                             <Routes>
                                 <Route
-                                    element={<SigninView/>}
+                                    element={<SignInView/>}
                                     path="signin/*"/>
                                 <Route
-                                    element={<SignupView/>}
+                                    element={<SignUpView/>}
                                     path="signup/*"/>
                                 <Route
                                     element={<CallbackRouter/>}

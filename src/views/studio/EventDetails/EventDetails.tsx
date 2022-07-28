@@ -1,13 +1,13 @@
 import React from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import styles from "./StudioEventDetails.module.scss"
-import {StudioToolbar} from "../StudioToolbar/StudioToolbar";
+import styles from "./EventDetails.module.scss"
+import {Toolbar} from "../Toolbar/Toolbar";
 import {useMutation, useQuery} from "@apollo/client";
 import {EventQueryData, EventQueryVars, GET_EVENT_QUERY} from "../../../api/graphql/events/EventDataQuery";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
 import {DELETE_EVENT_MUTATION, EventDeleteVars} from "../../../api/graphql/events/EventDeleteMutation";
 
-export const StudioEventDetails: React.FC = () => {
+export const EventDetails: React.FC = () => {
     const { name } = useParams<{name: string}>()
     const [deleteEvent] = useMutation<void, EventDeleteVars>(
         DELETE_EVENT_MUTATION, {
@@ -39,7 +39,7 @@ export const StudioEventDetails: React.FC = () => {
     return (
         <div className={styles.container}>
             {event && <>
-                <StudioToolbar title={event.title} onBackPress={() => {navigate(-1)}}/>
+                <Toolbar title={event.title} onBackPress={() => {navigate(-1)}}/>
 
                 <div className={styles.actionBar}>
                     <Link className={styles.action} to={`/event/${event.vanityUrl}`}><b>Zobacz</b>wydarzenie</Link>

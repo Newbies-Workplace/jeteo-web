@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./StudioToolbar.module.scss";
+import styles from "./Toolbar.module.scss";
 import BackArrow from "../../../assets/vectors/back-arrow.svg"
 
 interface StudioToolbarProps {
@@ -7,7 +7,7 @@ interface StudioToolbarProps {
     onBackPress?: () => void
 }
 
-export const StudioToolbar: React.FC<StudioToolbarProps> = ({title, onBackPress}) => {
+export const Toolbar: React.FC<StudioToolbarProps> = ({title, onBackPress}) => {
     return (
         <div className={styles.container}>
             {onBackPress &&

@@ -1,20 +1,20 @@
 import React from "react";
 
-import styles from "./StudioEventList.module.scss"
+import styles from "./EventList.module.scss"
 import {
     EventFilterInput,
     Visibility
 } from "../../../api/graphql/events/EventListQuery";
 import {Link} from "react-router-dom";
 import PrimaryButton from "../../../components/ui/PrimaryButton/PrimaryButton";
-import {EventList} from "../../../components/ui/EventList/EventList";
+import {EventList as EventListComponent} from "../../../components/ui/EventList/EventList";
 import {EventCard} from "../../../components/containers/EventCard/EventCard";
 
 const EVENT_LIST_FILTER: EventFilterInput = {
     visibilityIn: [Visibility.INVISIBLE, Visibility.PRIVATE, Visibility.PUBLIC]
 }
 
-export const StudioEventList: React.FC = () => {
+export const EventList: React.FC = () => {
     return (
         <div className={styles.container}>
             <div className={styles.topBar}>
@@ -25,7 +25,7 @@ export const StudioEventList: React.FC = () => {
                 </Link>
             </div>
 
-            <EventList
+            <EventListComponent
                 filter={EVENT_LIST_FILTER}
                 renderItem={ event =>
                     <Link
