@@ -9,12 +9,16 @@ import {Link} from "react-router-dom";
 import PrimaryButton from "../../../components/ui/PrimaryButton/PrimaryButton";
 import {EventList as EventListComponent} from "../../../components/ui/EventList/EventList";
 import {EventCard} from "../../../components/containers/EventCard/EventCard";
-
-const EVENT_LIST_FILTER: EventFilterInput = {
-    visibilityIn: [Visibility.INVISIBLE, Visibility.PRIVATE, Visibility.PUBLIC]
-}
+import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
 
 export const EventList: React.FC = () => {
+    const {user} = useAuth()
+
+    const EVENT_LIST_FILTER: EventFilterInput = {
+        visibilityIn: [Visibility.INVISIBLE, Visibility.PRIVATE, Visibility.PUBLIC],
+        authorId: user?.id,
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.topBar}>
