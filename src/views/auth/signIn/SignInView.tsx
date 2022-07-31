@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 
 import ProvidersList from "../../../api/rest/auth/oauth/OAuthProvider.enum";
-import SocialMediaButton from "../../../components/containers/SocialMediaButton/SocialMediaButton";
+import SocialMediaButton from "../../../components/ui/SocialMediaButton/SocialMediaButton";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
 import {useQueryParams} from "../../../common/utils/useQueryParams";
@@ -31,15 +31,15 @@ export const SignInView: React.FC = () => {
 
             <div className={styles.socialSection}>
                 <SocialMediaButton
-                    label="Github"
+                    label="GitHub"
                     icon={<Github width={20} height={20}/>}
-                    provider={ProvidersList.github} />
+                    href={`${__RESTAPI_URI__}/oauth/login/${ProvidersList.github}`} />
 
                 {__DEV__ &&
                     <SocialMediaButton
-                        label="Github Dev"
+                        label="GitHub Dev"
                         icon={<Roadblock width={20} height={20}/>}
-                        provider={ProvidersList.githubDev} />
+                        href={`${__RESTAPI_URI__}/oauth/login/${ProvidersList.githubDev}`} />
                 }
             </div>
 

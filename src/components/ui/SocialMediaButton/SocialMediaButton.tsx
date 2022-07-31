@@ -1,16 +1,15 @@
 import React from "react"
 import styles from "./SocialMediaButton.module.css"
-import OAuthProvider from "../../../api/rest/auth/oauth/OAuthProvider.enum"
 
 interface Props {
     label: string
     icon?: React.ReactNode
-    provider: OAuthProvider
+    href: string
 }
 
-export const SocialMediaButton: React.FC<Props> = ({ label, icon, provider }) => {
+export const SocialMediaButton: React.FC<Props> = ({ label, icon, href }) => {
     return (
-        <a href={`${__RESTAPI_URI__}/oauth/login/${provider}`} className={styles.provider}>
+        <a href={href} className={styles.provider}>
             <div className={styles.icon}>
                 {icon}
             </div>
