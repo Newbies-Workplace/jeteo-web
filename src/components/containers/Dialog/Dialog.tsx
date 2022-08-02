@@ -1,12 +1,15 @@
 import React from "react"
 
 import styles from "./Dialog.module.css"
+import cs from "classnames";
 
-const Dialog: React.FC = ({ children }) =>
-    <div className={styles.contentContainer}>
-        <div className={styles.container}>
-            {children}
-        </div>
+interface DialogProps {
+    className?: string
+}
+
+const Dialog: React.FC<DialogProps> = ({ children, className }) =>
+    <div className={cs(styles.dialog, className)}>
+        {children}
     </div>
 
 export default Dialog

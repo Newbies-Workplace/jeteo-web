@@ -17,32 +17,34 @@ export const AuthView: React.FC = () => {
         <GalaxyBackground>
             <div className={styles.authContainer}>
                 <NavBar invertColor/>
-                <Dialog>
-                    <AppLogo/>
+                <div className={styles.contentContainer}>
+                    <Dialog className={styles.authDialog}>
+                        <AppLogo/>
 
-                    {/* catch any error in process and redirect to error subview */}
-                    <ErrorBoundary
-                        FallbackComponent={(err) => <Navigate to={`/auth/error?message=${err.error.message}`}/>}>
+                        {/* catch any error in process and redirect to error subview */}
+                        <ErrorBoundary
+                            FallbackComponent={(err) => <Navigate to={`/auth/error?message=${err.error.message}`}/>}>
 
-                        <Routes>
-                            <Route
-                                element={<SignInView/>}
-                                path="signin/*"/>
-                            <Route
-                                element={<SignUpView/>}
-                                path="signup/*"/>
-                            <Route
-                                element={<CallbackRouter/>}
-                                path="callback/*"/>
-                            <Route
-                                element={<AuthErrorView/>}
-                                path="error"/>
-                            <Route
-                                element={<Navigate to="signin"/>}
-                                path="*" />
-                        </Routes>
-                    </ErrorBoundary>
-                </Dialog>
+                            <Routes>
+                                <Route
+                                    element={<SignInView/>}
+                                    path="signin/*"/>
+                                <Route
+                                    element={<SignUpView/>}
+                                    path="signup/*"/>
+                                <Route
+                                    element={<CallbackRouter/>}
+                                    path="callback/*"/>
+                                <Route
+                                    element={<AuthErrorView/>}
+                                    path="error"/>
+                                <Route
+                                    element={<Navigate to="signin"/>}
+                                    path="*" />
+                            </Routes>
+                        </ErrorBoundary>
+                    </Dialog>
+                </div>
             </div>
         </GalaxyBackground>
     )
