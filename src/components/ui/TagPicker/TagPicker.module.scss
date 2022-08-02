@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 100px;
+  min-height: 34px;
+
+  padding: 8px;
+
+  background-color: #E9E9E9;
+
+  border: 2px solid #000000;
+  border-radius: 16px;
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 30px;
+  padding: 0 8px;
+
+  line-break: anywhere;
+
+  background-color: #FFFFFF;
+
+  border: 2px solid #000000;
+  border-radius: 16px;
+}
+
+.input {
+  background-color: transparent;
+
+  padding: 8px;
+  border: 2px solid #000000;
+  border-radius: 30px;
+}
+
+.close {
+  min-height: 12px;
+  min-width: 12px;
+  height: 12px;
+  width: 12px;
+
+  margin-left: 8px;
+
+  cursor: pointer;
+}
