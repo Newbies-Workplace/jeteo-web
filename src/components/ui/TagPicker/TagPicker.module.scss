@@ -32,12 +32,19 @@
   border-radius: 16px;
 }
 
+.inputContainer {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+
+  border-radius: 16px;
+}
+
 .input {
   background-color: transparent;
-
-  padding: 8px;
-  border: 2px solid #000000;
-  border-radius: 30px;
+  border: none;
+  outline: none;
+  padding: 8px 0;
 }
 
 .close {
@@ -47,6 +54,33 @@
   width: 12px;
 
   margin-left: 8px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #c3c7cb;
+  min-width: 250px;
+
+  border-radius: 8px;
+  border: 1px solid #071018;
+}
+
+.dropdownOption {
+  padding: 8px;
 
   cursor: pointer;
+
+  border-bottom: 1px solid #071018;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
 }

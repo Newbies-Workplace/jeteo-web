@@ -23,7 +23,8 @@ TagPicker
             ]
             const [tags, setTags] = useState(initialTags)
             const [value, setValue] = useState([tags[0]])
-            return <TagPicker
+            return <>
+                <TagPicker
                 tags={tags}
                 value={value}
                 onChange={setValue}
@@ -32,6 +33,8 @@ TagPicker
                     setTags([...tags, tag])
                     setValue([...value, tag])
                 }} />
+                some content under the picker
+            </>
         }}
     </Story>
 </Canvas>
