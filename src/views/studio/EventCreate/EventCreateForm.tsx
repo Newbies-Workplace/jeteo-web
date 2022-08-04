@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from "./EventCreateForm.module.scss";
-import {StudioToolbar} from "../StudioToolbar/StudioToolbar";
+import {Toolbar} from "../Toolbar/Toolbar";
 import {useNavigate} from "react-router-dom";
 import {StepView} from "../../../components/ui/StepView/StepView";
 import {EventBasicInfoForm} from "../../../components/containers/EventForm/BasicInfo/EventBasicInfoForm";
@@ -23,7 +23,7 @@ export const EventCreateForm: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <StudioToolbar
+            <Toolbar
                 title={"Tworzenie wydarzenia"}
                 onBackPress={() => {navigate(-1)}}/>
 

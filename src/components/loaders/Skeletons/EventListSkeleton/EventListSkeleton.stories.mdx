@@ -1,0 +1,19 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {EventListSkeleton} from "./EventListSkeleton";
+
+<Meta title="ui/EventListSkeleton" component={EventListSkeleton} />
+
+export const Template = (args) => <EventListSkeleton {...args} />;
+
+EventListSkeleton
+
+<Canvas>
+    <Story
+        name="Normal"
+        parameters={{
+            backgrounds: { default: 'white' }
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
