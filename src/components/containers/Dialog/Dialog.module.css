@@ -1,0 +1,11 @@
+.dialog {
+    display: block;
+
+    padding: 16px;
+    width: 100%;
+    max-width: 420px;
+
+    border-radius: 16px;
+
+    background-color: #FFFFFF;
+}

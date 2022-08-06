@@ -21,9 +21,9 @@ export const AuthView: React.FC = () => {
                     <Dialog className={styles.authDialog}>
                         <AppLogo/>
 
-                    {/* catch any error in process and redirect to error subview */}
-                    <ErrorBoundary
-                        FallbackComponent={(err) => <Navigate to={`/auth/error?message=${err.error.message}`}/>}>
+                        {/* catch any error in process and redirect to error subview */}
+                        <ErrorBoundary
+                            FallbackComponent={(err) => <Navigate to={`/auth/error?message=${err.error.message}`}/>}>
 
                             <Routes>
                                 <Route
