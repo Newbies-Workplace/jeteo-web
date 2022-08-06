@@ -120,7 +120,7 @@ const TagPicker: React.FC<TagPickerProps> = ({tags, value, maxLength = 20, onCha
     }
 
     return (
-        <>
+        <div>
             <div
                 className={styles.container}
                 onClick={() => inputRef.current?.focus()}
@@ -162,6 +162,7 @@ const TagPicker: React.FC<TagPickerProps> = ({tags, value, maxLength = 20, onCha
                     </div>
                 </form>
             </div>
+
             {dropdownVisible && dropdownOptions.length !== 0 && (
                 <div className={styles.dropdown}>
                     {dropdownOptions.map((option, i) =>
@@ -174,7 +175,7 @@ const TagPicker: React.FC<TagPickerProps> = ({tags, value, maxLength = 20, onCha
                     )}
                 </div>
             )}
-        </>
+        </div>
     )
 }
 
