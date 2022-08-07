@@ -126,6 +126,9 @@ const TagPicker: React.FC<TagPickerProps> = ({tags, value, maxLength = 20, onCha
                 onClick={() => inputRef.current?.focus()}
                 onKeyDown={(e) => {
                     switch (e.key) {
+                        case "Enter":
+                            e.preventDefault()
+                            return onInputSubmit()
                         case "ArrowUp":
                             e.preventDefault()
                             return onKeyUp()
@@ -141,26 +144,21 @@ const TagPicker: React.FC<TagPickerProps> = ({tags, value, maxLength = 20, onCha
                         onRemoveClick={() => onTagRemoveClick(tag)}/>
                 ))}
 
-                <form onSubmit={(e) => {
-                    e.preventDefault()
-                    onInputSubmit()
-                }}>
-                    <div className={styles.inputContainer}>
-                        <input
-                            ref={inputRef}
-                            className={styles.input}
-                            type={'text'}
-                            value={inputValue}
-                            maxLength={maxLength}
-                            placeholder={'Wybierz tag...'}
-                            onChange={(e) => setInputValue(e.target.value)}/>
+                <div className={styles.inputContainer}>
+                    <input
+                        ref={inputRef}
+                        className={styles.input}
+                        type={'text'}
+                        value={inputValue}
+                        maxLength={maxLength}
+                        placeholder={'Wybierz tag...'}
+                        onChange={(e) => setInputValue(e.target.value)}/>
 
-                        {inputValue.length !== 0
-                            ? <Close className={cs(styles.close, styles.pointer)} onClick={() => setInputValue('')}/>
-                            : <div className={styles.close}/>
-                        }
-                    </div>
-                </form>
+                    {inputValue.length !== 0
+                        ? <Close className={cs(styles.close, styles.pointer)} onClick={() => setInputValue('')}/>
+                        : <div className={styles.close}/>
+                    }
+                </div>
             </div>
 
             {dropdownVisible && dropdownOptions.length !== 0 && (
