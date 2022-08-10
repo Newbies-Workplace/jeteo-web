@@ -1,7 +1,7 @@
 import styles from "./StepView.module.scss";
 import cs from "classnames";
 import React from "react";
-import NextArrow from "../../../assets/vectors/next-arrow.svg"
+import NextArrow from "../../../assets/icons/next-arrow.svg"
 
 interface StepViewProps {
     steps: string[]
