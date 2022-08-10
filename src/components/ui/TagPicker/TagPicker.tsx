@@ -4,6 +4,8 @@ import {Tag} from "../../../common/models/Tag";
 import Close from "../../../assets/vectors/close.svg"
 import Add from "../../../assets/vectors/add.svg"
 import cs from "classnames";
+import Dropdown, {Option} from "./Dropdown/Dropdown";
+import TagComponent from "./TagComponent/TagComponent";
 
 interface TagPickerProps {
     tags: Tag[]
@@ -12,39 +14,6 @@ interface TagPickerProps {
     onChange: (tags: Tag[]) => void
     onCreate: (newTagName: string) => void
 }
-
-interface TagComponentProps {
-    label: string
-    onRemoveClick: () => void
-}
-
-const TagComponent: React.FC<TagComponentProps> = ({label, onRemoveClick}) => (
-    <div className={styles.tag}>
-        {label}
-        <Close className={cs(styles.close, styles.pointer)} onClick={onRemoveClick}/>
-    </div>
-)
-
-interface DropdownOptionProps {
-    icon?: React.ReactNode
-    label: string
-    selected: boolean
-    onClick: () => void
-}
-
-interface Option {
-    key: string
-    icon?: React.ReactNode
-    label: string
-    onClick: () => void
-}
-
-const DropdownOption: React.FC<DropdownOptionProps> = ({icon, label, selected, onClick}) => (
-    <div className={cs(styles.dropdownOption, {[styles.selected]: selected})} onClick={() => onClick()}>
-        {label}
-        {icon}
-    </div>
-)
 
 const TagPicker: React.FC<TagPickerProps> = ({tags, value, maxLength = 20, onChange, onCreate}) => {
     const inputRef = createRef<HTMLInputElement>()
@@ -162,16 +131,9 @@ const TagPicker: React.FC<TagPickerProps> = ({tags, value, maxLength = 20, onCha
             </div>
 
             {dropdownVisible && dropdownOptions.length !== 0 && (
-                <div className={styles.dropdown}>
-                    {dropdownOptions.map((option, i) =>
-                        <DropdownOption
-                            key={option.key}
-                            icon={option.icon}
-                            selected={i === selectedOptionIndex}
-                            label={option.label}
-                            onClick={() => option.onClick()} />
-                    )}
-                </div>
+                <Dropdown
+                    options={dropdownOptions}
+                    selectedOptionIndex={selectedOptionIndex} />
             )}
         </div>
     )
