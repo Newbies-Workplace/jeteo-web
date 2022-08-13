@@ -1,5 +1,6 @@
 import {gql} from "@apollo/client";
 import {Visibility} from "./EventListQuery";
+import {TagData} from "../tags/TagListQuery";
 
 export const CORE_EVENT_RESPONSE_FRAGMENT = gql`
     fragment CoreEventResponse on EventResponse {
@@ -24,6 +25,10 @@ export const CORE_EVENT_RESPONSE_FRAGMENT = gql`
             image
         }
         visibility
+        tags {
+            id
+            name
+        }
     }
 `
 
@@ -73,4 +78,5 @@ export interface EventData {
         image?: string
     }
     visibility: Visibility
+    tags: TagData[]
 }
