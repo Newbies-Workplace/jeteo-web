@@ -1,6 +1,7 @@
 import {SimpleUser} from "./User";
 import {EventData} from "../../api/graphql/events/EventDataQuery";
 import {EventLocation} from "./EventLocation";
+import {Tag} from "./Tag";
 
 export class Event {
     constructor(
@@ -13,6 +14,7 @@ export class Event {
         public primaryColor: string | undefined,
         public image: string | undefined,
         public location: EventLocation | undefined,
+        public tags: Tag[],
     ) {
     }
 
@@ -26,7 +28,8 @@ export class Event {
             new Date(data.timeFrame.startDate),
             data.theme.primaryColor,
             data.theme.image,
-            data.address && EventLocation.fromData(data.address)
+            data.address && EventLocation.fromData(data.address),
+            data.tags.map(Tag.fromData),
         )
     }
 }

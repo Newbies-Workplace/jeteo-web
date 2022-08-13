@@ -1,0 +1,40 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import TagPicker from "./TagPicker";
+import {useState} from "react";
+
+<Meta title="ui/TagPicker" component={TagPicker} />
+
+TagPicker
+
+<Canvas>
+    <Story
+        name="Normal"
+        parameters={{
+            backgrounds: { default: 'white' },
+        }}
+    >
+        {() => {
+            const initialTags = [
+                {id: '1', name: 'Java'},
+                {id: '2', name: 'Kotlin'},
+                {id: '3', name: 'React'},
+                {id: '4', name: 'GraphQL'},
+                {id: '5', name: 'PHP'},
+            ]
+            const [tags, setTags] = useState(initialTags)
+            const [value, setValue] = useState([tags[0]])
+            return <>
+                <TagPicker
+                tags={tags}
+                value={value}
+                onChange={setValue}
+                onCreate={(newTagName) => {
+                    const tag = {id: newTagName, name: newTagName}
+                    setTags([...tags, tag])
+                    setValue([...value, tag])
+                }} />
+                some content under the picker
+            </>
+        }}
+    </Story>
+</Canvas>

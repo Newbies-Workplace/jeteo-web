@@ -11,29 +11,10 @@ export const CREATE_EVENT_MUTATION = gql`
 `;
 
 export const REPLACE_EVENT_MUTATION = gql`
+    ${CORE_EVENT_RESPONSE_FRAGMENT}
     mutation event($id: String!, $request: EventRequestInput!) {
         replaceEvent(id: $id, request: $request) {
-            id
-            title
-            subtitle
-            description
-            vanityUrl
-            author {
-                nickname
-            }
-            timeFrame {
-                startDate
-                finishDate
-            }
-            address {
-                place
-                city
-            }
-            theme {
-                primaryColor
-                image
-            }
-            visibility
+            ...CoreEventResponse
         }
     }
 `

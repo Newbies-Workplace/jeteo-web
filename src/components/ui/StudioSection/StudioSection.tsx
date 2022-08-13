@@ -12,7 +12,7 @@ export const StudioSection: React.FC<StudioSectionProps> = ({title, children}) =
                 <div className={styles.dot}/>
                 <div className={styles.line}/>
             </div>
-            <div>
+            <div className={styles.sectionContent}>
                 <span className={styles.title}>{title}</span>
                 <div className={styles.content}>{children}</div>
             </div>
