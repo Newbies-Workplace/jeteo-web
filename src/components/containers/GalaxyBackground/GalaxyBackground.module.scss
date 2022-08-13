@@ -68,7 +68,8 @@ $shadows-big: create-stars(200);
 
     width: 90px;
 
-    animation: ufoSwarmFly 15s infinite linear;
+    animation: ufoSwarmFly 20s infinite linear;
+    animation-delay: -8s;
 }
 .ufo {
     position: relative;
@@ -109,7 +110,7 @@ $shadows-big: create-stars(200);
 
     z-index: 2;
 
-    animation: vehicleFly 15s infinite linear;
+    animation: vehicleFly 20s infinite linear;
 }
 
 .stars {
@@ -209,27 +210,30 @@ $shadows-big: create-stars(200);
 }
 
 @keyframes twinkle {
-    from {
+    0% {
         opacity: 1;
     }
-    to {
+    100% {
         opacity: 0.2;
     }
 };
 
 @keyframes ufoSwarmFly {
-    from {
+    0% {
         left: -300px;
     }
-    to {
+    50% {
+        left: -300px;
+    }
+    100% {
         left: 100%;
     }
 };
 @keyframes ufoUpDown {
-    from {
+    0% {
         transform: rotate(3deg);
     }
-    to {
+    100% {
         transform: rotate(-3deg) translatey(100px);
     }
 };
@@ -244,12 +248,16 @@ $shadows-big: create-stars(200);
 }
 
 @keyframes vehicleFly {
-    from {
+    0% {
+        top: -100px;
+        left: 10%;
+    }
+    50% {
         transform: rotate(0deg);
         top: -100px;
         left: 10%;
     }
-    to {
+    100% {
         transform: rotate(1080deg);
         top: 100%;
         left: 30%;
