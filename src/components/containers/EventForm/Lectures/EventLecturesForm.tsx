@@ -1,11 +1,11 @@
 import React from "react";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
-import {EventData} from "../../../../api/graphql/events/EventDataQuery";
+import {Event} from "../../../../common/models/Event";
 
 interface EventLecturesFormProps {
-    event: EventData,
-    onSubmitted: (event: EventData) => void
+    event: Event,
+    onSubmitted: (event: Event) => void
 }
 
 export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, onSubmitted}) => {

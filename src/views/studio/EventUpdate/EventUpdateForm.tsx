@@ -7,9 +7,10 @@ import {EventBasicInfoForm} from "../../../components/containers/EventForm/Basic
 import {EventVisibilityForm} from "../../../components/containers/EventForm/Visibility/EventVisibilityForm";
 import {EventThemeForm} from "../../../components/containers/EventForm/Theme/EventThemeForm";
 import {EventLecturesForm} from "../../../components/containers/EventForm/Lectures/EventLecturesForm";
-import {EventData, EventQueryData, EventQueryVars, GET_EVENT_QUERY} from "../../../api/graphql/events/EventDataQuery";
+import {EventQueryData, EventQueryVars, GET_EVENT_QUERY} from "../../../api/graphql/events/EventDataQuery";
 import {useQuery} from "@apollo/client";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
+import {Event} from "../../../common/models/Event";
 
 const steps = [
     "Podstawowe informacje",
@@ -21,17 +22,21 @@ const steps = [
 export const EventUpdateForm: React.FC = () => {
     const navigate = useNavigate()
     const [activeStepIndex, setActiveStepIndex] = useState(0)
+    const [event, setEvent] = useState<Event | undefined>(undefined)
     const {name} = useParams<{name: string}>()
 
-    const {loading, error, data} = useQuery<EventQueryData, EventQueryVars>(
+    const {loading, error} = useQuery<EventQueryData, EventQueryVars>(
         GET_EVENT_QUERY, {
             variables: {
                 id: getIdFromVanityUrl(name)
+            },
+            onCompleted: (data) => {
+                setEvent(Event.fromData(data.event))
             }
         }
     )
 
-    if (loading || !data) return <>loading...</>;
+    if (loading || !event) return <>loading...</>;
     if (error) return <p>error <br/>{error.message}</p>;
 
     return (
@@ -49,7 +54,7 @@ export const EventUpdateForm: React.FC = () => {
                 {displayCurrentStep(
                     activeStepIndex,
                     (index: number) => setActiveStepIndex(index),
-                    data.event,
+                    event,
                     () => {},
                 )}
             </div>
@@ -60,8 +65,8 @@ export const EventUpdateForm: React.FC = () => {
 const displayCurrentStep = (
     index: number,
     setIndex: (index: number) => void,
-    event: EventData,
-    setEvent: (event: EventData) => void,
+    event: Event,
+    setEvent: (event: Event) => void,
 ) => {
     switch (index) {
         default:

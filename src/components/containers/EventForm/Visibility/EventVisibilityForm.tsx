@@ -5,25 +5,24 @@ import {useMutation} from "@apollo/client";
 import {
     CHANGE_EVENT_VISIBILITY_MUTATION,
     EventChangeVisibilityData,
-    EventChangeVisibilityVars, EventVisibilityRequestInput
+    EventChangeVisibilityVars,
+    EventVisibilityRequestInput
 } from "../../../../api/graphql/events/EventUpdateVisibilityMutation";
 import {Field, Form, Formik, FormikValues} from "formik";
-import {Visibility} from "../../../../api/graphql/events/EventListQuery";
-import {EventData} from "../../../../api/graphql/events/EventDataQuery";
+import {Event} from "../../../../common/models/Event";
+import {EventVisibility} from "../../../../common/models/EventVisibility";
 
 interface EventVisibilityFormProps {
-    event: EventData,
-    onSubmitted: (event: EventData) => void
+    event: Event,
+    onSubmitted: (event: Event) => void
 }
 
 export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, onSubmitted}) => {
     const [changeVisibility] = useMutation<EventChangeVisibilityData, EventChangeVisibilityVars>(CHANGE_EVENT_VISIBILITY_MUTATION)
 
-    const initialValues: EventChangeVisibilityValues = event ? {
-        visibility: event.visibility
-    } : {
-        visibility: Visibility.PRIVATE,
-    }
+    const initialValues: EventChangeVisibilityValues = event
+        ? {visibility: event.visibility}
+        : {visibility: EventVisibility.PRIVATE}
 
     const onSubmitClicked = (values: FormikValues) => {
         const request: EventVisibilityRequestInput = {
@@ -47,11 +46,11 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
             <Form>
                 <StudioSection title={"Widoczność"}>
                     prywatna
-                    <Field type={"radio"} name={"visibility"} value={Visibility.PRIVATE}/>
+                    <Field type={"radio"} name={"visibility"} value={EventVisibility.PRIVATE}/>
                     niepubliczna
-                    <Field type={"radio"} name={"visibility"} value={Visibility.INVISIBLE}/>
+                    <Field type={"radio"} name={"visibility"} value={EventVisibility.INVISIBLE}/>
                     publiczna
-                    <Field type={"radio"} name={"visibility"} value={Visibility.PUBLIC}/>
+                    <Field type={"radio"} name={"visibility"} value={EventVisibility.PUBLIC}/>
                 </StudioSection>
 
                 <PrimaryButton type={"submit"}>Gotowe</PrimaryButton>

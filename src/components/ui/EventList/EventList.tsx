@@ -28,7 +28,7 @@ const defaultCardRenderer: EventListItemRenderer = event => (
         <EventCard
             title={event.title}
             locationName={event.location?.city}
-            subtitle={event.author.nickname}
+            subtitle={event.subtitle}
             startDate={event.startDate}
             color={event.primaryColor}
             image={event.image} />

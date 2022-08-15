@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Field, Form, Formik, FormikValues} from "formik";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import styles from "./EventBasicInfoForm.module.scss";
+import formStyles from "../EventForm.module.scss"
 import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
 import dayjs from "dayjs";
 import {useMutation, useQuery} from "@apollo/client";
@@ -23,10 +24,11 @@ import {
     CreateTagMutationData,
     CreateTagMutationVars
 } from "../../../../api/graphql/tags/TagCreateMutation";
+import {Event} from "../../../../common/models/Event";
 
 interface EventBasicInfoFormProps {
-    event?: EventData
-    onSubmitted: (event: EventData) => void
+    event?: Event
+    onSubmitted: (event: Event) => void
 }
 
 //todo: validation
@@ -54,8 +56,8 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
     }, [])
 
     const initialValues: EventFormValues = event ? {
-        startDate: dayjs(event.timeFrame.startDate).format("YYYY-MM-DDTHH:mm"),
-        finishDate: event.timeFrame.finishDate ? dayjs(event.timeFrame.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
+        startDate: dayjs(event.startDate).format("YYYY-MM-DDTHH:mm"),
+        finishDate: event.finishDate ? dayjs(event.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
         title: event.title,
         subtitle: event.subtitle,
         description: event.description,
@@ -125,7 +127,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         submitFunction(request)
             .then((event: EventData) => {
                 console.log(event)
-                onSubmitted(event)
+                onSubmitted(Event.fromData(event))
             })
     }
 
@@ -159,7 +161,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                     </div>
                 </StudioSection>
 
-                <div className={styles.submit}>
+                <div className={formStyles.submit}>
                     <PrimaryButton type={"submit"}>
                         {event ? "Zapisz" : "Dodaj"}
                     </PrimaryButton>

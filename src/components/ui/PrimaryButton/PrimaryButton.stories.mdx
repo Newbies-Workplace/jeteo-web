@@ -7,11 +7,28 @@ export const Template = (args) => <PrimaryButton {...args} />;
 
 PrimaryButton
 
+medium
+
 <Canvas>
     <Story
-        name="Normal"
+        name="Medium"
         args={{
-            children: (<>Button</>)
+            children: (<>Button</>),
+            size: 'medium',
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+small
+
+<Canvas>
+    <Story
+        name="Small"
+        args={{
+            children: (<>Button</>),
+            size: 'small',
         }}
     >
         {Template.bind({})}

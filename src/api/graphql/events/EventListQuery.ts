@@ -1,5 +1,6 @@
 import {gql} from "@apollo/client";
 import {CORE_EVENT_RESPONSE_FRAGMENT, EventData} from "./EventDataQuery";
+import {EventVisibility} from "../../../common/models/EventVisibility";
 
 export const GET_EVENTS_LIST_QUERY = gql`
     ${CORE_EVENT_RESPONSE_FRAGMENT}
@@ -12,13 +13,7 @@ export const GET_EVENTS_LIST_QUERY = gql`
 
 export interface EventFilterInput {
     authorId?: string,
-    visibilityIn?: Visibility[],
-}
-
-export enum Visibility {
-    PUBLIC = "PUBLIC",
-    INVISIBLE = "INVISIBLE",
-    PRIVATE = "PRIVATE",
+    visibilityIn?: EventVisibility[],
 }
 
 export interface EventListQueryVars {
