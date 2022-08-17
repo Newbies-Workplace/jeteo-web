@@ -139,6 +139,7 @@
     "express": "^4.17.1",
     "express-history-api-fallback": "^2.2.1",
     "formik": "^2.2.9",
+    "parse-md": "^3.0.3",
     "vite": "^2.9.1",
     "vite-plugin-svgr-component": "^1.0.0"
   }

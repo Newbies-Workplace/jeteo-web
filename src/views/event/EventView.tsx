@@ -5,6 +5,7 @@ import { useEvent } from "../../hooks/events/useEvent";
 import { EventHeadline } from "../../components/containers/EventHeadline/EventHeadline";
 import { NavBar } from "../../components/ui/NavBar/NavBar";
 import { getIdFromVanityUrl } from "../../common/utils/vanityUrlUtils";
+import {EventDescriptionSection} from "../../components/containers/EventDescriptionSection/EventDescriptionSection";
 
 
 export const EventView: React.FC = () => {
@@ -34,6 +35,7 @@ export const EventView: React.FC = () => {
                 subtitle={event.subtitle}
                 image={event.image}
                 color={event.primaryColor} />
+            <EventDescriptionSection description={event.subtitle}/>
         </>
     )
 };
