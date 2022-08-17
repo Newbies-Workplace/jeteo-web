@@ -5,6 +5,8 @@ import formStyles from "../EventForm.module.scss";
 import {EventCard} from "../../EventCard/EventCard";
 import {Event} from "../../../../common/models/Event";
 import FileUpload from "../../../ui/FileUpload/FileUpload";
+import FileItem from "../../../ui/FileItem/FileItem";
+import styles from "./EventThemeForm.module.scss";
 
 interface EventThemeFormProps {
     event: Event,
@@ -15,8 +17,22 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onSubmitte
     return (
         <div>
             <StudioSection title={"Motyw"}>
-                fota
-                <FileUpload onChange={(files) => {}}/>
+                <h4>Kolor przewodni:</h4>
+                todo todo
+
+                <h4>Okładka:</h4>
+                <div className={styles.row}>
+                    {event.image &&
+                        <FileItem
+                            url={event.image}
+                            onDeleteClick={() => {}}/>
+                    }
+                    {!event.image &&
+                        <FileUpload
+                            onChange={(files) => {
+                            }}/>
+                    }
+                </div>
             </StudioSection>
 
             <StudioSection title={"Podgląd"}>
