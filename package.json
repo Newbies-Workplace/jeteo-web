@@ -61,7 +61,8 @@
       "/__utils__/",
       "webpack.*.*",
       "./node_modules/**",
-      "./dist/**"
+      "./dist/**",
+      "src/api/graphql.tsx"
     ]
   },
   "jest": {
