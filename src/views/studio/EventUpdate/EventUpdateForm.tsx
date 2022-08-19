@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./EventUpdateForm.module.scss";
 import {Toolbar} from "../Toolbar/Toolbar";
 import {useNavigate, useParams} from "react-router-dom";
@@ -55,7 +55,7 @@ export const EventUpdateForm: React.FC = () => {
                     activeStepIndex,
                     (index: number) => setActiveStepIndex(index),
                     event,
-                    () => {},
+                    (event) => setEvent(event),
                 )}
             </div>
         </div>
@@ -79,6 +79,9 @@ const displayCurrentStep = (
         case 1:
             return <EventThemeForm
                 event={event}
+                onEventChange={(event) => {
+                    setEvent(event)
+                }}
                 onSubmitted={(event) => {
                     setEvent(event)
                 }}/>

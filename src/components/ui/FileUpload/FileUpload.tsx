@@ -2,7 +2,7 @@ import React, {useRef, useState} from "react";
 import styles from "./FileUpload.module.scss"
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import cs from "classnames";
-import Help from "../../../assets/vectors/help.svg"
+import Help from "../../../assets/icons/help.svg"
 import {ALLOWED_IMAGE_EXTENSIONS} from "../../../common/utils/constants";
 
 interface FileUploadProps {

@@ -7,13 +7,34 @@ import {Event} from "../../../../common/models/Event";
 import FileUpload from "../../../ui/FileUpload/FileUpload";
 import FileItem from "../../../ui/FileItem/FileItem";
 import styles from "./EventThemeForm.module.scss";
+import {deleteImage, updateImage} from "../../../../api/rest/event/Event";
+import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 
 interface EventThemeFormProps {
     event: Event,
+    onEventChange: (event: Event) => void
     onSubmitted: (event: Event) => void
 }
 
-export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onSubmitted}) => {
+export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventChange, onSubmitted}) => {
+    const {axios} = useAuth()
+    const onCoverDeleteClick = async () => {
+        deleteImage(axios, event.id)
+            .then(() => {
+                const updatedEvent: Event = {...event, image: undefined}
+
+                onSubmitted(updatedEvent)
+            })
+    }
+
+    const onCoverFileUpdate = async (file: File) => {
+        updateImage(axios, event.id, file)
+            .then((res) => {
+                const updatedEvent: Event = {...event, image: res.url}
+                onEventChange(updatedEvent)
+            })
+    }
+
     return (
         <div>
             <StudioSection title={"Motyw"}>
@@ -25,12 +46,11 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onSubmitte
                     {event.image &&
                         <FileItem
                             url={event.image}
-                            onDeleteClick={() => {}}/>
+                            onDeleteClick={onCoverDeleteClick}/>
                     }
                     {!event.image &&
                         <FileUpload
-                            onChange={(files) => {
-                            }}/>
+                            onChange={(files) => onCoverFileUpdate(files[0])}/>
                     }
                 </div>
             </StudioSection>

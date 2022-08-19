@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./FileItem.module.scss"
-import Close from "../../../assets/vectors/close.svg"
+import Close from "../../../assets/icons/close.svg"
 
 interface FileItemProps {
     url: string,
@@ -12,7 +12,7 @@ const FileItem: React.FC<FileItemProps> = ({url,  onDeleteClick}) => {
       <div className={styles.item} style={{backgroundImage: `url(${url})`}}>
           {onDeleteClick &&
               <div className={styles.close}>
-                  <Close style={{color:'white'}} onClick={() => onDeleteClick()}/>
+                  <Close style={{color: 'white'}} onClick={() => onDeleteClick()}/>
               </div>
           }
       </div>

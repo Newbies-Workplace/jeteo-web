@@ -51,7 +51,6 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         });
 
     useEffect(() => {
-        console.log(initialValues);
         setSelectedTagIds(initialValues.tags.map(tag => tag.id))
     }, [])
 
@@ -126,7 +125,6 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
 
         submitFunction(request)
             .then((event: EventData) => {
-                console.log(event)
                 onSubmitted(Event.fromData(event))
             })
     }

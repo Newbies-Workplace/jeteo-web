@@ -62,6 +62,9 @@ const displayCurrentStep = (
         case 1:
             return <EventThemeForm
                 event={event!}
+                onEventChange={(event) => {
+                    setEvent(event)
+                }}
                 onSubmitted={(event) => {
                     setEvent(event)
                     setIndex(2)
