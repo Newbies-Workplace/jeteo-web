@@ -12,6 +12,7 @@ import { EventListSkeleton } from "../../loaders/Skeletons/EventListSkeleton/Eve
 import { PlaceholderSwitcher } from "../../utils/animations/PlaceholderSwitcher";
 import { AnimatedList } from "../../utils/animations/AnimatedList";
 import { EventCard } from "../../containers/EventCard/EventCard";
+import {useEventsListQuery} from "../../../api/graphql";
 
 export type EventListItemRenderer = (e: Event, index: number) => JSX.Element;
 
@@ -37,13 +38,10 @@ const defaultCardRenderer: EventListItemRenderer = event => (
 
 export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defaultCardRenderer }) => {
 
-    const { loading, error, data } = useQuery<EventListQueryData, EventListQueryVars>(
-        GET_EVENTS_LIST_QUERY, {
+    const { loading, error, data } = useEventsListQuery({
         variables: {
-            // eslint workaround
             page: 1,
             size: 50,
-            filter,
         },
     });
 

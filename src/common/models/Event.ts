@@ -1,13 +1,16 @@
 import {SimpleUser} from "./User";
-import {EventData} from "../../api/graphql/events/EventDataQuery";
 import {EventLocation} from "./EventLocation";
 import {Tag} from "./Tag";
+import {EventResponse, EventsListQuery} from "../../api/graphql";
+
+type event = EventsListQuery["events"];
 
 export class Event {
     constructor(
         public id: string,
         public title: string,
         public subtitle: string | undefined,
+        public description: string | undefined,
         public vanityUrl: string,
         public author: SimpleUser,
         public startDate: Date,
@@ -18,11 +21,12 @@ export class Event {
     ) {
     }
 
-    static fromData(data: EventData): Event {
+    static fromData(data: EventResponse): Event {
         return new Event(
             data.id,
             data.title,
             data.subtitle,
+            data.description,
             data.vanityUrl,
             data.author as SimpleUser,
             new Date(data.timeFrame.startDate),
