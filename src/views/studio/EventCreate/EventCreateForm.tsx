@@ -7,7 +7,7 @@ import {EventBasicInfoForm} from "../../../components/containers/EventForm/Basic
 import {EventVisibilityForm} from "../../../components/containers/EventForm/Visibility/EventVisibilityForm";
 import {EventThemeForm} from "../../../components/containers/EventForm/Theme/EventThemeForm";
 import {EventLecturesForm} from "../../../components/containers/EventForm/Lectures/EventLecturesForm";
-import {EventData} from "../../../api/graphql/events/EventDataQuery";
+import {Event} from "../../../common/models/Event";
 
 const steps = [
     "Podstawowe informacje",
@@ -19,7 +19,7 @@ const steps = [
 export const EventCreateForm: React.FC = () => {
     const navigate = useNavigate()
     const [activeStepIndex, setActiveStepIndex] = useState(0)
-    const [event, setEvent] = useState<EventData | null>(null)
+    const [event, setEvent] = useState<Event | null>(null)
 
     return (
         <div className={styles.container}>
@@ -36,7 +36,7 @@ export const EventCreateForm: React.FC = () => {
                     activeStepIndex,
                     (index: number) => setActiveStepIndex(index),
                     event,
-                    (event: EventData) => setEvent(event),
+                    (event: Event) => setEvent(event),
                     () => navigate(-1),
                 )}
             </div>
@@ -47,8 +47,8 @@ export const EventCreateForm: React.FC = () => {
 const displayCurrentStep = (
     index: number,
     setIndex: (index: number) => void,
-    event: EventData | null,
-    setEvent: (event: EventData) => void,
+    event: Event | null,
+    setEvent: (event: Event) => void,
     navigateUp: () => void,
 ) => {
     switch (index) {

@@ -1,0 +1,16 @@
+overwrite: true
+schema: "http://jeteo.newbies.pl:8080/graphql"
+documents: "src/api/graphql/**/*.graphql"
+generates:
+  src/api/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      namingConvention:
+        enumValues: change-case-all#constantCase
+      constEnums: true
+      maybeValue: T | undefined
+      scalars:
+        Instant: string

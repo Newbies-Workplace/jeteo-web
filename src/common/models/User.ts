@@ -10,17 +10,17 @@ export class User implements SimpleUser {
     constructor(
         public id: string,
         public nickname: string,
-        public description: string,
-        public createDate: Date,
-        public updateDate: Date,
+        public description?: string,
+        public createDate?: Date,
+        public updateDate?: Date,
     ) {
     }
 
-    static fromResponse(userResponse: UserResponse): User {
+    static fromData(userResponse: UserResponse): User {
         return new User(
             userResponse.id,
             userResponse.nickname,
-            userResponse.description || "",
+            userResponse.description,
             new Date(userResponse.createDate),
             new Date(userResponse.updateDate),
         )
