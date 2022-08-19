@@ -8,6 +8,8 @@ generates:
       - "typescript-operations"
       - "typescript-react-apollo"
     config:
+      namingConvention:
+        enumValues: change-case-all#constantCase
       constEnums: true
       maybeValue: T | undefined
       scalars:

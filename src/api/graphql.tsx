@@ -350,9 +350,9 @@ export type UserResponse = {
 };
 
 export const enum Visibility {
-  Invisible = 'INVISIBLE',
-  Private = 'PRIVATE',
-  Public = 'PUBLIC'
+  INVISIBLE = 'INVISIBLE',
+  PRIVATE = 'PRIVATE',
+  PUBLIC = 'PUBLIC'
 };
 
 export type EventsListQueryVariables = Exact<{
@@ -364,7 +364,61 @@ export type EventsListQueryVariables = Exact<{
 
 export type EventsListQuery = { __typename?: 'Query', events: Array<{ __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }> };
 
+export type EventQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type EventQuery = { __typename?: 'Query', event: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+
+export type DeleteEventMutationVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type DeleteEventMutation = { __typename?: 'Mutation', deleteEvent: boolean };
+
+export type CreateEventMutationVariables = Exact<{
+  request: EventRequestInput;
+}>;
+
+
+export type CreateEventMutation = { __typename?: 'Mutation', createEvent: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+
+export type ReplaceEventMutationVariables = Exact<{
+  id: Scalars['String'];
+  request: EventRequestInput;
+}>;
+
+
+export type ReplaceEventMutation = { __typename?: 'Mutation', replaceEvent: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+
+export type ChangeEventVisibilityMutationVariables = Exact<{
+  id: Scalars['String'];
+  request: EventVisibilityRequestInput;
+}>;
+
+
+export type ChangeEventVisibilityMutation = { __typename?: 'Mutation', changeEventVisibility: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+
 export type CoreEventResponseFragment = { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> };
+
+export type CreateTagMutationVariables = Exact<{
+  request: TagCreateRequestInput;
+}>;
+
+
+export type CreateTagMutation = { __typename?: 'Mutation', createTag: { __typename?: 'TagResponse', id: string, name: string } };
+
+export type TagListQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type TagListQuery = { __typename?: 'Query', tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> };
+
+export type CoreTagResponseFragment = { __typename?: 'TagResponse', id: string, name: string };
 
 export const CoreEventResponseFragmentDoc = gql`
     fragment CoreEventResponse on EventResponse {
@@ -393,6 +447,12 @@ export const CoreEventResponseFragmentDoc = gql`
     id
     name
   }
+}
+    `;
+export const CoreTagResponseFragmentDoc = gql`
+    fragment CoreTagResponse on TagResponse {
+  id
+  name
 }
     `;
 export const EventsListDocument = gql`
@@ -432,3 +492,239 @@ export function useEventsListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type EventsListQueryHookResult = ReturnType<typeof useEventsListQuery>;
 export type EventsListLazyQueryHookResult = ReturnType<typeof useEventsListLazyQuery>;
 export type EventsListQueryResult = Apollo.QueryResult<EventsListQuery, EventsListQueryVariables>;
+export const EventDocument = gql`
+    query Event($id: String!) {
+  event(id: $id) {
+    ...CoreEventResponse
+  }
+}
+    ${CoreEventResponseFragmentDoc}`;
+
+/**
+ * __useEventQuery__
+ *
+ * To run a query within a React component, call `useEventQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEventQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEventQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useEventQuery(baseOptions: Apollo.QueryHookOptions<EventQuery, EventQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<EventQuery, EventQueryVariables>(EventDocument, options);
+      }
+export function useEventLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EventQuery, EventQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<EventQuery, EventQueryVariables>(EventDocument, options);
+        }
+export type EventQueryHookResult = ReturnType<typeof useEventQuery>;
+export type EventLazyQueryHookResult = ReturnType<typeof useEventLazyQuery>;
+export type EventQueryResult = Apollo.QueryResult<EventQuery, EventQueryVariables>;
+export const DeleteEventDocument = gql`
+    mutation DeleteEvent($id: String!) {
+  deleteEvent(id: $id)
+}
+    `;
+export type DeleteEventMutationFn = Apollo.MutationFunction<DeleteEventMutation, DeleteEventMutationVariables>;
+
+/**
+ * __useDeleteEventMutation__
+ *
+ * To run a mutation, you first call `useDeleteEventMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteEventMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteEventMutation, { data, loading, error }] = useDeleteEventMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteEventMutation(baseOptions?: Apollo.MutationHookOptions<DeleteEventMutation, DeleteEventMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteEventMutation, DeleteEventMutationVariables>(DeleteEventDocument, options);
+      }
+export type DeleteEventMutationHookResult = ReturnType<typeof useDeleteEventMutation>;
+export type DeleteEventMutationResult = Apollo.MutationResult<DeleteEventMutation>;
+export type DeleteEventMutationOptions = Apollo.BaseMutationOptions<DeleteEventMutation, DeleteEventMutationVariables>;
+export const CreateEventDocument = gql`
+    mutation CreateEvent($request: EventRequestInput!) {
+  createEvent(request: $request) {
+    ...CoreEventResponse
+  }
+}
+    ${CoreEventResponseFragmentDoc}`;
+export type CreateEventMutationFn = Apollo.MutationFunction<CreateEventMutation, CreateEventMutationVariables>;
+
+/**
+ * __useCreateEventMutation__
+ *
+ * To run a mutation, you first call `useCreateEventMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateEventMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createEventMutation, { data, loading, error }] = useCreateEventMutation({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useCreateEventMutation(baseOptions?: Apollo.MutationHookOptions<CreateEventMutation, CreateEventMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateEventMutation, CreateEventMutationVariables>(CreateEventDocument, options);
+      }
+export type CreateEventMutationHookResult = ReturnType<typeof useCreateEventMutation>;
+export type CreateEventMutationResult = Apollo.MutationResult<CreateEventMutation>;
+export type CreateEventMutationOptions = Apollo.BaseMutationOptions<CreateEventMutation, CreateEventMutationVariables>;
+export const ReplaceEventDocument = gql`
+    mutation ReplaceEvent($id: String!, $request: EventRequestInput!) {
+  replaceEvent(id: $id, request: $request) {
+    ...CoreEventResponse
+  }
+}
+    ${CoreEventResponseFragmentDoc}`;
+export type ReplaceEventMutationFn = Apollo.MutationFunction<ReplaceEventMutation, ReplaceEventMutationVariables>;
+
+/**
+ * __useReplaceEventMutation__
+ *
+ * To run a mutation, you first call `useReplaceEventMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReplaceEventMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [replaceEventMutation, { data, loading, error }] = useReplaceEventMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useReplaceEventMutation(baseOptions?: Apollo.MutationHookOptions<ReplaceEventMutation, ReplaceEventMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ReplaceEventMutation, ReplaceEventMutationVariables>(ReplaceEventDocument, options);
+      }
+export type ReplaceEventMutationHookResult = ReturnType<typeof useReplaceEventMutation>;
+export type ReplaceEventMutationResult = Apollo.MutationResult<ReplaceEventMutation>;
+export type ReplaceEventMutationOptions = Apollo.BaseMutationOptions<ReplaceEventMutation, ReplaceEventMutationVariables>;
+export const ChangeEventVisibilityDocument = gql`
+    mutation ChangeEventVisibility($id: String!, $request: EventVisibilityRequestInput!) {
+  changeEventVisibility(id: $id, request: $request) {
+    ...CoreEventResponse
+  }
+}
+    ${CoreEventResponseFragmentDoc}`;
+export type ChangeEventVisibilityMutationFn = Apollo.MutationFunction<ChangeEventVisibilityMutation, ChangeEventVisibilityMutationVariables>;
+
+/**
+ * __useChangeEventVisibilityMutation__
+ *
+ * To run a mutation, you first call `useChangeEventVisibilityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useChangeEventVisibilityMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [changeEventVisibilityMutation, { data, loading, error }] = useChangeEventVisibilityMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useChangeEventVisibilityMutation(baseOptions?: Apollo.MutationHookOptions<ChangeEventVisibilityMutation, ChangeEventVisibilityMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ChangeEventVisibilityMutation, ChangeEventVisibilityMutationVariables>(ChangeEventVisibilityDocument, options);
+      }
+export type ChangeEventVisibilityMutationHookResult = ReturnType<typeof useChangeEventVisibilityMutation>;
+export type ChangeEventVisibilityMutationResult = Apollo.MutationResult<ChangeEventVisibilityMutation>;
+export type ChangeEventVisibilityMutationOptions = Apollo.BaseMutationOptions<ChangeEventVisibilityMutation, ChangeEventVisibilityMutationVariables>;
+export const CreateTagDocument = gql`
+    mutation CreateTag($request: TagCreateRequestInput!) {
+  createTag(request: $request) {
+    ...CoreTagResponse
+  }
+}
+    ${CoreTagResponseFragmentDoc}`;
+export type CreateTagMutationFn = Apollo.MutationFunction<CreateTagMutation, CreateTagMutationVariables>;
+
+/**
+ * __useCreateTagMutation__
+ *
+ * To run a mutation, you first call `useCreateTagMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateTagMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createTagMutation, { data, loading, error }] = useCreateTagMutation({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useCreateTagMutation(baseOptions?: Apollo.MutationHookOptions<CreateTagMutation, CreateTagMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateTagMutation, CreateTagMutationVariables>(CreateTagDocument, options);
+      }
+export type CreateTagMutationHookResult = ReturnType<typeof useCreateTagMutation>;
+export type CreateTagMutationResult = Apollo.MutationResult<CreateTagMutation>;
+export type CreateTagMutationOptions = Apollo.BaseMutationOptions<CreateTagMutation, CreateTagMutationVariables>;
+export const TagListDocument = gql`
+    query TagList($page: Int, $size: Int) {
+  tags(page: $page, size: $size) {
+    ...CoreTagResponse
+  }
+}
+    ${CoreTagResponseFragmentDoc}`;
+
+/**
+ * __useTagListQuery__
+ *
+ * To run a query within a React component, call `useTagListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTagListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTagListQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *      size: // value for 'size'
+ *   },
+ * });
+ */
+export function useTagListQuery(baseOptions?: Apollo.QueryHookOptions<TagListQuery, TagListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TagListQuery, TagListQueryVariables>(TagListDocument, options);
+      }
+export function useTagListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagListQuery, TagListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TagListQuery, TagListQueryVariables>(TagListDocument, options);
+        }
+export type TagListQueryHookResult = ReturnType<typeof useTagListQuery>;
+export type TagListLazyQueryHookResult = ReturnType<typeof useTagListLazyQuery>;
+export type TagListQueryResult = Apollo.QueryResult<TagListQuery, TagListQueryVariables>;

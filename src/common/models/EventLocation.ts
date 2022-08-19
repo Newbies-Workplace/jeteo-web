@@ -1,4 +1,3 @@
-import {EventAddressData} from "../../api/graphql/events/EventDataQuery";
 import {AddressResponse} from "../../api/graphql";
 
 export class EventLocation {

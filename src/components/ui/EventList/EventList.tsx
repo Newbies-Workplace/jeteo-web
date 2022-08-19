@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
-import { EventFilterInput } from "../../../api/graphql/events/EventListQuery";
 import { Event } from "../../../common/models/Event";
 import { Link } from "react-router-dom";
 import { EventListSkeleton } from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
 import { PlaceholderSwitcher } from "../../utils/animations/PlaceholderSwitcher";
 import { AnimatedList } from "../../utils/animations/AnimatedList";
 import { EventCard } from "../../containers/EventCard/EventCard";
-import {useEventsListQuery} from "../../../api/graphql";
+import {EventFilterInput, useEventsListQuery} from "../../../api/graphql";
 
 export type EventListItemRenderer = (e: Event, index: number) => JSX.Element;
 
@@ -31,7 +30,6 @@ const defaultCardRenderer: EventListItemRenderer = event => (
 );
 
 export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defaultCardRenderer }) => {
-
     const { loading, error, data } = useEventsListQuery({
         variables: {
             page: 1,
