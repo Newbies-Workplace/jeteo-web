@@ -364,38 +364,44 @@ export type EventsListQueryVariables = Exact<{
 
 export type EventsListQuery = { __typename?: 'Query', events: Array<{ __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }> };
 
+export type CoreEventResponseFragment = { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> };
 
-export const EventsListDocument = gql`
-    query EventsList($page: Int, $size: Int, $filter: EventFilterInput) {
-  events(page: $page, size: $size, filter: $filter) {
+export const CoreEventResponseFragmentDoc = gql`
+    fragment CoreEventResponse on EventResponse {
+  id
+  title
+  subtitle
+  description
+  vanityUrl
+  author {
+    nickname
+  }
+  timeFrame {
+    startDate
+    finishDate
+  }
+  address {
+    place
+    city
+  }
+  theme {
+    primaryColor
+    image
+  }
+  visibility
+  tags {
     id
-    title
-    subtitle
-    description
-    vanityUrl
-    author {
-      nickname
-    }
-    timeFrame {
-      startDate
-      finishDate
-    }
-    address {
-      place
-      city
-    }
-    theme {
-      primaryColor
-      image
-    }
-    visibility
-    tags {
-      id
-      name
-    }
+    name
   }
 }
     `;
+export const EventsListDocument = gql`
+    query EventsList($page: Int, $size: Int, $filter: EventFilterInput) {
+  events(page: $page, size: $size, filter: $filter) {
+    ...CoreEventResponse
+  }
+}
+    ${CoreEventResponseFragmentDoc}`;
 
 /**
  * __useEventsListQuery__

@@ -1,11 +1,5 @@
 import React, { useMemo } from 'react';
-import { useQuery } from "@apollo/client";
-import {
-    EventFilterInput,
-    EventListQueryData,
-    EventListQueryVars,
-    GET_EVENTS_LIST_QUERY
-} from "../../../api/graphql/events/EventListQuery";
+import { EventFilterInput } from "../../../api/graphql/events/EventListQuery";
 import { Event } from "../../../common/models/Event";
 import { Link } from "react-router-dom";
 import { EventListSkeleton } from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";

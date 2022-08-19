@@ -1,29 +1,33 @@
 query EventsList($page: Int, $size: Int, $filter: EventFilterInput) {
     events(page: $page, size: $size, filter: $filter) {
+        ...CoreEventResponse
+    }
+}
+
+fragment CoreEventResponse on EventResponse {
+    id
+    title
+    subtitle
+    description
+    vanityUrl
+    author {
+        nickname
+    }
+    timeFrame {
+        startDate
+        finishDate
+    }
+    address {
+        place
+        city
+    }
+    theme {
+        primaryColor
+        image
+    }
+    visibility
+    tags {
         id
-        title
-        subtitle
-        description
-        vanityUrl
-        author {
-            nickname
-        }
-        timeFrame {
-            startDate
-            finishDate
-        }
-        address {
-            place
-            city
-        }
-        theme {
-            primaryColor
-            image
-        }
-        visibility
-        tags {
-            id
-            name
-        }
+        name
     }
 }

@@ -1,9 +1,7 @@
 import {SimpleUser} from "./User";
 import {EventLocation} from "./EventLocation";
 import {Tag} from "./Tag";
-import {EventResponse, EventsListQuery} from "../../api/graphql";
-
-type event = EventsListQuery["events"];
+import {CoreEventResponseFragment} from "../../api/graphql";
 
 export class Event {
     constructor(
@@ -21,7 +19,7 @@ export class Event {
     ) {
     }
 
-    static fromData(data: EventResponse): Event {
+    static fromData(data: CoreEventResponseFragment): Event {
         return new Event(
             data.id,
             data.title,
