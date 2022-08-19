@@ -62,7 +62,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                     color={event.primaryColor}
                     image={event.image}
                     locationName={event.location?.city}
-                    startDate={event.startDate }/>
+                    startDate={event.startDate} />
             </StudioSection>
 
             <StudioSection title={"Galeria"}>

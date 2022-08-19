@@ -9,7 +9,7 @@ interface FileItemProps {
 
 const FileItem: React.FC<FileItemProps> = ({url,  onDeleteClick}) => {
   return (
-      <div className={styles.item} style={{backgroundImage: `url(${url})`}}>
+      <div className={styles.item} style={{backgroundImage: `url(${url})`, backgroundSize: 'cover'}}>
           {onDeleteClick &&
               <div className={styles.close}>
                   <Close style={{color: 'white'}} onClick={() => onDeleteClick()}/>

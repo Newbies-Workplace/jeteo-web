@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./EventList.module.scss"
+import styles from "./EventList.module.scss";
 import {Link} from "react-router-dom";
 import PrimaryButton from "../../../components/ui/PrimaryButton/PrimaryButton";
 import {EventList as EventListComponent} from "../../../components/ui/EventList/EventList";
@@ -11,7 +11,7 @@ export const EventList: React.FC = () => {
     const {user} = useAuth()
 
     const EVENT_LIST_FILTER: EventFilterInput = {
-        visibilityIn: [EventVisibility.INVISIBLE, EventVisibility.PRIVATE, EventVisibility.PUBLIC],
+        visibilityIn: [Visibility.INVISIBLE, Visibility.PRIVATE, Visibility.PUBLIC],
         authorId: user?.id,
     }
 
@@ -39,8 +39,7 @@ export const EventList: React.FC = () => {
                             color={event.primaryColor}
                             image={event.image} />
                     </Link>
-                }
-            />
+                } />
         </div>
     )
 }
