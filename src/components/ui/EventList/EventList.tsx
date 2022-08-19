@@ -34,6 +34,7 @@ export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defau
         variables: {
             page: 1,
             size: 50,
+            filter,
         },
     });
 

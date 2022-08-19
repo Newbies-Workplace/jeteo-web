@@ -26,6 +26,12 @@ mutation ReplaceEvent($id: String!, $request: EventRequestInput!) {
     }
 }
 
+mutation ReplaceEventTheme($id: String!, $request: EventThemeRequestInput!) {
+    replaceEventTheme(id: $id, request: $request) {
+        ...CoreEventResponse
+    }
+}
+
 mutation ChangeEventVisibility($id: String!, $request: EventVisibilityRequestInput!) {
     changeEventVisibility(id: $id, request: $request) {
         ...CoreEventResponse

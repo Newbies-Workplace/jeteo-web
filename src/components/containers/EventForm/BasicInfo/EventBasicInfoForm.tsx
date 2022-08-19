@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Field, Form, Formik, FormikValues} from "formik";
+import {Field, Form, Formik} from "formik";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import styles from "./EventBasicInfoForm.module.scss";
 import formStyles from "../EventForm.module.scss"
@@ -42,7 +42,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         setSelectedTagIds(initialValues.tags.map(tag => tag.id))
     }, [])
 
-    const initialValues: EventFormValues = event ? {
+    const initialValues: EventBasicFormValues = event ? {
         startDate: dayjs(event.startDate).format("YYYY-MM-DDTHH:mm"),
         finishDate: event?.finishDate ? dayjs(event.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
         title: event.title,
@@ -100,7 +100,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         }
     }
 
-    const onSubmitClicked = (values: FormikValues) => {
+    const onSubmitClicked = (values: EventBasicFormValues) => {
         const request = {
             title: values.title,
             subtitle: values.subtitle,
@@ -115,7 +115,6 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
 
         submitFunction(request)
             .then((event: Event) => {
-                console.log(event)
                 onSubmitted(event)
             })
     }
@@ -160,7 +159,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
     )
 }
 
-interface EventFormValues {
+interface EventBasicFormValues {
     startDate: string
     finishDate?: string
     title: string

@@ -393,6 +393,14 @@ export type ReplaceEventMutationVariables = Exact<{
 
 export type ReplaceEventMutation = { __typename?: 'Mutation', replaceEvent: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
 
+export type ReplaceEventThemeMutationVariables = Exact<{
+  id: Scalars['String'];
+  request: EventThemeRequestInput;
+}>;
+
+
+export type ReplaceEventThemeMutation = { __typename?: 'Mutation', replaceEventTheme: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+
 export type ChangeEventVisibilityMutationVariables = Exact<{
   id: Scalars['String'];
   request: EventVisibilityRequestInput;
@@ -625,6 +633,40 @@ export function useReplaceEventMutation(baseOptions?: Apollo.MutationHookOptions
 export type ReplaceEventMutationHookResult = ReturnType<typeof useReplaceEventMutation>;
 export type ReplaceEventMutationResult = Apollo.MutationResult<ReplaceEventMutation>;
 export type ReplaceEventMutationOptions = Apollo.BaseMutationOptions<ReplaceEventMutation, ReplaceEventMutationVariables>;
+export const ReplaceEventThemeDocument = gql`
+    mutation ReplaceEventTheme($id: String!, $request: EventThemeRequestInput!) {
+  replaceEventTheme(id: $id, request: $request) {
+    ...CoreEventResponse
+  }
+}
+    ${CoreEventResponseFragmentDoc}`;
+export type ReplaceEventThemeMutationFn = Apollo.MutationFunction<ReplaceEventThemeMutation, ReplaceEventThemeMutationVariables>;
+
+/**
+ * __useReplaceEventThemeMutation__
+ *
+ * To run a mutation, you first call `useReplaceEventThemeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReplaceEventThemeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [replaceEventThemeMutation, { data, loading, error }] = useReplaceEventThemeMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useReplaceEventThemeMutation(baseOptions?: Apollo.MutationHookOptions<ReplaceEventThemeMutation, ReplaceEventThemeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ReplaceEventThemeMutation, ReplaceEventThemeMutationVariables>(ReplaceEventThemeDocument, options);
+      }
+export type ReplaceEventThemeMutationHookResult = ReturnType<typeof useReplaceEventThemeMutation>;
+export type ReplaceEventThemeMutationResult = Apollo.MutationResult<ReplaceEventThemeMutation>;
+export type ReplaceEventThemeMutationOptions = Apollo.BaseMutationOptions<ReplaceEventThemeMutation, ReplaceEventThemeMutationVariables>;
 export const ChangeEventVisibilityDocument = gql`
     mutation ChangeEventVisibility($id: String!, $request: EventVisibilityRequestInput!) {
   changeEventVisibility(id: $id, request: $request) {
