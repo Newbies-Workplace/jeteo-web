@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styles from "./EventUpdateForm.module.scss";
 import {Toolbar} from "../Toolbar/Toolbar";
 import {useNavigate, useParams} from "react-router-dom";
@@ -7,10 +7,9 @@ import {EventBasicInfoForm} from "../../../components/containers/EventForm/Basic
 import {EventVisibilityForm} from "../../../components/containers/EventForm/Visibility/EventVisibilityForm";
 import {EventThemeForm} from "../../../components/containers/EventForm/Theme/EventThemeForm";
 import {EventLecturesForm} from "../../../components/containers/EventForm/Lectures/EventLecturesForm";
-import {EventQueryData, EventQueryVars, GET_EVENT_QUERY} from "../../../api/graphql/events/EventDataQuery";
-import {useQuery} from "@apollo/client";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
 import {Event} from "../../../common/models/Event";
+import {useEventQuery} from "../../../api/graphql";
 
 const steps = [
     "Podstawowe informacje",
@@ -25,16 +24,14 @@ export const EventUpdateForm: React.FC = () => {
     const [event, setEvent] = useState<Event | undefined>(undefined)
     const {name} = useParams<{name: string}>()
 
-    const {loading, error} = useQuery<EventQueryData, EventQueryVars>(
-        GET_EVENT_QUERY, {
-            variables: {
-                id: getIdFromVanityUrl(name)
-            },
-            onCompleted: (data) => {
-                setEvent(Event.fromData(data.event))
-            }
+    const {loading, error} = useEventQuery({
+        variables: {
+            id: getIdFromVanityUrl(name)
+        },
+        onCompleted: (data) => {
+            setEvent(Event.fromData(data.event))
         }
-    )
+    })
 
     if (loading || !event) return <>loading...</>;
     if (error) return <p>error <br/>{error.message}</p>;

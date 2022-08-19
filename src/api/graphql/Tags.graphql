@@ -1,0 +1,16 @@
+mutation CreateTag($request: TagCreateRequestInput!) {
+    createTag(request: $request) {
+        ...CoreTagResponse
+    }
+}
+
+query TagList($page: Int, $size: Int) {
+    tags(page: $page, size: $size) {
+        ...CoreTagResponse
+    }
+}
+
+fragment CoreTagResponse on TagResponse {
+    id
+    name
+}

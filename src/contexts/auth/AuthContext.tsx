@@ -48,7 +48,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         localStorage.setItem("refresh_token", authRes.refreshToken);
         localStorage.setItem("user_cache", JSON.stringify(authRes.user));
 
-        const userModel = User.fromResponse(authRes.user)
+        const userModel = User.fromData(authRes.user)
 
         setUser(() => userModel);
         return userModel;

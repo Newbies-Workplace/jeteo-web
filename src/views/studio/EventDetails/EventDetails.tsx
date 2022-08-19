@@ -2,26 +2,21 @@ import React from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import styles from "./EventDetails.module.scss"
 import {Toolbar} from "../Toolbar/Toolbar";
-import {useMutation, useQuery} from "@apollo/client";
-import {EventQueryData, EventQueryVars, GET_EVENT_QUERY} from "../../../api/graphql/events/EventDataQuery";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
-import {DELETE_EVENT_MUTATION, EventDeleteVars} from "../../../api/graphql/events/EventDeleteMutation";
+import {useDeleteEventMutation, useEventQuery} from "../../../api/graphql";
 
 export const EventDetails: React.FC = () => {
     const { name } = useParams<{name: string}>()
-    const [deleteEvent] = useMutation<void, EventDeleteVars>(
-        DELETE_EVENT_MUTATION, {
-            variables: {
-                id: getIdFromVanityUrl(name)
-            }
-        })
-    const {loading, error, data} = useQuery<EventQueryData, EventQueryVars>(
-        GET_EVENT_QUERY, {
-            variables: {
-                id: getIdFromVanityUrl(name)
-            }
+    const [deleteEvent] = useDeleteEventMutation({
+        variables: {
+            id: getIdFromVanityUrl(name)
         }
-    )
+    })
+    const {loading, error, data} = useEventQuery({
+        variables: {
+            id: getIdFromVanityUrl(name)
+        }
+    })
     const navigate = useNavigate()
     const event = data?.event
 

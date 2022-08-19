@@ -1,4 +1,4 @@
-import {TagData} from "../../api/graphql/tags/TagListQuery";
+import {CoreTagResponseFragment} from "../../api/graphql";
 
 export class Tag {
     constructor(
@@ -7,7 +7,7 @@ export class Tag {
     ) {
     }
 
-    static fromData(data: TagData): Tag {
+    static fromData(data: CoreTagResponseFragment): Tag {
         return new Tag(
             data.id,
             data.name,

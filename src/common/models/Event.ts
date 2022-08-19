@@ -1,8 +1,7 @@
 import {SimpleUser} from "./User";
-import {EventData} from "../../api/graphql/events/EventDataQuery";
 import {EventLocation} from "./EventLocation";
 import {Tag} from "./Tag";
-import {EventVisibility} from "./EventVisibility";
+import {CoreEventResponseFragment, Visibility} from "../../api/graphql";
 
 export class Event {
     constructor(
@@ -18,11 +17,11 @@ export class Event {
         public image: string | undefined,
         public location: EventLocation | undefined,
         public tags: Tag[],
-        public visibility: EventVisibility,
+        public visibility: Visibility
     ) {
     }
 
-    static fromData(data: EventData): Event {
+    static fromData(data: CoreEventResponseFragment): Event {
         return new Event(
             data.id,
             data.title,

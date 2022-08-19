@@ -1,11 +1,11 @@
 import React from "react";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
-import formStyles from "../EventForm.module.scss";
-import {EventCard} from "../../EventCard/EventCard";
-import {Event} from "../../../../common/models/Event";
 import FileUpload from "../../../ui/FileUpload/FileUpload";
 import FileItem from "../../../ui/FileItem/FileItem";
+import {EventCard} from "../../EventCard/EventCard";
+import {Event} from "../../../../common/models/Event";
+import formStyles from "../EventForm.module.scss";
 import styles from "./EventThemeForm.module.scss";
 import {deleteImage, updateImage} from "../../../../api/rest/event/Event";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";

@@ -1,13 +1,11 @@
 import React from "react";
-
 import styles from "./EventList.module.scss"
-import {EventFilterInput} from "../../../api/graphql/events/EventListQuery";
 import {Link} from "react-router-dom";
 import PrimaryButton from "../../../components/ui/PrimaryButton/PrimaryButton";
 import {EventList as EventListComponent} from "../../../components/ui/EventList/EventList";
 import {EventCard} from "../../../components/containers/EventCard/EventCard";
 import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
-import {EventVisibility} from "../../../common/models/EventVisibility";
+import {EventFilterInput, Visibility} from "../../../api/graphql";
 
 export const EventList: React.FC = () => {
     const {user} = useAuth()
