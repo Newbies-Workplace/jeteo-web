@@ -32,10 +32,10 @@ export const EventView: React.FC = () => {
             <NavBar/>
             <EventHeadline
                 title={event.title}
-                subtitle={event.subtitle}
+                subtitle={event.subtitle || ""}
                 image={event.image}
                 color={event.primaryColor} />
-            <EventDescriptionSection description={event.subtitle}/>
+            <EventDescriptionSection description={event.subtitle || ""}/>
         </>
     )
 };
