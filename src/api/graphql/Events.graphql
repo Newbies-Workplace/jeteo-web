@@ -1,0 +1,61 @@
+query EventsList($page: Int, $size: Int, $filter: EventFilterInput) {
+    events(page: $page, size: $size, filter: $filter) {
+        ...CoreEventResponse
+    }
+}
+
+query Event($id: String!) {
+    event(id: $id) {
+        ...CoreEventResponse
+    }
+}
+
+mutation DeleteEvent($id: String!) {
+    deleteEvent(id: $id)
+}
+
+mutation CreateEvent($request: EventRequestInput!) {
+    createEvent(request: $request) {
+        ...CoreEventResponse
+    }
+}
+
+mutation ReplaceEvent($id: String!, $request: EventRequestInput!) {
+    replaceEvent(id: $id, request: $request) {
+        ...CoreEventResponse
+    }
+}
+
+mutation ChangeEventVisibility($id: String!, $request: EventVisibilityRequestInput!) {
+    changeEventVisibility(id: $id, request: $request) {
+        ...CoreEventResponse
+    }
+}
+
+fragment CoreEventResponse on EventResponse {
+    id
+    title
+    subtitle
+    description
+    vanityUrl
+    author {
+        nickname
+    }
+    timeFrame {
+        startDate
+        finishDate
+    }
+    address {
+        place
+        city
+    }
+    theme {
+        primaryColor
+        image
+    }
+    visibility
+    tags {
+        id
+        name
+    }
+}

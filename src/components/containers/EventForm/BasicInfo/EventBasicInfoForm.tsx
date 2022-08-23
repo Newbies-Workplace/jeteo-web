@@ -4,49 +4,38 @@ import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import styles from "./EventBasicInfoForm.module.scss";
 import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
 import dayjs from "dayjs";
-import {useMutation, useQuery} from "@apollo/client";
-import {
-    CREATE_EVENT_MUTATION,
-    CreateEventMutationData,
-    CreateEventMutationVars,
-    EventRequestInput,
-    REPLACE_EVENT_MUTATION,
-    ReplaceEventMutationData,
-    ReplaceEventMutationVars
-} from "../../../../api/graphql/events/EventCreateMutation";
-import {EventData} from "../../../../api/graphql/events/EventDataQuery";
 import TagPicker from "../../../ui/TagPicker/TagPicker";
-import {GET_TAG_LIST_QUERY, TagListQueryData, TagListQueryVars} from "../../../../api/graphql/tags/TagListQuery";
 import {Tag} from "../../../../common/models/Tag";
+import {Event} from "../../../../common/models/Event";
 import {
-    CREATE_TAG_MUTATION,
-    CreateTagMutationData,
-    CreateTagMutationVars
-} from "../../../../api/graphql/tags/TagCreateMutation";
+    EventRequestInput,
+    useCreateEventMutation,
+    useCreateTagMutation,
+    useReplaceEventMutation, useTagListQuery
+} from "../../../../api/graphql";
 
 interface EventBasicInfoFormProps {
-    event?: EventData
-    onSubmitted: (event: EventData) => void
+    event?: Event
+    onSubmitted: (event: Event) => void
 }
 
 //todo: validation
 export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, onSubmitted}) => {
-    const [createTag] = useMutation<CreateTagMutationData, CreateTagMutationVars>(CREATE_TAG_MUTATION)
-    const [createEvent] = useMutation<CreateEventMutationData, CreateEventMutationVars>(CREATE_EVENT_MUTATION)
-    const [replaceEvent] = useMutation<ReplaceEventMutationData, ReplaceEventMutationVars>(REPLACE_EVENT_MUTATION)
+    const [createTag] = useCreateTagMutation()
+    const [createEvent] = useCreateEventMutation()
+    const [replaceEvent] = useReplaceEventMutation()
     const [allTags, setAllTags] = useState<Tag[]>([])
     const [selectedTagIds, setSelectedTagIds] = useState<string[]>([])
 
-    useQuery<TagListQueryData, TagListQueryVars>(
-        GET_TAG_LIST_QUERY, {
-            variables: {
-                page: 1,
-                size: 50,
-            },
-            onCompleted: (data) => {
-                setAllTags(data.tags.map(Tag.fromData))
-            }
-        });
+    useTagListQuery({
+        variables: {
+            page: 1,
+            size: 50,
+        },
+        onCompleted: (data) => {
+            setAllTags(data.tags.map(Tag.fromData))
+        }
+    });
 
     useEffect(() => {
         console.log(initialValues);
@@ -54,8 +43,8 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
     }, [])
 
     const initialValues: EventFormValues = event ? {
-        startDate: dayjs(event.timeFrame.startDate).format("YYYY-MM-DDTHH:mm"),
-        finishDate: event.timeFrame.finishDate ? dayjs(event.timeFrame.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
+        startDate: dayjs(event.startDate).format("YYYY-MM-DDTHH:mm"),
+        finishDate: event?.finishDate ? dayjs(event.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
         title: event.title,
         subtitle: event.subtitle,
         description: event.description,
@@ -88,7 +77,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         })
     }
 
-    const submitFunction = (request: EventRequestInput): Promise<EventData> => {
+    const submitFunction = (request: EventRequestInput): Promise<Event> => {
         if (event) {
             return replaceEvent({
                 variables: {
@@ -98,6 +87,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
             })
                 .then((res) => res.data ?? Promise.reject("no data"))
                 .then((data) => data.replaceEvent)
+                .then(Event.fromData)
         } else {
             return createEvent({
                 variables: {
@@ -106,6 +96,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
             })
                 .then((res) => res.data ?? Promise.reject("no data"))
                 .then((data) => data.createEvent)
+                .then(Event.fromData)
         }
     }
 
@@ -123,7 +114,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         }
 
         submitFunction(request)
-            .then((event: EventData) => {
+            .then((event: Event) => {
                 console.log(event)
                 onSubmitted(event)
             })

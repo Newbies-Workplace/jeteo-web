@@ -1,23 +1,17 @@
 import React from "react";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
-import {useMutation} from "@apollo/client";
-import {
-    CHANGE_EVENT_VISIBILITY_MUTATION,
-    EventChangeVisibilityData,
-    EventChangeVisibilityVars, EventVisibilityRequestInput
-} from "../../../../api/graphql/events/EventUpdateVisibilityMutation";
 import {Field, Form, Formik, FormikValues} from "formik";
-import {Visibility} from "../../../../api/graphql/events/EventListQuery";
-import {EventData} from "../../../../api/graphql/events/EventDataQuery";
+import {EventVisibilityRequestInput, useChangeEventVisibilityMutation, Visibility} from "../../../../api/graphql";
+import {Event} from "../../../../common/models/Event";
 
 interface EventVisibilityFormProps {
-    event: EventData,
-    onSubmitted: (event: EventData) => void
+    event: Event,
+    onSubmitted: (event: Event) => void
 }
 
 export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, onSubmitted}) => {
-    const [changeVisibility] = useMutation<EventChangeVisibilityData, EventChangeVisibilityVars>(CHANGE_EVENT_VISIBILITY_MUTATION)
+    const [changeVisibility] = useChangeEventVisibilityMutation()
 
     const initialValues: EventChangeVisibilityValues = event ? {
         visibility: event.visibility
