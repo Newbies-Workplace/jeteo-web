@@ -47,8 +47,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          args:
-            API_URL: ${{ secrets.API_URL }}
+          build-args: |
+            API_URL=${{ secrets.API_URL }}
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
