@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./chipStyles.module.css";
-import ClockIcon from "../../../../assets/images/icons/clock.svg";
+import ClockIcon from "../../../../assets/icons/clock.svg";
 import dayjs, {ConfigType, Dayjs} from "dayjs";
 
 interface StartDateChipProps {

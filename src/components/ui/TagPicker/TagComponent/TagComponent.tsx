@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TagComponent.module.scss";
-import Close from "../../../../assets/vectors/close.svg";
+import Close from "../../../../assets/icons/close.svg";
 
 interface TagComponentProps {
     label: string

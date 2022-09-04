@@ -1,8 +1,8 @@
 import React, {createRef, useEffect, useState} from "react";
 import styles from "./TagPicker.module.scss"
 import {Tag} from "../../../common/models/Tag";
-import Close from "../../../assets/vectors/close.svg"
-import Add from "../../../assets/vectors/add.svg"
+import Close from "../../../assets/icons/close.svg"
+import Add from "../../../assets/icons/add.svg"
 import cs from "classnames";
 import Dropdown, {Option} from "./Dropdown/Dropdown";
 import TagComponent from "./TagComponent/TagComponent";

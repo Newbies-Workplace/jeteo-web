@@ -1,0 +1,16 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {GalaxyBackground} from "./GalaxyBackground";
+
+<Meta title="container/GalaxyBackground" component={GalaxyBackground} />
+
+export const Template = (args) => <GalaxyBackground {...args} />;
+
+Event component
+
+<Canvas>
+    <Story
+        name="Normal"
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

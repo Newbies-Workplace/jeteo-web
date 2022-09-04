@@ -1,5 +1,5 @@
 import React from 'react';
-import LocationIcon from '../../../../assets/images/icons/location.svg';
+import LocationIcon from '../../../../assets/icons/location.svg';
 
 import styles from './chipStyles.module.css'
 
