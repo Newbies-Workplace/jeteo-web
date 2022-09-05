@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./EventList.module.scss"
+import styles from "./EventList.module.scss";
 import {Link} from "react-router-dom";
 import PrimaryButton from "../../../components/ui/PrimaryButton/PrimaryButton";
 import {EventList as EventListComponent} from "../../../components/ui/EventList/EventList";
@@ -39,8 +39,7 @@ export const EventList: React.FC = () => {
                             color={event.primaryColor}
                             image={event.image} />
                     </Link>
-                }
-            />
+                } />
         </div>
     )
 }

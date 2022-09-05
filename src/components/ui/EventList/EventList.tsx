@@ -22,7 +22,7 @@ const defaultCardRenderer: EventListItemRenderer = event => (
         <EventCard
             title={event.title}
             locationName={event.location?.city}
-            subtitle={event.author.nickname}
+            subtitle={event.subtitle}
             startDate={event.startDate}
             color={event.primaryColor}
             image={event.image} />
@@ -34,6 +34,7 @@ export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defau
         variables: {
             page: 1,
             size: 50,
+            filter,
         },
     });
 
