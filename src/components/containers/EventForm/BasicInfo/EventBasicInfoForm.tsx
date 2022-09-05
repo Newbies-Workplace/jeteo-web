@@ -14,6 +14,8 @@ import {
     useCreateTagMutation,
     useReplaceEventMutation, useTagListQuery
 } from "../../../../api/graphql";
+import {FieldProps} from "formik/dist/Field";
+import MDEditor from "@uiw/react-md-editor";
 
 interface EventBasicInfoFormProps {
     event?: Event
@@ -132,11 +134,24 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
 
                     <Field id={"title"} name={"title"} placeholder={"Tytuł"}/>
                     <Field id={"subtitle"} name={"subtitle"} placeholder={"Podtytuł (opcjonalny)"}/>
-                    <Field id={"description"} name={"description"} placeholder={"Opis (opcjonalny)"}/>
+
+                    <h4>Opis</h4>
+                    <Field
+                        id={"description"}
+                        name={"description"}
+                        component={({field, form: {setFieldValue}}: FieldProps) =>
+                            <div data-color-mode="light">
+                                <MDEditor
+                                    textareaProps={{maxLength: 10000}}
+                                    height={200}
+                                    value={field.value}
+                                    onChange={(value) => setFieldValue(field.name, value)} />
+                            </div>
+                        } />
                 </StudioSection>
 
                 <StudioSection title={"Gdzie?"}>
-                    todo mapa
+                    <h4>W przyszłości...</h4>
                 </StudioSection>
 
                 <StudioSection title={"Dla kogo?"}>
