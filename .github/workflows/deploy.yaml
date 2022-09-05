@@ -72,11 +72,12 @@ jobs:
       - name: Deploy package to production
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: ${{ secrets.SSH_IP}}
+          host: ${{ secrets.SSH_IP }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            docker-compose down -f docker-compose-web.yaml
+            cd web
+            docker-compose down
             docker image rm ghcr.io/newbies-workplace/jeteo-web
             docker pull ghcr.io/newbies-workplace/jeteo-web:latest
-            docker-compose up -d -f docker-compose-web.yaml
+            docker-compose up -d
