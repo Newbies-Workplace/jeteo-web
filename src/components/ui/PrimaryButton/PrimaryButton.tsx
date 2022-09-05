@@ -13,11 +13,12 @@ export const PrimaryButton: React.FC<React.PropsWithChildren<PrimaryButtonProps>
     return (
         <button
             type={type}
-            className={cs(
-                styles.button, {
+            className={
+                cs(styles.button, {
                     [styles.medium]: size === 'medium',
                     [styles.small]: size === 'small',
-                })}
+                })
+            }
             onClick={onClick}>
             {children}
         </button>

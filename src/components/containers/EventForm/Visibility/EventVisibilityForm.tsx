@@ -4,6 +4,9 @@ import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
 import {Field, Form, Formik, FormikValues} from "formik";
 import {EventVisibilityRequestInput, useChangeEventVisibilityMutation, Visibility} from "../../../../api/graphql";
 import {Event} from "../../../../common/models/Event";
+import {FieldProps} from "formik/dist/Field";
+import {HexColorInput, HexColorPicker} from "react-colorful";
+import RadioButtons from "../../../ui/RadioButtons/RadioButtons";
 
 interface EventVisibilityFormProps {
     event: Event,
@@ -12,6 +15,12 @@ interface EventVisibilityFormProps {
 
 export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, onSubmitted}) => {
     const [changeVisibility] = useChangeEventVisibilityMutation()
+
+    const visibilities = [
+        {id: Visibility.PRIVATE, name: 'Prywatna'},
+        {id: Visibility.INVISIBLE, name: 'Niepubliczna'},
+        {id: Visibility.PUBLIC, name: 'Publiczna'},
+    ]
 
     const initialValues: EventChangeVisibilityValues = event
         ? {visibility: event.visibility}
@@ -38,12 +47,15 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
         <Formik initialValues={initialValues} onSubmit={onSubmitClicked}>
             <Form>
                 <StudioSection title={"Widoczność"}>
-                    prywatna
-                    <Field type={"radio"} name={"visibility"} value={Visibility.PRIVATE}/>
-                    niepubliczna
-                    <Field type={"radio"} name={"visibility"} value={Visibility.INVISIBLE}/>
-                    publiczna
-                    <Field type={"radio"} name={"visibility"} value={Visibility.PUBLIC}/>
+                    <Field
+                        id={"visibility"}
+                        name={"visibility"}
+                        component={({field, form: {setFieldValue}}: FieldProps) =>
+                            <RadioButtons
+                                values={visibilities}
+                                selectedValueIndex={visibilities.findIndex((value) => value.id === field.value)}
+                                onChange={(item) => setFieldValue(field.name, item.id)} />
+                        } />
                 </StudioSection>
 
                 <PrimaryButton type={"submit"}>Gotowe</PrimaryButton>
