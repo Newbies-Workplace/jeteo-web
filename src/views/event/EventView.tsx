@@ -6,6 +6,7 @@ import { EventHeadline } from "../../components/containers/EventHeadline/EventHe
 import { NavBar } from "../../components/ui/NavBar/NavBar";
 import { getIdFromVanityUrl } from "../../common/utils/vanityUrlUtils";
 import {EventDescriptionSection} from "../../components/containers/EventDescriptionSection/EventDescriptionSection";
+import {useEventQuery} from "../../api/graphql";
 
 
 export const EventView: React.FC = () => {
@@ -13,7 +14,10 @@ export const EventView: React.FC = () => {
     if (!name)
         return <Navigate to="/"/>;
 
-    const {event, loading, error} = useEvent(getIdFromVanityUrl(name));
+    const {data, loading, error} = useEventQuery({
+        variables: {id: getIdFromVanityUrl(name) }
+    })
+
 
     if (error)
         return <>
@@ -21,11 +25,13 @@ export const EventView: React.FC = () => {
             <i>error: {error.message}</i>
         </>
 
-    if (loading || !event)
+    if (loading || !data?.event)
         return <>
             <NavBar/>
             <i>loading</i>
         </>
+
+    const { event } = data;
 
     return (
         <>
@@ -33,9 +39,10 @@ export const EventView: React.FC = () => {
             <EventHeadline
                 title={event.title}
                 subtitle={event.subtitle || ""}
-                image={event.image}
-                color={event.primaryColor} />
-            <EventDescriptionSection description={event.subtitle || ""}/>
+                image={event.theme.image}
+                color={event.theme.primaryColor} />
+            <EventDescriptionSection
+                description={event.description || ""}/>
         </>
     )
 };

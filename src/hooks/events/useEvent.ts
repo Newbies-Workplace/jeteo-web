@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
-import {useQuery} from "@apollo/client";
-import {EventDataQueryData, EventDataVars, GET_EVENT_QUERY} from "../../api/graphql/events/EventDataQuery";
+import { useEventQuery} from "../../api/graphql";
 import {Event} from "../../common/models/Event";
 
 interface UseEventHookReturn {
@@ -12,12 +11,7 @@ interface UseEventHookReturn {
 export const useEvent = (id: string): UseEventHookReturn => {
     const [event, setEvent] = useState<Event>();
 
-    const { loading, error, data } = useQuery<EventDataQueryData, EventDataVars>(
-        GET_EVENT_QUERY, {
-        variables: {
-            id
-        }
-    })
+    const { loading, error, data } =
 
     useEffect(() => {
         if (data?.event) {

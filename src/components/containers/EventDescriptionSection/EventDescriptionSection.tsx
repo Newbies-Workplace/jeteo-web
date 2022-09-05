@@ -13,7 +13,7 @@ export const EventDescriptionSection: React.FC<EventDescriptionSectionProps> = (
 
     return (
         <SectionContainer label="Opis">
-            {parsedDescription}
+            {parsedDescription.content || "Content is not available"}
         </SectionContainer>
     )
 }
