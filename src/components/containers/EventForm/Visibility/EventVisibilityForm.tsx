@@ -5,7 +5,6 @@ import {Field, Form, Formik, FormikValues} from "formik";
 import {EventVisibilityRequestInput, useChangeEventVisibilityMutation, Visibility} from "../../../../api/graphql";
 import {Event} from "../../../../common/models/Event";
 import {FieldProps} from "formik/dist/Field";
-import {HexColorInput, HexColorPicker} from "react-colorful";
 import RadioButtons from "../../../ui/RadioButtons/RadioButtons";
 
 interface EventVisibilityFormProps {
