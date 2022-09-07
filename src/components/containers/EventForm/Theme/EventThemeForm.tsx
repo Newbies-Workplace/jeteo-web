@@ -78,11 +78,11 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                         component={({field, form: {setFieldValue}}: FieldProps) =>
                             <div>
                                 <HexColorPicker
-                                    color={field.value}
+                                    color={field.value ?? undefined}
                                     onChange={(color) => setFieldValue(field.name, color) }/>
                                 <HexColorInput
                                     prefixed
-                                    color={field.value}
+                                    color={field.value ?? undefined}
                                     onChange={(color) => setFieldValue(field.name, color)} />
                             </div>
                         } />
@@ -112,7 +112,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                 </StudioSection>
 
                 <StudioSection title={"Galeria"}>
-
+                    <h4>W przyszłości...</h4>
                 </StudioSection>
 
                 <div className={formStyles.submit}>
