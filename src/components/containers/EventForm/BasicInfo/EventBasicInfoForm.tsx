@@ -16,6 +16,7 @@ import {
 } from "../../../../api/graphql";
 import {FieldProps} from "formik/dist/Field";
 import MDEditor from "@uiw/react-md-editor";
+import { MapPicker } from "../../../ui/MapPicker/MapPicker";
 
 interface EventBasicInfoFormProps {
     event?: Event
@@ -151,7 +152,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                 </StudioSection>
 
                 <StudioSection title={"Gdzie?"}>
-                    <h4>W przyszłości...</h4>
+                    <MapPicker />
                 </StudioSection>
 
                 <StudioSection title={"Dla kogo?"}>
