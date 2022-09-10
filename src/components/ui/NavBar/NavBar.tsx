@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {MenuBase} from "../../utils/MenuBase/MenuBase";
 import {NavMenu} from "../NavMenu/NavMenu";
 
-import Burger from '/assets/images/icons/burger.svg';
+import Burger from '../../../assets/icons/burger.svg';
 import cs from "classnames";
 
 interface NavBarProps {

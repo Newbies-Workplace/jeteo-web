@@ -1,0 +1,31 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {useState} from "react";
+import RadioButtons from "./RadioButtons";
+
+<Meta title="ui/RadioButtons" component={RadioButtons} />
+
+TagPicker
+
+<Canvas>
+    <Story
+        name="Normal"
+        parameters={{
+            backgrounds: { default: 'white' },
+        }}
+    >
+        {() => {
+            const items = [
+                {id: 'a', name: 'Warszawa'},
+                {id: 'b', name: 'Wrocław'},
+                {id: 'c', name: 'Very very very veryverylonglonglong namenamename name'},
+            ]
+            const [value, setValue] = useState(1)
+            return <>
+                <RadioButtons
+                    selectedValueIndex={value}
+                    values={items}
+                    onChange={(item) => setValue(items.indexOf(item))} />
+            </>
+        }}
+    </Story>
+</Canvas>

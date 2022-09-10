@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
 :root {
     --app-prefer-width: 1024px;
@@ -6,6 +7,7 @@
 
     --border-radius: 16px;
     --font: 'Lato', sans-serif;
+    --header-font: 'Inter', sans-serif
 }
 
 body, main  {
@@ -13,9 +15,13 @@ body, main  {
     padding: 0;
     min-height: 100vh;
     font-family: var(--font);
+<<<<<<< HEAD
 }
 
 .leaflet-container {
     width: 100%;
     height: 100vh;
   }
+=======
+}
+>>>>>>> develop

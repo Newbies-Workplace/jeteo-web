@@ -2,12 +2,14 @@ import React from 'react';
 import {NavBar} from "../../components/ui/NavBar/NavBar";
 import styles from './StudioView.module.scss';
 import {Route, Routes} from "react-router-dom";
-import {StudioDashboard} from "./StudioDashboard/StudioDashboard";
+import {Dashboard} from "./Dashboard/Dashboard";
 import {RequireAuth} from "../../components/utils/requireAuth/RequireAuth";
-import {StudioNav} from "./StudioNav/StudioNav";
-import {StudioEventList} from "./StudioEventList/StudioEventList";
 import {StudioEventDetails} from "./StudioEventDetails/StudioEventDetails";
-import {EventCreateForm} from "./StudioEventCreate/EventCreateForm";
+import {Navigation} from "./Navigation/Navigation";
+import {EventList} from "./EventList/EventList";
+import {EventCreateForm} from "./EventCreate/EventCreateForm";
+import {EventUpdateForm} from "./EventUpdate/EventUpdateForm";
+import {EventDetails} from "./EventDetails/EventDetails";
 
 export const StudioView: React.FC = () => {
     return (
@@ -15,26 +17,26 @@ export const StudioView: React.FC = () => {
             <div className={styles.container}>
                 <NavBar withBackground/>
                 <div className={styles.pageContainer}>
-                    <StudioNav/>
+                    <Navigation/>
 
                     <div className={styles.separator}/>
 
                     <div className={styles.content}>
                         <Routes>
                             <Route
-                                element={<StudioDashboard/>}
+                                element={<Dashboard/>}
                                 path="*"/>
                             <Route
-                                element={<StudioEventList/>}
+                                element={<EventList/>}
                                 path="/events"/>
                             <Route
                                 element={<EventCreateForm/>}
                                 path="/events/create/*"/>
                             <Route
-                                element={<StudioEventDetails/>}
+                                element={<EventDetails/>}
                                 path="/events/:name"/>
                             <Route
-                                element={<p>ekran edycji eventu</p>}
+                                element={<EventUpdateForm/>}
                                 path="/events/:name/edit"/>
                         </Routes>
                     </div>

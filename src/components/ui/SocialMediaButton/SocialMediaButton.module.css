@@ -1,0 +1,27 @@
+.provider {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 288px;
+    max-width: 288px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+
+    background-color: #ffffff;
+
+    box-sizing: border-box;
+    border: 2px solid #000000;
+    border-radius: 16px;
+
+    font-size: 18px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.icon {
+    position: absolute;
+    left: 8px;
+}

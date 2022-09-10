@@ -1,17 +1,11 @@
 import React, { useMemo } from 'react';
-import { useQuery } from "@apollo/client";
-import {
-    EventFilterInput,
-    EventListQueryData,
-    EventListQueryVars,
-    GET_EVENTS_LIST_QUERY
-} from "../../../api/graphql/events/EventListQuery";
 import { Event } from "../../../common/models/Event";
 import { Link } from "react-router-dom";
 import { EventListSkeleton } from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
 import { PlaceholderSwitcher } from "../../utils/animations/PlaceholderSwitcher";
 import { AnimatedList } from "../../utils/animations/AnimatedList";
 import { EventCard } from "../../containers/EventCard/EventCard";
+import {EventFilterInput, useEventsListQuery} from "../../../api/graphql";
 
 export type EventListItemRenderer = (e: Event, index: number) => JSX.Element;
 
@@ -27,7 +21,8 @@ const defaultCardRenderer: EventListItemRenderer = event => (
         to={`/event/${event.vanityUrl}`}>
         <EventCard
             title={event.title}
-            subtitle={event.author.nickname}
+            locationName={event.location?.city}
+            subtitle={event.subtitle}
             startDate={event.startDate}
             color={event.primaryColor}
             image={event.image} />
@@ -35,11 +30,8 @@ const defaultCardRenderer: EventListItemRenderer = event => (
 );
 
 export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defaultCardRenderer }) => {
-
-    const { loading, error, data } = useQuery<EventListQueryData, EventListQueryVars>(
-        GET_EVENTS_LIST_QUERY, {
+    const { loading, error, data } = useEventsListQuery({
         variables: {
-            // eslint workaround
             page: 1,
             size: 50,
             filter,

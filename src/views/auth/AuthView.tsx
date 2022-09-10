@@ -1,33 +1,24 @@
-import React, {CSSProperties} from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { CallbackRouter } from './callback/CallbackRouter';
-import { SigninView } from './signin/SigninView';
-import { SignupView } from './signup/SignupView';
+import React from 'react';
+import {Route, Routes} from 'react-router-dom';
+import {CallbackRouter} from './callback/CallbackRouter';
+import {SignInView} from './signIn/SignInView';
+import {SignUpView} from './signUp/SignUpView';
 import GalaxyBackground from "../../components/containers/GalaxyBackground/GalaxyBackground";
-import PageContentContainer from "../../components/containers/PageContentContainer/PageContentContainer";
-import AuthContainer from "../../components/containers/AuthContainer/AuthContainer";
+import Dialog from "../../components/containers/Dialog/Dialog";
 import {AppLogo} from "../../components/ui/AppLogo/AppLogo";
 import {AuthErrorView} from "./error/AuthErrorView";
 import {NavBar} from "../../components/ui/NavBar/NavBar";
 import {ErrorBoundary} from "react-error-boundary";
 import {Navigate} from "react-router";
+import styles from "./AuthView.module.scss"
 
-export const AuthRouter: React.FC = () => {
-
-    const divStyles: CSSProperties = {
-        display: 'flex',
-        justifyContent: 'stretch',
-        alignItems: 'stretch',
-        flexDirection: 'column',
-        height: '100vh'
-    }
-
+export const AuthView: React.FC = () => {
     return (
         <GalaxyBackground>
-            <div style={divStyles}>
-                <div><NavBar invertColor/></div>
-                <PageContentContainer>
-                    <AuthContainer>
+            <div className={styles.authContainer}>
+                <NavBar invertColor/>
+                <div className={styles.contentContainer}>
+                    <Dialog className={styles.authDialog}>
                         <AppLogo/>
 
                         {/* catch any error in process and redirect to error subview */}
@@ -36,10 +27,10 @@ export const AuthRouter: React.FC = () => {
 
                             <Routes>
                                 <Route
-                                    element={<SigninView/>}
+                                    element={<SignInView/>}
                                     path="signin/*"/>
                                 <Route
-                                    element={<SignupView/>}
+                                    element={<SignUpView/>}
                                     path="signup/*"/>
                                 <Route
                                     element={<CallbackRouter/>}
@@ -52,8 +43,8 @@ export const AuthRouter: React.FC = () => {
                                     path="*" />
                             </Routes>
                         </ErrorBoundary>
-                    </AuthContainer>
-                </PageContentContainer>
+                    </Dialog>
+                </div>
             </div>
         </GalaxyBackground>
     )

@@ -3,17 +3,46 @@
 }
 
 .card {
-    --padding: 14px;
-
     box-sizing: border-box;
-    position: relative;
+
+    background-position: left;
+    background-size: 51%, 50%;
+    background-repeat: no-repeat;
+
 
     margin: 8px 0;
     min-height: 113px;
-    padding: var(--padding) var(--padding) 48px;
+    padding: 14px;
 
     border-radius: 16px;
     box-shadow: 0 2px 24px rgba(7, 16, 24, 0.3);
+
+    .title {
+        margin: 0;
+
+        color: #FFFFFF;
+
+        font-size: 24px;
+        font-family: var(--header-font);
+        font-weight: 600;
+        line-height: 29px;
+    }
+    .subtitle {
+        margin: 0;
+
+        color: rgba(255, 255, 255, 0.8);
+
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 500;
+    }
+
+    .bottom {
+        display: flex;
+
+        margin-top: 16px;
+        height: 20px;
+    }
 }
 
 .bgImg {
@@ -27,34 +56,4 @@
 
     -webkit-mask-image: -webkit-gradient(linear, 50% top, right top, from(#FFF), to(transparent));
     mask-image: linear-gradient(90deg, #FFF 50%, transparent);
-}
-.title {
-    position: relative;
-    padding: 0;
-    margin: 0;
-
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
-
-    color: #FFFFFF;
-}
-.subtitle {
-    position: relative;
-    padding: 0;
-    margin: 0;
-
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: normal;
-
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.bottom {
-    position: absolute;
-    display: flex;
-
-    bottom: var(--padding);
-    left: var(--padding);
 }
