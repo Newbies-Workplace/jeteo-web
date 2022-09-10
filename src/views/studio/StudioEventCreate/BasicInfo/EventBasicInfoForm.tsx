@@ -11,7 +11,7 @@ import {
     EventMutationVars
 } from "../../../../api/graphql/events/EventCreateMutation";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapPicker } from "../../../../components/ui/MapPicker/MapPicker";
 
 interface EventBasicInfoFormProps {
     onSubmitted: (createdId: string) => void
@@ -72,19 +72,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({onSubmitt
                 </StudioSection>
 
                 <StudioSection title={"Gdzie?"}>
-                    <div className={styles.mapDiv}>
-                        <MapContainer style={{width: "500px", height: "250px"}} center={[50.843300, 16.490660]} zoom={13} scrollWheelZoom>
-                            <TileLayer
-                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            />
-                            <Marker position={[50.843300, 16.490660]}>
-                                <Popup>
-                                    Wybierz lokacje klikając na nią myszką
-                                </Popup>
-                            </Marker>
-                        </MapContainer>
-                    </div>
+                    <MapPicker />
                 </StudioSection>
 
                 <StudioSection title={"Dla kogo?"}>
