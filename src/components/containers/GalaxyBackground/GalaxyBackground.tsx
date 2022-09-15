@@ -8,7 +8,7 @@ import Ufo2 from "../../../assets/images/ufo-2.svg"
 import Ufo3 from "../../../assets/images/ufo-3.svg"
 import Rocket from "../../../assets/images/rocket.svg" // todo rocket svg
 import PlanetYellow from "../../../assets/images/planet-yellow.svg"
-import SpaceElectricVehicle from "../../../assets/images/space-electric-vehicle.svg" // todo car svg
+import SpaceElectricVehicle from "../../../assets/images/chair.svg"
 
 export const GalaxyBackground: React.FC = ({ children }) => {
     return (

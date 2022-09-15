@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import styles from "./EventCreateForm.module.scss";
+import studioFormStyles from "./../../../common/styles/StudioFormStyles.module.scss";
 import {Toolbar} from "../Toolbar/Toolbar";
 import {useNavigate} from "react-router-dom";
 import {StepView} from "../../../components/ui/StepView/StepView";
-import {EventBasicInfoForm} from "../../../components/containers/EventForm/BasicInfo/EventBasicInfoForm";
-import {EventVisibilityForm} from "../../../components/containers/EventForm/Visibility/EventVisibilityForm";
-import {EventThemeForm} from "../../../components/containers/EventForm/Theme/EventThemeForm";
-import {EventLecturesForm} from "../../../components/containers/EventForm/Lectures/EventLecturesForm";
+import {EventBasicInfoForm} from "../../../components/form/EventForm/BasicInfo/EventBasicInfoForm";
+import {EventVisibilityForm} from "../../../components/form/EventForm/Visibility/EventVisibilityForm";
+import {EventThemeForm} from "../../../components/form/EventForm/Theme/EventThemeForm";
+import {EventLecturesForm} from "../../../components/form/EventForm/Lectures/EventLecturesForm";
 import {Event} from "../../../common/models/Event";
 
 const steps = [
@@ -22,16 +22,16 @@ export const EventCreateForm: React.FC = () => {
     const [event, setEvent] = useState<Event | null>(null)
 
     return (
-        <div className={styles.container}>
+        <div className={studioFormStyles.container}>
             <Toolbar
                 title={"Tworzenie wydarzenia"}
-                onBackPress={() => {navigate(-1)}}/>
+                onBackPress={() => {navigate('/studio/events')}}/>
 
             <StepView
                 steps={steps}
                 activeStepIndex={activeStepIndex}/>
 
-            <div className={styles.innerContainer}>
+            <div className={studioFormStyles.innerContainer}>
                 {displayCurrentStep(
                     activeStepIndex,
                     (index: number) => setActiveStepIndex(index),

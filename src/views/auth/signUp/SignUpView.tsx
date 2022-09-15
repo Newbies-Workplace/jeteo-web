@@ -1,5 +1,5 @@
 import React from 'react';
-import PrimaryButton from "../../../components/ui/PrimaryButton/PrimaryButton";
+import Button from "../../../components/ui/Button/Button";
 import authStyles from "../../../common/styles/AuthStyles.module.scss"
 import styles from "./SignUpView.module.scss"
 
@@ -20,9 +20,9 @@ export const SignUpView: React.FC = () => {
             </div>
 
             <div className={styles.buttons}>
-                <PrimaryButton onClick={onSignUpClick}>
+                <Button onClick={onSignUpClick}>
                     Gotowe
-                </PrimaryButton>
+                </Button>
             </div>
         </>
     )

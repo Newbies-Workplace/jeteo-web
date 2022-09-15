@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Field, Form, Formik} from "formik";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
-import styles from "./EventBasicInfoForm.module.scss";
-import formStyles from "../EventForm.module.scss"
-import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
+import formStyles from "../../Form.module.scss"
+import Button from "../../../ui/Button/Button";
 import dayjs from "dayjs";
 import TagPicker from "../../../ui/TagPicker/TagPicker";
 import {Tag} from "../../../../common/models/Tag";
@@ -125,7 +124,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         <Formik initialValues={initialValues} onSubmit={onSubmitClicked}>
             <Form>
                 <StudioSection title={"Co i kiedy?"}>
-                    <div className={styles.row}>
+                    <div className={formStyles.row}>
                         od
                         <Field type={"datetime-local"} id={"startDate"} name={"startDate"} />
                         do (opcjonalne)
@@ -165,9 +164,9 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                 </StudioSection>
 
                 <div className={formStyles.submit}>
-                    <PrimaryButton type={"submit"}>
+                    <Button type={"submit"}>
                         {event ? "Zapisz" : "Dodaj"}
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </Form>
         </Formik>

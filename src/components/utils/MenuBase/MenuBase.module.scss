@@ -1,10 +1,5 @@
 $local-z-index: 100;
 
-.base {
-    text-align: center;
-    font-size: 0;
-}
-
 // hook's purpose is only to change
 // `display: absolute`' pos' coords to local one
 .hook {

@@ -1,0 +1,20 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {StudioLectureCard} from "./StudioLectureCard";
+
+<Meta title="ui/StudioLectureCard" component={StudioLectureCard} />
+
+export const Template = (args) => <StudioLectureCard {...args} />;
+
+Lecture card used in Studio
+
+<Canvas>
+    <Story
+        name="Active"
+        args={{
+            title: 'Tytuł prelekcji',
+            descriptionSnippet: 'Jakiś podtytuł '
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

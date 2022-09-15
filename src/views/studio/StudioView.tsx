@@ -9,6 +9,8 @@ import {EventList} from "./EventList/EventList";
 import {EventCreateForm} from "./EventCreate/EventCreateForm";
 import {EventUpdateForm} from "./EventUpdate/EventUpdateForm";
 import {EventDetails} from "./EventDetails/EventDetails";
+import {LectureCreateForm} from "./LectureCreate/LectureCreateForm";
+import {LectureUpdateForm} from "./LectureUpdate/LectureUpdateForm";
 
 export const StudioView: React.FC = () => {
     return (
@@ -23,20 +25,26 @@ export const StudioView: React.FC = () => {
                     <div className={styles.content}>
                         <Routes>
                             <Route
-                                element={<Dashboard/>}
-                                path="*"/>
-                            <Route
                                 element={<EventList/>}
                                 path="/events"/>
                             <Route
                                 element={<EventCreateForm/>}
                                 path="/events/create"/>
                             <Route
-                                element={<EventDetails/>}
-                                path="/events/:name"/>
+                                element={<LectureCreateForm/>}
+                                path="/events/:name/lectures/create"/>
+                            <Route
+                                element={<LectureUpdateForm/>}
+                                path="/events/:name/lectures/:lectureId/edit"/>
                             <Route
                                 element={<EventUpdateForm/>}
                                 path="/events/:name/edit"/>
+                            <Route
+                                element={<EventDetails/>}
+                                path="/events/:name"/>
+                            <Route
+                                element={<Dashboard/>}
+                                path="*"/>
                         </Routes>
                     </div>
                 </div>

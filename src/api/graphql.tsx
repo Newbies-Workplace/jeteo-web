@@ -411,6 +411,38 @@ export type ChangeEventVisibilityMutation = { __typename?: 'Mutation', changeEve
 
 export type CoreEventResponseFragment = { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> };
 
+export type LecturesListQueryVariables = Exact<{
+  filter: LectureFilterInput;
+}>;
+
+
+export type LecturesListQuery = { __typename?: 'Query', lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string } }> };
+
+export type LectureQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type LectureQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string } } };
+
+export type CreateLectureMutationVariables = Exact<{
+  eventId: Scalars['String'];
+  request: LectureRequestInput;
+}>;
+
+
+export type CreateLectureMutation = { __typename?: 'Mutation', createLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string } } };
+
+export type ReplaceLectureMutationVariables = Exact<{
+  id: Scalars['String'];
+  request: LectureRequestInput;
+}>;
+
+
+export type ReplaceLectureMutation = { __typename?: 'Mutation', replaceLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string } } };
+
+export type CoreLectureResponseFragment = { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string } };
+
 export type CreateTagMutationVariables = Exact<{
   request: TagCreateRequestInput;
 }>;
@@ -454,6 +486,20 @@ export const CoreEventResponseFragmentDoc = gql`
   tags {
     id
     name
+  }
+}
+    `;
+export const CoreLectureResponseFragmentDoc = gql`
+    fragment CoreLectureResponse on LectureResponse {
+  id
+  title
+  description
+  timeFrame {
+    startDate
+    finishDate
+  }
+  author {
+    nickname
   }
 }
     `;
@@ -701,6 +747,144 @@ export function useChangeEventVisibilityMutation(baseOptions?: Apollo.MutationHo
 export type ChangeEventVisibilityMutationHookResult = ReturnType<typeof useChangeEventVisibilityMutation>;
 export type ChangeEventVisibilityMutationResult = Apollo.MutationResult<ChangeEventVisibilityMutation>;
 export type ChangeEventVisibilityMutationOptions = Apollo.BaseMutationOptions<ChangeEventVisibilityMutation, ChangeEventVisibilityMutationVariables>;
+export const LecturesListDocument = gql`
+    query LecturesList($filter: LectureFilterInput!) {
+  lectures(filter: $filter) {
+    ...CoreLectureResponse
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+
+/**
+ * __useLecturesListQuery__
+ *
+ * To run a query within a React component, call `useLecturesListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLecturesListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLecturesListQuery({
+ *   variables: {
+ *      filter: // value for 'filter'
+ *   },
+ * });
+ */
+export function useLecturesListQuery(baseOptions: Apollo.QueryHookOptions<LecturesListQuery, LecturesListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LecturesListQuery, LecturesListQueryVariables>(LecturesListDocument, options);
+      }
+export function useLecturesListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LecturesListQuery, LecturesListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LecturesListQuery, LecturesListQueryVariables>(LecturesListDocument, options);
+        }
+export type LecturesListQueryHookResult = ReturnType<typeof useLecturesListQuery>;
+export type LecturesListLazyQueryHookResult = ReturnType<typeof useLecturesListLazyQuery>;
+export type LecturesListQueryResult = Apollo.QueryResult<LecturesListQuery, LecturesListQueryVariables>;
+export const LectureDocument = gql`
+    query Lecture($id: String!) {
+  lecture(id: $id) {
+    ...CoreLectureResponse
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+
+/**
+ * __useLectureQuery__
+ *
+ * To run a query within a React component, call `useLectureQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLectureQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLectureQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useLectureQuery(baseOptions: Apollo.QueryHookOptions<LectureQuery, LectureQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LectureQuery, LectureQueryVariables>(LectureDocument, options);
+      }
+export function useLectureLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LectureQuery, LectureQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LectureQuery, LectureQueryVariables>(LectureDocument, options);
+        }
+export type LectureQueryHookResult = ReturnType<typeof useLectureQuery>;
+export type LectureLazyQueryHookResult = ReturnType<typeof useLectureLazyQuery>;
+export type LectureQueryResult = Apollo.QueryResult<LectureQuery, LectureQueryVariables>;
+export const CreateLectureDocument = gql`
+    mutation CreateLecture($eventId: String!, $request: LectureRequestInput!) {
+  createLecture(eventId: $eventId, request: $request) {
+    ...CoreLectureResponse
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+export type CreateLectureMutationFn = Apollo.MutationFunction<CreateLectureMutation, CreateLectureMutationVariables>;
+
+/**
+ * __useCreateLectureMutation__
+ *
+ * To run a mutation, you first call `useCreateLectureMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateLectureMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createLectureMutation, { data, loading, error }] = useCreateLectureMutation({
+ *   variables: {
+ *      eventId: // value for 'eventId'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useCreateLectureMutation(baseOptions?: Apollo.MutationHookOptions<CreateLectureMutation, CreateLectureMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateLectureMutation, CreateLectureMutationVariables>(CreateLectureDocument, options);
+      }
+export type CreateLectureMutationHookResult = ReturnType<typeof useCreateLectureMutation>;
+export type CreateLectureMutationResult = Apollo.MutationResult<CreateLectureMutation>;
+export type CreateLectureMutationOptions = Apollo.BaseMutationOptions<CreateLectureMutation, CreateLectureMutationVariables>;
+export const ReplaceLectureDocument = gql`
+    mutation ReplaceLecture($id: String!, $request: LectureRequestInput!) {
+  replaceLecture(id: $id, request: $request) {
+    ...CoreLectureResponse
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+export type ReplaceLectureMutationFn = Apollo.MutationFunction<ReplaceLectureMutation, ReplaceLectureMutationVariables>;
+
+/**
+ * __useReplaceLectureMutation__
+ *
+ * To run a mutation, you first call `useReplaceLectureMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReplaceLectureMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [replaceLectureMutation, { data, loading, error }] = useReplaceLectureMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useReplaceLectureMutation(baseOptions?: Apollo.MutationHookOptions<ReplaceLectureMutation, ReplaceLectureMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ReplaceLectureMutation, ReplaceLectureMutationVariables>(ReplaceLectureDocument, options);
+      }
+export type ReplaceLectureMutationHookResult = ReturnType<typeof useReplaceLectureMutation>;
+export type ReplaceLectureMutationResult = Apollo.MutationResult<ReplaceLectureMutation>;
+export type ReplaceLectureMutationOptions = Apollo.BaseMutationOptions<ReplaceLectureMutation, ReplaceLectureMutationVariables>;
 export const CreateTagDocument = gql`
     mutation CreateTag($request: TagCreateRequestInput!) {
   createTag(request: $request) {

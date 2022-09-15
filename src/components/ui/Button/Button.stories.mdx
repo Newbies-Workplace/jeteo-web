@@ -1,0 +1,52 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {Button} from "./Button";
+
+<Meta title="ui/Button" component={Button} />
+
+export const Template = (args) => <Button {...args} />;
+
+Simple button to use anywhere inside the app.
+
+<Canvas>
+    <Story
+        name="Primary medium"
+        args={{
+            children: (<>Button</>),
+            size: 'medium',
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+    <Story
+        name="Primary small"
+        args={{
+            children: (<>Button</>),
+            size: 'small',
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas>
+    <Story
+        name="Secondary medium"
+        args={{
+            secondary: true,
+            children: (<>Button</>),
+            size: 'medium',
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+    <Story
+        name="Secondary small"
+        args={{
+            secondary: true,
+            children: (<>Button</>),
+            size: 'small',
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
