@@ -22,6 +22,10 @@ mutation ReplaceLecture($id: String!, $request: LectureRequestInput!) {
     }
 }
 
+mutation DeleteLecture($id: String!) {
+    deleteLecture(id: $id)
+}
+
 fragment CoreLectureResponse on LectureResponse {
     id
     title

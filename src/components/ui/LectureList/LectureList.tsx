@@ -13,7 +13,7 @@ export interface LectureListProps {
     filter: LectureFilterInput
 }
 
-const defaultCardRenderer: LectureListItemRenderer = lecture => (
+const defaultCardRenderer: LectureListItemRenderer = (lecture) => (
     <StudioLectureCard
         title={lecture.title}
         descriptionSnippet={lecture.description?.substring(0, 50)}
@@ -30,10 +30,9 @@ export const LectureList: React.FC<LectureListProps> = ({filter, renderItem = de
     const lectures = useMemo(
         () => data?.lectures
             .map(Lecture.fromData)
-            .map(renderItem) || [],
+            .map((lecture, index) => renderItem(lecture, index)) || [],
         [data]
     );
-
 
     if (error)
         return <p>error <br />{error.message}</p>;

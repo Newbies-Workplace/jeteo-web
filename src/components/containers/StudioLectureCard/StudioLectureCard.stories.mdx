@@ -1,5 +1,5 @@
 import {Canvas, Meta, Story} from '@storybook/addon-docs';
-import {StudioLectureCard} from "./StudioLectureCard";
+import {StudioLectureCard} from "./StudioLectureCard"; import dayjs from "dayjs";
 
 <Meta title="ui/StudioLectureCard" component={StudioLectureCard} />
 
@@ -12,7 +12,13 @@ Lecture card used in Studio
         name="Active"
         args={{
             title: 'Tytuł prelekcji',
-            descriptionSnippet: 'Jakiś podtytuł '
+            descriptionSnippet: 'Jakiś podtytuł',
+            startDate: new Date(),
+            finishDate: new Date(),
+            speakers: [
+                {name: 'Wiktor'},
+                {name: 'Denis'}
+            ],
         }}
     >
         {Template.bind({})}

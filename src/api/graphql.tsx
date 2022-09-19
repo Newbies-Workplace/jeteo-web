@@ -441,6 +441,13 @@ export type ReplaceLectureMutationVariables = Exact<{
 
 export type ReplaceLectureMutation = { __typename?: 'Mutation', replaceLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string } } };
 
+export type DeleteLectureMutationVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type DeleteLectureMutation = { __typename?: 'Mutation', deleteLecture: boolean };
+
 export type CoreLectureResponseFragment = { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string } };
 
 export type CreateTagMutationVariables = Exact<{
@@ -885,6 +892,37 @@ export function useReplaceLectureMutation(baseOptions?: Apollo.MutationHookOptio
 export type ReplaceLectureMutationHookResult = ReturnType<typeof useReplaceLectureMutation>;
 export type ReplaceLectureMutationResult = Apollo.MutationResult<ReplaceLectureMutation>;
 export type ReplaceLectureMutationOptions = Apollo.BaseMutationOptions<ReplaceLectureMutation, ReplaceLectureMutationVariables>;
+export const DeleteLectureDocument = gql`
+    mutation DeleteLecture($id: String!) {
+  deleteLecture(id: $id)
+}
+    `;
+export type DeleteLectureMutationFn = Apollo.MutationFunction<DeleteLectureMutation, DeleteLectureMutationVariables>;
+
+/**
+ * __useDeleteLectureMutation__
+ *
+ * To run a mutation, you first call `useDeleteLectureMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteLectureMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteLectureMutation, { data, loading, error }] = useDeleteLectureMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteLectureMutation(baseOptions?: Apollo.MutationHookOptions<DeleteLectureMutation, DeleteLectureMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteLectureMutation, DeleteLectureMutationVariables>(DeleteLectureDocument, options);
+      }
+export type DeleteLectureMutationHookResult = ReturnType<typeof useDeleteLectureMutation>;
+export type DeleteLectureMutationResult = Apollo.MutationResult<DeleteLectureMutation>;
+export type DeleteLectureMutationOptions = Apollo.BaseMutationOptions<DeleteLectureMutation, DeleteLectureMutationVariables>;
 export const CreateTagDocument = gql`
     mutation CreateTag($request: TagCreateRequestInput!) {
   createTag(request: $request) {

@@ -2,7 +2,6 @@ import React from "react";
 import {Field, Form, Formik} from "formik";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import {FieldProps} from "formik/dist/Field";
-import MDEditor from "@uiw/react-md-editor";
 import formStyles from "../../Form.module.scss";
 import Button from "../../../ui/Button/Button";
 import dayjs from "dayjs";
@@ -54,7 +53,6 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                 .then((res) => res.data ?? Promise.reject("no data"))
                 .then((data) => data.createLecture)
                 .then(Lecture.fromData)
-
         }
     }
 
@@ -91,19 +89,13 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                     <Field
                         id={"description"}
                         name={"description"}
-                        component={({field, form: {setFieldValue}}: FieldProps) =>
-                            <div data-color-mode="light">
-                                <MDEditor
-                                    textareaProps={{maxLength: 10000}}
-                                    height={200}
-                                    value={field.value}
-                                    onChange={(value) => setFieldValue(field.name, value)} />
-                            </div>
+                        component={({field}: FieldProps) =>
+                            <textarea {...field} />
                         } />
                 </StudioSection>
 
                 <StudioSection title={"Kto?"}>
-
+                    W przyszłości
                 </StudioSection>
 
                 <div className={formStyles.submit}>
