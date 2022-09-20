@@ -21,15 +21,19 @@ const steps = [
 export const EventUpdateForm: React.FC = () => {
     const navigate = useNavigate()
     const [activeStepIndex, setActiveStepIndex] = useState(0)
+    const [event, setEvent] = useState<Event | undefined>(undefined)
     const {name} = useParams<{name: string}>()
 
-    const {loading, error, data} = useEventQuery({
+    const {loading, error} = useEventQuery({
         variables: {
             id: getIdFromVanityUrl(name)
+        },
+        onCompleted: (data) => {
+            setEvent(Event.fromData(data.event))
         }
     })
 
-    if (loading || !data) return <>loading...</>;
+    if (loading || !event) return <>loading...</>;
     if (error) return <p>error <br/>{error.message}</p>;
 
     return (
@@ -47,8 +51,8 @@ export const EventUpdateForm: React.FC = () => {
                 {displayCurrentStep(
                     activeStepIndex,
                     (index: number) => setActiveStepIndex(index),
-                    Event.fromData(data.event),
-                    () => {},
+                    event,
+                    (event) => setEvent(event),
                 )}
             </div>
         </div>
@@ -72,6 +76,9 @@ const displayCurrentStep = (
         case 1:
             return <EventThemeForm
                 event={event}
+                onEventChange={(event) => {
+                    setEvent(event)
+                }}
                 onSubmitted={(event) => {
                     setEvent(event)
                 }}/>

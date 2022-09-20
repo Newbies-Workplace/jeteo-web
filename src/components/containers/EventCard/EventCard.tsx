@@ -6,7 +6,7 @@ import styles from './EventCard.module.scss'
 
 interface EventCardProps {
     title: string,
-    subtitle: string,
+    subtitle?: string,
 
     color?: string,
     image?: string,

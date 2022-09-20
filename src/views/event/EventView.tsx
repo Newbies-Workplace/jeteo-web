@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams, Navigate } from "react-router-dom";
-
-import { useEvent } from "../../hooks/events/useEvent";
 import { EventHeadline } from "../../components/containers/EventHeadline/EventHeadline";
 import { NavBar } from "../../components/ui/NavBar/NavBar";
 import { getIdFromVanityUrl } from "../../common/utils/vanityUrlUtils";
 import {EventDescriptionSection} from "../../components/containers/EventDescriptionSection/EventDescriptionSection";
 import {useEventQuery} from "../../api/graphql";
+import {CentredContainer} from "../../components/primitives/CenteredContainers";
 
+import styles from './EventView.module.scss';
 
 export const EventView: React.FC = () => {
     const { name } = useParams<{name: string}>();
@@ -34,15 +34,23 @@ export const EventView: React.FC = () => {
     const { event } = data;
 
     return (
-        <>
-            <NavBar/>
+        <div className={styles.main}>
+            <div className={styles.header}>
+                <NavBar/>
+            </div>
             <EventHeadline
                 title={event.title}
                 subtitle={event.subtitle || ""}
                 image={event.theme.image}
                 color={event.theme.primaryColor} />
-            <EventDescriptionSection
-                description={event.description || ""}/>
-        </>
+            <div className={styles.content}>
+                <CentredContainer>
+
+                    <EventDescriptionSection
+                        description={event.description || ""}/>
+
+                </CentredContainer>
+            </div>
+        </div>
     )
 };

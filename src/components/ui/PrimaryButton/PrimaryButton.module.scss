@@ -2,16 +2,23 @@
     background-color: #009BF9;
     color: #FFFFFF;
 
-    font-size: 24px;
     text-align: center;
-
-    padding: 10px 72px;
 
     border: 0;
     border-radius: 16px;
 
     cursor: pointer;
     transition: transform .3s;
+
+    &.medium {
+        font-size: 24px;
+        padding: 10px 72px;
+    }
+
+    &.small {
+        font-size: 18px;
+        padding: 4px 24px;
+    }
 }
 
 .button:hover {

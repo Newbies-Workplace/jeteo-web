@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Toolbar.module.scss";
-import BackArrow from "../../../assets/vectors/back-arrow.svg"
+import BackArrow from "../../../assets/icons/back-arrow.svg"
 
 interface StudioToolbarProps {
     title: string

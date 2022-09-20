@@ -1,6 +1,6 @@
 import React from 'react';
 import {SectionContainer} from "../SectionContainer/SectionContainer";
-import parseMD from "parse-md";
+import MDEditor from '@uiw/react-md-editor';
 
 interface EventDescriptionSectionProps {
     description: string
@@ -8,12 +8,11 @@ interface EventDescriptionSectionProps {
 
 export const EventDescriptionSection: React.FC<EventDescriptionSectionProps> = ({description}) => {
 
-    //todo(DiD3n): check perf
-    const parsedDescription = parseMD(description);
-
     return (
         <SectionContainer label="Opis">
-            {parsedDescription.content || "Content is not available"}
+            <div data-color-mode="light">
+                <MDEditor.Markdown source={description}/>
+            </div>
         </SectionContainer>
     )
 }

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {Field, Form, Formik, FormikValues} from "formik";
+import {Field, Form, Formik} from "formik";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import styles from "./EventBasicInfoForm.module.scss";
+import formStyles from "../EventForm.module.scss"
 import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
 import dayjs from "dayjs";
 import TagPicker from "../../../ui/TagPicker/TagPicker";
@@ -13,6 +14,8 @@ import {
     useCreateTagMutation,
     useReplaceEventMutation, useTagListQuery
 } from "../../../../api/graphql";
+import {FieldProps} from "formik/dist/Field";
+import MDEditor from "@uiw/react-md-editor";
 
 interface EventBasicInfoFormProps {
     event?: Event
@@ -38,11 +41,10 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
     });
 
     useEffect(() => {
-        console.log(initialValues);
         setSelectedTagIds(initialValues.tags.map(tag => tag.id))
     }, [])
 
-    const initialValues: EventFormValues = event ? {
+    const initialValues: EventBasicFormValues = event ? {
         startDate: dayjs(event.startDate).format("YYYY-MM-DDTHH:mm"),
         finishDate: event?.finishDate ? dayjs(event.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
         title: event.title,
@@ -100,7 +102,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         }
     }
 
-    const onSubmitClicked = (values: FormikValues) => {
+    const onSubmitClicked = (values: EventBasicFormValues) => {
         const request = {
             title: values.title,
             subtitle: values.subtitle,
@@ -115,7 +117,6 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
 
         submitFunction(request)
             .then((event: Event) => {
-                console.log(event)
                 onSubmitted(event)
             })
     }
@@ -133,11 +134,24 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
 
                     <Field id={"title"} name={"title"} placeholder={"Tytuł"}/>
                     <Field id={"subtitle"} name={"subtitle"} placeholder={"Podtytuł (opcjonalny)"}/>
-                    <Field id={"description"} name={"description"} placeholder={"Opis (opcjonalny)"}/>
+
+                    <h4>Opis</h4>
+                    <Field
+                        id={"description"}
+                        name={"description"}
+                        component={({field, form: {setFieldValue}}: FieldProps) =>
+                            <div data-color-mode="light">
+                                <MDEditor
+                                    textareaProps={{maxLength: 10000}}
+                                    height={200}
+                                    value={field.value}
+                                    onChange={(value) => setFieldValue(field.name, value)} />
+                            </div>
+                        } />
                 </StudioSection>
 
                 <StudioSection title={"Gdzie?"}>
-                    todo mapa
+                    <h4>W przyszłości...</h4>
                 </StudioSection>
 
                 <StudioSection title={"Dla kogo?"}>
@@ -150,7 +164,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                     </div>
                 </StudioSection>
 
-                <div className={styles.submit}>
+                <div className={formStyles.submit}>
                     <PrimaryButton type={"submit"}>
                         {event ? "Zapisz" : "Dodaj"}
                     </PrimaryButton>
@@ -160,7 +174,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
     )
 }
 
-interface EventFormValues {
+interface EventBasicFormValues {
     startDate: string
     finishDate?: string
     title: string

@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+
+.input {
+  align-self: flex-start;
+}
+
+.value {
+  display: flex;
+  align-self: flex-end;
+
+  user-select: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: end;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+
+  max-width: 150px;
+  height: 75px;
+  padding: 8px;
+
+  border: 0;
+  border-radius: 16px;
+
+  background-color: #C4C4C4;
+
+  &:hover {
+    background-color: #8E8E8E;
+  }
+
+  &.selected {
+    background-color: #009BF9;
+  }
+}

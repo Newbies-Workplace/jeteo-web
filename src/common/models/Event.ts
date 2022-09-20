@@ -30,7 +30,7 @@ export class Event {
             data.vanityUrl,
             data.author as SimpleUser,
             new Date(data.timeFrame.startDate),
-            data.timeFrame?.finishDate ? new Date(data.timeFrame.finishDate) : undefined,
+            data.timeFrame.finishDate ? new Date(data.timeFrame.finishDate) : undefined,
             data.theme.primaryColor,
             data.theme.image,
             data.address && EventLocation.fromData(data.address),

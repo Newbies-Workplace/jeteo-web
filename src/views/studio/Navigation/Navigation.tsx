@@ -1,7 +1,7 @@
 import React from "react";
 import {NavButton} from "../../../components/ui/NavButton/NavButton";
-import Dashboard from "../../../assets/images/icons/dashboard.svg";
-import Calendar from "../../../assets/images/icons/calendar.svg";
+import Dashboard from "../../../assets/icons/dashboard.svg";
+import Calendar from "../../../assets/icons/calendar.svg";
 import styles from './Navigation.module.scss';
 
 export const Navigation: React.FC = () => {

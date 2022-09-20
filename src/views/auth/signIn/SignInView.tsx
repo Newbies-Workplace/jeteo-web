@@ -7,8 +7,8 @@ import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
 import {useQueryParams} from "../../../common/utils/useQueryParams";
 import authStyles from "../../../common/styles/AuthStyles.module.scss"
 import styles from "./SignInView.module.scss"
-import Github from "../../../assets/vectors/github.svg"
-import Roadblock from "../../../assets/vectors/roadblock.svg"
+import Github from "../../../assets/icons/github.svg"
+import Roadblock from "../../../assets/icons/roadblock.svg"
 import cs from "classnames";
 
 export const SignInView: React.FC = () => {
