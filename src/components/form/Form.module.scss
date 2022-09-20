@@ -1,0 +1,15 @@
+.submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+
+  width: 100%;
+}

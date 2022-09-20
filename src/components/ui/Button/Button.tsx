@@ -1,20 +1,29 @@
 import React from "react";
-
 import cs from 'classnames';
-import styles from "./PrimaryButton.module.scss";
+import styles from "./Button.module.scss";
 
-interface PrimaryButtonProps {
-    type?: 'submit' | 'reset' | 'button';
-    onClick?: () => void;
+interface ButtonProps {
+    primary?: boolean
+    type?: 'submit' | 'reset' | 'button'
+    onClick?: () => void
     size?: 'medium' | 'small'
 }
 
-export const PrimaryButton: React.FC<React.PropsWithChildren<PrimaryButtonProps>> = ({ children, type, onClick, size = 'medium' }) => {
+export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (
+    {
+        children,
+        primary = false,
+        type,
+        onClick,
+        size = 'medium'
+    }
+) => {
     return (
         <button
             type={type}
             className={
                 cs(styles.button, {
+                    [styles.primary]: primary,
                     [styles.medium]: size === 'medium',
                     [styles.small]: size === 'small',
                 })
@@ -25,4 +34,4 @@ export const PrimaryButton: React.FC<React.PropsWithChildren<PrimaryButtonProps>
     )
 }
 
-export default PrimaryButton;
+export default Button;

@@ -1,11 +1,12 @@
 import React from "react";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
-import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
+import Button from "../../../ui/Button/Button";
 import {Field, Form, Formik, FormikValues} from "formik";
 import {EventVisibilityRequestInput, useChangeEventVisibilityMutation, Visibility} from "../../../../api/graphql";
 import {Event} from "../../../../common/models/Event";
 import {FieldProps} from "formik/dist/Field";
 import RadioButtons from "../../../ui/RadioButtons/RadioButtons";
+import formStyles from "../../Form.module.scss";
 
 interface EventVisibilityFormProps {
     event: Event,
@@ -57,7 +58,9 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
                         } />
                 </StudioSection>
 
-                <PrimaryButton type={"submit"}>Gotowe</PrimaryButton>
+                <div className={formStyles.submit}>
+                    <Button primary type={"submit"}>Gotowe</Button>
+                </div>
             </Form>
         </Formik>
     )

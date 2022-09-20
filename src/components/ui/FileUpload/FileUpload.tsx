@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import styles from "./FileUpload.module.scss"
-import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import Button from "../Button/Button";
 import cs from "classnames";
 import Help from "../../../assets/icons/help.svg"
 import {ALLOWED_IMAGE_EXTENSIONS} from "../../../common/utils/constants";
@@ -72,9 +72,9 @@ const FileUpload: React.FC<FileUploadProps> = ({accept = ALLOWED_IMAGE_EXTENSION
                 accept={accept}
                 onChange={handleChange} />
 
-            <PrimaryButton size={'small'} onClick={() => inputRef?.current?.click()}>
+            <Button primary size={'small'} onClick={() => inputRef?.current?.click()}>
                 Wybierz
-            </PrimaryButton>
+            </Button>
         </div>
     )
 }

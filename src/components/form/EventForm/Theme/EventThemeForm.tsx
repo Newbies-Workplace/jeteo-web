@@ -1,12 +1,11 @@
 import React from "react";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
-import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";
+import Button from "../../../ui/Button/Button";
 import FileUpload from "../../../ui/FileUpload/FileUpload";
 import FileItem from "../../../ui/FileItem/FileItem";
-import {EventCard} from "../../EventCard/EventCard";
+import {EventCard} from "../../../containers/EventCard/EventCard";
 import {Event} from "../../../../common/models/Event";
-import formStyles from "../EventForm.module.scss";
-import styles from "./EventThemeForm.module.scss";
+import formStyles from "../../Form.module.scss";
 import {deleteImage, updateImage} from "../../../../api/rest/event/Event";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 import {useReplaceEventThemeMutation} from "../../../../api/graphql";
@@ -49,7 +48,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
     const onSubmitClick = (values: EventThemeFormValues) => {
         const request = {
             primaryColor: values.primaryColor,
-            secondaryColor: undefined,
+            secondaryColor: values.secondaryColor,
         }
 
         replaceEventTheme({
@@ -70,34 +69,39 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
         <Formik initialValues={initialValues} onSubmit={onSubmitClick}>
             <Form>
                 <StudioSection title={"Motyw"}>
-                    <h4>Kolor przewodni:</h4>
-                    <Field
-                        id={"primaryColor"}
-                        name={"primaryColor"}
-                        placeholder={"Kolor przewodni"}
-                        component={({field, form: {setFieldValue}}: FieldProps) =>
-                            <div>
-                                <HexColorPicker
-                                    color={field.value ?? undefined}
-                                    onChange={(color) => setFieldValue(field.name, color) }/>
-                                <HexColorInput
-                                    prefixed
-                                    color={field.value ?? undefined}
-                                    onChange={(color) => setFieldValue(field.name, color)} />
+                    <div className={formStyles.row}>
+                        <div>
+                            <h4>Kolor przewodni:</h4>
+                            <Field
+                                id={"primaryColor"}
+                                name={"primaryColor"}
+                                placeholder={"Kolor przewodni"}
+                                component={({field, form: {setFieldValue}}: FieldProps) =>
+                                    <div>
+                                        <HexColorPicker
+                                            color={field.value ?? undefined}
+                                            onChange={(color) => setFieldValue(field.name, color) }/>
+                                        <HexColorInput
+                                            prefixed
+                                            color={field.value ?? undefined}
+                                            onChange={(color) => setFieldValue(field.name, color)} />
+                                    </div>
+                                } />
+                        </div>
+                        <div>
+                            <h4>Okładka:</h4>
+                            <div className={formStyles.row}>
+                                {event.image &&
+                                    <FileItem
+                                        url={event.image}
+                                        onDeleteClick={onCoverDeleteClick}/>
+                                }
+                                {!event.image &&
+                                    <FileUpload
+                                        onChange={(files) => onCoverFileUpdate(files[0])}/>
+                                }
                             </div>
-                        } />
-
-                    <h4>Okładka:</h4>
-                    <div className={styles.row}>
-                        {event.image &&
-                            <FileItem
-                                url={event.image}
-                                onDeleteClick={onCoverDeleteClick}/>
-                        }
-                        {!event.image &&
-                            <FileUpload
-                                onChange={(files) => onCoverFileUpdate(files[0])}/>
-                        }
+                        </div>
                     </div>
                 </StudioSection>
 
@@ -116,9 +120,9 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                 </StudioSection>
 
                 <div className={formStyles.submit}>
-                    <PrimaryButton type={"submit"}>
+                    <Button primary type={"submit"}>
                         Zapisz
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </Form>
         </Formik>

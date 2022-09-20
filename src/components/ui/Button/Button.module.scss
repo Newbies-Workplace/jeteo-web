@@ -1,14 +1,20 @@
 .button {
-    background-color: #009BF9;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 16px;
+    color: #000000;
 
     text-align: center;
 
-    border: 0;
-    border-radius: 16px;
-
     cursor: pointer;
     transition: transform .3s;
+
+    &.primary {
+        background-color: #009BF9;
+        color: #FFFFFF;
+        border: 0;
+        border-radius: 16px;
+    }
 
     &.medium {
         font-size: 24px;
