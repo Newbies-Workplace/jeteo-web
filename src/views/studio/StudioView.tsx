@@ -44,3 +44,5 @@ export const StudioView: React.FC = () => {
         </RequireAuth>
     );
 };
+
+export default StudioView;

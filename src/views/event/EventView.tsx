@@ -5,7 +5,7 @@ import { NavBar } from "../../components/ui/NavBar/NavBar";
 import { getIdFromVanityUrl } from "../../common/utils/vanityUrlUtils";
 import {EventDescriptionSection} from "../../components/containers/EventDescriptionSection/EventDescriptionSection";
 import {useEventQuery} from "../../api/graphql";
-import {CentredContainer} from "../../components/primitives/CenteredContainers";
+import { CentredContainer } from "../../components/primitives/CenteredContainers";
 
 import styles from './EventView.module.scss';
 
@@ -54,3 +54,5 @@ export const EventView: React.FC = () => {
         </div>
     )
 };
+
+export default EventView;

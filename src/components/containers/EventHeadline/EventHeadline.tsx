@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 
-import BackArrowSvg from '../../../assets/images/icons/left-arrow-rounded.svg'
+import BackArrowSvg from '../../../assets/icons/left-arrow-rounded.svg'
 
 import styles from "./EventHeadline.module.scss";
 
