@@ -99,7 +99,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                 </StudioSection>
 
                 <div className={formStyles.submit}>
-                    <Button type={"submit"}>
+                    <Button primary type={"submit"}>
                         Zapisz
                     </Button>
                 </div>

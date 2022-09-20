@@ -164,7 +164,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                 </StudioSection>
 
                 <div className={formStyles.submit}>
-                    <Button type={"submit"}>
+                    <Button primary type={"submit"}>
                         {event ? "Zapisz" : "Dodaj"}
                     </Button>
                 </div>

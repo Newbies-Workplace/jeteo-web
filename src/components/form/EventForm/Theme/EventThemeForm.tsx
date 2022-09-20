@@ -120,7 +120,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                 </StudioSection>
 
                 <div className={formStyles.submit}>
-                    <Button type={"submit"}>
+                    <Button primary type={"submit"}>
                         Zapisz
                     </Button>
                 </div>

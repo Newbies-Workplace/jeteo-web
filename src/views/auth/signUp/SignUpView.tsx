@@ -20,7 +20,7 @@ export const SignUpView: React.FC = () => {
             </div>
 
             <div className={styles.buttons}>
-                <Button onClick={onSignUpClick}>
+                <Button primary onClick={onSignUpClick}>
                     Gotowe
                 </Button>
             </div>

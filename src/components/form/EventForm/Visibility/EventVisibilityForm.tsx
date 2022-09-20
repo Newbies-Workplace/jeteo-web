@@ -59,7 +59,7 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
                 </StudioSection>
 
                 <div className={formStyles.submit}>
-                    <Button type={"submit"}>Gotowe</Button>
+                    <Button primary type={"submit"}>Gotowe</Button>
                 </div>
             </Form>
         </Formik>

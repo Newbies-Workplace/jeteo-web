@@ -38,10 +38,10 @@ export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, onSu
                 } />
 
             <div className={formStyles.submit}>
-                <Button secondary onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/create`)}>
+                <Button onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/create`)}>
                     Dodaj
                 </Button>
-                <Button onClick={() => onSubmitted(event)}>
+                <Button primary onClick={() => onSubmitted(event)}>
                     Zapisz
                 </Button>
             </div>

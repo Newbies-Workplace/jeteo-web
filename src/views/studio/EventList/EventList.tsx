@@ -21,7 +21,7 @@ export const EventList: React.FC = () => {
                 <b>Wydarzenia</b>
 
                 <Link to={"/studio/events/create"}>
-                    <Button>Dodaj</Button>
+                    <Button primary>Dodaj</Button>
                 </Link>
             </div>
 
