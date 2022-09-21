@@ -1,0 +1,11 @@
+
+.container {
+    margin: auto;
+    max-width: var(--app-prefer-width);
+    padding: 0 8px;
+}
+
+.extendedContainer {
+    @extend .container;
+    max-width: var(--app-extended-width);
+}

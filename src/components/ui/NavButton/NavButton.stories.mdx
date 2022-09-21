@@ -4,25 +4,20 @@ import {HashRouter} from 'react-router-dom';
 
 <Meta
     title="ui/NavButton"
-    component={NavButton}
-    decorators={[
-        (Story) => (
-            <HashRouter>
-                <Story />
-            </HashRouter>
-        )
-    ]}
-/>
+    component={NavButton}/>
 
 export const Template = (args) => <NavButton {...args} />
 
+# NavButton
 navigation button
 
-<Canvas>
+Active state
+
+<Canvas style={{background: "silver"}} withSource="open">
     <Story
         name="Active"
         args={{
-            children: (<>content</>),
+            children: 'content',
             name: 'Przycisk',
             to: '/'
         }}
@@ -31,11 +26,14 @@ navigation button
     </Story>
 </Canvas>
 
-<Canvas>
+
+Inactive state
+
+<Canvas style={{background: "silver"}} withSource="open">
     <Story
         name="Inactive"
         args={{
-            children: (<>content</>),
+            children: 'content',
             name: 'Przycisk',
             to: '/test'
         }}

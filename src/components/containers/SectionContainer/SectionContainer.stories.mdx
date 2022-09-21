@@ -1,0 +1,26 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {SectionContainer} from "./SectionContainer";
+import {AppLogo} from "../../ui/AppLogo/AppLogo";
+
+<Meta
+    title="container/SectionContainer"
+    component={SectionContainer}/>
+
+export const Template = (args) => <SectionContainer {...args} />;
+
+
+# SectionContainer
+
+Container for event page sections, feel free to use it anywhere you want.
+
+<Canvas style={{background: "silver"}} withSource="open">
+    <Story
+        name="Active"
+        args={{
+            label: 'Title of section',
+            children: <center><AppLogo vertical/><p><b>Content</b>of section</p></center>,
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
