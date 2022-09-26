@@ -15,6 +15,7 @@ import {
 } from "../../../../api/graphql";
 import {FieldProps} from "formik/dist/Field";
 import MDEditor from "@uiw/react-md-editor";
+import { toast } from 'react-toastify';
 
 interface EventBasicInfoFormProps {
     event?: Event
@@ -115,9 +116,12 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         }
 
         submitFunction(request)
-            .then((event: Event) => {
-                onSubmitted(event)
+            .then((submittedEvent: Event) => {
+                onSubmitted(submittedEvent)
+
+                toast.success(event ? "Wydarzenie zaktualizowano" : "Wydarzenie dodano")
             })
+            .catch(() => toast.error("Wystąpił błąd"))
     }
 
     return (

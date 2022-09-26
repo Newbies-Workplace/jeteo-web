@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {StudioLectureCard} from "../../../containers/StudioLectureCard/StudioLectureCard";
 import {useDeleteLectureMutation} from "../../../../api/graphql";
 import {Lecture} from "../../../../common/models/Lecture";
+import {toast} from "react-toastify";
 
 interface EventLecturesFormProps {
     event: Event,
@@ -20,6 +21,8 @@ export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, onSu
     const onDeleteLectureClick = (lecture: Lecture) => {
         deleteLecture({variables: {id: lecture.id}})
             .then()
+            .then(() => toast.success("Prelekcja usunięta"))
+            .catch(() => toast.error("Wystąpił błąd"))
     }
 
     return (
@@ -42,7 +45,7 @@ export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, onSu
                     Dodaj
                 </Button>
                 <Button primary onClick={() => onSubmitted(event)}>
-                    Zapisz
+                    Dalej
                 </Button>
             </div>
         </div>

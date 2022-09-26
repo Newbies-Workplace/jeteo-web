@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import {LectureRequestInput, useCreateLectureMutation, useReplaceLectureMutation} from "../../../../api/graphql";
 import {Lecture} from "../../../../common/models/Lecture";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
+import {toast} from "react-toastify";
 
 interface LectureBasicInfoFormProps {
     eventId: string
@@ -68,9 +69,12 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
         }
 
         submitFunction(request)
-            .then((lecture: Lecture) => {
-                onSubmitted(lecture)
+            .then((submittedLecture: Lecture) => {
+                onSubmitted(submittedLecture)
+
+                toast.success(lecture ? "Prelekcja zaktualizowana" : "Prelekcja dodana")
             })
+            .catch(() => toast.error("Wystąpił błąd"))
     }
 
     return (

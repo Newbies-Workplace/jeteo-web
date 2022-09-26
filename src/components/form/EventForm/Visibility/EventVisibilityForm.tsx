@@ -7,6 +7,7 @@ import {Event} from "../../../../common/models/Event";
 import {FieldProps} from "formik/dist/Field";
 import RadioButtons from "../../../ui/RadioButtons/RadioButtons";
 import formStyles from "../../Form.module.scss";
+import {toast} from "react-toastify";
 
 interface EventVisibilityFormProps {
     event: Event,
@@ -30,17 +31,21 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
         const request: EventVisibilityRequestInput = {
             visibility: values.visibility,
         }
-        console.log(request)
         changeVisibility({
             variables: {
                 id: event.id,
                 request: request,
             }
         })
-            .then((res) => {
-                console.log(res)
+            .then((res) => res.data ?? Promise.reject("no data"))
+            .then((data) => data.changeEventVisibility)
+            .then(Event.fromData)
+            .then((event) => {
                 onSubmitted(event)
+
+                toast.success("Widoczność zaktualizowano")
             })
+            .catch(() => toast.error("Wystąpił błąd"))
     }
 
     return (
