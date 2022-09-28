@@ -36,6 +36,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
 
                 onSubmitted(updatedEvent)
             })
+            .catch(() => toast.error("Wystąpił błąd podczas usuwania okładki"))
     }
 
     const onCoverFileUpdate = async (file: File) => {
@@ -44,6 +45,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                 const updatedEvent: Event = {...event, image: res.url}
                 onEventChange(updatedEvent)
             })
+            .catch(() => toast.error("Wystąpił błąd podczas przesyłania okładki"))
     }
 
     const onSubmitClick = (values: EventThemeFormValues) => {
@@ -86,6 +88,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                                             color={field.value ?? undefined}
                                             onChange={(color) => setFieldValue(field.name, color) }/>
                                         <HexColorInput
+                                            className={formStyles.input}
                                             prefixed
                                             color={field.value ?? undefined}
                                             onChange={(color) => setFieldValue(field.name, color)} />

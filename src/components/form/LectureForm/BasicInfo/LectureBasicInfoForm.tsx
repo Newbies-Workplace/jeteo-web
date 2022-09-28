@@ -82,19 +82,35 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
             <Form>
                 <StudioSection title={"Co i kiedy?"}>
                     <div className={formStyles.row}>
-                        od
-                        <Field type={"datetime-local"} id={"startDate"} name={"startDate"} />
-                        do (opcjonalne)
-                        <Field type={"datetime-local"} id={"finishDate"} name={"finishDate"} />
+                        <div className={formStyles.date}>
+                            <b>* Rozpoczęcie</b>
+                            <Field
+                                type={"datetime-local"}
+                                id={"startDate"}
+                                name={"startDate"}
+                                className={formStyles.input}/>
+                        </div>
+                        <div className={formStyles.date}>
+                            <b>Zakończenie</b>
+                            <Field
+                                type={"datetime-local"}
+                                id={"finishDate"}
+                                name={"finishDate"}
+                                className={formStyles.input}/>
+                        </div>
                     </div>
 
-                    <Field id={"title"} name={"title"} placeholder={"Tytuł"}/>
+                    <Field
+                        id={"title"}
+                        name={"title"}
+                        placeholder={"Tytuł"}
+                        className={formStyles.input}/>
                     <h4>Opis</h4>
                     <Field
                         id={"description"}
                         name={"description"}
                         component={({field}: FieldProps) =>
-                            <textarea {...field} />
+                            <textarea {...field} className={formStyles.input}/>
                         } />
                 </StudioSection>
 
