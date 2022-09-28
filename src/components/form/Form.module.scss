@@ -5,6 +5,13 @@
   gap: 8px;
 }
 
+.input {
+  min-height: 30px;
+  padding: 0 8px;
+  margin-top: 16px;
+  border-radius: 4px;
+}
+
 .row {
   display: flex;
   justify-content: flex-start;

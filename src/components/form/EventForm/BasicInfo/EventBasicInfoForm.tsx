@@ -135,8 +135,8 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                         <Field type={"datetime-local"} id={"finishDate"} name={"finishDate"} />
                     </div>
 
-                    <Field id={"title"} name={"title"} placeholder={"Tytuł"}/>
-                    <Field id={"subtitle"} name={"subtitle"} placeholder={"Podtytuł (opcjonalny)"}/>
+                    <Field id={"title"} name={"title"} placeholder={"Tytuł"} className={formStyles.input}/>
+                    <Field id={"subtitle"} name={"subtitle"} placeholder={"Podtytuł (opcjonalny)"} className={formStyles.input}/>
 
                     <h4>Opis</h4>
                     <Field
