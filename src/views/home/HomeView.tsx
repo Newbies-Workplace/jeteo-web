@@ -5,6 +5,7 @@ import {EventList} from "../../components/ui/EventList/EventList";
 import {NavBar} from "../../components/ui/NavBar/NavBar";
 
 import styles from './HomeView.module.scss';
+import {SocialLink} from "../../components/ui/SocialLink/SocialLink";
 
 export const HomeView: React.FC = () => {
 
@@ -20,6 +21,8 @@ export const HomeView: React.FC = () => {
                             <>Witaj, <b>{user.nickname}!</b> 👋</>
                             : `Witaj, użytkowniku! 👋`}
                     </h1>
+                    <SocialLink name={"hejo"}/>
+
                     <h2 className={styles.eventGroup}>
                         Wydarzenia dla ciebie
                     </h2>
