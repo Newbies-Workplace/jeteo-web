@@ -24,7 +24,7 @@ export const EventCard: React.FC<EventCardProps> = ({
     locationName,
 }) => {
     // color fallback
-    if (!color) color = "#4340BE"
+    if (!color) color = "#4fd0bd"
 
     const cardStyle: React.CSSProperties = {
         backgroundColor: `${color}`,
