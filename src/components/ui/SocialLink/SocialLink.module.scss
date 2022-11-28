@@ -1,0 +1,20 @@
+.socialLinkContainer {
+    display: flex;
+    width: 210px;
+    height: 50px;
+    background-color: #fff;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    border-radius: 16px;
+    text-decoration: none;
+
+}
+
+.socialLinkName {
+    font-size: 18px;
+    font-family: "Lato";
+    font-weight: 600;
+    color: #1B1F23;
+    text-decoration: none;
+}
