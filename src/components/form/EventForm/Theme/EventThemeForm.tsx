@@ -12,6 +12,7 @@ import {useReplaceEventThemeMutation} from "../../../../api/graphql";
 import {Field, Form, Formik} from "formik";
 import {HexColorPicker, HexColorInput} from "react-colorful";
 import {FieldProps} from "formik/dist/Field";
+import {toast} from "react-toastify";
 
 interface EventThemeFormProps {
     event: Event,
@@ -35,6 +36,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
 
                 onSubmitted(updatedEvent)
             })
+            .catch(() => toast.error("Wystąpił błąd podczas usuwania okładki"))
     }
 
     const onCoverFileUpdate = async (file: File) => {
@@ -43,12 +45,13 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                 const updatedEvent: Event = {...event, image: res.url}
                 onEventChange(updatedEvent)
             })
+            .catch(() => toast.error("Wystąpił błąd podczas przesyłania okładki"))
     }
 
     const onSubmitClick = (values: EventThemeFormValues) => {
         const request = {
             primaryColor: values.primaryColor,
-            secondaryColor: values.secondaryColor,
+            secondaryColor: values.primaryColor,
         }
 
         replaceEventTheme({
@@ -62,7 +65,10 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
             .then(Event.fromData)
             .then((event: Event) => {
                 onSubmitted(event)
+
+                toast.success("Motyw zaktualizowano")
             })
+            .catch(() => toast.error("Wystąpił błąd"))
     }
 
     return (
@@ -82,6 +88,7 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
                                             color={field.value ?? undefined}
                                             onChange={(color) => setFieldValue(field.name, color) }/>
                                         <HexColorInput
+                                            className={formStyles.input}
                                             prefixed
                                             color={field.value ?? undefined}
                                             onChange={(color) => setFieldValue(field.name, color)} />

@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import {LectureRequestInput, useCreateLectureMutation, useReplaceLectureMutation} from "../../../../api/graphql";
 import {Lecture} from "../../../../common/models/Lecture";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
+import {toast} from "react-toastify";
 
 interface LectureBasicInfoFormProps {
     eventId: string
@@ -68,9 +69,12 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
         }
 
         submitFunction(request)
-            .then((lecture: Lecture) => {
-                onSubmitted(lecture)
+            .then((submittedLecture: Lecture) => {
+                onSubmitted(submittedLecture)
+
+                toast.success(lecture ? "Prelekcja zaktualizowana" : "Prelekcja dodana")
             })
+            .catch(() => toast.error("Wystąpił błąd"))
     }
 
     return (
@@ -78,19 +82,35 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
             <Form>
                 <StudioSection title={"Co i kiedy?"}>
                     <div className={formStyles.row}>
-                        od
-                        <Field type={"datetime-local"} id={"startDate"} name={"startDate"} />
-                        do (opcjonalne)
-                        <Field type={"datetime-local"} id={"finishDate"} name={"finishDate"} />
+                        <div className={formStyles.date}>
+                            <b>* Rozpoczęcie</b>
+                            <Field
+                                type={"datetime-local"}
+                                id={"startDate"}
+                                name={"startDate"}
+                                className={formStyles.input}/>
+                        </div>
+                        <div className={formStyles.date}>
+                            <b>Zakończenie</b>
+                            <Field
+                                type={"datetime-local"}
+                                id={"finishDate"}
+                                name={"finishDate"}
+                                className={formStyles.input}/>
+                        </div>
                     </div>
 
-                    <Field id={"title"} name={"title"} placeholder={"Tytuł"}/>
+                    <Field
+                        id={"title"}
+                        name={"title"}
+                        placeholder={"Tytuł"}
+                        className={formStyles.input}/>
                     <h4>Opis</h4>
                     <Field
                         id={"description"}
                         name={"description"}
                         component={({field}: FieldProps) =>
-                            <textarea {...field} />
+                            <textarea {...field} className={formStyles.input}/>
                         } />
                 </StudioSection>
 

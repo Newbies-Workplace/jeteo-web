@@ -72,7 +72,7 @@ const FileUpload: React.FC<FileUploadProps> = ({accept = ALLOWED_IMAGE_EXTENSION
                 accept={accept}
                 onChange={handleChange} />
 
-            <Button primary size={'small'} onClick={() => inputRef?.current?.click()}>
+            <Button primary size={'small'} type={'button'} onClick={() => inputRef?.current?.click()}>
                 Wybierz
             </Button>
         </div>

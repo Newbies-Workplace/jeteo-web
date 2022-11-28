@@ -4,27 +4,23 @@ import {Lecture} from "../../../common/models/Lecture";
 import {PlaceholderSwitcher} from "../../utils/animations/PlaceholderSwitcher";
 import {EventListSkeleton} from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
 import {AnimatedList} from "../../utils/animations/AnimatedList";
-import {StudioLectureCard} from "../../containers/StudioLectureCard/StudioLectureCard";
+import {toast} from "react-toastify";
 
 export type LectureListItemRenderer = (l: Lecture, index: number) => JSX.Element;
 
 export interface LectureListProps {
-    renderItem?: LectureListItemRenderer
+    renderItem: LectureListItemRenderer
     filter: LectureFilterInput
 }
 
-const defaultCardRenderer: LectureListItemRenderer = (lecture) => (
-    <StudioLectureCard
-        title={lecture.title}
-        descriptionSnippet={lecture.description?.substring(0, 50)}
-        speakers={[]}/>
-)
-
-export const LectureList: React.FC<LectureListProps> = ({filter, renderItem = defaultCardRenderer}) => {
+export const LectureList: React.FC<LectureListProps> = ({filter, renderItem}) => {
     const { loading, error, data } = useLecturesListQuery({
         variables: {
             filter,
         },
+        onError: () => {
+            toast.error("Wystąpił błąd podczas wczytywania prelekcji")
+        }
     });
 
     const lectures = useMemo(

@@ -15,6 +15,7 @@ import {
 } from "../../../../api/graphql";
 import {FieldProps} from "formik/dist/Field";
 import MDEditor from "@uiw/react-md-editor";
+import { toast } from 'react-toastify';
 
 interface EventBasicInfoFormProps {
     event?: Event
@@ -115,9 +116,12 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
         }
 
         submitFunction(request)
-            .then((event: Event) => {
-                onSubmitted(event)
+            .then((submittedEvent: Event) => {
+                onSubmitted(submittedEvent)
+
+                toast.success(event ? "Wydarzenie zaktualizowano" : "Wydarzenie dodano")
             })
+            .catch(() => toast.error("Wystąpił błąd"))
     }
 
     return (
@@ -125,14 +129,34 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
             <Form>
                 <StudioSection title={"Co i kiedy?"}>
                     <div className={formStyles.row}>
-                        od
-                        <Field type={"datetime-local"} id={"startDate"} name={"startDate"} />
-                        do (opcjonalne)
-                        <Field type={"datetime-local"} id={"finishDate"} name={"finishDate"} />
+                        <div className={formStyles.date}>
+                            <b>* Rozpoczęcie</b>
+                            <Field
+                                type={"datetime-local"}
+                                id={"startDate"}
+                                name={"startDate"}
+                                className={formStyles.input}/>
+                        </div>
+                        <div className={formStyles.date}>
+                            <b>Zakończenie</b>
+                            <Field
+                                type={"datetime-local"}
+                                id={"finishDate"}
+                                name={"finishDate"}
+                                className={formStyles.input}/>
+                        </div>
                     </div>
 
-                    <Field id={"title"} name={"title"} placeholder={"Tytuł"}/>
-                    <Field id={"subtitle"} name={"subtitle"} placeholder={"Podtytuł (opcjonalny)"}/>
+                    <Field
+                        id={"title"}
+                        name={"title"}
+                        placeholder={"Tytuł"}
+                        className={formStyles.input}/>
+                    <Field
+                        id={"subtitle"}
+                        name={"subtitle"}
+                        placeholder={"Podtytuł (opcjonalny)"}
+                        className={formStyles.input}/>
 
                     <h4>Opis</h4>
                     <Field
