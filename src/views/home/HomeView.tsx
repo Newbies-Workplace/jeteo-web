@@ -6,6 +6,8 @@ import {NavBar} from "../../components/ui/NavBar/NavBar";
 
 import styles from './HomeView.module.scss';
 
+
+
 export const HomeView: React.FC = () => {
 
     const { user } = useAuth()
@@ -13,6 +15,7 @@ export const HomeView: React.FC = () => {
     return (
         <>
             <NavBar/>
+
             <div className={styles.view}>
                 <div className={styles.list}>
                     <h1 className={styles.welcomeHeader}>
