@@ -1,0 +1,9 @@
+.infoContainer {
+  display: inline-block;
+  max-width: 500px;
+  word-break: break-word;
+}
+.infoContainer > p {
+  font-family: "Lato";
+  font-size: 16px;
+}
