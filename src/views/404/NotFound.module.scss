@@ -1,0 +1,41 @@
+.container {
+    /* limit width usable space */
+
+    max-width: var(--app-prefer-width);
+    margin: auto;
+
+    /* center vertically */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100%;
+
+    /* other */
+
+    color: #fff;
+
+    h1 {
+        font-size: 1.875rem;
+        margin-top: 0;
+    }
+    
+    p {
+        font-size: 1.25rem;
+    }
+
+    button {
+        margin-top: 3rem;
+        font-size: 1.125rem !important;
+        font-weight: 700;
+    }
+}
+
+.innerContainer {
+
+    min-width: 577px;
+
+    z-index: 2;
+
+}

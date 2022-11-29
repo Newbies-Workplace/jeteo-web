@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { HomeView } from './home/HomeView';
 import { withSuspense } from "../components/utils/hoc/withSuspense";
+import { NotFound } from './404/NotFound';
 
 const StudioView = React.lazy(() => import('./studio/StudioView'));
 const AuthView = React.lazy(() => import('./auth/AuthView'));
@@ -31,9 +32,10 @@ export const AppRouter: React.FC = () => {
                     element={withSuspense(StudioView)}
                     path="studio/*"/>
 
-                <Route path="*">
-                    404
-                </Route>
+                <Route
+                    element={<NotFound/>}
+                    path="*"
+                />
             </Routes>
         </Router>
     )
