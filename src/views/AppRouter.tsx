@@ -7,7 +7,7 @@ import {
 import { HomeView } from './home/HomeView';
 import { withSuspense } from "../components/utils/hoc/withSuspense";
 import { NotFound } from './404/NotFound';
-import { HeroPage } from './heroPage/HeroPage';
+import { HeroPage } from './hero/HeroPage';
 
 const StudioView = React.lazy(() => import('./studio/StudioView'));
 const AuthView = React.lazy(() => import('./auth/AuthView'));
@@ -34,12 +34,13 @@ export const AppRouter: React.FC = () => {
                     path="studio/*" />
 
                 <Route
-                    element={<NotFound />}
-                    path="*"
-                />
-                <Route
                     element={<HeroPage />}
                     path="/heropage"
+                />
+
+                <Route
+                    element={<NotFound />}
+                    path="*"
                 />
             </Routes>
         </Router>
