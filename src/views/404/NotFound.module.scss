@@ -1,18 +1,29 @@
-.container {
-    /* limit width usable space */
+.errorContainer {
+    /* limit width within usable space */
 
     max-width: var(--app-prefer-width);
-    margin: auto;
 
     /* center vertically */
+
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+
+    /* center children */
 
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    height: 100%;
+    /* prevent galaxy background elements from overlapping the error message */
 
-    /* other */
+    z-index: 2;
+
+    /* appearance */
 
     color: #fff;
 
@@ -30,12 +41,4 @@
         font-size: 1.125rem !important;
         font-weight: 700;
     }
-}
-
-.innerContainer {
-
-    min-width: 577px;
-
-    z-index: 2;
-
 }
