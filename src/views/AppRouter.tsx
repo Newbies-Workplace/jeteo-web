@@ -7,7 +7,7 @@ import {
 import { HomeView } from './home/HomeView';
 import { withSuspense } from "../components/utils/hoc/withSuspense";
 import { NotFound } from './404/NotFound';
-import { HeroPage } from './HeroPage/HeroPage';
+import { HeroPage } from './heroPage/HeroPage';
 
 const StudioView = React.lazy(() => import('./studio/StudioView'));
 const AuthView = React.lazy(() => import('./auth/AuthView'));
