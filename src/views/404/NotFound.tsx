@@ -10,18 +10,19 @@ export const NotFound: React.FC = () => {
         <GalaxyBackground>
             <NavBar invertColor/>
             
-            <div className={styles.container}>
-                <div className={styles.innerContainer}>
+            <div className={styles.errorContainer}>
                     <NotFoundImage/>
-                    <h1>Gdzie ja to miałem?</h1>
-                    <p>miejsce do którego zmierzasz już nie istnieje lub nigdy nie istniało</p>
+                    <div>
+                        <h1>Gdzie ja to miałem?</h1>
+                        <p>miejsce do którego zmierzasz już nie istnieje lub nigdy nie istniało</p>
+                    </div>
                     <a href="/">
                         <Button primary>
                             Wracamy na stronę główną
                         </Button>
                     </a>
-                </div>
             </div>
+
         </GalaxyBackground>
     )
 }
