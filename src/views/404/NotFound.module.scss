@@ -5,19 +5,13 @@
 
     /* center vertically */
 
-    height: 100%;
+    height: fit-content;
     margin: auto;
     position: absolute;
     top: 0; 
     left: 0; 
     bottom: 0; 
     right: 0;
-
-    /* center children */
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
     /* prevent galaxy background elements from overlapping the error message */
 
