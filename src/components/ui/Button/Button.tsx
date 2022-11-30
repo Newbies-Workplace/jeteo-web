@@ -7,6 +7,8 @@ interface ButtonProps {
     type?: 'submit' | 'reset' | 'button'
     onClick?: () => void
     size?: 'medium' | 'small'
+    logIn?: boolean
+    eventList?: boolean;
 }
 
 export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (
@@ -15,7 +17,9 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (
         primary = false,
         type,
         onClick,
-        size = 'medium'
+        size = 'medium',
+        logIn,
+        eventList
     }
 ) => {
     return (
@@ -26,6 +30,8 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (
                     [styles.primary]: primary,
                     [styles.medium]: size === 'medium',
                     [styles.small]: size === 'small',
+                    [styles.logIn]: logIn,
+                    [styles.eventList]: eventList
                 })
             }
             onClick={onClick}>
