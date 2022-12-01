@@ -1,0 +1,78 @@
+.prelegendContainer {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+} 
+
+.userContainer {
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userName {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 10px 0 10px 0;
+    font-family: var(--header-font);
+}
+.userIcon {
+    margin-top: -15px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+}
+
+.userSocialMediaContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 5px 0 10px 0;
+}
+.userSocialMediaLink:first-child {
+    margin-right: 7px;
+}
+.userSocialMediaLink:nth-child(2) {
+    margin-right: 7px;
+}
+
+.prelegendEventInfo {
+    min-width: calc(85% - 50px);
+}
+
+.prelegendEventInfo > h2 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: var(--header-font);
+    margin: 5px 0 6px 0;
+}
+
+.prelegendEventInfo > p {
+    font-size: 14px;
+    font-family: var(--font);
+    margin: 0;
+}
+
+
+.prelegendContainer::before {
+    content: '';
+    width: calc(100% + 8px);
+    height: calc(100% + 24px);
+    z-index: -2;
+    border-radius: 16px;
+    position: absolute;
+    margin-top: -4px;
+    background-color: #5452C3;
+}
+
+.prelegendContainer::after {
+    content: 'Oceń✨';
+    position: absolute;
+    color: #fff;
+    bottom: -18px;
+}
