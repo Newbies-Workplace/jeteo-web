@@ -40,12 +40,11 @@ export const HeroPage: React.FC = () => {
       </GalaxyBackground>
 
 
-
       <section className={styles.heroSection}>
 
         <MoonSeparator className={styles.moonSeparator}/>
 
-        <div className={styles.heroSectionContentWrapper}>
+        <div className={styles.heroSectionContentContainer}>
           <div className={styles.featContent}>
             <h2>Jesteśmy dla</h2>
               <ul className={styles.featContentList}>
@@ -57,11 +56,11 @@ export const HeroPage: React.FC = () => {
 
           <div className={styles.heroSectionContent}>
             
-            <div className={styles.heroSectionContentColumn}>
-              <Presentation/>
+            <div className={styles.heroSectionContentBox}>
+              <Presentation className={styles.heroSectionContentImage}/>
             </div>
 
-            <div className={styles.heroSectionContentColumn}>
+            <div className={styles.heroSectionContentBox}>
               <h3>Czerpnij wiedzę</h3>
               <p>
                 Jesteśmy przekonani iż wiedza od ekspertów, jest warta więcej niż jakikolwiek poradnik na youtube. 
@@ -77,33 +76,36 @@ export const HeroPage: React.FC = () => {
 
       <section className={styles.heroSection}>
 
-        <div className={styles.heroSectionContentWrapper}>
-          <div className={styles.heroSectionContentColumn}>
-            <h3>Dziel się wiedzą</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              Sequi earum necessitatibus porro tenetur sint quia voluptatem placeat assumenda voluptatum. 
-              Dolorem.
-            </p>
+        <div className={styles.heroSectionContentContainer}>
+          <div className={styles.heroSectionContent}>
+            <div className={styles.heroSectionContentBox}>
+                <h3>Dziel się wiedzą</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                  Nesciunt fugiat, dolorum excepturi natus explicabo quidem ipsum omnis suscipit iste obcaecati.
+                </p>
+            </div>
           </div>
         </div>
 
       </section>
 
-      {/* <section className={styles.heroSection}>
+      <section className={styles.heroSection}>
 
-        <div className={styles.heroSectionContentWrapper}>
-          <div className={styles.heroSectionContentColumn}>
-              <h3>Dziel się wiedzą</h3>
+        <div className={styles.heroSectionContentContainer}>
+          <div className={styles.heroSectionContent}>
+            <div className={styles.heroSectionContentBox}>
+              <h3>Trzecia sekcja</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                Sequi earum necessitatibus porro tenetur sint quia voluptatem placeat assumenda voluptatum. 
-                Dolorem.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Consectetur voluptatibus recusandae culpa autem eligendi sed similique nemo, 
+                distinctio assumenda ipsa excepturi voluptas veniam nesciunt quidem consequatur totam minus repudiandae! Iure?
               </p>
+            </div>
           </div>
         </div>
 
-      </section> */}
+      </section>
 
 
     </div>
