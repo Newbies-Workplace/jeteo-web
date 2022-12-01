@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './HeroPage.module.scss'
-
+import cs from 'classnames'
 //components import
 import Button from "../../components/ui/Button/Button";
 import GalaxyBackground from "../../components/containers/GalaxyBackground/GalaxyBackground";
@@ -32,8 +32,8 @@ export const HeroPage: React.FC = () => {
           
           <div className={styles.callToAction}>
             <h3 className={styles.callToActionText}>Przeglądaj <br/> wydarzenia w okolicy!</h3>
-            <Button >Lista Wydarzeń</Button>
-            <Button logIn size='medium'>Zaloguj się</Button>
+            <Button className={styles.actionButton}>Lista Wydarzeń</Button>
+            <Button className={cs(styles.actionButton, styles.logInButton)}>Zaloguj się</Button>
           </div>
         </div>
       </GalaxyBackground>

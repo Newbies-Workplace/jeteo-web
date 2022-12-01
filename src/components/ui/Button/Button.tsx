@@ -3,23 +3,21 @@ import cs from 'classnames';
 import styles from "./Button.module.scss";
 
 interface ButtonProps {
+    className?: string
     primary?: boolean
     type?: 'submit' | 'reset' | 'button'
     onClick?: () => void
     size?: 'medium' | 'small'
-    logIn?: boolean
-    eventList?: boolean;
 }
 
 export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (
     {
         children,
+        className,
         primary = false,
         type,
         onClick,
         size = 'medium',
-        logIn,
-        eventList
     }
 ) => {
     return (
@@ -30,9 +28,7 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (
                     [styles.primary]: primary,
                     [styles.medium]: size === 'medium',
                     [styles.small]: size === 'small',
-                    [styles.logIn]: logIn,
-                    [styles.eventList]: eventList
-                })
+                }, className)
             }
             onClick={onClick}>
             {children}
