@@ -1,0 +1,27 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import Speaker from "./Speaker";
+
+<Meta title="ui/Speaker" component={Speaker} />
+
+export const Template = (args) => <Speaker {...args} />
+
+Social link component for the event details
+
+<Canvas>
+    <Story
+        name="Speaker"
+        args={{
+            title: "Lorem ipsum dolor sit amet",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper dictum ex, sollicitudin pretium orci maximus sit amet. Vivamus maximus, quam eget porttitor tincidunt, lacus mi suscipit enim, quis viverra quam lorem eget sem. Integer tristique metus vel lacus cursus commodo.",
+            name: "Example User Name",
+            icon: '',
+            status: 'inProgress',
+            boxText: 'Oceń ✨',
+            ghLink: '#',
+            twLink: "#",
+            mailLink: "#"
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
