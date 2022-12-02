@@ -153,6 +153,7 @@
     h3 {
         font-size: 4rem;
         font-weight: 600;
+        margin-bottom: 1rem;
         font-family: var(--accent-font);
     }
 
@@ -180,6 +181,11 @@
         grid-template-rows: 1fr 1fr;
         place-items: center;
         text-align: center;
+
+        h3 {
+            margin-top: 2rem;
+        }
+
     }
 
     .heroSectionContentBox {
