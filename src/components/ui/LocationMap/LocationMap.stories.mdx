@@ -1,0 +1,34 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {LocationMap} from "./LocationMap";
+
+<Meta title="ui/LocationMap" component={LocationMap}/>
+
+export const Template = (args) => <LocationMap {...args} />
+
+Location map component for the event details page.
+For some reason the marker icon doesn't work in the Storybook preview.
+
+<Canvas style={{background: "silver"}}>
+    <Story
+        name="With address"
+        args={{
+            latitude: 51.08550941185408,
+            longitude: 17.01043960812176,
+            address: 'Racławicka 2/4, 53-146 Wrocław'
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas style={{background: "silver"}}>
+    <Story
+        name="Without address"
+        args={{
+            latitude: 51.107835874093816,
+            longitude: 17.03858762148716,
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
