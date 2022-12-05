@@ -1,5 +1,5 @@
 import styles from '../input/input.module.scss'
-// import React, {FC} from "react"
+import React from "react"
 import cs from "classnames"
 
 interface InputProps {
