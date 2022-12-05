@@ -19,6 +19,7 @@ const StarRating: React.FC<starRatingProps> = ({
         const fill = index <= value ? "#FFD700" : "transparent";
         return (
           <StarIcon
+            key={index}
             className={styles.starIcon}
             fill={fill}
             onClick={() => setValue(index)}
