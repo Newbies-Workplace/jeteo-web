@@ -1,0 +1,22 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import EventLink from './EventLink';
+import Github from "../../../assets/icons/github.svg"
+
+<Meta title="ui/EventLink" component={EventLink}/>
+
+export const Template = (args) => <SocialLink {...args} />
+
+Event link component for the event details
+
+<Canvas>
+    <Story
+        name="Github"
+        args={{
+            name: "Github",
+            icon: <Github width={20} height={20}/>,
+            url: ''
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
