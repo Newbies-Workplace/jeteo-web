@@ -8,14 +8,17 @@ interface EventTagsProps {
 const EventTags: React.FC<EventTagsProps> = ({
   tags
 }) => {
+  console.log(tags)
   const tag = tags.map(el => 
-    <div>{el}</div>  
+    <div>{el}</div>
   )
+  console.log(tag)
   return (
-    
+
     <div className={styles.tagsWrapper}>
       {tag}
     </div>
+
 )};
 export default EventTags;
 

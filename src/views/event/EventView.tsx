@@ -33,8 +33,13 @@ export const EventView: React.FC = () => {
         </>
 
     const { event } = data;
-    console.log(event.tags[0])
+    console.log(event.tags)
 
+    const tags = event.tags.map(el =>( 
+            el.name
+    ))
+
+    console.log(tags)
     return (
         <div className={styles.main}>
             <div className={styles.header}>
@@ -50,7 +55,7 @@ export const EventView: React.FC = () => {
 
                     <EventDescriptionSection
                         description={event.description || ""}/>
-            <EventTags tags={ event.tags} />
+            <EventTags tags={tags} />
                 </CentredContainer>
             </div>
         </div>
