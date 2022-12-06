@@ -9,8 +9,10 @@ export const Template = (args) => <SocialLinks {...args} />
     <Story
         name="Two links"
         args={{
-            githubLink: "https://github.com/Newbies-Workplace/jeteo-web",
-            twitterLink: "https://twitter.com/"
+            links: {
+                githubLink: "https://github.com/Newbies-Workplace/jeteo-web",
+                twitterLink: "https://twitter.com/"
+            }
         }}
     >
         {Template.bind({})}
@@ -21,10 +23,12 @@ export const Template = (args) => <SocialLinks {...args} />
     <Story
         name="All links"
         args={{
-            githubLink: "https://github.com/Newbies-Workplace/jeteo-web",
-            twitterLink: "https://twitter.com/",
-            emailLink: "test@mail.com",
-            linkedInLink: "https://www.linkedin.com/"
+            links: {
+                githubLink: "https://github.com/Newbies-Workplace/jeteo-web",
+                twitterLink: "https://twitter.com/",
+                emailLink: "test@mail.com",
+                linkedInLink: "https://www.linkedin.com/"
+            }
         }}
     >
         {Template.bind({})}
