@@ -8,6 +8,7 @@ import {useEventQuery} from "../../api/graphql";
 import { CentredContainer } from "../../components/primitives/CenteredContainers";
 
 import styles from './EventView.module.scss';
+import EventTags from '../../components/ui/EventTags/EventTags';
 
 export const EventView: React.FC = () => {
     const { name } = useParams<{name: string}>();
@@ -32,6 +33,7 @@ export const EventView: React.FC = () => {
         </>
 
     const { event } = data;
+    console.log(event.tags[0])
 
     return (
         <div className={styles.main}>
@@ -48,7 +50,7 @@ export const EventView: React.FC = () => {
 
                     <EventDescriptionSection
                         description={event.description || ""}/>
-
+            <EventTags tags={ event.tags} />
                 </CentredContainer>
             </div>
         </div>

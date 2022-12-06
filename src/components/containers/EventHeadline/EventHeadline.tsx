@@ -22,12 +22,14 @@ export const EventHeadline: React.FC<EventDetailsHeadlineProps> = ({ title, subt
 
     return (
         <div style={{background: `${color}`}} className={styles.headline}>
-            <div style={cardStyle} className={styles.content}>
-                <Link className={styles.backArrow} to={"/"}><BackArrowSvg/></Link>
+            <div style={cardStyle} className={styles.contentWrapper}>
+                <div className={styles.content}>
+                    <Link className={styles.backArrow} to={"/"}><BackArrowSvg/></Link>
 
-                <div className={styles.text}>
-                    <h1 className={styles.title}>{title}</h1>
-                    <h2 className={styles.subtitle}>{subtitle}</h2>
+                    <div className={styles.text}>
+                        <h1 className={styles.title}>{title}</h1>
+                        <h2 className={styles.subtitle}>{subtitle}</h2>
+                    </div>
                 </div>
             </div>
         </div>
