@@ -49,10 +49,10 @@ export const EventView: React.FC = () => {
             name: item.author.nickname, 
             avatar: "ok",
             contact: {
-                ghLink: item.author.contact.github,
-                twLink: item.author.contact.twitter,
-                mailLink: item.author.contact.mail,
-                liLink: item.author.contact.linkedin
+                githubLink: item.author.contact.github,
+                twitterLink: item.author.contact.twitter,
+                emailLink: item.author.contact.mail,
+                linkedInLink: item.author.contact.linkedin
         }}} 
         status={{color: "black" }} /> 
     ))
