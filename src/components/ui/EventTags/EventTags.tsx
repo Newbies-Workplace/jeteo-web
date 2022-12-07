@@ -8,11 +8,9 @@ interface EventTagsProps {
 const EventTags: React.FC<EventTagsProps> = ({
   tags
 }) => {
-  console.log(tags)
   const tag = tags.map(el => 
-    <span>{el}</span>
+    <span className={styles.tag} key={el}>{el}</span>
   )
-  console.log(tag)
   return (
 
     <div className={styles.tagsWrapper}>

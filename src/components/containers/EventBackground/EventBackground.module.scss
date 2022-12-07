@@ -17,28 +17,3 @@
 
     border-radius: var(--border-radius);
 }
-
-.content {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-
-    .backArrow {
-        padding-right: 16px;
-    }
-
-    .text {
-        color: #fff;
-
-        .title {
-            margin: 4px;
-            font-size: 32px;
-            font-family: var(--header-font);
-        }
-
-        .subtitle {
-            margin: 0 4px 4px 4px;
-            font-weight: normal;
-        }
-    }
-}

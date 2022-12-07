@@ -1,15 +1,16 @@
 import {Canvas, Meta, Story} from '@storybook/addon-docs';
-import {EventHeadline} from "./EventHeadline"; import {BrowserRouter, MemoryRouter} from "react-router-dom";
+import {EventBackground} from "./EventBackground"; 
+import {BrowserRouter, MemoryRouter} from "react-router-dom";
 
 <Meta
-    title="ui/EventHeadline"
-    component={EventHeadline}/>
+    title="ui/EventBackground"
+    component={EventBackground}/>
 
-export const Template = (args) => <EventHeadline {...args} />;
+export const Template = (args) => <EventBackground {...args} />;
 
 <div style={{position: 'absolute', width: `100%`, left: `0px`}}>
     <MemoryRouter>
-        <EventHeadline title="Event headline" subtitle="more based than you think" color="#6B00B9"/>
+        <EventBackground title="Event headline" subtitle="more based than you think" color="#6B00B9"/>
     </MemoryRouter>
 </div>
 <img alt="chad" src="https://i.imgur.com/34NeeMh.jpeg" style={{height: '100px', margin: '16px'}}/>
