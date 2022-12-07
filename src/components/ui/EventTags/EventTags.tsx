@@ -10,7 +10,7 @@ const EventTags: React.FC<EventTagsProps> = ({
 }) => {
   console.log(tags)
   const tag = tags.map(el => 
-    <div>{el}</div>
+    <span>{el}</span>
   )
   console.log(tag)
   return (
