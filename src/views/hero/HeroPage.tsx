@@ -90,7 +90,7 @@ export const HeroPage: React.FC = () => {
 
       </section>
 
-      <section className={styles.heroSection}>
+      {/* <section className={styles.heroSection}>
 
         <div className={styles.heroSectionContentContainer}>
           <div className={styles.heroSectionContent}>
@@ -105,7 +105,7 @@ export const HeroPage: React.FC = () => {
           </div>
         </div>
 
-      </section>
+      </section> */}
 
 
     </div>

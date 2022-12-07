@@ -80,7 +80,6 @@
     &:nth-of-type(2) {
         background-image: url(../../assets/images/hero-bottom-section-bg.svg);
         background-repeat: no-repeat;
-        background-size: cover;
         background-position: fixed;
         min-height: 740px;
         color: #fff;
@@ -105,7 +104,7 @@
 }
 
 .heroSectionContentContainer {
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -172,9 +171,21 @@
 
 @media (max-width: 1260px) {
 
+    .logoContainer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
     .frontPageInfo {
         flex-direction: column;
+        margin-bottom: 100px;
     }
+
+    .callToAction {
+        margin-top: 50px;
+    }
+
 
     .heroSectionContent {
         grid-template-columns: 1fr;
@@ -197,7 +208,23 @@
 @media (max-width: 830px) {
 
     .heroSectionContentContainer {
-        width: 90%;
+        width: 100%;
+    }
+    
+}
+
+@media (max-width: 638px) {
+
+    .moonSeparator {
+        transform: scale(1.6);
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .moonSeparator {
+        transform: scale(2);
     }
 
 }
