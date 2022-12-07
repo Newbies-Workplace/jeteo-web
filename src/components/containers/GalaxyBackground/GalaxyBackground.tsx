@@ -9,7 +9,6 @@ import Ufo3 from "../../../assets/images/ufo-3.svg"
 import Rocket from "../../../assets/images/rocket.svg" // todo rocket svg
 import PlanetYellow from "../../../assets/images/planet-yellow.svg"
 import SpaceElectricVehicle from "../../../assets/images/chair.svg"
-import { BooleanValueNode } from "graphql";
 
 interface GalaxyBackgroundProps {
     hideStars?: boolean;
