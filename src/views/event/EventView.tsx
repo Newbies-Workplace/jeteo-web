@@ -45,9 +45,8 @@ export const EventView: React.FC = () => {
     console.log(lectures);
     
     const lecturesList = lectures.map(item => (
-        <Lecture title={item.title} description={item.description} speaker={{
+        <Lecture key={item.id} title={item.title} description={item.description} speaker={{
             name: item.author.nickname, 
-            avatar: "ok",
             contact: {
                 githubLink: item.author.contact.github,
                 twitterLink: item.author.contact.twitter,
