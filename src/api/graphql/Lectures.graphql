@@ -36,5 +36,11 @@ fragment CoreLectureResponse on LectureResponse {
     }
     author {
         nickname
+        contact {
+            github
+            linkedin
+            mail
+            twitter
+        }
     }
 }

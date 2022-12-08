@@ -8,6 +8,9 @@ query Event($id: String!) {
     event(id: $id) {
         ...CoreEventResponse
     }
+    lectures(filter: {eventId: $id}) {
+        ...CoreLectureResponse
+    }
 }
 
 mutation DeleteEvent($id: String!) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Navigate } from "react-router-dom";
-import { EventHeadline } from "../../components/containers/EventHeadline/EventHeadline";
+import { EventBackground } from "../../components/containers/EventBackground/EventBackground";
 import { NavBar } from "../../components/ui/NavBar/NavBar";
 import { getIdFromVanityUrl } from "../../common/utils/vanityUrlUtils";
 import {EventDescriptionSection} from "../../components/containers/EventDescriptionSection/EventDescriptionSection";
@@ -8,6 +8,10 @@ import {useEventQuery} from "../../api/graphql";
 import { CentredContainer } from "../../components/primitives/CenteredContainers";
 
 import styles from './EventView.module.scss';
+import EventTags from '../../components/ui/EventTags/EventTags';
+import { EventHeadline } from '../../components/ui/EventHeadline/EventHeadline';
+import dayjs from 'dayjs';
+import Lecture from '../../components/ui/Lecture/Lecture';
 
 export const EventView: React.FC = () => {
     const { name } = useParams<{name: string}>();
@@ -31,24 +35,53 @@ export const EventView: React.FC = () => {
             <i>loading</i>
         </>
 
-    const { event } = data;
+    const { event, lectures } = data;
+
+    const tags = event.tags.map(el =>( 
+            el.name
+    ))
+
+
+    console.log(lectures);
+    
+    const lecturesList = lectures.map(item => (
+        <Lecture key={item.id} title={item.title} description={item.description} speaker={{
+            name: item.author.nickname, 
+            contact: {
+                githubLink: item.author.contact.github,
+                twitterLink: item.author.contact.twitter,
+                emailLink: item.author.contact.mail,
+                linkedInLink: item.author.contact.linkedin
+        }}} 
+        status={{color: "black" }} /> 
+    ))
+
+
+    const startTime = dayjs(event.timeFrame.startDate).format('HH:mm')
 
     return (
         <div className={styles.main}>
             <div className={styles.header}>
                 <NavBar/>
             </div>
-            <EventHeadline
-                title={event.title}
-                subtitle={event.subtitle || ""}
-                image={event.theme.image}
-                color={event.theme.primaryColor} />
+                <EventBackground
+                    image={event.theme.image}
+                    color={event.theme.primaryColor} />
             <div className={styles.content}>
-                <CentredContainer>
+
+                <CentredContainer className={styles.contentCentred}>
+                    <EventTags tags={tags} />
+                    <EventHeadline title={event.title} subtitle={event.subtitle || ""}/>
 
                     <EventDescriptionSection
                         description={event.description || ""}/>
 
+                    <p className={styles.agenda}>Agenda</p>
+                    
+                    <p className={styles.agendaTime}>{startTime}</p>
+                    {lecturesList}
+
+                    
                 </CentredContainer>
             </div>
         </div>

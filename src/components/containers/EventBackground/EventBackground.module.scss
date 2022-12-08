@@ -1,0 +1,19 @@
+.headline {
+    border-radius: var(--border-radius);
+}
+
+.contentWrapper {
+    max-width: var(--app-prefer-width);
+    min-height: 350px;
+    max-height: 400px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: flex-end;
+
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, cover;
+    background-position: center, center;
+
+    border-radius: var(--border-radius);
+}

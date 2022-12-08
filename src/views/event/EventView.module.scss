@@ -15,3 +15,32 @@
 .content {
     padding: 16px
 }
+
+
+.contentCentred {
+    margin-top: -170px;
+}
+
+.agenda {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: var(--header-font);
+}
+.agendaTime {
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    font-family: var(--font);
+    position: relative;
+}
+
+.agendaTime::before {
+    content: '|';
+    position: absolute;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    bottom: -18px;
+    left: 50%;
+}

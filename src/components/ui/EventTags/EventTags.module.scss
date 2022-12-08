@@ -1,0 +1,19 @@
+.tagsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+
+.tag {
+    background-color: transparent;
+    border-radius: 16px;
+    padding: 4px 6px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 18px;
+    font-family: var(--font);
+}

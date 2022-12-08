@@ -1,7 +1,6 @@
 import React from "react";
 import cs from "classnames";
 import styles from "./SocialLinks.module.scss"
-
 import Mail from "../../../assets/icons/mail.svg";
 import Github from "../../../assets/icons/github.svg";
 import Twitter from "../../../assets/icons/twitter.svg";
@@ -15,7 +14,9 @@ interface SocialLinksProps {
         emailLink?: string;
         linkedInLink?: string;
     }
-} 
+}
+
+
 
 export const SocialLinks: React.FC<SocialLinksProps> = ({className, links}) => {
         return (
