@@ -13,7 +13,7 @@ import SpaceElectricVehicle from "../../../assets/images/chair.svg"
 interface GalaxyBackgroundProps {
     hideStars?: boolean;
     hideComets?: boolean;
-    hideMainPlanet?: boolean;
+    hidePlanets?: boolean;
     hideUfoSwarm?: boolean;
     hideRocket?: boolean;
     hideVehicle?: boolean;
@@ -24,7 +24,7 @@ export const GalaxyBackground: React.FC<GalaxyBackgroundProps> = (
             children,
             hideStars,
             hideComets,
-            hideMainPlanet,
+            hidePlanets,
             hideUfoSwarm,
             hideRocket,
             hideVehicle
@@ -50,7 +50,7 @@ export const GalaxyBackground: React.FC<GalaxyBackgroundProps> = (
                 </>
             }
 
-            {!hideMainPlanet &&
+            {!hidePlanets &&
                 <>
                     <PlanetViolet className={styles.planet}/>
                         <div className={styles.planet2Container}>
