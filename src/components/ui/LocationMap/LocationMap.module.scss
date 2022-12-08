@@ -1,0 +1,25 @@
+@import url('https://unpkg.com/leaflet@1.9.3/dist/leaflet.css');
+
+.mapCard {
+    box-sizing: border-box;
+    padding: 1rem;
+
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    max-width: 16.5625rem;
+    min-height: 17.5rem;
+
+    display: flex;
+    flex-direction: column;
+
+    .mapCardTitle {
+        font-weight: 800;
+        font-size: 1.125rem;
+        margin-bottom: .625rem;
+    }
+
+    .mapCardAddress {
+        margin-bottom: .375rem;
+    }
+
+}

@@ -1,0 +1,72 @@
+.lectureContainer {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+} 
+
+.userContainer {
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    width: 300px;
+    gap: 10px;
+}
+.userName {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 10px 0 10px 0;
+    font-family: var(--header-font);
+}
+.userIcon {
+    margin-top: -32px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userSocialMediaContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-bottom: 5px;
+    gap: 8px;
+}
+
+
+
+.prelegendEventInfo > h2 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: var(--header-font);
+    margin: 5px 0 6px 0;
+}
+
+.prelegendEventInfo > p {
+    font-size: 14px;
+    font-family: var(--font);
+    margin: 0;
+    width: 70%;
+    padding-bottom: 15px;
+}
+
+
+.boxBorder {
+    z-index: -2;
+    border-radius: 16px;
+    margin-top: -4px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 4px;
+    gap: 4px;
+}
