@@ -12,11 +12,11 @@ import Presentation from "../../assets/images/presentation-svg.svg"
 export const HeroPage: React.FC = () => {
   return (
     <div className={styles.mainContainer}>
-      <GalaxyBackground>
+      <GalaxyBackground hidePlanets>
         <div className={styles.frontPageInfo}>
           <div className={styles.logoContainer}>
 
-            <PlanetLogo/>
+            <PlanetLogo className={styles.logoComponent}/>
             
             <div>
               <span className={styles.logoTitle}>jeteo</span><br/>
@@ -75,13 +75,8 @@ export const HeroPage: React.FC = () => {
             <div className={styles.heroSectionContentBox}>
                 <h3>Dziel się wiedzą</h3>
                 <p>
-                Masz ego nie z tego świata i potrzebę wygadania się? To miejsce stworzone dla ciebie! Jedynie co potrzebujesz to bycie ekspertem i potężnego pytonga.
+                Masz ego nie z tego świata i potrzebę wygadania się? To miejsce stworzone dla ciebie! Jedynie co potrzebujesz to bycie ekspertem.
                 </p>
-                {/* <h3>Dziel się wiedzą</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                  Nesciunt fugiat, dolorum excepturi natus explicabo quidem ipsum omnis suscipit iste obcaecati.
-                </p> */}
             </div>
           </div>
         </div>

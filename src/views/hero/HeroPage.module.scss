@@ -180,6 +180,10 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+
+        .logoComponent {
+            display: none;
+        }
     }
 
     .frontPageInfo {
@@ -210,6 +214,11 @@
 
     .heroSectionContentBox {
         align-items: center;
+        padding-inline: 20px;
+    }
+
+    .featContentList {
+        width: 90%;
     }
 
 }
@@ -233,7 +242,7 @@
 @media (max-width: 450px) {
 
     .moonSeparator {
-        transform: scale(2);
+        transform: scale(1.9);
     }
 
 }
