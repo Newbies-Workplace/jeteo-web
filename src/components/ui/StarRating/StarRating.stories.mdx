@@ -10,7 +10,7 @@ StarRating component
 
 <Canvas style={{ background: "silver" }}>
   <Story
-    name="StarRating"
+    name="StarRating-interactive"
     args={{
       max: 5,
       value: 0,
@@ -30,5 +30,20 @@ StarRating component
         />
       );
     }}
+  </Story>
+</Canvas>
+
+<Canvas style={{ background: "silver" }}>
+  <Story
+    name="StarRating-noneInteractive"
+    args={{
+      max: 5,
+      value: 0,
+      title: "Example title text",
+      width: "30px",
+      height: "30px",
+    }}
+  >
+    {Template.bind({})}
   </Story>
 </Canvas>

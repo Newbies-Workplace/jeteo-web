@@ -35,7 +35,7 @@ export const AppRouter: React.FC = () => {
 
                 <Route
                     element={<HeroPage />}
-                    path="/heropage"
+                    path="/hero"
                 />
 
                 <Route
