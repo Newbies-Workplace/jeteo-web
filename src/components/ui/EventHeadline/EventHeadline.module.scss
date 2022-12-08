@@ -1,11 +1,26 @@
+.headline {
+    border-radius: var(--border-radius);
+}
+
 .content {
     box-sizing: border-box;
+
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+
+    max-width: var(--app-prefer-width);
+    min-height: 130px;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, cover;
+    background-position: center, center;
+
+    border-radius: var(--border-radius);
 
     .backArrow {
-        padding-right: 20px;
+        padding-right: 16px;
     }
 
     .text {
