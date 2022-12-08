@@ -1,3 +1,23 @@
+@mixin agendaTimeStick {
+    content: '|';
+    position: absolute;
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    color: black;
+    border-radius: 2px;
+    transform: translateY(-50%);
+    left: 50%;
+}
+
+@mixin agendaTime {
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    font-family: var(--font);
+    position: relative;
+}
+
 .main {
     background-color: #F3F3F3;
     min-height: 100vh;
@@ -18,7 +38,7 @@
 
 
 .contentCentred {
-    margin-top: -170px;
+    margin-top: -180px;
 }
 
 .agenda {
@@ -33,14 +53,32 @@
     font-family: var(--font);
     position: relative;
 }
+.agendaFirstTime {
+    @include agendaTime;
+}
+
+
+.agendaFirstTime::before {
+    @include agendaTimeStick;
+    bottom: -25px;
+    margin-top: 10px;
+}
 
 .agendaTime::before {
     content: '|';
     position: absolute;
     display: block;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 800;
     color: black;
-    bottom: -18px;
+    border-radius: 2px;
+    transform: translateY(-50%);
     left: 50%;
+    bottom: -25px;
+}
+
+
+
+.agendaTime:last-child::before {
+    content: '';
 }
