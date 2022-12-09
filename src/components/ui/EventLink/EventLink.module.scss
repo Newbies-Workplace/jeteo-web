@@ -1,6 +1,6 @@
 .eventLinkContainer {
     display: flex;
-    width: 210px;
+    max-width: 265px;
     height: 40px;
     background-color: #fff;
     align-items: center;
@@ -8,7 +8,7 @@
     cursor: pointer;
     border-radius: 16px;
     text-decoration: none;
-
+    margin-bottom: 20px;
 }
 
 .eventLinkName {

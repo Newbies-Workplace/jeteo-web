@@ -39,9 +39,21 @@
 
 .contentCentred {
     margin-top: -180px;
+    padding: 0 40px;
 }
 
+.eventInnerContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
 .agenda {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: var(--header-font);
+}
+
+.eventLinksText {
     font-size: 18px;
     font-weight: 700;
     font-family: var(--header-font);
@@ -52,33 +64,46 @@
     text-align: center;
     font-family: var(--font);
     position: relative;
-}
-.agendaFirstTime {
-    @include agendaTime;
+    margin: 35px 0;
 }
 
+// .agendaTime::before {
+//     content: '|';
+//     position: absolute;
+//     display: block;
+//     font-size: 16px;
+//     font-weight: 800;
+//     color: black;
+//     border-radius: 2px;
+//     transform: translateY(-50%);
+//     left: 50%;
+//     bottom: -30px;
+// }
 
-.agendaFirstTime::before {
-    @include agendaTimeStick;
-    bottom: -25px;
-    margin-top: 10px;
-}
+// .agendaTime::after {
+//     content: '|';
+//     position: absolute;
+//     display: block;
+//     font-size: 16px;
+//     font-weight: 800;
+//     color: black;
+//     border-radius: 2px;
+//     left: 50%;
+//     top: -20px;
+// }
 
-.agendaTime::before {
-    content: '|';
-    position: absolute;
-    display: block;
+// .agendaTime:last-child::after {
+//     display: none;
+// }
+
+.agendaTimeStick {
+    display: flex;
+    justify-content: center;
     font-size: 16px;
     font-weight: 800;
     color: black;
     border-radius: 2px;
     transform: translateY(-50%);
     left: 50%;
-    bottom: -25px;
-}
-
-
-
-.agendaTime:last-child::before {
-    content: '';
+    bottom: -30px;
 }

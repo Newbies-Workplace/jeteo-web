@@ -49,7 +49,9 @@ export const EventView: React.FC = () => {
     
     const lecturesList = lectures.map(item => (
         <>
+        <p className={styles.agendaTimeStick}>|</p>
         <p className={styles.agendaTime}>{dayjs(item.timeFrame.startDate).format('HH:mm')}</p>
+        <p className={styles.agendaTimeStick}>|</p>
         <Lecture key={item.id} title={item.title} description={item.description} speaker={{
             name: item.author.nickname, 
             contact: {
@@ -84,6 +86,8 @@ export const EventView: React.FC = () => {
                         <EventHeadline title={event.title} subtitle={event.subtitle || ""}/>
                     </div>
 
+                    <div className={styles.eventInnerContainer}>
+
                     <div>
                         <EventDescriptionSection
                             description={event.description || ""}/>
@@ -91,12 +95,14 @@ export const EventView: React.FC = () => {
                         {lecturesList}
                     </div>
 
-                    <section>
+                    <section className={styles.eventOrganizerSection}>
                         <EventOrganizer logo="" name="Team Jeteo" bio="Super ekstra mega omega giga okropny squad do pisania aplikacji webowych. Z brakiem doświadczenia, przepisujących projekt z php pod nową nazwą." links={{}}/>
-                        <p>Linki wydarzenia</p>
+                        <p className={styles.eventLinksText}>Linki wydarzenia</p>
                         <EventLink url='#' name='#'/>
                         <LocationMap latitude={51.085670625464104} longitude={17.010400182993322} address="RST Software Masters"/>
                     </section>
+
+                    </div>
                     
                 </CentredContainer>
                 
