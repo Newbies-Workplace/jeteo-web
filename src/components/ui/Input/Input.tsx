@@ -1,4 +1,4 @@
-import styles from '../input/input.module.scss'
+import styles from '../Input/Input.module.scss'
 import React from "react"
 import cs from "classnames"
 
@@ -8,31 +8,34 @@ interface InputProps {
         multiline?: boolean;
         value?: string;
         placeholder?: string;
+        required?: boolean;
         className?: string;
 }
 
-export const Input: React.FC<InputProps> = ({label, multiline = false, className, placeholder, value}) => {
+export const Input: React.FC<InputProps> = ({label, multiline = false, className, placeholder, required = false, value}) => {
     return (
         <div className={styles.inputWrapper}> 
             {
                 multiline
                 ? (
                     <>
-                    <label>{ label }</label>
+                    <label className={cs( required && styles.required, className)}>{ label }</label>
                         <textarea 
-                            className={cs(styles.input, styles.multiline, className)}
+                            className={cs(styles.multiline)}
                             placeholder={placeholder}
                             value={value}
+                            required={required}
                         />
                     </>
                 ): (
                     <>
-                    <label>{ label }</label>
-                    <input
-                        className={cs(styles.input, styles.oneline, className)}
-                        placeholder={placeholder}
-                        value={value}
-                    />
+                    <label className={cs(required && styles.required, className)} >{ label }</label>
+                        <input
+                            className={cs(styles.input, styles.oneline)}
+                            placeholder={placeholder}
+                            value={value}
+                            required={required}
+                        />
                     </>
                 )
 

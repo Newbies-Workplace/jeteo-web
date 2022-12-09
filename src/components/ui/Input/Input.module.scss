@@ -20,5 +20,14 @@
 
     resize: vertical;
     padding: 3px 9px;
+}
 
+.multiline {
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.required::after {
+    content: " * ";
 }
