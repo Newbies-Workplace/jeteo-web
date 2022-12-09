@@ -2,27 +2,21 @@ import React from "react";
 import styles from './HeroPage.module.scss'
 import cs from 'classnames'
 
-// Components import
-
 import Button from "../../components/ui/Button/Button";
 import GalaxyBackground from "../../components/containers/GalaxyBackground/GalaxyBackground";
-
-// SVG import
 
 import PlanetLogo from "../../assets/images/planet-logo.svg"
 import MoonSeparator from "../../assets/images/moon-decoration.svg"
 import Presentation from "../../assets/images/presentation-svg.svg"
-import SpaceWaveBackground from "../../assets/images/hero-bottom-section-bg.svg"
-
 
 export const HeroPage: React.FC = () => {
   return (
     <div className={styles.mainContainer}>
-      <GalaxyBackground>
+      <GalaxyBackground hidePlanets>
         <div className={styles.frontPageInfo}>
           <div className={styles.logoContainer}>
 
-            <PlanetLogo/>
+            <PlanetLogo className={styles.logoComponent}/>
             
             <div>
               <span className={styles.logoTitle}>jeteo</span><br/>
@@ -81,8 +75,7 @@ export const HeroPage: React.FC = () => {
             <div className={styles.heroSectionContentBox}>
                 <h3>Dziel się wiedzą</h3>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                  Nesciunt fugiat, dolorum excepturi natus explicabo quidem ipsum omnis suscipit iste obcaecati.
+                Masz ego nie z tego świata i potrzebę wygadania się? To miejsce stworzone dla ciebie! Jedynie co potrzebujesz to bycie ekspertem.
                 </p>
             </div>
           </div>
@@ -90,25 +83,6 @@ export const HeroPage: React.FC = () => {
 
       </section>
 
-      {/* <section className={styles.heroSection}>
-
-        <div className={styles.heroSectionContentContainer}>
-          <div className={styles.heroSectionContent}>
-            <div className={styles.heroSectionContentBox}>
-              <h3>Trzecia sekcja</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Consectetur voluptatibus recusandae culpa autem eligendi sed similique nemo, 
-                distinctio assumenda ipsa excepturi voluptas veniam nesciunt quidem consequatur totam minus repudiandae! Iure?
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </section> */}
-
-
     </div>
-    
   );
 };

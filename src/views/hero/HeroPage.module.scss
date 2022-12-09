@@ -78,10 +78,15 @@
     justify-content: center;
 
     &:nth-of-type(2) {
-        background-image: url(../../assets/images/hero-bottom-section-bg.svg);
+        background-image:
+            url(../../assets/images/hero-bottom-section-illustration.svg),
+                url(../../assets/images/hero-bottom-section-bg.png);
         background-repeat: no-repeat;
-        background-position: fixed;
+        background-position: right 20vw top 220px, center center; 
+        background-size: 550px, cover;
         min-height: 740px;
+        // Bigger padding is required so that waves are fully visible
+        padding-top: 207px;
         color: #fff;
     }
 }
@@ -157,7 +162,7 @@
     }
 
     p {
-        max-width: 50%;
+        max-width: 65%;
         font-weight: 500;
         font-size: 1.125rem;
     }
@@ -175,6 +180,10 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+
+        .logoComponent {
+            display: none;
+        }
     }
 
     .frontPageInfo {
@@ -186,6 +195,10 @@
         margin-top: 50px;
     }
 
+    .heroSection:nth-of-type(2) {
+        // '0' hides the planet illustration
+        background-size: 0, cover;
+    }  
 
     .heroSectionContent {
         grid-template-columns: 1fr;
@@ -201,6 +214,11 @@
 
     .heroSectionContentBox {
         align-items: center;
+        padding-inline: 20px;
+    }
+
+    .featContentList {
+        width: 90%;
     }
 
 }
@@ -224,7 +242,7 @@
 @media (max-width: 450px) {
 
     .moonSeparator {
-        transform: scale(2);
+        transform: scale(1.9);
     }
 
 }
