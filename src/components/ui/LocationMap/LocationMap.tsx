@@ -20,11 +20,6 @@ export const LocationMap: React.FC<LocationMapProps> = ({latitude, longitude, ad
 
     const [isBigMapToggled, toggleBigMap] = useState<boolean>(false)
 
-    /*
-        "mapContainerOverlay" classes control toggling with double click
-        "mapBigDisplayOverlay" controls closing the map by clicking outside of it
-    */
-
     return (
         <div className={styles.mapCard}>
             <span className={styles.mapCardTitle}>Lokacja</span>
