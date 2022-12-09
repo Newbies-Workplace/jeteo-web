@@ -6,20 +6,20 @@
 
     background-color: #fff;
     border-radius: var(--border-radius);
-    max-width: 16.5625rem;
-    min-height: 17.5rem;
+    width: 265px;
+    min-height: 280px;
 
     display: flex;
     flex-direction: column;
 
     .mapCardTitle {
         font-weight: 800;
-        font-size: 1.125rem;
-        margin-bottom: .625rem;
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
     .mapCardAddress {
-        margin-bottom: .375rem;
+        margin-bottom: 6px;
     }
 
 }
