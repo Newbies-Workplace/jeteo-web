@@ -49,6 +49,7 @@ export const EventView: React.FC = () => {
     
     const lecturesList = lectures.map(item => (
         <>
+        <p className={styles.agendaTime}>{dayjs(item.timeFrame.startDate).format('HH:mm')}</p>
         <Lecture key={item.id} title={item.title} description={item.description} speaker={{
             name: item.author.nickname, 
             contact: {
@@ -58,7 +59,6 @@ export const EventView: React.FC = () => {
                 linkedInLink: item.author.contact.linkedin
         }}} 
         status={{color: "black" , content: <button>Oceń</button>}} /> 
-        <p className={styles.agendaTime}>{dayjs(item.timeFrame.finishDate).format('HH:mm')}</p>
         </>
     ))
 
@@ -66,7 +66,6 @@ export const EventView: React.FC = () => {
         `${dayjs(element.timeFrame.startDate).format('HH:mm')}, ${dayjs(element.timeFrame.finishDate).format('HH:mm')}`
     ))
 
-    const startTime = dayjs(event.timeFrame.startDate).format('HH:mm')
     console.log(everyHours)
 
     return (
@@ -89,12 +88,11 @@ export const EventView: React.FC = () => {
                         <EventDescriptionSection
                             description={event.description || ""}/>
                         <p className={styles.agenda}>Agenda</p>
-                        <p className={styles.agendaFirstTime}>{startTime}</p>
                         {lecturesList}
                     </div>
 
                     <section>
-                        <EventOrganizer logo="s" name="Team Jeteo" bio="Super ekstra mega omega giga okropny squad do pisania aplikacji webowych. Z brakiem doświadczenia, przepisujących projekt z php pod nową nazwą." links={{}}/>
+                        <EventOrganizer logo="" name="Team Jeteo" bio="Super ekstra mega omega giga okropny squad do pisania aplikacji webowych. Z brakiem doświadczenia, przepisujących projekt z php pod nową nazwą." links={{}}/>
                         <p>Linki wydarzenia</p>
                         <EventLink url='#' name='#'/>
                         <LocationMap latitude={51.085670625464104} longitude={17.010400182993322} address="RST Software Masters"/>
