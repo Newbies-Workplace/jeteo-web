@@ -11,6 +11,9 @@ For some reason the marker icon doesn't work in the Storybook preview.
 <Canvas style={{background: "silver"}}>
     <Story
         name="With address"
+        parameters={{
+            layout: 'centered',
+        }}
         args={{
             latitude: 51.08550941185408,
             longitude: 17.01043960812176,
@@ -24,6 +27,9 @@ For some reason the marker icon doesn't work in the Storybook preview.
 <Canvas style={{background: "silver"}}>
     <Story
         name="Without address"
+        parameters={{
+            layout: 'centered',
+        }}
         args={{
             latitude: 51.107835874093816,
             longitude: 17.03858762148716,
