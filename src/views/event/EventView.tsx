@@ -12,6 +12,9 @@ import EventTags from '../../components/ui/EventTags/EventTags';
 import { EventHeadline } from '../../components/ui/EventHeadline/EventHeadline';
 import dayjs from 'dayjs';
 import Lecture from '../../components/ui/Lecture/Lecture';
+import { EventOrganizer } from '../../components/ui/EventOrganizer/EventOrganizer';
+import EventLink from '../../components/ui/EventLink/EventLink';
+import { LocationMap } from '../../components/ui/LocationMap/LocationMap';
 
 export const EventView: React.FC = () => {
     const { name } = useParams<{name: string}>();
@@ -44,20 +47,28 @@ export const EventView: React.FC = () => {
 
     console.log(lectures);
     
-    const lecturesList = lectures.map(item => (
-        <Lecture key={item.id} title={item.title} description={item.description} speaker={{
-            name: item.author.nickname, 
-            contact: {
-                githubLink: item.author.contact.github,
-                twitterLink: item.author.contact.twitter,
-                emailLink: item.author.contact.mail,
-                linkedInLink: item.author.contact.linkedin
-        }}} 
-        status={{color: "black" }} /> 
+    const lecturesList = lectures.map((item, index) => (
+        <div key={item.id}>
+            {index !== 0 && <p className={styles.agendaTimeStickTop}>|</p>}
+            <p className={styles.agendaTime}>{dayjs(item.timeFrame.startDate).format('HH:mm')}</p>
+            <p className={styles.agendaTimeStickBottom}>|</p>
+            <Lecture title={item.title} description={item.description} speaker={{
+                name: item.author.nickname, 
+                contact: {
+                    githubLink: item.author.contact.github,
+                    twitterLink: item.author.contact.twitter,
+                    emailLink: item.author.contact.mail,
+                    linkedInLink: item.author.contact.linkedin
+            }}} 
+            status={{color: "black" , content: <button>Oceń</button>}} /> 
+        </div>
     ))
 
+    const everyHours = lectures.map(element => (
+        `${dayjs(element.timeFrame.startDate).format('HH:mm')}, ${dayjs(element.timeFrame.finishDate).format('HH:mm')}`
+    ))
 
-    const startTime = dayjs(event.timeFrame.startDate).format('HH:mm')
+    console.log(everyHours)
 
     return (
         <div className={styles.main}>
@@ -70,19 +81,32 @@ export const EventView: React.FC = () => {
             <div className={styles.content}>
 
                 <CentredContainer className={styles.contentCentred}>
-                    <EventTags tags={tags} />
-                    <EventHeadline title={event.title} subtitle={event.subtitle || ""}/>
+                    <div>
+                        <EventTags tags={tags} />
+                        <EventHeadline title={event.title} subtitle={event.subtitle || ""}/>
+                    </div>
 
-                    <EventDescriptionSection
-                        description={event.description || ""}/>
+                    <div className={styles.eventInnerContainer}>
 
-                    <p className={styles.agenda}>Agenda</p>
-                    
-                    <p className={styles.agendaTime}>{startTime}</p>
-                    {lecturesList}
+                    <div className={styles.eventDescriptionContainer}>
+                        <EventDescriptionSection
+                            description={event.description || ""}/>
+                        <p className={styles.agenda}>Agenda</p>
+                        {lecturesList}
+                    </div>
 
+                    <section className={styles.eventOrganizerSection}>
+                        <EventOrganizer logo="" name="Team Jeteo" bio="Super ekstra mega omega giga okropny squad do pisania aplikacji webowych. Z brakiem doświadczenia, przepisujących projekt z php pod nową nazwą." links={{}}/>
+                        <p className={styles.eventLinksText}>Linki wydarzenia</p>
+                        <EventLink url='#' name='#' />
+                        <LocationMap latitude={51.085670625464104} longitude={17.010400182993322} address="RST Software Masters"/>
+                    </section>
+
+                    </div>
                     
                 </CentredContainer>
+                
+                
             </div>
         </div>
     )

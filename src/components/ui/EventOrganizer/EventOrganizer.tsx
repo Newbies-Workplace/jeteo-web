@@ -3,7 +3,7 @@ import { SocialLinks } from "../SocialLinks/SocialLinks";
 import styles from "./EventOrganizer.module.scss"
 
 interface EventOrganizerProps {
-    logo: string;
+    logo?: string;
     name: string;
     bio: string;
     links: {
@@ -17,7 +17,7 @@ interface EventOrganizerProps {
 export const EventOrganizer: React.FC<EventOrganizerProps> = ({logo, name, bio, links}) => {
     return (
         <div className={styles.organizerCard}>
-            <img className={styles.organizerLogo} src={logo}/>
+            {logo && <img className={styles.organizerLogo} src={logo}/>}
             <span className={styles.organizerName}>{name}</span>
             <SocialLinks links={links} className={styles.organizerLinksWrapper}/>
             <p className={styles.organizerBio}>{bio}</p>
