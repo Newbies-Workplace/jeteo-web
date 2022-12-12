@@ -46,23 +46,39 @@
     height: 100%;
 }
 
+.mapBigDisplayWrapper {
+    position: fixed;
+    inset: 0;
+}
+
 .mapBigDisplay {
     width: 70%;
     height: 90%;
-
     margin: auto;
     z-index: 9999;
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    bottom: 0; 
-    right: 0;
+    position: fixed;
+    inset: 0;
 }
 
 .mapBigDisplayOverlay {
-    position: absolute;
+    position: fixed;
+    z-index: 9999;
     inset: 0;
-    width: 100vw;
-    height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 800px) {
+
+    .mapBigDisplay {
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .mapBigDisplay {
+        width: 90%;
+    }
+    
 }

@@ -20,36 +20,41 @@ export const LocationMap: React.FC<LocationMapProps> = ({latitude, longitude, ad
 
     const [isBigMapToggled, toggleBigMap] = useState<boolean>(false)
 
+    isBigMapToggled ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
+
     return (
-        <div className={styles.mapCard}>
-            <span className={styles.mapCardTitle}>Lokacja</span>
-            { address && <span className={styles.mapCardAddress}>{ address }</span>}
+        <>
+            <div className={styles.mapCard}>
+                <span className={styles.mapCardTitle}>Lokacja</span>
+                { address && <span className={styles.mapCardAddress}>{ address }</span>}
 
-            <MapContainer style={{width: "100%", height: "208px", borderRadius: "16px"}} center={{
-                lat: latitude,
-                lng: longitude
-            }} zoom={20} zoomControl={false} scrollWheelZoom>
+                <MapContainer style={{width: "100%", height: "208px", borderRadius: "16px"}} center={{
+                    lat: latitude,
+                    lng: longitude
+                }} zoom={20} zoomControl={false} scrollWheelZoom>
 
-                <div 
-                    className={styles.mapContainerOverlay}
-                    onDoubleClick={() => toggleBigMap(!isBigMapToggled)}>
-                </div>
+                    <div 
+                        className={styles.mapContainerOverlay}
+                        onDoubleClick={() => toggleBigMap(!isBigMapToggled)}>
+                    </div>
 
-                <button className={styles.zoomButton} onClick={() => toggleBigMap(!isBigMapToggled)}>
-                    <ZoomIcon width={16} height={16}/>
-                </button>
+                    <button className={styles.zoomButton} onClick={() => toggleBigMap(!isBigMapToggled)}>
+                        <ZoomIcon width={16} height={16}/>
+                    </button>
 
-                <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
 
-                <Marker position={[latitude, longitude]} icon={markerIcon}>
-                    <Popup>
-                        Lokalizacja prelekcji
-                    </Popup>
-                </Marker>
+                    <Marker position={[latitude, longitude]} icon={markerIcon}>
+                        <Popup>
+                            Lokalizacja prelekcji
+                        </Popup>
+                    </Marker>
 
-            </MapContainer>
+                </MapContainer>
+            </div>
+
 
             {isBigMapToggled &&
                 <>
@@ -89,6 +94,6 @@ export const LocationMap: React.FC<LocationMapProps> = ({latitude, longitude, ad
                     </div>
                 </>
             }
-        </div>
+        </>
     )
 }
