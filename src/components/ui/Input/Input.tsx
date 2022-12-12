@@ -29,7 +29,7 @@ export const Input: React.FC<InputProps> = ({label, multiline = false, className
                     </>
                 ): (
                     <>
-                    <label className={cs(required && styles.required, className)} >{ label }</label>
+                    <label className={cs( required && styles.required, className)} >{ label }</label>
                         <input
                             className={cs(styles.input, styles.oneline)}
                             placeholder={placeholder}
