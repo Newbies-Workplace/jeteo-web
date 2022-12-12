@@ -66,3 +66,19 @@
     inset: 0;
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+@media (max-width: 800px) {
+
+    .mapBigDisplay {
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .mapBigDisplay {
+        width: 90%;
+    }
+    
+}
