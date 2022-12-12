@@ -17,7 +17,7 @@ export const EventSkeleton: React.FC = () => {
             <div className={styles.eventHeadlineSkeleton}>
                 <div className={styles.tagsListSkeleton}>
                     {[...Array(5)].map(el => (
-                        <span></span>
+                        <span key={el}></span>
                     ))}
                 </div>
                 <div className={styles.eventHeadlineTitle}>
