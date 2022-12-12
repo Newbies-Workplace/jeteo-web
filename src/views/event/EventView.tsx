@@ -15,6 +15,7 @@ import Lecture from '../../components/ui/Lecture/Lecture';
 import { EventOrganizer } from '../../components/ui/EventOrganizer/EventOrganizer';
 import EventLink from '../../components/ui/EventLink/EventLink';
 import { LocationMap } from '../../components/ui/LocationMap/LocationMap';
+import { EventSkeleton } from '../../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
 
 export const EventView: React.FC = () => {
     const { name } = useParams<{name: string}>();
@@ -33,10 +34,12 @@ export const EventView: React.FC = () => {
         </>
 
     if (loading || !data?.event)
-        return <>
+        return (<>
             <NavBar/>
             <i>loading</i>
         </>
+    )
+
 
     const { event, lectures } = data;
 
@@ -105,7 +108,6 @@ export const EventView: React.FC = () => {
                     </div>
                     
                 </CentredContainer>
-                
                 
             </div>
         </div>

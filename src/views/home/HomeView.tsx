@@ -3,6 +3,7 @@ import { useAuth } from "../../contexts/auth/hooks/useAuth.hook";
 import { EventList } from "../../components/ui/EventList/EventList";
 import { NavBar } from "../../components/ui/NavBar/NavBar";
 import styles from "./HomeView.module.scss";
+import { EventSkeleton } from "../../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton";
 
 export const HomeView: React.FC = () => {
   const { user } = useAuth();
@@ -24,6 +25,7 @@ export const HomeView: React.FC = () => {
           <h2 className={styles.eventGroup}>Wydarzenia dla ciebie</h2>
           <EventList />
         </div>
+        <EventSkeleton/>
       </div>
     </>
   );
