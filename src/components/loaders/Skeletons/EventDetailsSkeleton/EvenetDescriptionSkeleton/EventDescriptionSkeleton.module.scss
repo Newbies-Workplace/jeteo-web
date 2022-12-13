@@ -1,8 +1,21 @@
 .eventDescriptionSkeleton {
-    width: 100%;
+    max-width: 100%;
     height: 325px;
     padding: 12px 14px;
     border-radius: var(--border-radius);
     background-color: #DFDFDF;
     box-sizing: border-box;
+
+}
+
+.eventDescriptionSkeleton > div {
+    margin-top: 30px;
+}
+
+.eventDescriptionTextSkeleton {
+    background-color: #ACACAC;
+    margin-bottom: 15px;
+    height: 19px;
+    display: block;
+    border-radius: 4px;
 }

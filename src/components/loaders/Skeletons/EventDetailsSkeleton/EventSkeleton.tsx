@@ -37,7 +37,7 @@ export const EventSkeleton: React.FC = () => {
                                     <p className={styles.agendaTimeStickTopSkeleton}></p>
                                 </div>
                                 <div className={styles.lectureSkeleton}>
-                                    <div className={styles.avatarPicSkeleton}></div>
+                                    <div className={styles.lectureAvatarSkeleton}></div>
                                 </div>
                                 <div className={styles.centerWrapperSkeleton}>
                                 {index !== 2 && <p className={styles.agendaTimeStickBottomSkeleton}></p>}
@@ -46,9 +46,14 @@ export const EventSkeleton: React.FC = () => {
                         ))}
                     </div>
 
-                    <section className={styles.eventOrganizerSectionSkeleton}>
-                        <EventOrganizerSkeleton/>
-                        <p className={styles.organizerLinkTextSkeleton}></p>
+                    <section>
+                        <div className={styles.eventOrganizerContainerSkeleton}>
+                            <div className={styles.eventOrganizerAvatarSkeleton}></div>
+                        </div>
+                        <div className={styles.eventLinksContainerSkeleton}>
+                            <p className={styles.organizerLinkTextSkeleton}></p>
+                            <p className={styles.organizerLinkTextSkeleton}></p>
+                        </div>
                         <div className={styles.organizerLinkSkeleton}></div>
                         <div className={styles.locationMapSkeleton}></div>
                     </section>

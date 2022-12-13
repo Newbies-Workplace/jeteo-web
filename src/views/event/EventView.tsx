@@ -36,7 +36,7 @@ export const EventView: React.FC = () => {
     if (loading || !data?.event)
         return (<>
             <NavBar/>
-            <i>loading</i>
+            <EventSkeleton/>
         </>
     )
 
@@ -48,7 +48,6 @@ export const EventView: React.FC = () => {
     ))
 
 
-    console.log(lectures);
     
     const lecturesList = lectures.map((item, index) => (
         <div key={item.id}>
@@ -67,11 +66,6 @@ export const EventView: React.FC = () => {
         </div>
     ))
 
-    const everyHours = lectures.map(element => (
-        `${dayjs(element.timeFrame.startDate).format('HH:mm')}, ${dayjs(element.timeFrame.finishDate).format('HH:mm')}`
-    ))
-
-    console.log(everyHours)
 
     return (
         <div className={styles.main}>
@@ -90,7 +84,6 @@ export const EventView: React.FC = () => {
                     </div>
 
                     <div className={styles.eventInnerContainer}>
-
                     <div className={styles.eventDescriptionContainer}>
                         <EventDescriptionSection
                             description={event.description || ""}/>

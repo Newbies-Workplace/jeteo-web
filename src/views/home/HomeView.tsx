@@ -25,7 +25,6 @@ export const HomeView: React.FC = () => {
           <h2 className={styles.eventGroup}>Wydarzenia dla ciebie</h2>
           <EventList />
         </div>
-        <EventSkeleton/>
       </div>
     </>
   );

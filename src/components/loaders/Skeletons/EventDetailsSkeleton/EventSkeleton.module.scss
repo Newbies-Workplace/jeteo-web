@@ -32,7 +32,6 @@
 
 .eventDescriptionContainer {
     width: 100%;
-    display: inline;
     box-sizing: border-box;
 }
 
@@ -75,18 +74,27 @@
     }
 }
 
-
-.eventOrganizerSectionSkeleton {
+.eventOrganizerContainerSkeleton {
     background-color: #DFDFDF;
     min-width: 255px;
     max-width: 275px;
-    max-height: 275px;
+    height: 275px;
     padding: 0px 20px 25px 20px;
     border-radius: var(--border-radius);
-    
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
-.avatarPicSkeleton {
+.eventOrganizerAvatarSkeleton {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ACACAC;
+    margin-top: -32px;
+}
+
+.lectureAvatarSkeleton {
     position: absolute;
     top: -32px;
     left: 20px;
@@ -95,6 +103,25 @@
     border-radius: 50%;
     background-color: #ACACAC;
 }
+
+.eventLinksContainerSkeleton {
+    margin: 50px 0 32px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.organizerLinkTextSkeleton {
+    width: 100%;
+    height: 50px;
+    background-color: #DFDFDF;
+    border-radius: 16px;
+    padding: 0;
+    margin: 0;
+}
+
 
 .centerWrapperSkeleton {
     width: 100%;
@@ -138,4 +165,12 @@
     height: 16px;
     background-color: black;
     border-radius: 3px;
+}
+
+
+.locationMapSkeleton {
+    width: 100%;
+    height: 280px;
+    background-color: #DFDFDF;
+    border-radius: var(--border-radius);
 }
