@@ -1,13 +1,13 @@
 import React from "react";
 import { CentredContainer } from "../../../primitives/CenteredContainers";
 import styles from "../EventDetailsSkeleton/EventSkeleton.module.scss";
-import {LectureListSkeleton} from './LectureListSkeleton/LectureListSkeleton'
 import {EventOrganizerSkeleton} from './EventOrganizerSkeleton/EventOrganizerSkeleton'
 import { EventDescriptionSkeleton } from "./EvenetDescriptionSkeleton/EventDescriptionSkeleton";
+import BackArrowSvg from "../../../../assets/icons/left-arrow-rounded.svg";
+
+
 
 export const EventSkeleton: React.FC = () => {
-
-
 
     return (
     <>
@@ -21,21 +21,32 @@ export const EventSkeleton: React.FC = () => {
                     ))}
                 </div>
                 <div className={styles.eventHeadlineTitle}>
-                    <h1></h1>
-                    <h2></h2>
+                    <BackArrowSvg className={styles.backArrowSkeleton}/>
                 </div>
             </div>
 
 
-        <div className={styles.eventInnerContainer}>
+        <div className={styles.eventInnerContainerSkeleton}>
 
                     <div className={styles.eventDescriptionContainer}>
                         <EventDescriptionSkeleton/>
-                        <p className={styles.agendaTextSkeleton}></p>
-                        <LectureListSkeleton/>
+                        {[...Array(3)].map((item, index) =>(
+                            <div key={index}>
+                                <div className={styles.centerWrapperSkeleton}>
+                                    <p className={styles.agendaTimeSkeleton}></p>
+                                    <p className={styles.agendaTimeStickTopSkeleton}></p>
+                                </div>
+                                <div className={styles.lectureSkeleton}>
+                                    <div className={styles.avatarPicSkeleton}></div>
+                                </div>
+                                <div className={styles.centerWrapperSkeleton}>
+                                {index !== 2 && <p className={styles.agendaTimeStickBottomSkeleton}></p>}
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
-                    <section className={styles.eventOrganizerSection}>
+                    <section className={styles.eventOrganizerSectionSkeleton}>
                         <EventOrganizerSkeleton/>
                         <p className={styles.organizerLinkTextSkeleton}></p>
                         <div className={styles.organizerLinkSkeleton}></div>

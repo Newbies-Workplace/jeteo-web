@@ -1,4 +1,5 @@
 .eventBackgroundSkeleton {
+    box-sizing: border-box;
     width: 100%;
     min-height: 350px;
     max-height: 400px;
@@ -21,6 +22,20 @@
     padding: 0 40px;
 }
 
+.eventInnerContainerSkeleton {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    box-sizing: border-box;
+}
+
+.eventDescriptionContainer {
+    width: 100%;
+    display: inline;
+    box-sizing: border-box;
+}
+
 .tagsListSkeleton {
     display: flex;
     flex-wrap: wrap;
@@ -29,7 +44,7 @@
     gap: 6px;
     min-height: 30px;
     span {
-        background-color: red;
+        background-color: rgba(255, 255, 255, 0.5);;
         width: 50px;
         height: 15px;
         border-radius: 16px;
@@ -39,4 +54,88 @@
         font-size: 18px;
         font-family: var(--font);
     }
+}
+
+
+
+
+.eventHeadlineTitle {
+    box-sizing: border-box;
+    width: 550px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    border-radius: 8px;
+    .backArrowSkeleton {
+        margin-left: -30px;
+        padding-right: 16px;
+
+    }
+}
+
+
+.eventOrganizerSectionSkeleton {
+    background-color: #DFDFDF;
+    min-width: 255px;
+    max-width: 275px;
+    max-height: 275px;
+    padding: 0px 20px 25px 20px;
+    border-radius: var(--border-radius);
+    
+}
+
+.avatarPicSkeleton {
+    position: absolute;
+    top: -32px;
+    left: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #ACACAC;
+}
+
+.centerWrapperSkeleton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lectureSkeleton{
+    position: relative;
+    width: 645px;
+    height: 90px;
+    background-color: #DFDFDF;
+    border-radius: var(--border-radius);
+}
+
+.agendaTimeSkeleton{
+    width: 120px;
+    height: 45px;
+    background-color: #DFDFDF;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+.agendaTimeSkeleton:first-child {
+    margin-top: 20px;
+}
+
+.agendaTimeStickTopSkeleton {
+    display: block;
+    width: 6px;
+    height: 16px;
+    background-color: black;
+    border-radius: 3px;
+}
+
+.agendaTimeStickBottomSkeleton {
+    display: block;
+    width: 6px;
+    height: 16px;
+    background-color: black;
+    border-radius: 3px;
 }
