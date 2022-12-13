@@ -6,7 +6,7 @@ import {LocationMap} from "./LocationMap";
 export const Template = (args) => <LocationMap {...args} />
 
 Location map component for the event details page.
-For some reason the marker icon doesn't work in the Storybook preview.
+Do not render it in a view should the coordinates be undefined.
 
 <Canvas style={{background: "silver"}}>
     <Story
@@ -15,8 +15,10 @@ For some reason the marker icon doesn't work in the Storybook preview.
             layout: 'centered',
         }}
         args={{
-            latitude: 51.08550941185408,
-            longitude: 17.01043960812176,
+            coordinates: {
+                lat: 51.08550941185408,
+                lng: 17.01043960812176,
+            },
             address: 'Racławicka 2/4, 53-146 Wrocław'
         }}
     >
@@ -31,8 +33,10 @@ For some reason the marker icon doesn't work in the Storybook preview.
             layout: 'centered',
         }}
         args={{
-            latitude: 51.107835874093816,
-            longitude: 17.03858762148716,
+            coordinates: {
+                lat: 51.08550941185408,
+                lng: 17.01043960812176,
+            },
         }}
     >
         {Template.bind({})}
@@ -46,8 +50,10 @@ For some reason the marker icon doesn't work in the Storybook preview.
             layout: 'centered',
         }}
         args={{
-            latitude: 51.107835874093816,
-            longitude: 17.03858762148716,
+            coordinates: {
+                lat: 51.08550941185408,
+                lng: 17.01043960812176,
+            },
             address: 'Dłuuuuuuuuuuuuuuuuuuuuuuga 2/4, 53-146 Wrocław'
         }}
     >
