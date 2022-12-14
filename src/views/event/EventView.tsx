@@ -55,7 +55,7 @@ export const EventView: React.FC = () => {
         const isAfter = dayjs().isAfter(dayjs(item.timeFrame.startDate))
         const isNow = dayjs().isAfter(dayjs(item.timeFrame.startDate))
         
-        const status = isAfter ? {color: "#4340BEE5", content: <button>Oceń</button> } : {color: "#BE4040", content: <p>działa</p>}
+        const status = {color: "#4340BEE5", content: <div className={styles.reatingBtn}>Oceń✨</div> }
 
 
         return (

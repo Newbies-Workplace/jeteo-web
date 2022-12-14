@@ -90,3 +90,16 @@
     color: black;
     margin: 10px 0 14px 0;
 }
+
+.reatingBtn {
+    color: white;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 0 0 16px 16px;
+}
