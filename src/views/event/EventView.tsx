@@ -36,9 +36,9 @@ export const EventView: React.FC = () => {
     if (loading || !data?.event)
         return (<>
             <NavBar/>
-            <EventSkeleton/>
+            <EventSkeleton />
         </>
-    )
+        )
 
 
     const { event, lectures } = data;
@@ -48,8 +48,17 @@ export const EventView: React.FC = () => {
     ))
 
 
-    
-    const lecturesList = lectures.map((item, index) => (
+
+    const lecturesList = lectures.map((item, index) => {
+
+        console.log(dayjs().add(1, "day"))
+        const isAfter = dayjs().isAfter(dayjs(item.timeFrame.startDate))
+        const isNow = dayjs().isAfter(dayjs(item.timeFrame.startDate))
+        
+        const status = isAfter ? {color: "#4340BEE5", content: <button>Oceń</button> } : {color: "#BE4040", content: <p>działa</p>}
+
+
+        return (
         <div key={item.id}>
             {index !== 0 && <p className={styles.agendaTimeStickTop}>|</p>}
             <p className={styles.agendaTime}>{dayjs(item.timeFrame.startDate).format('HH:mm')}</p>
@@ -62,9 +71,9 @@ export const EventView: React.FC = () => {
                     emailLink: item.author.contact.mail,
                     linkedInLink: item.author.contact.linkedin
             }}} 
-            status={{color: "black" , content: <button>Oceń</button>}} /> 
+            status={status} /> 
         </div>
-    ))
+    )})
 
 
     return (
