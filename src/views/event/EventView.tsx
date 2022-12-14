@@ -36,9 +36,9 @@ export const EventView: React.FC = () => {
     if (loading || !data?.event)
         return (<>
             <NavBar/>
-            <i>loading</i>
+            <EventSkeleton />
         </>
-    )
+        )
 
 
     const { event, lectures } = data;
@@ -48,9 +48,17 @@ export const EventView: React.FC = () => {
     ))
 
 
-    console.log(lectures);
-    
-    const lecturesList = lectures.map((item, index) => (
+
+    const lecturesList = lectures.map((item, index) => {
+
+        console.log(dayjs().add(1, "day"))
+        const isAfter = dayjs().isAfter(dayjs(item.timeFrame.startDate))
+        const isNow = dayjs().isAfter(dayjs(item.timeFrame.startDate))
+        
+        const status = {color: "#4340BEE5", content: <div className={styles.reatingBtn}>Oceń✨</div> }
+
+
+        return (
         <div key={item.id}>
             {index !== 0 && <p className={styles.agendaTimeStickTop}>|</p>}
             <p className={styles.agendaTime}>{dayjs(item.timeFrame.startDate).format('HH:mm')}</p>
@@ -63,15 +71,10 @@ export const EventView: React.FC = () => {
                     emailLink: item.author.contact.mail,
                     linkedInLink: item.author.contact.linkedin
             }}} 
-            status={{color: "black" , content: <button>Oceń</button>}} /> 
+            status={status} /> 
         </div>
-    ))
+    )})
 
-    const everyHours = lectures.map(element => (
-        `${dayjs(element.timeFrame.startDate).format('HH:mm')}, ${dayjs(element.timeFrame.finishDate).format('HH:mm')}`
-    ))
-
-    console.log(everyHours)
 
     return (
         <div className={styles.main}>
@@ -90,7 +93,6 @@ export const EventView: React.FC = () => {
                     </div>
 
                     <div className={styles.eventInnerContainer}>
-
                     <div className={styles.eventDescriptionContainer}>
                         <EventDescriptionSection
                             description={event.description || ""}/>

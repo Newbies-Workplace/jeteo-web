@@ -8,6 +8,9 @@ import { HomeView } from './home/HomeView';
 import { withSuspense } from "../components/utils/hoc/withSuspense";
 import { NotFound } from './404/NotFound';
 import { HeroPage } from './hero/HeroPage';
+import { EventSkeleton } from '../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
+import { NavBar } from '../components/ui/NavBar/NavBar';
+
 
 const StudioView = React.lazy(() => import('./studio/StudioView'));
 const AuthView = React.lazy(() => import('./auth/AuthView'));
@@ -26,7 +29,12 @@ export const AppRouter: React.FC = () => {
                     path="/auth/*" />
 
                 <Route
-                    element={withSuspense(EventView)}
+                    element={withSuspense(EventView,
+                    <>
+                        <NavBar />
+                        <EventSkeleton />
+                    </>
+                    )}
                     path="event/:name" />
 
                 <Route
