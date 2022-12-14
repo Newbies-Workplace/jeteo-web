@@ -104,7 +104,7 @@ export const EventView: React.FC = () => {
                         <EventOrganizer logo="" name="Team Jeteo" bio="Super ekstra mega omega giga okropny squad do pisania aplikacji webowych. Z brakiem doświadczenia, przepisujących projekt z php pod nową nazwą." links={{}}/>
                         <p className={styles.eventLinksText}>Linki wydarzenia</p>
                         <EventLink url='#' name='#' />
-                        <LocationMap latitude={51.085670625464104} longitude={17.010400182993322} address="RST Software Masters"/>
+                        <LocationMap address="RST Software Masters"/>
                     </section>
 
                     </div>
