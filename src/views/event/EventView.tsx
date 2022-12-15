@@ -42,6 +42,7 @@ export const EventView: React.FC = () => {
 
 
     const { event, lectures } = data;
+    const { github, twitter, linkedin, mail} = event.author.contact;
 
     const tags = event.tags.map(el =>( 
             el.name
@@ -54,8 +55,12 @@ export const EventView: React.FC = () => {
         console.log(dayjs().add(1, "day"))
         const isAfter = dayjs().isAfter(dayjs(item.timeFrame.startDate))
         const isNow = dayjs().isAfter(dayjs(item.timeFrame.startDate))
+
+        
         
         const status = {color: "#4340BEE5", content: <div className={styles.reatingBtn}>Oceń✨</div> }
+
+
 
 
         return (
@@ -65,6 +70,7 @@ export const EventView: React.FC = () => {
             <p className={styles.agendaTimeStickBottom}>|</p>
             <Lecture title={item.title} description={item.description} speaker={{
                 name: item.author.nickname, 
+                avatar: item.author.avatar,
                 contact: {
                     githubLink: item.author.contact.github,
                     twitterLink: item.author.contact.twitter,
@@ -101,14 +107,12 @@ export const EventView: React.FC = () => {
                     </div>
 
                     <section className={styles.eventOrganizerSection}>
-                        <EventOrganizer logo="" name="Team Jeteo" bio="Super ekstra mega omega giga okropny squad do pisania aplikacji webowych. Z brakiem doświadczenia, przepisujących projekt z php pod nową nazwą." links={{}}/>
+                        <EventOrganizer logo={event.author.avatar} name={event.author.nickname} bio={event.author.description} links={{githubLink: github, twitterLink: twitter, emailLink: mail, linkedInLink: linkedin}}/>
                         <p className={styles.eventLinksText}>Linki wydarzenia</p>
                         <EventLink url='#' name='#' />
-                        <LocationMap latitude={51.085670625464104} longitude={17.010400182993322} address="RST Software Masters"/>
+                        {event?.address && event.address?.coordinates && <LocationMap coordinates={event.address?.coordinates && {lat: event.address?.coordinates?.latitude, lng: event.address?.coordinates?.longitude}} address={event.address?.place}/>}
                     </section>
-
                     </div>
-                    
                 </CentredContainer>
                 
             </div>

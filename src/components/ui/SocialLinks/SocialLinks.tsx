@@ -18,7 +18,7 @@ interface SocialLinksProps {
 
 
 
-export const SocialLinks: React.FC<SocialLinksProps> = ({className, links}) => {
+export const SocialLinks: React.FC<SocialLinksProps> = ({className, links,}) => {
         return (
             <div className={cs(styles.socialLinksWrapper, className)}>
                 {links.githubLink && 
