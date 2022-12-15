@@ -42,8 +42,8 @@ export const EventRating: React.FC<RatingDialogProps> = ({isOpen, setIsOpen}) =>
                         <span className={styles.speechTitle}>Lorem ipsum dolor sit, amet consectetur adipisicing.</span>
 
                         <div className={styles.ratingDialogContent}>
-                            <StarRating max={5} value={value} setValue={setValue} title="Jak ci siadł temat?" width='48px' height='48px'/>
-                            <StarRating max={5} value={valueSecond} setValue={setValueSecond} title="Jak to zostało zaprezentowane?" width='48px' height='48px'/>
+                            <StarRating max={5} value={value} setValue={setValue} className={styles.starRatingLabel} title="Jak ci siadł temat?" width='48px' height='48px'/>
+                            <StarRating max={5} value={valueSecond} setValue={setValueSecond} className={styles.starRatingLabel} title="Jak to zostało zaprezentowane?" width='48px' height='48px'/>
                             <span className={styles.textAreaLabel}>Opinia dla prelegenta</span>
                             <textarea name="userOpinion" id="userOpinion" cols={30} rows={5} className={styles.opinionInput}/>
                         </div>
