@@ -19,8 +19,8 @@ export const EventOrganizer: React.FC<EventOrganizerProps> = ({logo, name, bio, 
         <div className={styles.organizerCard}>
             {logo && <img className={styles.organizerLogo} src={logo}/>}
             <span className={styles.organizerName}>{name}</span>
-            {links !== undefined || null ? <SocialLinks links={links} className={styles.organizerLinksWrapper}/> : null}
-            {bio !== undefined || null ? <p className={styles.organizerBio}>{bio}</p> : null}
+            {links !== undefined && links !== null ? <SocialLinks links={links} className={styles.organizerLinksWrapper}/> : null}
+            {bio !== undefined && links !== null ? <p className={styles.organizerBio}>{bio}</p> : null}
         </div>
     )
 }
