@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Navigate } from "react-router-dom";
 import { EventBackground } from "../../components/containers/EventBackground/EventBackground";
 import { NavBar } from "../../components/ui/NavBar/NavBar";
@@ -16,8 +16,12 @@ import { EventOrganizer } from '../../components/ui/EventOrganizer/EventOrganize
 import EventLink from '../../components/ui/EventLink/EventLink';
 import { LocationMap } from '../../components/ui/LocationMap/LocationMap';
 import { EventSkeleton } from '../../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
+import { EventRating } from '../../components/ui/EventRating/EventRating';
 
 export const EventView: React.FC = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
     const { name } = useParams<{name: string}>();
     if (!name)
         return <Navigate to="/"/>;
@@ -52,13 +56,12 @@ export const EventView: React.FC = () => {
 
     const lecturesList = lectures.map((item, index) => {
 
-        console.log(dayjs().add(1, "day"))
         const isAfter = dayjs().isAfter(dayjs(item.timeFrame.startDate))
         const isNow = dayjs().isAfter(dayjs(item.timeFrame.startDate))
 
         
         
-        const status = {color: "#4340BEE5", content: <div className={styles.reatingBtn}>Oceń✨</div> }
+        const status = {color: "#4340BEE5", content: <div className={styles.reatingBtn} onClick={()=> setIsOpen(true)}>Oceń✨</div> }
 
 
 
@@ -113,6 +116,7 @@ export const EventView: React.FC = () => {
                         {event?.address && event.address?.coordinates && <LocationMap coordinates={event.address?.coordinates && {lat: event.address?.coordinates?.latitude, lng: event.address?.coordinates?.longitude}} address={event.address?.place}/>}
                     </section>
                     </div>
+                    <EventRating isOpen={isOpen} setIsOpen={()=>setIsOpen(!isOpen)}/>
                 </CentredContainer>
                 
             </div>

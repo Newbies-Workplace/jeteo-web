@@ -27,9 +27,9 @@ export const EventRating: React.FC<RatingDialogProps> = ({isOpen, setIsOpen}) =>
     return (
         <>
             <Portal>
-                <div className={styles.ratingDialogWrapper } onClick={() => setIsOpen(false)}>
+                <div className={styles.ratingDialogWrapper } onClick={() => {setIsOpen(false); setValue(-1); setValueSecond(-1)}}>
                     <div className={styles.ratingDialog} onClick={(e) => e.stopPropagation()}>
-                        <button className={styles.closeButton} onClick={() => setIsOpen(false)}><CloseIcon/></button>
+                        <button className={styles.closeButton} onClick={() => {setIsOpen(false); setValue(-1); setValueSecond(-1)}}><CloseIcon/></button>
 
                         <div className={styles.authorData}>
                             <img className={styles.authorProfilePicture} src={ProfilePic} alt="" />

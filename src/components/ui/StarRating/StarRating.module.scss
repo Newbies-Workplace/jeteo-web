@@ -1,5 +1,5 @@
 .starIconContainer {
-    max-width: 350px;
+    width: 100%;
     display: flex;
     gap: 8px;
     flex-direction: column;
@@ -13,7 +13,6 @@
 
 .starRatingTitle {
     margin: 0 0 5px 0;
-    font-size: 20px;
     font-family: var(--header-font);
     font-weight: 600;
 }

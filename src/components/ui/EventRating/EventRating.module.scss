@@ -59,7 +59,7 @@
 }
 
 .starRatingLabel {
-    font-size: 30px;
+    font-size: 22px;
 }
 
 .ratingDialogContent {
@@ -73,15 +73,16 @@
 
 .textAreaLabel {
     display: block;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 600;
 }
 
 .opinionInput {
     font-family: inherit;
-    font-size: 18px;
+    font-size: 16px;
     min-width: 70%;
     max-width: 90%;
+    min-height: 140px;
     max-height: 300px;
     border: 0;
     background-color: #e3e3e3;
