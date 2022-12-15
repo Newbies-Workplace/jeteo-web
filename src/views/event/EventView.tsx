@@ -109,7 +109,7 @@ export const EventView: React.FC = () => {
                     <section className={styles.eventOrganizerSection}>
                         <EventOrganizer logo={event.author.avatar} name={event.author.nickname} bio={event.author.description} links={{githubLink: github, twitterLink: twitter, emailLink: mail, linkedInLink: linkedin}}/>
                         <p className={styles.eventLinksText}>Linki wydarzenia</p>
-                        <EventLink url='#' name='#' />
+                        {/* <EventLink /> miejsce na Linki do wydarzenia*/}
                         {event?.address && event.address?.coordinates && <LocationMap coordinates={event.address?.coordinates && {lat: event.address?.coordinates?.latitude, lng: event.address?.coordinates?.longitude}} address={event.address?.place}/>}
                     </section>
                     </div>

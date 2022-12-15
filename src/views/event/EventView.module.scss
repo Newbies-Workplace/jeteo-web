@@ -1,23 +1,3 @@
-@mixin agendaTimeStick {
-    content: '|';
-    position: absolute;
-    display: block;
-    font-size: 16px;
-    font-weight: 800;
-    color: black;
-    border-radius: 2px;
-    transform: translateY(-50%);
-    left: 50%;
-}
-
-@mixin agendaTime {
-    font-weight: 400;
-    font-size: 24px;
-    text-align: center;
-    font-family: var(--font);
-    position: relative;
-}
-
 .main {
     background-color: #F3F3F3;
     min-height: 100vh;
@@ -46,10 +26,16 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    box-sizing: border-box;
 }
 
 .eventDescriptionContainer {
     width: 100%;
+}
+
+
+.eventOrganizerSection {
+    min-width: 275px;
 }
 .agenda {
     font-size: 18px;
