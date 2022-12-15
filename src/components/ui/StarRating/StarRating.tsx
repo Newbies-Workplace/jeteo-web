@@ -40,7 +40,7 @@ const StarRating: React.FC<starRatingProps> = ({
             className={styles.starIcon}
             fill={fill}
             width={width}
-            height={height}
+            height={height} 
             onClick={() => setValue(index)}
             onMouseEnter={() => setHighlited(index)}
           />
