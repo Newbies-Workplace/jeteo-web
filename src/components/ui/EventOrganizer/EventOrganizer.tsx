@@ -5,7 +5,7 @@ import styles from "./EventOrganizer.module.scss"
 interface EventOrganizerProps {
     logo?: string;
     name: string;
-    bio: string;
+    bio?: string;
     links: {
         githubLink?: string;
         twitterLink?: string;
@@ -19,8 +19,8 @@ export const EventOrganizer: React.FC<EventOrganizerProps> = ({logo, name, bio, 
         <div className={styles.organizerCard}>
             {logo && <img className={styles.organizerLogo} src={logo}/>}
             <span className={styles.organizerName}>{name}</span>
-            <SocialLinks links={links} className={styles.organizerLinksWrapper}/>
-            <p className={styles.organizerBio}>{bio}</p>
+            {links !== undefined && null ? <SocialLinks links={links} className={styles.organizerLinksWrapper}/> : null}
+            {bio !== undefined && null ? <p className={styles.organizerBio}>{bio}</p> : null}
         </div>
     )
 }

@@ -49,6 +49,14 @@ fragment CoreEventResponse on EventResponse {
     vanityUrl
     author {
         nickname
+        avatar
+        description
+        contact {
+            github
+            linkedin
+            mail
+            twitter
+        }
     }
     timeFrame {
         startDate
@@ -57,6 +65,10 @@ fragment CoreEventResponse on EventResponse {
     address {
         place
         city
+        coordinates {
+            latitude
+            longitude
+        }
     }
     theme {
         primaryColor
