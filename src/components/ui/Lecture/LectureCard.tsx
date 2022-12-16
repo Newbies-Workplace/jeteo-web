@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Lecture.module.scss";
+import styles from "./LectureCard.module.scss";
 import ProfilePic from "../../../assets/images/default-profile-pic.svg";
 import { SocialLinks } from "../SocialLinks/SocialLinks";
 
@@ -42,10 +42,8 @@ const LectureCard: React.FC<LectureProps> = ({
           <h2>{title}</h2>
           <p>{description}</p>
         </div>
-
       </div>
-        
-      {status && <>{status.content}</>}
+      {status?.content}
 
     </div>
   );

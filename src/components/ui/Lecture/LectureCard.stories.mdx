@@ -1,15 +1,15 @@
 import { Canvas, Meta, Story } from "@storybook/addon-docs";
-import Lecture from "./Lecture";
+import LectureCard from "./LectureCard";
 
-<Meta title="ui/Lecture" component={Lecture} />
+<Meta title="ui/LectureCard" component={LectureCard} />
 
-export const Template = (args) => <Lecture {...args} />
+export const Template = (args) => <LectureCard {...args} />
 
 Speaker Component
 
 <Canvas style={{background: "silver"}}>
     <Story
-        name="Lecture-secondary"
+        name="LectureCard-secondary"
         parameters={{
             layout: 'centered',
         }}
@@ -28,7 +28,7 @@ Speaker Component
                 },
             status: {
                 color: '#4340BE',
-                content: <button> Oceń ✨</button>,
+                content: <div>Oceń</div>,
             }
         }}
     >
@@ -38,7 +38,7 @@ Speaker Component
 
 <Canvas style={{background: "silver"}}>
     <Story
-        name="Lecture-primary"
+        name="LectureCard-primary"
         parameters={{
             layout: 'centered',
         }}
