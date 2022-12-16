@@ -10,6 +10,22 @@ query Lecture($id: String!) {
     }
 }
 
+
+query LectureWithRates($id: String!) {
+    lecture(id: $id) {
+        ...CoreLectureResponse
+          rates {
+            id
+            opinion
+        }
+        rateSummary{
+            topicAvg
+            presentationAvg
+            votesCount
+        }
+    }
+}
+
 mutation CreateLecture($eventId: String!, $request: LectureRequestInput!) {
     createLecture(eventId: $eventId, request: $request) {
         ...CoreLectureResponse

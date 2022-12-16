@@ -21,11 +21,12 @@ export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) 
     const [presentationRate, setPresentationRate] = useState(-1);
     const [opinion, setOpinion] = useState("");
 
-    const {user, logout} = useAuth();
+    const {user} = useAuth();
 
     const [rateLecture] = useRateLectureMutation()
 
     useScrollBlock()
+
 
 
     const onRateClick = () => {
@@ -88,8 +89,7 @@ export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) 
                     </div>
 
                     <div className={styles.ratingDialogButtons}>
-                        <Button size="small">Pomiń</Button>
-                        <Button primary size="small" onClick={onRateClick}>Oceń</Button>
+                        <Button className={styles.buttonW} primary size="medium"  onClick={onRateClick}>Oceń</Button>
                     </div>
                 </div>
             </div>

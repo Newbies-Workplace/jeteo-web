@@ -11,6 +11,7 @@ import {EventUpdateForm} from "./EventUpdate/EventUpdateForm";
 import {EventDetails} from "./EventDetails/EventDetails";
 import {LectureCreateForm} from "./LectureCreate/LectureCreateForm";
 import {LectureUpdateForm} from "./LectureUpdate/LectureUpdateForm";
+import {EventStats} from "./EventStats/EventStats";
 
 export const StudioView: React.FC = () => {
     return (
@@ -36,6 +37,9 @@ export const StudioView: React.FC = () => {
                             <Route
                                 element={<LectureUpdateForm/>}
                                 path="/events/:name/lectures/:lectureId/edit"/>
+                            <Route
+                                element={<EventStats/>}
+                                path="/events/:name/lectures/:lectureId"/>
                             <Route
                                 element={<EventUpdateForm/>}
                                 path="/events/:name/edit"/>

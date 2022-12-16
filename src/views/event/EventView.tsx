@@ -37,7 +37,7 @@ export const EventView: React.FC = () => {
             <i>error: {error.message}</i>
         </>
         )
-    if (loading || !data?.event)
+    if (loading || !data)
         return (<>
                 <NavBar/>
                 <EventSkeleton />

@@ -23,18 +23,13 @@ export const EventSkeleton: React.FC = () => {
           <div className={styles.eventDescriptionContainer}>
             <div className={styles.eventDescriptionSkeleton}>
               <div>
-                {[...Array(6)].map((el) => {
-                  const randomLength = Math.floor(
-                    Math.random() * (70 - 20) + 20
-                  );
-                  return (
-                    <span
-                      key={el}
-                      style={{ width: `${randomLength}%` }}
-                      className={styles.eventDescriptionTextSkeleton}
-                    />
-                  );
-                })}
+                    <span style={{ width: `80%` }} className={styles.eventDescriptionTextSkeleton}/>
+                    <span style={{ width: `30%` }} className={styles.eventDescriptionTextSkeleton}/>
+                    <span style={{ width: `40%` }} className={styles.eventDescriptionTextSkeleton}/>
+                    <span style={{ width: `70%` }} className={styles.eventDescriptionTextSkeleton}/>
+                    <span style={{ width: `40%` }} className={styles.eventDescriptionTextSkeleton}/>
+                    <span style={{ width: `20%` }} className={styles.eventDescriptionTextSkeleton}/>
+                    <span style={{ width: `10%` }} className={styles.eventDescriptionTextSkeleton}/>
               </div>
             </div>
             {[...Array(3)].map((item, index) => (

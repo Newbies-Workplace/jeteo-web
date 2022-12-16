@@ -17,6 +17,7 @@ interface StudioLectureCardProps {
     speakers: Speaker[]
     onEditClick?: () => void
     onDeleteClick?: () => void
+    onClick?: () => void; 
 }
 
 export const StudioLectureCard: React.FC<StudioLectureCardProps> = (
@@ -28,6 +29,7 @@ export const StudioLectureCard: React.FC<StudioLectureCardProps> = (
         speakers,
         onEditClick,
         onDeleteClick,
+        onClick,
     }
 ) => {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -37,7 +39,7 @@ export const StudioLectureCard: React.FC<StudioLectureCardProps> = (
     ]
 
     return (
-        <div className={styles.card}>
+        <div className={styles.card} onClick={onClick}>
             <div className={styles.row}>
                 <div className={styles.texts}>
                     <h3 style={{margin: 0}}>{title}</h3>
