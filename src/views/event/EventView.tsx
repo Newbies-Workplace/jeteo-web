@@ -17,6 +17,7 @@ import { EventSkeleton } from '../../components/loaders/Skeletons/EventDetailsSk
 import { EventRating } from '../../components/ui/EventRating/EventRating';
 import {Lecture} from "../../common/models/Lecture";
 
+
 export const EventView: React.FC = () => {
 
     const [openRatingId, setOpenRatingId] = useState<string | null>(null);
@@ -31,11 +32,11 @@ export const EventView: React.FC = () => {
 
 
     if (error)
-        return <>
+        return (<>
             <NavBar/>
             <i>error: {error.message}</i>
         </>
-
+        )
     if (loading || !data?.event)
         return (<>
                 <NavBar/>
@@ -46,7 +47,6 @@ export const EventView: React.FC = () => {
 
     const { event, lectures } = data;
     const { github, twitter, linkedin, mail} = event.author.contact;
-
     const tags = event.tags.map(el =>(
         el.name
     ))
@@ -85,10 +85,10 @@ export const EventView: React.FC = () => {
                         }
                     }}
                     status={status}/>
-                <EventRating
+                {openRatingId === item.id && <EventRating
                     lecture={Lecture.fromData(item)}
-                    isOpen={openRatingId === item.id}
-                    onDismiss={() => setOpenRatingId(null)}/>
+                    onDismiss={() => setOpenRatingId(null)}
+                />}
             </div>
         )})
 

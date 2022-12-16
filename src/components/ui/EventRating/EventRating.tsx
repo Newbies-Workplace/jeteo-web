@@ -8,24 +8,22 @@ import { Button } from "../Button/Button";
 import {useRateLectureMutation} from "../../../api/graphql";
 import {Lecture} from "../../../common/models/Lecture";
 import {toast} from "react-toastify";
+import { useScrollBlock } from '../../../common/utils/useScrollBlock';
 
 interface RatingDialogProps {
     lecture: Lecture
-    isOpen: boolean;
     onDismiss: () => void;
 }
 
-export const EventRating: React.FC<RatingDialogProps> = ({isOpen, onDismiss, lecture}) => {
+export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) => {
     const [topicRate, setTopicRate] = useState(-1);
     const [presentationRate, setPresentationRate] = useState(-1);
     const [opinion, setOpinion] = useState("");
 
     const [rateLecture] = useRateLectureMutation()
 
-    if (!isOpen) {
-        document.body.style.overflow = 'auto'
-        return null
-    } else{document.body.style.overflow = 'hidden'}
+    useScrollBlock();
+
 
     const onRateClick = () => {
         // walidacja
