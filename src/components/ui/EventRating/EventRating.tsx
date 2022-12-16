@@ -9,6 +9,7 @@ import {useRateLectureMutation} from "../../../api/graphql";
 import {Lecture} from "../../../common/models/Lecture";
 import {toast} from "react-toastify";
 import { useScrollBlock } from '../../../common/utils/useScrollBlock';
+import { useAuth } from '../../../contexts/auth/hooks/useAuth.hook';
 
 interface RatingDialogProps {
     lecture: Lecture
@@ -19,6 +20,8 @@ export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) 
     const [topicRate, setTopicRate] = useState(-1);
     const [presentationRate, setPresentationRate] = useState(-1);
     const [opinion, setOpinion] = useState("");
+
+    const {user, logout} = useAuth();
 
     const [rateLecture] = useRateLectureMutation()
 
@@ -62,15 +65,14 @@ export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) 
                         onDismiss();
                         setTopicRate(-1);
                         setPresentationRate(-1)
-                    }}><CloseIcon/></button>
+                    }}><CloseIcon width={"35px"} height={"40px"}/></button>
 
-                    <div className={styles.authorData}>
+                    {user && <div className={styles.authorData}>
                         <img className={styles.authorProfilePicture} src={ProfilePic} alt=""/>
                         <div>
-                            <span className={styles.authorNickname}>Andrzej Duda</span>
-                            <span className={styles.authorNote}>Lorem ipsum dolor sit amet.</span>
+                            <span className={styles.authorNickname}>{user?.nickname}</span>
                         </div>
-                    </div>
+                    </div>}
 
                     <span className={styles.speechTitle}>{lecture.title}</span>
 
