@@ -84,7 +84,7 @@ export const EventRating: React.FC<RatingDialogProps> = ({isOpen, onDismiss, lec
                                     width='48px' height='48px'/>
                         <span className={styles.textAreaLabel}>Opinia dla prelegenta</span>
                         <textarea name="userOpinion" id="userOpinion" cols={30} rows={5}
-                                  className={styles.opinionInput}/>
+                                  className={styles.opinionInput} value={opinion} onChange={(e) => setOpinion(e.target.value)}/>
                     </div>
 
                     <div className={styles.ratingDialogButtons}>
