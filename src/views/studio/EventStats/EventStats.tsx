@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import {Navigate, useNavigate, useParams} from "react-router-dom";
+import React from "react";
+import {Navigate, useParams} from "react-router-dom";
 import { useLectureWithRatesQuery } from "../../../api/graphql";
-import { getIdFromVanityUrl } from "../../../common/utils/vanityUrlUtils";
+
 
 
 export const EventStats: React.FC = () => {
 
-    const navigate = useNavigate()
     const {name, lectureId} = useParams<{name: string, lectureId: string}>()
 
     if (!name || !lectureId){
