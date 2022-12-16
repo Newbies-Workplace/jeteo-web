@@ -30,7 +30,7 @@ const StarRating: React.FC<starRatingProps> = ({
       onMouseLeave={() => setHighlited(undefined)}
     >
       {title !== undefined && <h3 className={cs(styles.starRatingTitle, className)}>{title}</h3>}
-      <div>
+      <div className={styles.starIconWrapper}>
       {[...Array(max)].map((el, index) => {
         const isHiglited = highlited !== undefined ? highlited : value;
         const fill = index <= isHiglited ? "#FFD700" : "transparent";
@@ -40,7 +40,7 @@ const StarRating: React.FC<starRatingProps> = ({
             className={styles.starIcon}
             fill={fill}
             width={width}
-            height={height}
+            height={height} 
             onClick={() => setValue(index)}
             onMouseEnter={() => setHighlited(index)}
           />

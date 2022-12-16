@@ -19,6 +19,7 @@
     background-color: #fff;
     width: 90%;
     max-width: 615px;
+    height: fit-content;
     max-height: 90%;
     overflow-y: auto;
 
@@ -34,6 +35,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 12px;
     span {
         display: block;
     }
@@ -54,12 +56,11 @@
     color: #4340BE;
     font-size: 24px;
     font-weight: 700;
-    margin-top: 8px;
-    margin-bottom: 37px;
+    margin-bottom: 38px;
 }
 
 .starRatingLabel {
-    font-size: 30px;
+    font-size: 22px;
 }
 
 .ratingDialogContent {
@@ -73,15 +74,16 @@
 
 .textAreaLabel {
     display: block;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 600;
 }
 
 .opinionInput {
     font-family: inherit;
-    font-size: 18px;
+    font-size: 16px;
     min-width: 70%;
     max-width: 90%;
+    min-height: 140px;
     max-height: 300px;
     border: 0;
     background-color: #e3e3e3;
@@ -90,19 +92,22 @@
 }
 
 .ratingDialogButtons {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .closeButton {
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     position: absolute; 
-    top: 15px;
-    right: 15px;
-    background-color: #fff;
+    top: 25px;
+    right: 22px;
+    background-color: transparent;
     border: 0;
     padding: 0;
 }

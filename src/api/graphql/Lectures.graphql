@@ -10,6 +10,22 @@ query Lecture($id: String!) {
     }
 }
 
+
+query LectureWithRates($id: String!) {
+    lecture(id: $id) {
+        ...CoreLectureResponse
+          rates {
+            id
+            opinion
+        }
+        rateSummary{
+            topicAvg
+            presentationAvg
+            votesCount
+        }
+    }
+}
+
 mutation CreateLecture($eventId: String!, $request: LectureRequestInput!) {
     createLecture(eventId: $eventId, request: $request) {
         ...CoreLectureResponse
@@ -24,6 +40,12 @@ mutation ReplaceLecture($id: String!, $request: LectureRequestInput!) {
 
 mutation DeleteLecture($id: String!) {
     deleteLecture(id: $id)
+}
+
+mutation RateLecture($id: String!, $request: LectureRateRequestInput!) {
+  rateLecture(id: $id, request: $request) {
+    id
+  }
 }
 
 fragment CoreLectureResponse on LectureResponse {
