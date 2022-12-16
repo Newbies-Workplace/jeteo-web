@@ -25,8 +25,7 @@ export const EventRating: React.FC<RatingDialogProps> = ({isOpen, onDismiss, lec
     if (!isOpen) {
         document.body.style.overflow = 'auto'
         return null
-    }
-    document.body.style.overflow = 'hidden'
+    } else{document.body.style.overflow = 'hidden'}
 
     const onRateClick = () => {
         // walidacja

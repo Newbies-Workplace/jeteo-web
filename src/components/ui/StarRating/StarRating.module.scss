@@ -11,6 +11,11 @@
     cursor: pointer;
 }
 
+.starIconWrapper {
+    display: flex;
+    gap: 10px;
+}
+
 .starRatingTitle {
     margin: 0 0 5px 0;
     font-family: var(--header-font);
