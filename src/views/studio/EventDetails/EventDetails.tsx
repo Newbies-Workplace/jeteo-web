@@ -49,7 +49,7 @@ export const EventDetails: React.FC = () => {
         <div className={styles.container}>
             {event && <>
                 <Toolbar title={event.title} onBackPress={() => {navigate(-1)}}/>
-
+ 
                 <div className={styles.actionBar}>
                     <Link className={styles.action} to={`/event/${event.vanityUrl}`}><b>Zobacz</b>wydarzenie</Link>
                     <Link className={styles.action} to={`/studio/events/${event.vanityUrl}/edit`}><b>Edytuj</b>wydarzenie</Link>
