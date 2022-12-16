@@ -484,6 +484,14 @@ export type DeleteLectureMutationVariables = Exact<{
 
 export type DeleteLectureMutation = { __typename?: 'Mutation', deleteLecture: boolean };
 
+export type RateLectureMutationVariables = Exact<{
+  id: Scalars['String'];
+  request: LectureRateRequestInput;
+}>;
+
+
+export type RateLectureMutation = { __typename?: 'Mutation', rateLecture: { __typename?: 'LectureRateResponse', id: string } };
+
 export type CoreLectureResponseFragment = { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } };
 
 export type CreateTagMutationVariables = Exact<{
@@ -982,6 +990,40 @@ export function useDeleteLectureMutation(baseOptions?: Apollo.MutationHookOption
 export type DeleteLectureMutationHookResult = ReturnType<typeof useDeleteLectureMutation>;
 export type DeleteLectureMutationResult = Apollo.MutationResult<DeleteLectureMutation>;
 export type DeleteLectureMutationOptions = Apollo.BaseMutationOptions<DeleteLectureMutation, DeleteLectureMutationVariables>;
+export const RateLectureDocument = gql`
+    mutation RateLecture($id: String!, $request: LectureRateRequestInput!) {
+  rateLecture(id: $id, request: $request) {
+    id
+  }
+}
+    `;
+export type RateLectureMutationFn = Apollo.MutationFunction<RateLectureMutation, RateLectureMutationVariables>;
+
+/**
+ * __useRateLectureMutation__
+ *
+ * To run a mutation, you first call `useRateLectureMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRateLectureMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [rateLectureMutation, { data, loading, error }] = useRateLectureMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useRateLectureMutation(baseOptions?: Apollo.MutationHookOptions<RateLectureMutation, RateLectureMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RateLectureMutation, RateLectureMutationVariables>(RateLectureDocument, options);
+      }
+export type RateLectureMutationHookResult = ReturnType<typeof useRateLectureMutation>;
+export type RateLectureMutationResult = Apollo.MutationResult<RateLectureMutation>;
+export type RateLectureMutationOptions = Apollo.BaseMutationOptions<RateLectureMutation, RateLectureMutationVariables>;
 export const CreateTagDocument = gql`
     mutation CreateTag($request: TagCreateRequestInput!) {
   createTag(request: $request) {

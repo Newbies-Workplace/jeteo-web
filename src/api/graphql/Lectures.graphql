@@ -26,6 +26,12 @@ mutation DeleteLecture($id: String!) {
     deleteLecture(id: $id)
 }
 
+mutation RateLecture($id: String!, $request: LectureRateRequestInput!) {
+  rateLecture(id: $id, request: $request) {
+    id
+  }
+}
+
 fragment CoreLectureResponse on LectureResponse {
     id
     title
