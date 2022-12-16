@@ -22,7 +22,7 @@ export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) 
 
     const [rateLecture] = useRateLectureMutation()
 
-    useScrollBlock();
+    useScrollBlock()
 
 
     const onRateClick = () => {
