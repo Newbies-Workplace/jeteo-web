@@ -58,6 +58,7 @@ export const EventDetails: React.FC = () => {
                 <div>
                     {lectures.map(lecture => Lecture.fromData(lecture)).map(lecture => 
                         <StudioLectureCard
+                        key={lecture.id}
                         title={lecture.title}
                         descriptionSnippet={lecture.description?.substring(0, 50)}
                         startDate={lecture.startDate}
