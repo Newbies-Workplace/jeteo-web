@@ -1,0 +1,132 @@
+.statsMainContainer {
+  padding: 16px;
+  background-color: #fff;
+  margin-top: 16px;
+  border-radius: var(--border-radius);
+}
+
+.container {
+  width: 100%;
+}
+
+.statsTabContainer {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.statsSection {
+  width: 100%;
+  display: flex;
+}
+
+
+.dot {
+  min-width: 24px;
+  min-height: 24px;
+
+  background-color: #717171;
+  border-radius: 16px;
+}
+
+.line {
+  display: flex;
+
+  width: 3px;
+  height: 100%;
+
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: #717171;
+}
+
+.sectionDecorator {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 4px;
+}
+
+
+.title {
+    padding-left: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #717171;
+}
+
+.statsInnerWrapper {
+  width: 100%;
+}
+
+.statsContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+
+.rateContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rateCounter {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  color: #717171;
+}
+
+.summaryRate {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 600;
+  font-family: var(--font);
+}
+
+
+.rateTopic {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: var(--font);
+}
+.ratingStatsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  .rateStatsBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+.reviewContainer {
+  width: 100%;
+  display: flex;
+}
+.reviewInnerContainer {
+  width: 100%;
+}
+
+.reviewBox {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px;
+  margin-top: 20px;
+  background-color: #C4C4C4;
+  border-radius: 8px;
+  .review {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: var(--font);
+  }
+}

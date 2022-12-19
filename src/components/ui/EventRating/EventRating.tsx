@@ -31,8 +31,8 @@ export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) 
 
     const onRateClick = () => {
         // walidacja
-        if (topicRate === -1 || presentationRate === -1) {
-            return
+        if (topicRate === -1 && presentationRate === -1) {
+            return toast.info("Żeby ocenić prelekcję musisz zostawić opinie")
         }
 
         rateLecture({
@@ -46,7 +46,7 @@ export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) 
             }
         })
             .then(() => {
-                toast.success("eluwina")
+                toast.success("Twoja ocena została wysłana pomyślnie")
                 onDismiss()
             })
             .catch(() => toast.error("Wystąpił błąd"))
