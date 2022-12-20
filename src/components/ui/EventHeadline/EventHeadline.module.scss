@@ -8,10 +8,6 @@
     margin: 15px auto;
     margin-left: -40px;
 
-    background-repeat: no-repeat, no-repeat;
-    background-size: cover, cover;
-    background-position: center, center;
-
     border-radius: var(--border-radius);
 
     .backArrow {
@@ -31,5 +27,15 @@
             margin: 0 4px 4px 4px;
             font-weight: normal;
         }
+    }
+}
+
+@media (max-width: 520px) {
+    .content {
+        margin-left: 0;
+    }
+
+    .backArrow {
+        display: none;
     }
 }

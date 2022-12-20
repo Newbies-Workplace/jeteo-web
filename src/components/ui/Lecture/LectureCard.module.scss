@@ -92,3 +92,28 @@
     border: none;
     cursor: pointer;
 }
+
+@media (max-width: 520px) {
+
+    .boxBorder {
+        margin: 32px 0;
+    }
+
+    .lectureContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .prelegendEventInfo {
+        p {
+            width: 100%;
+        }
+    }
+
+    .userContainer {
+        margin: 0;
+    }
+
+}
