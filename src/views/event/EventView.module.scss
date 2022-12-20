@@ -16,7 +16,6 @@
     padding: 16px
 }
 
-
 .contentCentred {
     margin-top: -180px;
     padding: 0 40px;
@@ -33,10 +32,10 @@
     width: 100%;
 }
 
-
 .eventOrganizerSection {
     min-width: 275px;
 }
+
 .agenda {
     font-size: 18px;
     font-weight: 700;
@@ -48,6 +47,7 @@
     font-weight: 700;
     font-family: var(--header-font);
 }
+
 .agendaTime {
     font-weight: 400;
     font-size: 24px;
@@ -56,7 +56,6 @@
     position: relative;
     margin: 0;
 }
-
 
 .agendaTimeStickTop {
     display: flex;
@@ -67,6 +66,7 @@
     color: black;
     margin: 10px 0 10px 0;
 }
+
 .agendaTimeStickBottom {
     display: flex;
     justify-content: center;
@@ -88,4 +88,32 @@
     text-align: center;
     line-height: 25px;
     border-radius: 0 0 16px 16px;
+}
+
+@media (max-width: 918px) {
+
+    .eventInnerContainer {
+        flex-direction: column;
+    }
+
+    .eventOrganizerSection {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media (max-width: 520px) {
+
+    .eventOrganizerSection {
+        min-width: auto;
+    }
+
+    .contentCentred {
+        padding: 0 14px;
+    }
+
 }
