@@ -33,7 +33,6 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
         deleteImage(axios, event.id)
             .then(() => {
                 const updatedEvent: Event = {...event, image: undefined}
-
                 onSubmitted(updatedEvent)
             })
             .catch(() => toast.error("Wystąpił błąd podczas usuwania okładki"))
@@ -42,8 +41,8 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
     const onCoverFileUpdate = async (file: File) => {
         updateImage(axios, event.id, file)
             .then((res) => {
-                const updatedEvent: Event = {...event, image: res.url}
-                onEventChange(updatedEvent)
+                onEventChange({...event, image: " "})
+                onEventChange({...event, image: res.url})
             })
             .catch(() => toast.error("Wystąpił błąd podczas przesyłania okładki"))
     }
