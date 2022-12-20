@@ -21,7 +21,7 @@ export const Input: React.FC<InputProps> = ({label, multiline = false, className
                     <>
                     <label className={cs( required && styles.required, className)}>{ label }</label>
                         <textarea 
-                            className={cs(styles.multiline)}
+                            className={cs(styles.multiline, className)}
                             placeholder={placeholder}
                             value={value}
                             required={required}

@@ -10,6 +10,8 @@ import { NotFound } from './404/NotFound';
 import { HeroPage } from './hero/HeroPage';
 import { EventSkeleton } from '../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
 import { NavBar } from '../components/ui/NavBar/NavBar';
+import { UserOptions } from './studio/UserOptions/UserOptions';
+import { RequireAuth } from '../components/utils/requireAuth/RequireAuth';
 
 
 const StudioView = React.lazy(() => import('./studio/StudioView'));
@@ -44,6 +46,10 @@ export const AppRouter: React.FC = () => {
                 <Route
                     element={<HeroPage />}
                     path="/hero"
+                />
+                <Route
+                    element={<RequireAuth><UserOptions /></RequireAuth>}
+                    path="/options/*"
                 />
 
                 <Route

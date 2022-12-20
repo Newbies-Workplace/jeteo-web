@@ -51,7 +51,7 @@ export const LectureStatsView: React.FC = () => {
                         path="/questions"
                     />
                     <Route
-                        element={<Navigate to={`/studio/events/${name}/lectures/${lectureId}/review`}/>}
+                        element={<Navigate to={`review`}/>}
                         path="*"
                     />
 

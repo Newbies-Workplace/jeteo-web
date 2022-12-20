@@ -48,7 +48,7 @@ export const StudioView: React.FC = () => {
                                 path="/events/:name"/>
                             <Route
                                 element={<Dashboard/>}
-                                path="*"/>  
+                                path="*"/>
                         </Routes>
                     </div>
                 </div>

@@ -60,7 +60,7 @@ export const EventDetails: React.FC = () => {
                         <StudioLectureCard
                         key={lecture.id}
                         title={lecture.title}
-                        descriptionSnippet={lecture.description?.substring(0, 50)}
+                        descriptionSnippet={lecture.description?.substring(0, 50) + "..."}
                         startDate={lecture.startDate}
                         finishDate={lecture.finishDate}
                         speakers={[]}
