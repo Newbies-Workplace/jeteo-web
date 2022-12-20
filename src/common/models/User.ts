@@ -13,6 +13,7 @@ export class User implements SimpleUser {
         public description?: string,
         public createDate?: Date,
         public updateDate?: Date,
+        public avatar?: string,
     ) {
     }
 

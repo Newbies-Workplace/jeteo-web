@@ -48,7 +48,7 @@ export const EventDetails: React.FC = () => {
     return (
         <div className={styles.container}>
             {event && <>
-                <Toolbar title={event.title} onBackPress={() => {navigate(-1)}}/>
+                <Toolbar title={event.title} onBackPress={() => {navigate('/studio/events')}}/>
  
                 <div className={styles.actionBar}>
                     <Link className={styles.action} to={`/event/${event.vanityUrl}`}><b>Zobacz</b>wydarzenie</Link>
@@ -60,12 +60,12 @@ export const EventDetails: React.FC = () => {
                         <StudioLectureCard
                         key={lecture.id}
                         title={lecture.title}
-                        descriptionSnippet={lecture.description?.substring(0, 50)}
+                        descriptionSnippet={lecture.description?.substring(0, 50) + "..."}
                         startDate={lecture.startDate}
                         finishDate={lecture.finishDate}
                         speakers={[]}
                         onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/edit`)}
-                        onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/`)} 
+                        onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)} 
                         onDeleteClick={() => onDeleteLectureClick(lecture)}
                         />
                     )}

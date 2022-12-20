@@ -1,3 +1,5 @@
+@import '../SkeletonAnim.scss';
+
 .eventBackgroundSkeleton {
     box-sizing: border-box;
     width: 100%;
@@ -190,7 +192,7 @@
 }
 
 .eventDescriptionTextSkeleton {
-    background-color: #ACACAC;
+    @include SkeletonBackgroundAnim;
     margin-bottom: 15px;
     height: 19px;
     display: block;
