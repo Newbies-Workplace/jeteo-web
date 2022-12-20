@@ -9,6 +9,7 @@ import {LectureRequestInput, useCreateLectureMutation, useReplaceLectureMutation
 import {Lecture} from "../../../../common/models/Lecture";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 import {toast} from "react-toastify";
+import cs from "classnames"
 
 interface LectureBasicInfoFormProps {
     eventId: string
@@ -110,7 +111,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                         id={"description"}
                         name={"description"}
                         component={({field}: FieldProps) =>
-                            <textarea {...field} className={formStyles.input}/>
+                            <textarea {...field} className={cs(formStyles.input, formStyles.textareaInput)}/>
                         } />
                 </StudioSection>
 
