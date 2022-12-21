@@ -10,8 +10,8 @@ export const EventSkeleton: React.FC = () => {
       <CentredContainer className={styles.contentCentredSkeleton}>
         <div className={styles.eventHeadlineSkeleton}>
           <div className={styles.tagsListSkeleton}>
-            {[...Array(5)].map((el) => (
-              <span key={el}></span>
+            {[...Array(5)].map((el, index) => (
+              <span key={index}></span>
             ))}
           </div>
           <div className={styles.eventHeadlineTitle}>
