@@ -11,7 +11,7 @@ import { useUserQuery } from '../../../../api/graphql';
 
 export const AccountPersonalization: React.FC = () => {
     const { axios, user } = useAuth()
-    const [userData, setUserData] = useState<User | undefined>()
+    const [userData, setUserData] = useState<User | undefined>(undefined)
 
     const { data, loading, error } = useUserQuery({
         variables: {
@@ -33,7 +33,7 @@ export const AccountPersonalization: React.FC = () => {
     const onProfilePicUpdate = async (file: File) => {
         updateProfilePic(axios, file)
             .then((res) => {
-                //This bottom line is to prevent changing state on the same url
+                //This bottom line is to prevent changing state to the same url
                 setUserData({ ...user!, avatar: undefined })
                 setUserData({ ...user!, avatar: res.url })
                 console.log(res.url)
