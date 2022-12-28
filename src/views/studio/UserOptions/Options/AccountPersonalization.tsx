@@ -48,7 +48,7 @@ export const AccountPersonalization: React.FC = () => {
             <h1 className={styles.accountPersonalizationTitle}>Opcje</h1>
             <div className={styles.accountPersonalizationContent}>
                 <div className={styles.profilePicUpdate}>
-                    <img src={userData?.avatar} alt="Zdjęcie profilowe" className={styles.accountProfilePic} />
+                    {user?.avatar && <img src={userData?.avatar} alt="Zdjęcie profilowe" className={styles.accountProfilePic} />}
                     <FileUpload onChange={(files) => onProfilePicUpdate(files[0])} />
                     <Input multiline className={styles.input} label="Opisz swój profil" />
                     <Button primary type='submit'>Zapisz</Button>
