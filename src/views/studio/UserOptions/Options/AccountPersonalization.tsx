@@ -13,12 +13,13 @@ export const AccountPersonalization: React.FC = () => {
     const { axios, user } = useAuth()
     const [userData, setUserData] = useState<User | undefined>()
 
+
     const { data, loading, error } = useUserQuery({
         variables: {
             id: user!.id
         },
         onCompleted: (data) => {
-            setUserData({ ...user!, avatar: data.user?.avatar })
+            setUserData({ ...user!, avatar: data.user?.avatar})
         }
     })
 
@@ -33,14 +34,10 @@ export const AccountPersonalization: React.FC = () => {
     const onProfilePicUpdate = async (file: File) => {
         updateProfilePic(axios, file)
             .then((res) => {
-                //This bottom line is to prevent changing state on the same url
-                setUserData({ ...user!, avatar: undefined })
                 setUserData({ ...user!, avatar: res.url })
-                console.log(res.url)
             })
             .catch(() => toast.error("Wystąpił błąd podczas przesyłania zdjęcia profilowego"))
     }
-
 
 
     return (
