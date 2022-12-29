@@ -11,7 +11,8 @@ import { useUserQuery } from '../../../../api/graphql';
 
 export const AccountPersonalization: React.FC = () => {
     const { axios, user } = useAuth()
-    const [userData, setUserData] = useState<User | undefined>(undefined)
+    const [userData, setUserData] = useState<User | undefined>()
+
 
     const { data, loading, error } = useUserQuery({
         variables: {
@@ -48,7 +49,7 @@ export const AccountPersonalization: React.FC = () => {
             <h1 className={styles.accountPersonalizationTitle}>Opcje</h1>
             <div className={styles.accountPersonalizationContent}>
                 <div className={styles.profilePicUpdate}>
-                    {user?.avatar && <img src={userData?.avatar} alt="Zdjęcie profilowe" className={styles.accountProfilePic} />}
+                    <img src={userData?.avatar} alt="Zdjęcie profilowe" className={styles.accountProfilePic} />
                     <FileUpload onChange={(files) => onProfilePicUpdate(files[0])} />
                     <Input multiline className={styles.input} label="Opisz swój profil" />
                     <Button primary type='submit'>Zapisz</Button>
