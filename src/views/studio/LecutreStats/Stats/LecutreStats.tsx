@@ -37,7 +37,7 @@ export const LectureStats: React.FC = () => {
     const reviewRates = rates.map(item => {
         if (item.opinion) {
             return (
-                <div className={styles.reviewBox}>
+                <div key={item.id} className={styles.reviewBox}>
                     <p className={styles.review}>{item.opinion}</p>
                 </div>
             )
