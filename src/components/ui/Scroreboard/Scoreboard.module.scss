@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  color: black;
+  font-size: 20px;
+
+  padding: 16px;
+
+  background-color: white;
+  border-radius: var(--border-radius);
+}
+
+.userPoints {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+
+
+  height: 32px;
+  width: 100%;
+
+  padding: 0 8px;
+
+  border: black solid 1px;
+  border-radius: 16px;
+
+  &.first {
+    border: gold solid 5px;
+  }
+
+  &.second {
+    border: silver solid 5px;
+  }
+
+  &.third {
+    border: saddlebrown solid 5px;
+  }
+}
+
+.name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+
+  font-weight: bold;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 10px;
+
+  background-color: black;
+
+  &.first {
+    background-color: gold;
+  }
+
+  &.second {
+    background-color: silver;
+  }
+
+  &.third {
+    background-color: saddlebrown;
+  }
+}
