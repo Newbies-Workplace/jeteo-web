@@ -11,7 +11,6 @@ export default defineConfig(({command, /* mode */}) => {
             }),
             react()
         ],
-
         root: 'src',
         build: {
             outDir: '../dist',
@@ -20,7 +19,6 @@ export default defineConfig(({command, /* mode */}) => {
         server: {
             port: 8080,
         },
-
         define: {
             "__RESTAPI_URI__": "'http://jeteo.newbies.pl:8080'",
             "__GRAPHQL_URI__": "'http://jeteo.newbies.pl:8080'",
