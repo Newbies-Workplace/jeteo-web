@@ -1,12 +1,16 @@
-import { defineConfig } from 'vite'
+/// <reference types="vite-plugin-svgr/client" />
 import react from '@vitejs/plugin-react'
-import { svgrComponent } from 'vite-plugin-svgr-component'
+import { defineConfig } from 'vite'
+import svgr from 'vite-plugin-svgr'
 
-// https://vitejs.dev/config/
 export default defineConfig(({command, /* mode */}) => {
     return {
-        plugins: [svgrComponent(), react()],
-
+        plugins: [
+            svgr({
+                exportAsDefault: true,
+            }),
+            react()
+        ],
         root: 'src',
         build: {
             outDir: '../dist',
@@ -15,7 +19,6 @@ export default defineConfig(({command, /* mode */}) => {
         server: {
             port: 8080,
         },
-
         define: {
             "__RESTAPI_URI__": "'http://jeteo.newbies.pl:8080'",
             "__GRAPHQL_URI__": "'http://jeteo.newbies.pl:8080'",

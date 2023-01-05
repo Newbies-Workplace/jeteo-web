@@ -12,7 +12,7 @@ export const AccountSettings: React.FC = () => {
         <h1 className={styles.accountSettingsTitle}>Opcje</h1>
         <Input label='Nickname' required placeholder='John' className={styles.accuntSettingsInput}/>
         <Input label='Telefon' placeholder='123 456 789'/>
-        <Input label='Github' placeholder='https://github.com/example'/>
+        <Input label='GitHub' placeholder='https://github.com/example'/>
         <Input label='Poczta' placeholder='example@mail.com'/>
         <Input label='Twitter' placeholder='https://twitter.com/example'/>
         <Input label='Linkedin' placeholder='https://www.linkedin.com/in/example'/>
