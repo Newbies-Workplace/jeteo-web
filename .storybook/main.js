@@ -31,10 +31,10 @@ module.exports = {
     "@storybook/addon-interactions",
   ],
   framework: "@storybook/react-vite",
-  // docs: {
-  //   autodocs: true
-  // },
-  // features: {
-  //   storyStoreV7: true
-  // }
+  docs: {
+    autodocs: true
+  },
+  features: {
+    storyStoreV7: true
+  }
 };

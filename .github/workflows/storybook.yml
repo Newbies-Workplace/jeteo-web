@@ -15,8 +15,8 @@ jobs:
           npm run deploy-storybook -- --ci --dry-run --out ./docs
           mkdir docs/src
           cp src/index.css docs/src/index.css
-          sed -i 's,assets/iframe,jeteo-web/assets/iframe,g' docs/iframe.html
-          sed -i 's,assets,jeteo-web/assets,g' docs/assets/iframe.js
+#          sed -i 's,assets/iframe,jeteo-web/assets/iframe,g' docs/iframe.html
+#          sed -i 's,assets,jeteo-web/assets,g' docs/assets/iframe.js
           npm run deploy-storybook -- --ci --existing-output-dir ./docs
         env:
           GH_TOKEN: Newbies-Workplace:${{ secrets.GITHUB_TOKEN }}
