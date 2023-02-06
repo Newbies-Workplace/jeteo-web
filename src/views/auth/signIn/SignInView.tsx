@@ -8,6 +8,7 @@ import {useQueryParams} from "../../../common/utils/useQueryParams";
 import authStyles from "../../../common/styles/AuthStyles.module.scss"
 import styles from "./SignInView.module.scss"
 import Github from "../../../assets/icons/github.svg"
+import Google from "../../../assets/icons/google.svg"
 import Roadblock from "../../../assets/icons/roadblock.svg"
 import cs from "classnames";
 
@@ -34,6 +35,11 @@ export const SignInView: React.FC = () => {
                     label="GitHub"
                     icon={<Github width={20} height={20}/>}
                     href={`${__RESTAPI_URI__}/oauth/login/${ProvidersList.github}`} />
+
+                <SocialMediaButton
+                    label="Google"
+                    icon={<Google width={20} height={20}/>}
+                    href={`${__RESTAPI_URI__}/oauth/login/${ProvidersList.google}`} />
 
                 {__DEV__ &&
                     <SocialMediaButton

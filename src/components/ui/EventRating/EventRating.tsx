@@ -17,22 +17,20 @@ interface RatingDialogProps {
 }
 
 export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) => {
-    const [topicRate, setTopicRate] = useState(-1);
-    const [presentationRate, setPresentationRate] = useState(-1);
-    const [opinion, setOpinion] = useState("");
+    const [topicRate, setTopicRate] = useState(-1)
+    const [presentationRate, setPresentationRate] = useState(-1)
+    const [opinion, setOpinion] = useState("")
 
-    const {user} = useAuth();
+    const {user} = useAuth()
 
     const [rateLecture] = useRateLectureMutation()
 
     useScrollBlock()
 
-
-
     const onRateClick = () => {
-        // walidacja
         if (topicRate === -1 && presentationRate === -1) {
-            return toast.info("Żeby ocenić prelekcję musisz zostawić opinie")
+            toast.info("Musisz ocenić temat i prezentację.")
+            return
         }
 
         rateLecture({
@@ -78,18 +76,40 @@ export const EventRating: React.FC<RatingDialogProps> = ({ onDismiss, lecture}) 
                     <span className={styles.speechTitle}>{lecture.title}</span>
 
                     <div className={styles.ratingDialogContent}>
-                        <StarRating max={5} value={topicRate} setValue={setTopicRate} className={styles.starRatingLabel}
-                                    title="Jak ci siadł temat?" width='48px' height='48px'/>
-                        <StarRating max={5} value={presentationRate} setValue={setPresentationRate}
-                                    className={styles.starRatingLabel} title="Jak to zostało zaprezentowane?"
-                                    width='48px' height='48px'/>
+                        <StarRating
+                            max={5}
+                            value={topicRate}
+                            setValue={setTopicRate}
+                            className={styles.starRatingLabel}
+                            title="Jak ci siadł temat?"
+                            width='48px'
+                            height='48px'/>
+                        <StarRating
+                            max={5}
+                            value={presentationRate}
+                            setValue={setPresentationRate}
+                            className={styles.starRatingLabel}
+                            title="Jak to zostało zaprezentowane?"
+                            width='48px'
+                            height='48px'/>
+
                         <span className={styles.textAreaLabel}>Opinia dla prelegenta</span>
-                        <textarea name="userOpinion" id="userOpinion" cols={30} rows={5}
-                                  className={styles.opinionInput} value={opinion} onChange={(e) => setOpinion(e.target.value)}/>
+                        <textarea
+                            name="userOpinion"
+                            id="userOpinion"
+                            cols={30}
+                            rows={5}
+                            className={styles.opinionInput}
+                            value={opinion}
+                            onChange={(e) => setOpinion(e.target.value)}/>
                     </div>
 
                     <div className={styles.ratingDialogButtons}>
-                        <Button className={styles.buttonW} primary size="medium"  onClick={onRateClick}>Oceń</Button>
+                        <Button
+                            className={styles.buttonW}
+                            primary
+                            size="medium"
+                            onClick={onRateClick}>Oceń</Button>
                     </div>
                 </div>
             </div>

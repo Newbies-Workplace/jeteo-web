@@ -1,6 +1,7 @@
 
 const enum OAuthProvider {
     github = 'github',
+    google = 'google',
     githubDev = 'devgithub'
 }
 

@@ -17,52 +17,49 @@ import { EventSkeleton } from '../../components/loaders/Skeletons/EventDetailsSk
 import { EventRating } from '../../components/ui/EventRating/EventRating';
 import {Lecture} from "../../common/models/Lecture";
 
-
 export const EventView: React.FC = () => {
 
     const [openRatingId, setOpenRatingId] = useState<string | null>(null);
 
     const { name } = useParams<{name: string}>();
-    if (!name)
-        return <Navigate to="/"/>;
+    if (!name) {
+        return <Navigate to="/"/>
+    }
 
     const {data, loading, error} = useEventQuery({
         variables: {id: getIdFromVanityUrl(name) }
     })
 
 
-    if (error)
-        return (<>
-            <NavBar/>
-            <i>error: {error.message}</i>
-        </>
+    if (error) {
+        return (
+            <>
+                <NavBar/>
+                <i>error: {error.message}</i>
+            </>
         )
-    if (loading || !data)
-        return (<>
+    }
+    if (loading || !data) {
+        return (
+            <>
                 <NavBar/>
                 <EventSkeleton />
             </>
         )
+    }
 
-
-    const { event, lectures } = data;
-    const { github, twitter, linkedin, mail} = event.author.contact;
-    const tags = event.tags.map(el =>(
-        el.name
-    ))
-
-
+    const { event, lectures } = data
+    const { github, twitter, linkedin, mail} = event.author.contact
+    const tags = event.tags.map(el => el.name)
 
     const lecturesList = lectures.map((item, index) => {
-        const isAfter = dayjs().isAfter(dayjs(item.timeFrame.startDate))
-        const isNow = dayjs().isAfter(dayjs(item.timeFrame.startDate))
         const status = {
             color: "#4340BEE5",
             content:
                 <div
                     className={styles.reatingBtn}
                     onClick={() => setOpenRatingId(item.id)}>
-                    Oceń✨
+                    OCEŃ ✨
                 </div>
         }
 
@@ -95,14 +92,13 @@ export const EventView: React.FC = () => {
 
     return (
         <div className={styles.main}>
-            <div className={styles.header}>
-                <NavBar/>
-            </div>
+            <NavBar/>
+
             <EventBackground
                 image={event.theme.image}
                 color={event.theme.primaryColor} />
-            <div className={styles.content}>
 
+            <div className={styles.content}>
                 <CentredContainer className={styles.contentCentred}>
                     <div>
                         <EventTags tags={tags} />
@@ -111,21 +107,37 @@ export const EventView: React.FC = () => {
 
                     <div className={styles.eventInnerContainer}>
                         <div className={styles.eventDescriptionContainer}>
-                            <EventDescriptionSection
-                                description={event.description || ""}/>
+                            <EventDescriptionSection description={event.description || ""}/>
+
                             <p className={styles.agenda}>Agenda</p>
                             {lecturesList}
                         </div>
 
                         <section className={styles.eventOrganizerSection}>
-                            <EventOrganizer logo={event.author.avatar} name={event.author.nickname} bio={event.author.description} links={{githubLink: github, twitterLink: twitter, emailLink: mail, linkedInLink: linkedin}}/>
-                            <p className={styles.eventLinksText}>Linki wydarzenia</p>
-                            {/* <EventLink /> miejsce na Linki do wydarzenia*/}
-                            {event?.address && event.address?.coordinates && <LocationMap coordinates={event.address?.coordinates && {lat: event.address?.coordinates?.latitude, lng: event.address?.coordinates?.longitude}} address={event.address?.place}/>}
+                            <EventOrganizer
+                                logo={event.author.avatar}
+                                name={event.author.nickname}
+                                bio={event.author.description}
+                                links={{
+                                    githubLink: github,
+                                    twitterLink: twitter,
+                                    emailLink: mail,
+                                    linkedInLink: linkedin
+                                }}/>
+
+                            {event?.address && event.address?.coordinates &&
+                                <LocationMap
+                                    coordinates={
+                                        event.address?.coordinates && {
+                                            lat: event.address?.coordinates?.latitude,
+                                            lng: event.address?.coordinates?.longitude
+                                        }
+                                    }
+                                    address={event.address?.place}/>
+                            }
                         </section>
                     </div>
                 </CentredContainer>
-
             </div>
         </div>
     )
