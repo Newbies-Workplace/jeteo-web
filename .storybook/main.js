@@ -5,9 +5,9 @@ module.exports = {
       build: {
         ...config.build,
         rollupOptions: {
-          ...config.build.rollupOptions,
+          ...config?.build?.rollupOptions || {},
           output: {
-            ...config.build.rollupOptions.output,
+            ...config?.build?.rollupOptions?.output || {},
             manualChunks: () => 'everything.js',
             entryFileNames: `assets/[name].js`,
             chunkFileNames: `assets/[name].js`,
