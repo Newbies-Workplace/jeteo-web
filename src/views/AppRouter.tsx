@@ -7,7 +7,7 @@ import {
 import { HomeView } from './home/HomeView';
 import { withSuspense } from "../components/utils/hoc/withSuspense";
 import { NotFound } from './404/NotFound';
-import { HeroPage } from './hero/HeroPage';
+import { HeroView } from './hero/HeroView';
 import { EventSkeleton } from '../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
 import { NavBar } from '../components/ui/NavBar/NavBar';
 import { UserOptions } from './studio/UserOptions/UserOptions';
@@ -44,7 +44,7 @@ export const AppRouter: React.FC = () => {
                     path="studio/*" />
 
                 <Route
-                    element={<HeroPage />}
+                    element={<HeroView />}
                     path="/hero"
                 />
                 <Route

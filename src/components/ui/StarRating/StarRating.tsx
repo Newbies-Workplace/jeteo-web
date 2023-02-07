@@ -7,8 +7,6 @@ interface starRatingProps {
   max?: number;
   value: number;
   title?: string;
-  width?: string;
-  height?: string;
   className?: string;
   setValue: (value: number) => void;
 }
@@ -19,8 +17,6 @@ const StarRating: React.FC<starRatingProps> = ({
   value,
   className,
   title,
-  width = "30px",
-  height = "30px",
 }) => {
   const [highlited, setHighlited] = useState<number | undefined>();
 
@@ -39,8 +35,8 @@ const StarRating: React.FC<starRatingProps> = ({
             key={index}
             className={styles.starIcon}
             fill={fill}
-            width={width}
-            height={height} 
+            width={48}
+            height={48}
             onClick={() => setValue(index)}
             onMouseEnter={() => setHighlited(index)}
           />
