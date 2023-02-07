@@ -25,7 +25,10 @@ export const Menu: React.FC<MenuProps> = ({position = 'left', isOpen, setIsOpen,
                     <span
                         key={option.text}
                         className={styles.item}
-                        onClick={() => option.onClick()}>
+                        onClick={(e) => {
+                            option.onClick()
+                            e.stopPropagation()
+                        }}>
                       {option.text}
                   </span>
                 ))}

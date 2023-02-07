@@ -36,7 +36,10 @@ export const MenuBase: React.FC<MenuBaseProp> = ({
             {isOpen &&
                 <Portal>
                     <span
-                        onClick={() => setOpen(false)}
+                        onClick={(e) => {
+                            setOpen(false)
+                            e.stopPropagation()
+                        }}
                         className={cs(styles.overlay, {
                             [styles.visible]: overlay
                         })}/>
