@@ -17,3 +17,9 @@
 
     border-radius: var(--border-radius);
 }
+
+@media screen and (max-width: 700px) {
+    .contentWrapper {
+        border-radius: 0;
+    }
+}
