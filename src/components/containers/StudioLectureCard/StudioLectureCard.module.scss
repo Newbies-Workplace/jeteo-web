@@ -1,0 +1,54 @@
+.card {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 50px;
+  padding: 16px;
+
+  background-color: #FFFFFF;
+
+  border: #000000 solid 2px;
+  margin-bottom: 8px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.texts {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.timeFrame {
+  flex-direction: column;
+
+  margin-top: 16px;
+}
+
+.speakers {
+  gap: 8px;
+
+  margin-top: 16px;
+}
+
+.speaker {
+  display: flex;
+  align-items: center;
+
+  height: 32px;
+  padding: 0 32px;
+
+  border: #000000 solid 2px;
+  border-radius: 16px;
+}
+
+.more {
+  justify-self: flex-end;
+  cursor: pointer;
+}

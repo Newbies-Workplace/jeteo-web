@@ -1,0 +1,41 @@
+.content {
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    max-width: var(--app-prefer-width);
+    margin: 15px auto;
+    margin-left: -40px;
+
+    border-radius: var(--border-radius);
+
+    .backArrow {
+        padding-right: 16px;
+    }
+
+    .text {
+        color: #fff;
+
+        .title {
+            margin: 4px;
+            font-size: 32px;
+            font-family: var(--header-font);
+        }
+
+        .subtitle {
+            margin: 0 4px 4px 4px;
+            font-weight: normal;
+        }
+    }
+}
+
+@media (max-width: 520px) {
+    .content {
+        margin-left: 0;
+    }
+
+    .backArrow {
+        display: none;
+    }
+}

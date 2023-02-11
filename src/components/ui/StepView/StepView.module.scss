@@ -1,12 +1,6 @@
 .steps {
   display: flex;
-<<<<<<< HEAD
-
   flex-direction: row;
-
-=======
-  flex-direction: row;
->>>>>>> develop
   align-items: center;
 
   padding: 8px 16px;
@@ -17,31 +11,19 @@
 
 .clickableSteps {
   display: flex;
-<<<<<<< HEAD
-
+  gap: 8px;
   flex-direction: row;
-
-=======
-  flex-direction: row;
->>>>>>> develop
   align-items: center;
 }
 
 .stepContainer {
   display: flex;
-<<<<<<< HEAD
-
   align-items: center;
-
-=======
-  align-items: center;
->>>>>>> develop
   flex-direction: row;
 }
 
 .clickableStepContainer {
   display: flex;
-  margin-right: 8px;
   padding: 8px 16px;
 
   cursor: pointer;
@@ -60,10 +42,6 @@
 
 .step {
   display: flex;
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
   flex-direction: row;
   align-items: center;
 }
@@ -89,6 +67,8 @@
 
 .text {
   margin-left: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   user-select: none;
   font-weight: bold;

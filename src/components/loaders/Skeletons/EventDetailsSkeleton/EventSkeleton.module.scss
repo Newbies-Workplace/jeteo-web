@@ -1,0 +1,200 @@
+@import '../SkeletonAnim.scss';
+
+.eventBackgroundSkeleton {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 350px;
+    max-height: 400px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, cover;
+    background-position: center, center;
+
+    border-radius: var(--border-radius);
+    background-color: #c3c7cb;
+
+}
+
+.contentCentredSkeleton {
+    margin-top: -180px;
+    padding: 0 40px;
+}
+
+.eventInnerContainerSkeleton {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    box-sizing: border-box;
+}
+
+.eventDescriptionContainer {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tagsListSkeleton {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    gap: 6px;
+    min-height: 30px;
+    span {
+        background-color: rgba(255, 255, 255, 0.5);;
+        width: 50px;
+        height: 15px;
+        border-radius: 16px;
+        padding: 2px 6px;
+        border: 2px solid #fff;
+        color: #fff;
+        font-size: 18px;
+        font-family: var(--font);
+    }
+}
+
+
+
+
+.eventHeadlineTitle {
+    box-sizing: border-box;
+    width: 550px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    border-radius: 8px;
+    .backArrowSkeleton {
+        margin-left: -30px;
+        padding-right: 16px;
+
+    }
+}
+
+.eventOrganizerContainerSkeleton {
+    background-color: #DFDFDF;
+    min-width: 255px;
+    max-width: 275px;
+    height: 275px;
+    padding: 0px 20px 25px 20px;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.eventOrganizerAvatarSkeleton {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ACACAC;
+    margin-top: -32px;
+}
+
+.lectureAvatarSkeleton {
+    position: absolute;
+    top: -32px;
+    left: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #ACACAC;
+}
+
+.eventLinksContainerSkeleton {
+    margin: 50px 0 32px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.organizerLinkTextSkeleton {
+    width: 100%;
+    height: 50px;
+    background-color: #DFDFDF;
+    border-radius: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+
+.centerWrapperSkeleton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lectureSkeleton{
+    position: relative;
+    width: 100%;
+    height: 90px;
+    background-color: #DFDFDF;
+    border-radius: var(--border-radius);
+}
+
+.agendaTimeSkeleton{
+    width: 120px;
+    height: 45px;
+    background-color: #DFDFDF;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+.agendaTimeSkeleton:first-child {
+    margin-top: 20px;
+}
+
+.agendaTimeStickTopSkeleton {
+    display: block;
+    width: 6px;
+    height: 16px;
+    background-color: black;
+    border-radius: 3px;
+}
+
+.agendaTimeStickBottomSkeleton {
+    display: block;
+    width: 6px;
+    height: 16px;
+    background-color: black;
+    border-radius: 3px;
+}
+
+
+.locationMapSkeleton {
+    width: 100%;
+    height: 280px;
+    background-color: #DFDFDF;
+    border-radius: var(--border-radius);
+}
+
+.eventDescriptionSkeleton {
+    max-width: 100%;
+    height: 325px;
+    padding: 12px 14px;
+    border-radius: var(--border-radius);
+    background-color: #DFDFDF;
+    box-sizing: border-box;
+
+}
+
+.eventDescriptionSkeleton > div {
+    margin-top: 30px;
+}
+
+.eventDescriptionTextSkeleton {
+    @include SkeletonBackgroundAnim;
+    margin-bottom: 15px;
+    height: 19px;
+    display: block;
+    border-radius: 4px;
+}

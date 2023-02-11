@@ -1,0 +1,82 @@
+@import url('https://unpkg.com/leaflet@1.9.3/dist/leaflet.css');
+
+.mapCard {
+    box-sizing: border-box;
+    padding: 1rem;
+
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    width: 265px;
+    display: flex;
+    flex-direction: column;
+
+    .mapCardTitle {
+        font-weight: 800;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .mapCardAddress {
+        margin-bottom: 6px;
+    }
+
+}
+
+.zoomButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 400;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+}
+
+.mapContainerOverlay {
+    width: 100%;
+    height: 100%;
+}
+
+.mapBigDisplayWrapper {
+    position: fixed;
+    inset: 0;
+}
+
+.mapBigDisplay {
+    width: 70%;
+    height: 90%;
+    margin: auto;
+    z-index: 9999;
+    position: fixed;
+    inset: 0;
+}
+
+.mapBigDisplayOverlay {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 800px) {
+
+    .mapBigDisplay {
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .mapBigDisplay {
+        width: 90%;
+    }
+    
+}

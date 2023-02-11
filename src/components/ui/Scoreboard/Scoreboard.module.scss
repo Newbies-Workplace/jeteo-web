@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  color: black;
+  font-size: 20px;
+
+  padding: 16px;
+
+  background-color: white;
+  border-radius: var(--border-radius);
+}
+
+.userPoints {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  height: 32px;
+  width: 100%;
+
+  padding: 0 6px;
+
+  border: black solid 1px;
+  border-radius: 16px;
+
+  &.first {
+    border: #E5CA3D solid 3px;
+  }
+
+  &.second {
+    border: #ECECEC solid 3px;
+  }
+
+  &.third {
+    border: #AD7812 solid 3px;
+  }
+}
+
+.name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.value {
+  text-align: center;
+  background-color: #F3F3F3;
+
+  min-width: 80px;
+  height: 20px;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  border-radius: 12px;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+
+  border-radius: 10px;
+
+  &.first {
+    background-color: #E5CA3D;
+  }
+
+  &.second {
+    background-color: #ECECEC;
+  }
+
+  &.third {
+    background-color: #AD7812;
+  }
+}

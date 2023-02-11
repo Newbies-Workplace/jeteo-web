@@ -103,6 +103,22 @@ export type LectureFilterInput = {
   eventId: Scalars['String'];
 };
 
+export type LectureRateRequestInput = {
+  opinion?: InputMaybe<Scalars['String']>;
+  presentationRate: Scalars['Int'];
+  topicRate: Scalars['Int'];
+};
+
+export type LectureRateResponse = {
+  __typename?: 'LectureRateResponse';
+  createDate: Scalars['Instant'];
+  id: Scalars['String'];
+  lectureId: Scalars['String'];
+  opinion?: Maybe<Scalars['String']>;
+  presentationRate: Scalars['Int'];
+  topicRate: Scalars['Int'];
+};
+
 export type LectureRequestInput = {
   description?: InputMaybe<Scalars['String']>;
   speakerIds: Array<Scalars['String']>;
@@ -116,6 +132,10 @@ export type LectureResponse = {
   createDate: Scalars['Instant'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['String'];
+  /** Lecture rates summary */
+  rateSummary: RateSummary;
+  /** Lecture rates */
+  rates: Array<LectureRateResponse>;
   speakers: Array<UserResponse>;
   timeFrame: TimeFrameResponse;
   title: Scalars['String'];
@@ -140,6 +160,8 @@ export type Mutation = {
   followEvent: Scalars['Boolean'];
   /** Appends new tags to followed list */
   followTags: Array<TagResponse>;
+  /** Creates rate lecture */
+  rateLecture: LectureRateResponse;
   /** Replace event data with new data (PUT equivalent) */
   replaceEvent: EventResponse;
   /** Replace event theme with new one (PUT equivalent) */
@@ -194,6 +216,12 @@ export type MutationFollowEventArgs = {
 
 export type MutationFollowTagsArgs = {
   request: Array<TagRequestInput>;
+};
+
+
+export type MutationRateLectureArgs = {
+  id: Scalars['String'];
+  request: LectureRateRequestInput;
 };
 
 
@@ -301,6 +329,13 @@ export type QueryUsersArgs = {
   size?: InputMaybe<Scalars['Int']>;
 };
 
+export type RateSummary = {
+  __typename?: 'RateSummary';
+  presentationAvg: Scalars['Float'];
+  topicAvg: Scalars['Float'];
+  votesCount: Scalars['Int'];
+};
+
 export type TagCreateRequestInput = {
   name: Scalars['String'];
 };
@@ -341,6 +376,7 @@ export type UserRequestInput = {
 
 export type UserResponse = {
   __typename?: 'UserResponse';
+  avatar?: Maybe<Scalars['String']>;
   contact: ContactResponse;
   createDate: Scalars['Instant'];
   description?: Maybe<Scalars['String']>;
@@ -362,14 +398,14 @@ export type EventsListQueryVariables = Exact<{
 }>;
 
 
-export type EventsListQuery = { __typename?: 'Query', events: Array<{ __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }> };
+export type EventsListQuery = { __typename?: 'Query', events: Array<{ __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }> };
 
 export type EventQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type EventQuery = { __typename?: 'Query', event: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+export type EventQuery = { __typename?: 'Query', event: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }, lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } }> };
 
 export type DeleteEventMutationVariables = Exact<{
   id: Scalars['String'];
@@ -383,7 +419,7 @@ export type CreateEventMutationVariables = Exact<{
 }>;
 
 
-export type CreateEventMutation = { __typename?: 'Mutation', createEvent: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+export type CreateEventMutation = { __typename?: 'Mutation', createEvent: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
 
 export type ReplaceEventMutationVariables = Exact<{
   id: Scalars['String'];
@@ -391,7 +427,7 @@ export type ReplaceEventMutationVariables = Exact<{
 }>;
 
 
-export type ReplaceEventMutation = { __typename?: 'Mutation', replaceEvent: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+export type ReplaceEventMutation = { __typename?: 'Mutation', replaceEvent: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
 
 export type ReplaceEventThemeMutationVariables = Exact<{
   id: Scalars['String'];
@@ -399,7 +435,7 @@ export type ReplaceEventThemeMutationVariables = Exact<{
 }>;
 
 
-export type ReplaceEventThemeMutation = { __typename?: 'Mutation', replaceEventTheme: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+export type ReplaceEventThemeMutation = { __typename?: 'Mutation', replaceEventTheme: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
 
 export type ChangeEventVisibilityMutationVariables = Exact<{
   id: Scalars['String'];
@@ -407,9 +443,63 @@ export type ChangeEventVisibilityMutationVariables = Exact<{
 }>;
 
 
-export type ChangeEventVisibilityMutation = { __typename?: 'Mutation', changeEventVisibility: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
+export type ChangeEventVisibilityMutation = { __typename?: 'Mutation', changeEventVisibility: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> } };
 
-export type CoreEventResponseFragment = { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> };
+export type CoreEventResponseFragment = { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, city: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> };
+
+export type LecturesListQueryVariables = Exact<{
+  filter: LectureFilterInput;
+}>;
+
+
+export type LecturesListQuery = { __typename?: 'Query', lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } }> };
+
+export type LectureQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type LectureQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } } };
+
+export type LectureWithRatesQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type LectureWithRatesQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, rates: Array<{ __typename?: 'LectureRateResponse', id: string, opinion?: string | undefined }>, rateSummary: { __typename?: 'RateSummary', topicAvg: number, presentationAvg: number, votesCount: number }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } } };
+
+export type CreateLectureMutationVariables = Exact<{
+  eventId: Scalars['String'];
+  request: LectureRequestInput;
+}>;
+
+
+export type CreateLectureMutation = { __typename?: 'Mutation', createLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } } };
+
+export type ReplaceLectureMutationVariables = Exact<{
+  id: Scalars['String'];
+  request: LectureRequestInput;
+}>;
+
+
+export type ReplaceLectureMutation = { __typename?: 'Mutation', replaceLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } } };
+
+export type DeleteLectureMutationVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type DeleteLectureMutation = { __typename?: 'Mutation', deleteLecture: boolean };
+
+export type RateLectureMutationVariables = Exact<{
+  id: Scalars['String'];
+  request: LectureRateRequestInput;
+}>;
+
+
+export type RateLectureMutation = { __typename?: 'Mutation', rateLecture: { __typename?: 'LectureRateResponse', id: string } };
+
+export type CoreLectureResponseFragment = { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } };
 
 export type CreateTagMutationVariables = Exact<{
   request: TagCreateRequestInput;
@@ -428,6 +518,13 @@ export type TagListQuery = { __typename?: 'Query', tags: Array<{ __typename?: 'T
 
 export type CoreTagResponseFragment = { __typename?: 'TagResponse', id: string, name: string };
 
+export type UserQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'UserResponse', avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, twitter?: string | undefined, linkedin?: string | undefined, mail?: string | undefined } } | undefined };
+
 export const CoreEventResponseFragmentDoc = gql`
     fragment CoreEventResponse on EventResponse {
   id
@@ -437,6 +534,14 @@ export const CoreEventResponseFragmentDoc = gql`
   vanityUrl
   author {
     nickname
+    avatar
+    description
+    contact {
+      github
+      linkedin
+      mail
+      twitter
+    }
   }
   timeFrame {
     startDate
@@ -445,6 +550,10 @@ export const CoreEventResponseFragmentDoc = gql`
   address {
     place
     city
+    coordinates {
+      latitude
+      longitude
+    }
   }
   theme {
     primaryColor
@@ -454,6 +563,27 @@ export const CoreEventResponseFragmentDoc = gql`
   tags {
     id
     name
+  }
+}
+    `;
+export const CoreLectureResponseFragmentDoc = gql`
+    fragment CoreLectureResponse on LectureResponse {
+  id
+  title
+  description
+  timeFrame {
+    startDate
+    finishDate
+  }
+  author {
+    nickname
+    avatar
+    contact {
+      github
+      linkedin
+      mail
+      twitter
+    }
   }
 }
     `;
@@ -505,8 +635,12 @@ export const EventDocument = gql`
   event(id: $id) {
     ...CoreEventResponse
   }
+  lectures(filter: {eventId: $id}) {
+    ...CoreLectureResponse
+  }
 }
-    ${CoreEventResponseFragmentDoc}`;
+    ${CoreEventResponseFragmentDoc}
+${CoreLectureResponseFragmentDoc}`;
 
 /**
  * __useEventQuery__
@@ -701,6 +835,253 @@ export function useChangeEventVisibilityMutation(baseOptions?: Apollo.MutationHo
 export type ChangeEventVisibilityMutationHookResult = ReturnType<typeof useChangeEventVisibilityMutation>;
 export type ChangeEventVisibilityMutationResult = Apollo.MutationResult<ChangeEventVisibilityMutation>;
 export type ChangeEventVisibilityMutationOptions = Apollo.BaseMutationOptions<ChangeEventVisibilityMutation, ChangeEventVisibilityMutationVariables>;
+export const LecturesListDocument = gql`
+    query LecturesList($filter: LectureFilterInput!) {
+  lectures(filter: $filter) {
+    ...CoreLectureResponse
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+
+/**
+ * __useLecturesListQuery__
+ *
+ * To run a query within a React component, call `useLecturesListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLecturesListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLecturesListQuery({
+ *   variables: {
+ *      filter: // value for 'filter'
+ *   },
+ * });
+ */
+export function useLecturesListQuery(baseOptions: Apollo.QueryHookOptions<LecturesListQuery, LecturesListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LecturesListQuery, LecturesListQueryVariables>(LecturesListDocument, options);
+      }
+export function useLecturesListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LecturesListQuery, LecturesListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LecturesListQuery, LecturesListQueryVariables>(LecturesListDocument, options);
+        }
+export type LecturesListQueryHookResult = ReturnType<typeof useLecturesListQuery>;
+export type LecturesListLazyQueryHookResult = ReturnType<typeof useLecturesListLazyQuery>;
+export type LecturesListQueryResult = Apollo.QueryResult<LecturesListQuery, LecturesListQueryVariables>;
+export const LectureDocument = gql`
+    query Lecture($id: String!) {
+  lecture(id: $id) {
+    ...CoreLectureResponse
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+
+/**
+ * __useLectureQuery__
+ *
+ * To run a query within a React component, call `useLectureQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLectureQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLectureQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useLectureQuery(baseOptions: Apollo.QueryHookOptions<LectureQuery, LectureQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LectureQuery, LectureQueryVariables>(LectureDocument, options);
+      }
+export function useLectureLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LectureQuery, LectureQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LectureQuery, LectureQueryVariables>(LectureDocument, options);
+        }
+export type LectureQueryHookResult = ReturnType<typeof useLectureQuery>;
+export type LectureLazyQueryHookResult = ReturnType<typeof useLectureLazyQuery>;
+export type LectureQueryResult = Apollo.QueryResult<LectureQuery, LectureQueryVariables>;
+export const LectureWithRatesDocument = gql`
+    query LectureWithRates($id: String!) {
+  lecture(id: $id) {
+    ...CoreLectureResponse
+    rates {
+      id
+      opinion
+    }
+    rateSummary {
+      topicAvg
+      presentationAvg
+      votesCount
+    }
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+
+/**
+ * __useLectureWithRatesQuery__
+ *
+ * To run a query within a React component, call `useLectureWithRatesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLectureWithRatesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLectureWithRatesQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useLectureWithRatesQuery(baseOptions: Apollo.QueryHookOptions<LectureWithRatesQuery, LectureWithRatesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LectureWithRatesQuery, LectureWithRatesQueryVariables>(LectureWithRatesDocument, options);
+      }
+export function useLectureWithRatesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LectureWithRatesQuery, LectureWithRatesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LectureWithRatesQuery, LectureWithRatesQueryVariables>(LectureWithRatesDocument, options);
+        }
+export type LectureWithRatesQueryHookResult = ReturnType<typeof useLectureWithRatesQuery>;
+export type LectureWithRatesLazyQueryHookResult = ReturnType<typeof useLectureWithRatesLazyQuery>;
+export type LectureWithRatesQueryResult = Apollo.QueryResult<LectureWithRatesQuery, LectureWithRatesQueryVariables>;
+export const CreateLectureDocument = gql`
+    mutation CreateLecture($eventId: String!, $request: LectureRequestInput!) {
+  createLecture(eventId: $eventId, request: $request) {
+    ...CoreLectureResponse
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+export type CreateLectureMutationFn = Apollo.MutationFunction<CreateLectureMutation, CreateLectureMutationVariables>;
+
+/**
+ * __useCreateLectureMutation__
+ *
+ * To run a mutation, you first call `useCreateLectureMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateLectureMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createLectureMutation, { data, loading, error }] = useCreateLectureMutation({
+ *   variables: {
+ *      eventId: // value for 'eventId'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useCreateLectureMutation(baseOptions?: Apollo.MutationHookOptions<CreateLectureMutation, CreateLectureMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateLectureMutation, CreateLectureMutationVariables>(CreateLectureDocument, options);
+      }
+export type CreateLectureMutationHookResult = ReturnType<typeof useCreateLectureMutation>;
+export type CreateLectureMutationResult = Apollo.MutationResult<CreateLectureMutation>;
+export type CreateLectureMutationOptions = Apollo.BaseMutationOptions<CreateLectureMutation, CreateLectureMutationVariables>;
+export const ReplaceLectureDocument = gql`
+    mutation ReplaceLecture($id: String!, $request: LectureRequestInput!) {
+  replaceLecture(id: $id, request: $request) {
+    ...CoreLectureResponse
+  }
+}
+    ${CoreLectureResponseFragmentDoc}`;
+export type ReplaceLectureMutationFn = Apollo.MutationFunction<ReplaceLectureMutation, ReplaceLectureMutationVariables>;
+
+/**
+ * __useReplaceLectureMutation__
+ *
+ * To run a mutation, you first call `useReplaceLectureMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReplaceLectureMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [replaceLectureMutation, { data, loading, error }] = useReplaceLectureMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useReplaceLectureMutation(baseOptions?: Apollo.MutationHookOptions<ReplaceLectureMutation, ReplaceLectureMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ReplaceLectureMutation, ReplaceLectureMutationVariables>(ReplaceLectureDocument, options);
+      }
+export type ReplaceLectureMutationHookResult = ReturnType<typeof useReplaceLectureMutation>;
+export type ReplaceLectureMutationResult = Apollo.MutationResult<ReplaceLectureMutation>;
+export type ReplaceLectureMutationOptions = Apollo.BaseMutationOptions<ReplaceLectureMutation, ReplaceLectureMutationVariables>;
+export const DeleteLectureDocument = gql`
+    mutation DeleteLecture($id: String!) {
+  deleteLecture(id: $id)
+}
+    `;
+export type DeleteLectureMutationFn = Apollo.MutationFunction<DeleteLectureMutation, DeleteLectureMutationVariables>;
+
+/**
+ * __useDeleteLectureMutation__
+ *
+ * To run a mutation, you first call `useDeleteLectureMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteLectureMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteLectureMutation, { data, loading, error }] = useDeleteLectureMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteLectureMutation(baseOptions?: Apollo.MutationHookOptions<DeleteLectureMutation, DeleteLectureMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteLectureMutation, DeleteLectureMutationVariables>(DeleteLectureDocument, options);
+      }
+export type DeleteLectureMutationHookResult = ReturnType<typeof useDeleteLectureMutation>;
+export type DeleteLectureMutationResult = Apollo.MutationResult<DeleteLectureMutation>;
+export type DeleteLectureMutationOptions = Apollo.BaseMutationOptions<DeleteLectureMutation, DeleteLectureMutationVariables>;
+export const RateLectureDocument = gql`
+    mutation RateLecture($id: String!, $request: LectureRateRequestInput!) {
+  rateLecture(id: $id, request: $request) {
+    id
+  }
+}
+    `;
+export type RateLectureMutationFn = Apollo.MutationFunction<RateLectureMutation, RateLectureMutationVariables>;
+
+/**
+ * __useRateLectureMutation__
+ *
+ * To run a mutation, you first call `useRateLectureMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRateLectureMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [rateLectureMutation, { data, loading, error }] = useRateLectureMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useRateLectureMutation(baseOptions?: Apollo.MutationHookOptions<RateLectureMutation, RateLectureMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RateLectureMutation, RateLectureMutationVariables>(RateLectureDocument, options);
+      }
+export type RateLectureMutationHookResult = ReturnType<typeof useRateLectureMutation>;
+export type RateLectureMutationResult = Apollo.MutationResult<RateLectureMutation>;
+export type RateLectureMutationOptions = Apollo.BaseMutationOptions<RateLectureMutation, RateLectureMutationVariables>;
 export const CreateTagDocument = gql`
     mutation CreateTag($request: TagCreateRequestInput!) {
   createTag(request: $request) {
@@ -770,3 +1151,45 @@ export function useTagListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ta
 export type TagListQueryHookResult = ReturnType<typeof useTagListQuery>;
 export type TagListLazyQueryHookResult = ReturnType<typeof useTagListLazyQuery>;
 export type TagListQueryResult = Apollo.QueryResult<TagListQuery, TagListQueryVariables>;
+export const UserDocument = gql`
+    query User($id: String!) {
+  user(id: $id) {
+    avatar
+    contact {
+      github
+      twitter
+      linkedin
+      mail
+    }
+    description
+  }
+}
+    `;
+
+/**
+ * __useUserQuery__
+ *
+ * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+      }
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        }
+export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
+export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
+export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;

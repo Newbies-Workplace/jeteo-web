@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import styles from "./EventUpdateForm.module.scss";
+import studioFormStyles from "./../../../common/styles/StudioFormStyles.module.scss";
 import {Toolbar} from "../Toolbar/Toolbar";
 import {useNavigate, useParams} from "react-router-dom";
 import {ClickableStepView} from "../../../components/ui/StepView/StepView";
-import {EventBasicInfoForm} from "../../../components/containers/EventForm/BasicInfo/EventBasicInfoForm";
-import {EventVisibilityForm} from "../../../components/containers/EventForm/Visibility/EventVisibilityForm";
-import {EventThemeForm} from "../../../components/containers/EventForm/Theme/EventThemeForm";
-import {EventLecturesForm} from "../../../components/containers/EventForm/Lectures/EventLecturesForm";
+import {EventBasicInfoForm} from "../../../components/form/EventForm/BasicInfo/EventBasicInfoForm";
+import {EventVisibilityForm} from "../../../components/form/EventForm/Visibility/EventVisibilityForm";
+import {EventThemeForm} from "../../../components/form/EventForm/Theme/EventThemeForm";
+import {EventLecturesForm} from "../../../components/form/EventForm/Lectures/EventLecturesForm";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
 import {Event} from "../../../common/models/Event";
 import {useEventQuery} from "../../../api/graphql";
@@ -37,17 +37,17 @@ export const EventUpdateForm: React.FC = () => {
     if (error) return <p>error <br/>{error.message}</p>;
 
     return (
-        <div className={styles.container}>
+        <div className={studioFormStyles.container}>
             <Toolbar
                 title={"Edycja wydarzenia"}
-                onBackPress={() => {navigate(-1)}}/>
+                onBackPress={() => {navigate("/studio/events")}}/>
 
             <ClickableStepView
                 steps={steps}
                 activeStepIndex={activeStepIndex}
                 onStepClicked={(index) => {setActiveStepIndex(index)}}/>
 
-            <div className={styles.innerContainer}>
+            <div className={studioFormStyles.innerContainer}>
                 {displayCurrentStep(
                     activeStepIndex,
                     (index: number) => setActiveStepIndex(index),

@@ -1,0 +1,120 @@
+.ratingDialogWrapper {
+    box-sizing: border-box;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    z-index: 999;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    * {
+        box-sizing: inherit;
+    }
+}
+
+.ratingDialog {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #fff;
+    width: 90%;
+    max-width: 615px;
+    height: fit-content;
+    max-height: 90%;
+    overflow-y: auto;
+
+    border-radius: var(--border-radius);
+
+    padding: 30px;
+    margin: auto;
+    position: fixed;
+    inset: 0;
+}
+
+.authorData {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    span {
+        display: block;
+    }
+}
+
+.authorNickname {
+    font-weight: 700;
+}
+
+.authorProfilePicture {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.speechTitle {
+    display: block;
+    color: #4340BE;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 38px;
+}
+
+.starRatingLabel {
+    font-size: 22px;
+}
+
+.ratingDialogContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-grow: 1;
+}
+
+.textAreaLabel {
+    display: block;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.opinionInput {
+    font-family: inherit;
+    font-size: 16px;
+    min-width: 70%;
+    max-width: 90%;
+    min-height: 140px;
+    max-height: 300px;
+    border: 0;
+    background-color: #e3e3e3;
+    border-radius: var(--border-radius);
+    padding: 1em;
+}
+
+.ratingDialogButtons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 40px;
+}
+
+.closeButton {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: absolute; 
+    top: 25px;
+    right: 22px;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+}
+
+@media (max-width: 516px) {
+    .ratingDialogButtons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

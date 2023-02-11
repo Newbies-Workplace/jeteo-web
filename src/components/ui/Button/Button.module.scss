@@ -1,0 +1,32 @@
+.button {
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 16px;
+    color: #000000;
+
+    text-align: center;
+
+    cursor: pointer;
+    transition: transform .3s;
+
+    &.primary {
+        background-color: #009BF9;
+        color: #FFFFFF;
+        border: 0;
+        border-radius: 16px;
+    }
+
+    &.medium {
+        font-size: 24px;
+        padding: 10px 72px;
+    }
+
+    &.small {
+        font-size: 18px;
+        padding: 4px 24px;
+    }
+}
+
+.button:hover {
+    transform: scale(1.05);
+}

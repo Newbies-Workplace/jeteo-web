@@ -1,0 +1,39 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {EventBackground} from "./EventBackground"; 
+import {BrowserRouter, MemoryRouter} from "react-router-dom";
+
+<Meta
+    title="ui/EventBackground"
+    component={EventBackground}/>
+
+export const Template = (args) => <EventBackground {...args} />;
+
+<div style={{position: 'absolute', width: `100%`, left: `0px`}}>
+    <MemoryRouter>
+        <EventBackground title="Event headline" subtitle="more based than you think" color="#6B00B9"/>
+    </MemoryRouter>
+</div>
+<img alt="chad" src="https://i.imgur.com/34NeeMh.jpeg" style={{height: '100px', margin: '16px'}}/>
+
+
+Headline for Event page styled as <a href="/docs/ui-eventcard--active">EventCard</a>.<br/>
+Used in `/event` to show
+- title,
+- subtitle
+- [planned] tags
+
+
+## Usage
+
+Minimal
+<Canvas withSource="open">
+    <Story
+        name="Minimal"
+        args={{
+            title:"Event headline",
+            subtitle: "more based than you think",
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

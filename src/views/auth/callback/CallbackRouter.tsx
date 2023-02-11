@@ -7,6 +7,10 @@ export const CallbackRouter: React.FC = () => {
     return (
         <Routes>
             <Route
+                element={<GenericCallback provider={OAuthProvider.google}/>}
+                path="google"/>
+
+            <Route
                 element={<GenericCallback provider={OAuthProvider.github}/>}
                 path="github"/>
 

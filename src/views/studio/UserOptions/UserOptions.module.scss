@@ -1,0 +1,38 @@
+.backgroundContainer {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f3f3f3;
+}
+
+.userOptionsMainContainer {
+    width: 100%;
+    max-width: var(--app-extended-width);
+    margin: auto;
+    display: flex;
+}
+
+.userOptionsNavigation {
+    max-width: 275px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+}
+.logo {
+    display: flex;
+    font-weight: bold;
+    height: var(--studio-top-bar-height);
+    align-items: center;
+    padding-top: 32px;
+    padding-bottom: 8px;
+    margin: 0;
+}
+
+.separator {
+    min-width: 3px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    background-color: #e2e2e2;
+}

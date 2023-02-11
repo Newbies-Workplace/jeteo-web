@@ -1,6 +1,6 @@
 import React from 'react';
 import cs from 'classnames';
-
+import { Portal } from 'react-portal';
 import styles from './MenuBase.module.scss';
 
 interface MenuBaseProp {
@@ -32,9 +32,15 @@ export const MenuBase: React.FC<MenuBaseProp> = ({
 }) => {
 
     return (
-        <span className={styles.base}>
+        <span>
             {isOpen &&
-                <span onClick={() => setOpen(false)} className={cs(styles.overlay, {[styles.visible]: overlay})}/>
+                <Portal>
+                    <span
+                        onClick={() => setOpen(false)}
+                        className={cs(styles.overlay, {
+                            [styles.visible]: overlay
+                        })}/>
+                </Portal>
             }
             <span className={styles.hook}>
                 {isOpen &&

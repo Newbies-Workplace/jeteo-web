@@ -4,34 +4,58 @@ import {
     Routes,
     Route
 } from 'react-router-dom';
-import { AuthView } from './auth/AuthView';
 import { HomeView } from './home/HomeView';
-import { EventView } from "./event/EventView";
-import { StudioView } from "./studio/StudioView";
+import { withSuspense } from "../components/utils/hoc/withSuspense";
+import { NotFound } from './404/NotFound';
+import { HeroPage } from './hero/HeroPage';
+import { EventSkeleton } from '../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
+import { NavBar } from '../components/ui/NavBar/NavBar';
+import { UserOptions } from './studio/UserOptions/UserOptions';
+import { RequireAuth } from '../components/utils/requireAuth/RequireAuth';
+
+
+const StudioView = React.lazy(() => import('./studio/StudioView'));
+const AuthView = React.lazy(() => import('./auth/AuthView'));
+const EventView = React.lazy(() => import('./event/EventView'));
 
 export const AppRouter: React.FC = () => {
     return (
         <Router>
             <Routes>
                 <Route
-                    element={<HomeView/>}
-                    path="/"/>
+                    element={<HomeView />}
+                    path="/" />
 
                 <Route
-                    element={<AuthView/>}
-                    path="/auth/*"/>
+                    element={withSuspense(AuthView)}
+                    path="/auth/*" />
 
                 <Route
-                    element={<EventView/>}
-                    path="event/:name"/>
+                    element={withSuspense(EventView,
+                    <>
+                        <NavBar />
+                        <EventSkeleton />
+                    </>
+                    )}
+                    path="event/:name" />
 
                 <Route
-                    element={<StudioView/>}
-                    path="studio/*"/>
+                    element={withSuspense(StudioView)}
+                    path="studio/*" />
 
-                <Route path="*">
-                    404
-                </Route>
+                <Route
+                    element={<HeroPage />}
+                    path="/hero"
+                />
+                <Route
+                    element={<RequireAuth><UserOptions /></RequireAuth>}
+                    path="/options/*"
+                />
+
+                <Route
+                    element={<NotFound />}
+                    path="*"
+                />
             </Routes>
         </Router>
     )

@@ -1,0 +1,119 @@
+.lectureContainer {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 16px;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+} 
+
+.userContainer {
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    gap: 10px;
+}
+.userName {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 10px 0 10px 0;
+    font-family: var(--header-font);
+}
+.userIcon {
+    margin-top: -32px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userSocialMediaContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap !important;
+    margin-bottom: 5px;
+    gap: 10px !important;
+}
+
+@media screen and (max-width: 700px){
+    .userSocialMediaContainer {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 5px;
+        gap: 10px !important;
+    }
+}
+
+.userSocialMediaContainer a {
+    display: flex;
+    justify-content: center;
+}
+
+.prelegendEventInfo {
+    min-width: 70%;
+}
+
+
+
+.prelegendEventInfo > h2 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: var(--header-font);
+    margin: 5px 0 6px 0;
+}
+
+.prelegendEventInfo > p {
+    font-size: 14px;
+    font-family: var(--font);
+    margin: 0;
+    width: 70%;
+    padding-bottom: 15px;
+}
+
+
+.boxBorder {
+    z-index: -2;
+    border-radius: calc( var(--border-radius) + 4px);
+    margin-top: -4px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 4px;
+    gap: 4px;
+    box-shadow: 0px 2px 16px rgba(84, 82, 195, 0.5);
+}
+
+.boxBorder > button {
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 520px) {
+
+    .boxBorder {
+        margin: 32px 0;
+    }
+
+    .lectureContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .prelegendEventInfo {
+        p {
+            width: 100%;
+        }
+    }
+
+    .userContainer {
+        margin: 0;
+    }
+
+}

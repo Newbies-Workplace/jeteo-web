@@ -1,0 +1,248 @@
+.mainContainer {
+    h1, h2, h3, h4, h5, h6, p {
+        margin: 0;
+    }
+    overflow-x: hidden;
+}
+
+.frontPageInfo {
+    z-index: 2;
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+}
+
+.logoContainer {
+    color: #fff;
+    font-family: var(--accent-font);
+
+    display: flex;
+    gap: 1rem;
+    
+    .logoTitle {
+        font-size: 8.125rem;
+    }
+
+    .logoSubtitle {
+        font-size: 2rem;
+        font-weight: 300;
+    }
+}
+
+.callToAction {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 300px;
+    gap: 1.0625rem;
+
+    h3 {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        margin: 0;
+    }
+
+}
+
+.actionButton {
+    font-family: var(--font);
+    font-size: 1.125rem !important;
+    font-weight: 600;
+}
+
+.logInButton {
+    background-color: #080736;
+    color: #FFFFFF;
+    border: 2px solid white;
+}
+
+.heroSection {
+
+    width: 100%;
+    position: relative;
+    
+    background-color: #eeee;
+    padding-top: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &:nth-of-type(2) {
+        background-image:
+            url(../../assets/images/hero-bottom-section-illustration.svg),
+                url(../../assets/images/hero-bottom-section-bg.png);
+        background-repeat: no-repeat;
+        background-position: right 20vw top 220px, center center; 
+        background-size: 550px, cover;
+        min-height: 740px;
+        // Bigger padding is required so that waves are fully visible
+        padding-top: 207px;
+        color: #fff;
+    }
+}
+
+.moonSeparator {
+    width: 100%;
+    position: absolute;
+    transform: scale(1.35);
+    top: -125px;
+    z-index: 2;
+}
+
+.spaceWaveBackgroundSeparator {
+    width: 100%;
+}
+
+.heroSectionContentImage {
+    max-width: 100%;
+    display: block;
+}
+
+.heroSectionContentContainer {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.featContent {
+    width: 100%;
+    z-index: 10;
+    min-height: 7.5rem;
+    margin-bottom: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+
+    h2 {
+        font-size: 48px;
+        font-weight: bold;
+    }
+}
+
+.featContentList {
+    width: 100%;
+    min-height: 2.8125rem;
+    border-radius: var(--border-radius);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    background-color: #080736;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.heroSectionContent {
+    min-height: 600px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vw;
+
+    h3 {
+        font-size: 4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-family: var(--accent-font);
+    }
+
+    p {
+        max-width: 65%;
+        font-weight: 500;
+        font-size: 1.125rem;
+    }
+}
+
+.heroSectionContentBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 1260px) {
+
+    .logoContainer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .logoComponent {
+            display: none;
+        }
+    }
+
+    .frontPageInfo {
+        flex-direction: column;
+        margin-bottom: 100px;
+    }
+
+    .callToAction {
+        margin-top: 50px;
+    }
+
+    .heroSection:nth-of-type(2) {
+        // '0' hides the planet illustration
+        background-size: 0, cover;
+    }  
+
+    .heroSectionContent {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        place-items: center;
+        text-align: center;
+
+        h3 {
+            margin-top: 2rem;
+        }
+
+    }
+
+    .heroSectionContentBox {
+        align-items: center;
+        padding-inline: 20px;
+    }
+
+    .featContentList {
+        width: 90%;
+    }
+
+}
+
+@media (max-width: 830px) {
+
+    .heroSectionContentContainer {
+        width: 100%;
+    }
+    
+}
+
+@media (max-width: 638px) {
+
+    .moonSeparator {
+        transform: scale(1.6);
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .moonSeparator {
+        transform: scale(1.9);
+    }
+
+}

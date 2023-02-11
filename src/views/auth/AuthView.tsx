@@ -49,3 +49,5 @@ export const AuthView: React.FC = () => {
         </GalaxyBackground>
     )
 };
+
+export default AuthView;

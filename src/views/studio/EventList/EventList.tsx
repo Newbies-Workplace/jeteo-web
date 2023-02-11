@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./EventList.module.scss";
 import {Link} from "react-router-dom";
-import PrimaryButton from "../../../components/ui/PrimaryButton/PrimaryButton";
+import Button from "../../../components/ui/Button/Button";
 import {EventList as EventListComponent} from "../../../components/ui/EventList/EventList";
 import {EventCard} from "../../../components/containers/EventCard/EventCard";
 import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
@@ -21,13 +21,13 @@ export const EventList: React.FC = () => {
                 <b>Wydarzenia</b>
 
                 <Link to={"/studio/events/create"}>
-                    <PrimaryButton>Dodaj</PrimaryButton>
+                    <Button primary>Dodaj</Button>
                 </Link>
             </div>
 
             <EventListComponent
                 filter={EVENT_LIST_FILTER}
-                renderItem={ event =>
+                renderItem={event =>
                     <Link
                         key={event.id}
                         style={{ textDecoration: 'none' }}

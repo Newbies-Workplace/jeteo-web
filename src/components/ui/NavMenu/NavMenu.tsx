@@ -6,7 +6,6 @@ import {NavMenuItemLink} from "./NavMenuItem/NavMenuItemLink";
 import {NavMenuItemButton} from "./NavMenuItem/NavMenuItemButton";
 
 export const NavMenu: React.FC = () => {
-
     const {user, logout} = useAuth();
 
     return (

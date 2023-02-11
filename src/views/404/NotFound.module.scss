@@ -1,0 +1,38 @@
+.errorContainer {
+    /* limit width within usable space */
+
+    max-width: var(--app-prefer-width);
+
+    /* center vertically */
+
+    height: fit-content;
+    margin: auto;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+
+    /* prevent galaxy background elements from overlapping the error message */
+
+    z-index: 2;
+
+    /* appearance */
+
+    color: #fff;
+
+    h1 {
+        font-size: 1.875rem;
+        margin-top: 0;
+    }
+    
+    p {
+        font-size: 1.25rem;
+    }
+
+    button {
+        margin-top: 3rem;
+        font-size: 1.125rem !important;
+        font-weight: 700;
+    }
+}

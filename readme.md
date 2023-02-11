@@ -31,7 +31,7 @@ Here's [image link](https://github.com/Newbies-Workplace/jeteo-web/pkgs/containe
 docker run --name web -e API_URL=https://api.domain.tld jeteo-web:latest
 ```
 
-### Enviroment Varables
+### Environment Variables
 | Name     | Description    | Example Value           |
 | -------- | -------------- | ------------------------|
 | API_URL  | Api's url      | https://api.domain.tld  |
