@@ -27,12 +27,8 @@ export const EventCard: React.FC<EventCardProps> = ({
     if (!color) color = "#4fd0bd"
 
     const cardStyle: React.CSSProperties = {
-<<<<<<< HEAD
-        backgroundColor: color ?? '#080736'
-=======
         backgroundColor: `${color}`,
         backgroundImage: `linear-gradient(90deg, ${color}a0, ${color}), url(${image})`,
->>>>>>> develop
     }
 
     return (
