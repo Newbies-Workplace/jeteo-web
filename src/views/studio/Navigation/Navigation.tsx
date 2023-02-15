@@ -9,10 +9,10 @@ export const Navigation: React.FC = () => {
       <div className={styles.navigation}>
           <h1 className={styles.logo}>STUDIO</h1>
 
-          <NavButton
-              icon={<Dashboard width={20}/>}
-              name={"Dashboard"}
-              to={"dashboard"}/>
+          {/*<NavButton*/}
+          {/*    icon={<Dashboard width={20}/>}*/}
+          {/*    name={"Dashboard"}*/}
+          {/*    to={"dashboard"}/>*/}
 
           <NavButton
               icon={<Calendar width={20}/>}

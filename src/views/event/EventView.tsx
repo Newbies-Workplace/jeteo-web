@@ -14,8 +14,7 @@ import LectureCard from '../../components/ui/Lecture/LectureCard';
 import { EventOrganizer } from '../../components/ui/EventOrganizer/EventOrganizer';
 import { LocationMap } from '../../components/ui/LocationMap/LocationMap';
 import { EventSkeleton } from '../../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
-import { EventRating } from '../../components/ui/EventRating/EventRating';
-import {Lecture} from "../../common/models/Lecture";
+import { LectureRateDialog } from '../../components/ui/EventRating/LectureRateDialog';
 
 export const EventView: React.FC = () => {
 
@@ -82,13 +81,15 @@ export const EventView: React.FC = () => {
                         }
                     }}
                     status={status}/>
-                {openRatingId === item.id && <EventRating
-                    lecture={Lecture.fromData(item)}
-                    onDismiss={() => setOpenRatingId(null)}
-                />}
+
+                {openRatingId === item.id &&
+                    <LectureRateDialog
+                        lecture={item}
+                        onDismiss={() => setOpenRatingId(null)}
+                    />
+                }
             </div>
         )})
-
 
     return (
         <div className={styles.main}>

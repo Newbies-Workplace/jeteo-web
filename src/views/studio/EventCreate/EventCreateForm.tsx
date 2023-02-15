@@ -72,6 +72,7 @@ const displayCurrentStep = (
         case 2:
             return <EventLecturesForm
                 event={event!}
+                showNextButton={true}
                 onSubmitted={(event) => {
                     setEvent(event)
                     setIndex(3)

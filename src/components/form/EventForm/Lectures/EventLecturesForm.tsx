@@ -10,11 +10,12 @@ import {Lecture} from "../../../../common/models/Lecture";
 import {toast} from "react-toastify";
 
 interface EventLecturesFormProps {
-    event: Event,
+    event: Event
+    showNextButton?: boolean
     onSubmitted: (event: Event) => void
 }
 
-export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, onSubmitted}) => {
+export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, showNextButton = false, onSubmitted}) => {
     const navigate = useNavigate()
     const [deleteLecture] = useDeleteLectureMutation()
 
@@ -44,9 +45,12 @@ export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, onSu
                 <Button onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/create`)}>
                     Dodaj
                 </Button>
-                <Button primary onClick={() => onSubmitted(event)}>
-                    Dalej
-                </Button>
+
+                {showNextButton &&
+                    <Button primary onClick={() => onSubmitted(event)}>
+                        Dalej
+                    </Button>
+                }
             </div>
         </div>
     )

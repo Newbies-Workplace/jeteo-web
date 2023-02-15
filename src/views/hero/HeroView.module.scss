@@ -61,7 +61,7 @@
 }
 
 .logInButton {
-    background-color: #080736;
+    background-color: transparent;
     color: #FFFFFF;
     border: 2px solid white;
 }
@@ -96,7 +96,7 @@
     position: absolute;
     transform: scale(1.35);
     top: -125px;
-    z-index: 2;
+    z-index: 1;
 }
 
 .spaceWaveBackgroundSeparator {
@@ -220,29 +220,22 @@
     .featContentList {
         width: 90%;
     }
-
 }
 
 @media (max-width: 830px) {
-
     .heroSectionContentContainer {
         width: 100%;
     }
-    
 }
 
 @media (max-width: 638px) {
-
     .moonSeparator {
         transform: scale(1.6);
     }
-
 }
 
 @media (max-width: 450px) {
-
     .moonSeparator {
         transform: scale(1.9);
     }
-
 }

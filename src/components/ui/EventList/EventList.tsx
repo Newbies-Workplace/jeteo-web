@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
-import { Event } from "../../../common/models/Event";
-import { Link } from "react-router-dom";
-import { EventListSkeleton } from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
-import { PlaceholderSwitcher } from "../../utils/animations/PlaceholderSwitcher";
-import { AnimatedList } from "../../utils/animations/AnimatedList";
-import { EventCard } from "../../containers/EventCard/EventCard";
+import React from 'react';
+import {Event} from "../../../common/models/Event";
+import {Link} from "react-router-dom";
+import {EventListSkeleton} from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
+import {PlaceholderSwitcher} from "../../utils/animations/PlaceholderSwitcher";
+import {AnimatedList} from "../../utils/animations/AnimatedList";
+import {EventCard} from "../../containers/EventCard/EventCard";
 import {EventFilterInput, useEventsListQuery} from "../../../api/graphql";
 
 export type EventListItemRenderer = (e: Event, index: number) => JSX.Element;
@@ -38,13 +38,6 @@ export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defau
         },
     });
 
-    const events = useMemo(
-        () => data?.events
-            .map(Event.fromData)
-            .map(renderItem) || [],
-        [data]
-    );
-
     if (error)
         return <p>error <br />{error.message}</p>;
 
@@ -52,7 +45,12 @@ export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defau
         <PlaceholderSwitcher
             placeholder={<EventListSkeleton />}
             loading={loading}>
-            <AnimatedList items={events} />
+            <AnimatedList
+                items={
+                    data?.events
+                        ?.map(Event.fromData)
+                        ?.map(renderItem) || []
+                } />
         </PlaceholderSwitcher>
     );
 };

@@ -22,11 +22,12 @@ interface EventThemeFormProps {
 
 export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventChange, onSubmitted}) => {
     const [replaceEventTheme] = useReplaceEventThemeMutation()
+
     const {axios} = useAuth()
 
     const initialValues: EventThemeFormValues = {
-        primaryColor: event.primaryColor,
-        secondaryColor: undefined,
+        primaryColor: event.primaryColor ?? "#123123",
+        secondaryColor: event.primaryColor ?? "#123123",
     }
 
     const onCoverDeleteClick = async () => {
@@ -71,66 +72,72 @@ export const EventThemeForm: React.FC<EventThemeFormProps> = ({event, onEventCha
     }
 
     return (
-        <Formik initialValues={initialValues} onSubmit={onSubmitClick}>
-            <Form>
-                <StudioSection title={"Motyw"}>
-                    <div className={formStyles.row}>
-                        <div>
-                            <h4>Kolor przewodni:</h4>
-                            <Field
-                                id={"primaryColor"}
-                                name={"primaryColor"}
-                                placeholder={"Kolor przewodni"}
-                                component={({field, form: {setFieldValue}}: FieldProps) =>
-                                    <div>
-                                        <HexColorPicker
-                                            color={field.value ?? undefined}
-                                            onChange={(color) => setFieldValue(field.name, color) }/>
-                                        <HexColorInput
-                                            className={formStyles.input}
-                                            prefixed
-                                            color={field.value ?? undefined}
-                                            onChange={(color) => setFieldValue(field.name, color)} />
-                                    </div>
-                                } />
-                        </div>
-                        <div>
-                            <h4>Okładka:</h4>
-                            <div className={formStyles.row}>
-                                {event.image &&
-                                    <FileItem
-                                        url={event.image}
-                                        onDeleteClick={onCoverDeleteClick}/>
-                                }
-                                {!event.image &&
-                                    <FileUpload
-                                        onChange={(files) => onCoverFileUpdate(files[0])}/>
-                                }
+        <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmitClick}>
+            {({values}) => (
+                <Form>
+                    <StudioSection title={"Motyw"}>
+                        <div className={formStyles.row}>
+                            <div>
+                                <h4>Kolor przewodni:</h4>
+                                <Field
+                                    id={"primaryColor"}
+                                    name={"primaryColor"}
+                                    placeholder={"Kolor przewodni"}
+                                    component={({field, form: {setFieldValue}}: FieldProps) =>
+                                        <div>
+                                            <HexColorPicker
+                                                color={field.value ?? undefined}
+                                                onChange={(color) => setFieldValue(field.name, color)}/>
+                                            <HexColorInput
+                                                className={formStyles.input}
+                                                prefixed
+                                                color={field.value ?? undefined}
+                                                onChange={(color) => setFieldValue(field.name, color)}/>
+                                        </div>
+                                    }/>
+                            </div>
+
+                            <div>
+                                <h4>Okładka:</h4>
+                                <div className={formStyles.row}>
+                                    {event.image &&
+                                        <FileItem
+                                            url={event.image}
+                                            onDeleteClick={onCoverDeleteClick}/>
+                                    }
+                                    {!event.image &&
+                                        <FileUpload
+                                            onChange={(files) => onCoverFileUpdate(files[0])}/>
+                                    }
+                                </div>
                             </div>
                         </div>
+                    </StudioSection>
+
+                    <StudioSection title={"Podgląd"}>
+                        <EventCard
+                            title={event.title}
+                            subtitle={event.subtitle}
+                            color={values?.primaryColor}
+                            image={event.image}
+                            locationName={event.location?.city}
+                            startDate={event.startDate}/>
+                    </StudioSection>
+
+                    <StudioSection title={"Galeria"}>
+                        <h4>W przyszłości...</h4>
+                    </StudioSection>
+
+                    <div className={formStyles.submit}>
+                        <Button primary type={"submit"}>
+                            Zapisz
+                        </Button>
                     </div>
-                </StudioSection>
+                </Form>
+            )}
 
-                <StudioSection title={"Podgląd"}>
-                    <EventCard
-                        title={event.title}
-                        subtitle={event.subtitle}
-                        color={event.primaryColor}
-                        image={event.image}
-                        locationName={event.location?.city}
-                        startDate={event.startDate} />
-                </StudioSection>
-
-                <StudioSection title={"Galeria"}>
-                    <h4>W przyszłości...</h4>
-                </StudioSection>
-
-                <div className={formStyles.submit}>
-                    <Button primary type={"submit"}>
-                        Zapisz
-                    </Button>
-                </div>
-            </Form>
         </Formik>
     )
 }
