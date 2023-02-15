@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap');
+
+:root {
+    --app-prefer-width: 1024px;
+    --app-extended-width: 1250px;
+
+    --border-radius: 16px;
+    --font: 'Lato', sans-serif;
+    --header-font: 'Inter', sans-serif;
+    --accent-font: 'Oswald', sans-serif;
+}
+
+body, main  {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: var(--font);
+    overflow-x: hidden;
+}
