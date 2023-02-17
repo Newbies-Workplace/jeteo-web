@@ -23,13 +23,6 @@ export const LectureList: React.FC<LectureListProps> = ({filter, renderItem}) =>
         }
     });
 
-    const lectures = useMemo(
-        () => data?.lectures
-            .map(Lecture.fromData)
-            .map((lecture, index) => renderItem(lecture, index)) || [],
-        [data]
-    );
-
     if (error)
         return <p>error <br />{error.message}</p>;
 
@@ -37,7 +30,11 @@ export const LectureList: React.FC<LectureListProps> = ({filter, renderItem}) =>
         <PlaceholderSwitcher
             placeholder={<EventListSkeleton />}
             loading={loading}>
-            <AnimatedList items={lectures} />
+            <AnimatedList items={
+                data?.lectures
+                    .map(Lecture.fromData)
+                    .map((lecture, index) => renderItem(lecture, index)) || []
+            } />
         </PlaceholderSwitcher>
     );
 }

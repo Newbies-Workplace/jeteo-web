@@ -17,7 +17,7 @@ interface StudioLectureCardProps {
     speakers: Speaker[]
     onEditClick?: () => void
     onDeleteClick?: () => void
-    onClick?: () => void; 
+    onClick?: () => void;
 }
 
 export const StudioLectureCard: React.FC<StudioLectureCardProps> = (
@@ -46,7 +46,13 @@ export const StudioLectureCard: React.FC<StudioLectureCardProps> = (
                     <span>{descriptionSnippet}</span>
                 </div>
 
-                <MoreIcon className={styles.more} onClick={() => setMenuOpen(true)}/>
+                <MoreIcon
+                    className={styles.more}
+                    onClick={(e) => {
+                        setMenuOpen(true)
+                        e.stopPropagation()
+                    }}/>
+
                 <Menu
                     isOpen={menuOpen}
                     setIsOpen={(open) => setMenuOpen(open)}
@@ -63,7 +69,7 @@ export const StudioLectureCard: React.FC<StudioLectureCardProps> = (
             </div>
 
 
-            {speakers.length != 0 &&
+            {speakers.length !== 0 &&
                 <div className={cs(styles.row, styles.speakers)}>
                     {speakers.map(speaker =>
                         <div key={speaker.name} className={styles.speaker}>
