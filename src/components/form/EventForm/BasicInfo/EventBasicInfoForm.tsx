@@ -239,7 +239,6 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                             control={control}
                             render={({field}) =>
                                 <Input
-                                    required
                                     label={"Adres"}
                                     value={field.value}
                                     setValue={(value) => field.onChange(value)}/>
