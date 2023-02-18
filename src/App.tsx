@@ -9,7 +9,7 @@ export const App: React.FC = () => {
     return (
         <AuthContextProvider>
             <ToastContainer
-                position={'bottom-right'} />
+                position={'top-right'} />
 
             <AppRouter />
         </AuthContextProvider>

@@ -30,7 +30,10 @@ export const EventDetails: React.FC = () => {
             .then(() => {
                 navigate(-1)
             })
-            .catch(console.error)
+            .catch((e) => {
+                toast.error("Wystąpił błąd")
+                console.error(e)
+            })
     }
 
     const onDeleteLectureClick = (lecture: Lecture) => {

@@ -40,7 +40,7 @@ export const EventUpdateForm: React.FC = () => {
         <div className={studioFormStyles.container}>
             <Toolbar
                 title={"Edycja wydarzenia"}
-                onBackPress={() => {navigate("/studio/events")}}/>
+                onBackPress={() => {navigate(`/studio/events/${name}`)}}/>
 
             <ClickableStepView
                 steps={steps}

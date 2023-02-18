@@ -1,98 +1,117 @@
 import React, { useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Icon } from "leaflet";
+import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from "./LocationMap.module.scss";
+import CloseIcon from "../../../assets/icons/close.svg";
 import ZoomIcon from "../../../assets/icons/zoom-glass.svg";
+import PinIcon from "../../../assets/icons/pin.svg"
+import { MarkerLayer, Marker } from "react-leaflet-marker";
+import {useScrollBlockHook} from "../../../contexts/auth/hooks/useScrollBlock.hook";
+import {LatLngLiteral} from "leaflet";
 
 interface LocationMapProps {
     coordinates?: {
         lat: number,
-        lng: number
+        lng: number,
     }
-    address?: string
+    place: string,
 }
 
-const markerIcon = new Icon({
-    iconUrl: "../../../../src/assets/icons/pin.svg",
-    iconSize: [64,64],
-    iconAnchor: [30,45]
-})
-
-export const LocationMap: React.FC<LocationMapProps> = ({coordinates, address}) => {
-
+export const LocationMap: React.FC<LocationMapProps> = ({coordinates, place}) => {
     const [isBigMapToggled, toggleBigMap] = useState<boolean>(false)
-
-    isBigMapToggled ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
 
     return (
         <>
             <div className={styles.mapCard}>
-                <span className={styles.mapCardTitle}>Lokacja</span>
-                { address && <span className={styles.mapCardAddress}>{ address }</span>}
+                <span className={styles.mapCardTitle}>
+                    Lokacja
+                </span>
 
-                { coordinates &&
-                    <MapContainer style={{width: "100%", height: "208px", borderRadius: "16px"}} center={coordinates} 
-                    zoom={20} zoomControl={false} scrollWheelZoom>
+                <span className={styles.mapCardAddress}>
+                    {place}
+                </span>
 
-                        <div 
+                {coordinates &&
+                    <MapContainer
+                        style={{width: "100%", height: "208px", borderRadius: "16px"}}
+                        center={coordinates}
+                        zoom={20}
+                        zoomControl={false}
+                        scrollWheelZoom>
+
+                        <div
                             className={styles.mapContainerOverlay}
-                            onDoubleClick={() => toggleBigMap(!isBigMapToggled)}>
-                        </div>
+                            onDoubleClick={() => toggleBigMap(false)} />
 
                         <button className={styles.zoomButton} onClick={() => toggleBigMap(!isBigMapToggled)}>
                             <ZoomIcon width={16} height={16}/>
                         </button>
 
-                        <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
+                        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
-                        <Marker position={coordinates} icon={markerIcon}>
-                            <Popup offset={[2,9]}>
-                                Lokalizacja prelekcji
-                            </Popup>
-                        </Marker>
-
+                        <MarkerLayer>
+                            <Marker position={coordinates} size={[64, 64]} placement={'top'}>
+                                <PinIcon/>
+                            </Marker>
+                        </MarkerLayer>
                     </MapContainer>
                 }
             </div>
 
 
-            { coordinates && isBigMapToggled &&
-                <>
-                    <div 
-                        className={styles.mapBigDisplayOverlay} 
-                        onClick={() => toggleBigMap(!isBigMapToggled)}
+            {coordinates && isBigMapToggled &&
+                <LocationDialog
+                    closeDialog={() => toggleBigMap(false)}
+                    coordinates={coordinates} />
+            }
+        </>
+    )
+}
+
+interface LocationDialogProps {
+    closeDialog: () => void
+    coordinates: LatLngLiteral
+}
+
+const LocationDialog: React.FC<LocationDialogProps> = ({closeDialog, coordinates}) => {
+    useScrollBlockHook()
+
+    return (
+        <>
+            <div
+                className={styles.mapBigDisplayOverlay}
+                onClick={() => closeDialog()}
+            />
+
+            <div className={styles.mapBigDisplay} style={{display: "block"}}>
+                <MapContainer
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: 16,
+                    }}
+                    center={coordinates}
+                    zoom={20}
+                    zoomControl={false}
+                    scrollWheelZoom>
+
+                    <div
+                        className={styles.mapContainerOverlay}
+                        onDoubleClick={() => closeDialog()}
                     />
 
-                    <div className={styles.mapBigDisplay} style={{display: "block"}}>
+                    <button className={styles.zoomButton} onClick={() => closeDialog()}>
+                        <CloseIcon width={16} height={16}/>
+                    </button>
 
-                        <MapContainer style={{width: "100%", height: "100%"}} center={coordinates} zoom={20} zoomControl={false} scrollWheelZoom>
+                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
-                            <div    
-                                className={styles.mapContainerOverlay}
-                                onDoubleClick={() => toggleBigMap(!isBigMapToggled)}
-                            />
-
-                            <button className={styles.zoomButton} onClick={() => toggleBigMap(!isBigMapToggled)}>
-                                <ZoomIcon width={16} height={16}/>
-                            </button>
-        
-                            <TileLayer
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            />
-        
-                            <Marker position={coordinates} icon={markerIcon}>
-                                <Popup offset={[2,9]}>
-                                    Lokalizacja prelekcji
-                                </Popup>
-                            </Marker>
-        
-                        </MapContainer>
-        
-                    </div>
-                </>
-            }
+                    <MarkerLayer>
+                        <Marker position={coordinates} size={[64, 64]} placement={'top'}>
+                            <PinIcon/>
+                        </Marker>
+                    </MarkerLayer>
+                </MapContainer>
+            </div>
         </>
     )
 }

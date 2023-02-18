@@ -2,9 +2,9 @@ import { useLocation } from 'react-router'
 import {parse, ParsedQuery} from 'query-string'
 
 /**
- * useQueryParams hook
+ * useQueryParamsHook hook
  * @example
- * let { get } = useQueryParams();
+ * let { get } = useQueryParamsHook();
  */
-export const useQueryParams = (): ParsedQuery =>
+export const useQueryParamsHook = (): ParsedQuery =>
     parse(useLocation().search);

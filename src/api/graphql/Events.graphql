@@ -64,7 +64,6 @@ fragment CoreEventResponse on EventResponse {
     }
     address {
         place
-        city
         coordinates {
             latitude
             longitude

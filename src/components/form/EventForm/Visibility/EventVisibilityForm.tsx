@@ -1,16 +1,15 @@
 import React from "react";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import Button from "../../../ui/Button/Button";
-import {Field, Form, Formik, FormikValues} from "formik";
 import {EventVisibilityRequestInput, useChangeEventVisibilityMutation, Visibility} from "../../../../api/graphql";
 import {Event} from "../../../../common/models/Event";
-import {FieldProps} from "formik/dist/Field";
 import RadioButtons from "../../../ui/RadioButtons/RadioButtons";
 import formStyles from "../../Form.module.scss";
 import {toast} from "react-toastify";
+import {Controller, useForm} from "react-hook-form";
 
 interface EventVisibilityFormProps {
-    event: Event,
+    event: Event
     onSubmitted: (event: Event) => void
 }
 
@@ -27,7 +26,9 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
         ? {visibility: event.visibility}
         : {visibility: Visibility.PRIVATE}
 
-    const onSubmitClicked = (values: FormikValues) => {
+    const {control, handleSubmit} = useForm<EventChangeVisibilityValues>({defaultValues: initialValues})
+
+    const onSubmitClicked = (values: EventChangeVisibilityValues) => {
         const request: EventVisibilityRequestInput = {
             visibility: values.visibility,
         }
@@ -49,28 +50,27 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
     }
 
     return (
-        <Formik initialValues={initialValues} onSubmit={onSubmitClicked}>
-            <Form>
-                <StudioSection title={"Widoczność"}>
-                    <Field
-                        id={"visibility"}
-                        name={"visibility"}
-                        component={({field, form: {setFieldValue}}: FieldProps) =>
-                            <RadioButtons
-                                values={visibilities}
-                                selectedValueIndex={visibilities.findIndex((value) => value.id === field.value)}
-                                onChange={(item) => setFieldValue(field.name, item.id)} />
-                        } />
-                </StudioSection>
+        <form onSubmit={handleSubmit(onSubmitClicked)}>
+            <StudioSection title={"Widoczność"}>
+                <Controller
+                    name={'visibility'}
+                    control={control}
+                    render={({field}) =>
+                        <RadioButtons
+                            values={visibilities}
+                            selectedValueIndex={visibilities.findIndex((value) => value.id === field.value)}
+                            onChange={(item) => field.onChange(item.id)} />
 
-                <div className={formStyles.submit}>
-                    <Button primary type={"submit"}>Gotowe</Button>
-                </div>
-            </Form>
-        </Formik>
+                    }/>
+            </StudioSection>
+
+            <div className={formStyles.submit}>
+                <Button primary type={"submit"}>Gotowe</Button>
+            </div>
+        </form>
     )
 }
 
 interface EventChangeVisibilityValues {
-    visibility: string
+    visibility: Visibility
 }

@@ -30,7 +30,7 @@ export const StudioView: React.FC = () => {
                                 path="/events"/>
                             <Route
                                 element={<EventCreateForm/>}
-                                path="/events/create"/>
+                                path="/events/create/*"/>
                             <Route
                                 element={<LectureCreateForm/>}
                                 path="/events/:name/lectures/create"/>

@@ -17,10 +17,9 @@ import { EventSkeleton } from '../../components/loaders/Skeletons/EventDetailsSk
 import { LectureRateDialog } from '../../components/ui/EventRating/LectureRateDialog';
 
 export const EventView: React.FC = () => {
-
     const [openRatingId, setOpenRatingId] = useState<string | null>(null);
 
-    const { name } = useParams<{name: string}>();
+    const {name} = useParams<{name: string}>();
     if (!name) {
         return <Navigate to="/"/>
     }
@@ -56,7 +55,7 @@ export const EventView: React.FC = () => {
             color: "#4340BEE5",
             content:
                 <div
-                    className={styles.reatingBtn}
+                    className={styles.ratingButton}
                     onClick={() => setOpenRatingId(item.id)}>
                     OCEŃ ✨
                 </div>
@@ -118,7 +117,7 @@ export const EventView: React.FC = () => {
                             <EventOrganizer
                                 logo={event.author.avatar}
                                 name={event.author.nickname}
-                                bio={event.author.description}
+                                description={event.author.description}
                                 links={{
                                     githubLink: github,
                                     twitterLink: twitter,
@@ -126,15 +125,15 @@ export const EventView: React.FC = () => {
                                     linkedInLink: linkedin
                                 }}/>
 
-                            {event?.address && event.address?.coordinates &&
+                            {event?.address &&
                                 <LocationMap
                                     coordinates={
                                         event.address?.coordinates && {
-                                            lat: event.address?.coordinates?.latitude,
-                                            lng: event.address?.coordinates?.longitude
+                                            lat: event.address.coordinates.latitude,
+                                            lng: event.address.coordinates.longitude
                                         }
                                     }
-                                    address={event.address?.place}/>
+                                    place={event.address?.place} />
                             }
                         </section>
                     </div>

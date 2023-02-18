@@ -1,7 +1,18 @@
 query User($id: String!) {
-    user(id: $id){
+    user(id: $id) {
+        ...CoreUserResponse
+    }
+}
 
+mutation ReplaceMyUser($request: UserRequestInput!) {
+    replaceMyUser(request: $request) {
+        ...CoreUserResponse
+    }
+}
+
+fragment CoreUserResponse on UserResponse {
     avatar
+    nickname
     contact {
         github
         twitter
@@ -9,4 +20,4 @@ query User($id: String!) {
         mail
     }
     description
-}}
+}

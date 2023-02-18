@@ -1,7 +1,5 @@
 import React from "react";
-import {Field, Form, Formik} from "formik";
 import {StudioSection} from "../../../ui/StudioSection/StudioSection";
-import {FieldProps} from "formik/dist/Field";
 import formStyles from "../../Form.module.scss";
 import Button from "../../../ui/Button/Button";
 import dayjs from "dayjs";
@@ -9,7 +7,8 @@ import {LectureRequestInput, useCreateLectureMutation, useReplaceLectureMutation
 import {Lecture} from "../../../../common/models/Lecture";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 import {toast} from "react-toastify";
-import cs from "classnames"
+import {Controller, useForm} from "react-hook-form";
+import {Input} from "../../../ui/Input/Input";
 
 interface LectureBasicInfoFormProps {
     eventId: string
@@ -24,7 +23,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
 
     const initialValues: LectureBasicFormValues = lecture ? {
         startDate: dayjs(lecture.startDate).format("YYYY-MM-DDTHH:mm"),
-        finishDate: lecture?.finishDate ? dayjs(lecture.finishDate).format("YYYY-MM-DDTHH:mm") : undefined,
+        finishDate:dayjs(lecture.finishDate).format("YYYY-MM-DDTHH:mm"),
         title: lecture.title,
         description: lecture.description,
     } : {
@@ -33,6 +32,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
         title: '',
         description: undefined,
     }
+    const {register, control, handleSubmit} = useForm<LectureBasicFormValues>({defaultValues: initialValues});
 
     const submitFunction = (request: LectureRequestInput): Promise<Lecture> => {
         if (lecture) {
@@ -79,59 +79,65 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
     }
 
     return (
-        <Formik initialValues={initialValues} onSubmit={onSubmitClicked}>
-            <Form>
-                <StudioSection title={"Co i kiedy?"}>
-                    <div className={formStyles.row}>
-                        <div className={formStyles.date}>
-                            <b>* Rozpoczęcie</b>
-                            <Field
-                                type={"datetime-local"}
-                                id={"startDate"}
-                                name={"startDate"}
-                                className={formStyles.input}/>
-                        </div>
-                        <div className={formStyles.date}>
-                            <b>Zakończenie</b>
-                            <Field
-                                type={"datetime-local"}
-                                id={"finishDate"}
-                                name={"finishDate"}
-                                className={formStyles.input}/>
-                        </div>
+        <form onSubmit={handleSubmit(onSubmitClicked)}>
+            <StudioSection title={"Co i kiedy?"}>
+                <div className={formStyles.row}>
+                    <div className={formStyles.date}>
+                        <b>Rozpoczęcie *</b>
+                        <input
+                            type={"datetime-local"}
+                            {...register('startDate')}
+                            className={formStyles.input}/>
                     </div>
-
-                    <Field
-                        id={"title"}
-                        name={"title"}
-                        placeholder={"Tytuł"}
-                        className={formStyles.input}/>
-                    <h4>Opis</h4>
-                    <Field
-                        id={"description"}
-                        name={"description"}
-                        component={({field}: FieldProps) =>
-                            <textarea {...field} className={cs(formStyles.input, formStyles.textareaInput)}/>
-                        } />
-                </StudioSection>
-
-                <StudioSection title={"Kto?"}>
-                    W przyszłości
-                </StudioSection>
-
-                <div className={formStyles.submit}>
-                    <Button primary type={"submit"}>
-                        Zapisz
-                    </Button>
+                    <div className={formStyles.date}>
+                        <b>Zakończenie *</b>
+                        <input
+                            type={"datetime-local"}
+                            {...register('finishDate')}
+                            className={formStyles.input}/>
+                    </div>
                 </div>
-            </Form>
-        </Formik>
+
+
+                <Controller
+                    name={'title'}
+                    control={control}
+                    render={({field}) =>
+                        <Input
+                            required
+                            label={'Tytuł'}
+                            value={field.value}
+                            setValue={field.onChange} />
+                    } />
+
+                <Controller
+                    name={'description'}
+                    control={control}
+                    render={({field}) =>
+                        <Input
+                            multiline
+                            label={'Opis'}
+                            value={field.value ?? ''}
+                            setValue={field.onChange} />
+                    } />
+            </StudioSection>
+
+            <StudioSection title={"Kto?"}>
+                W przyszłości
+            </StudioSection>
+
+            <div className={formStyles.submit}>
+                <Button primary type={"submit"}>
+                    Zapisz
+                </Button>
+            </div>
+        </form>
     )
 }
 
 interface LectureBasicFormValues {
     startDate: string
-    finishDate?: string
+    finishDate: string
     title: string
     description?: string
 }

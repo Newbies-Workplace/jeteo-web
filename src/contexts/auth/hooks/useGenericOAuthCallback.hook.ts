@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useAuth} from "./useAuth.hook";
 import OAuthProvider from "../../../api/rest/auth/oauth/OAuthProvider.enum";
-import {useQueryParams} from "../../../common/utils/useQueryParams";
+import {useQueryParamsHook} from "./useQueryParams.hook";
 
 export enum OAuthStatus {
     pending,
@@ -19,7 +19,7 @@ export const useGenericOAuthCallback = (provider: OAuthProvider): OAuthCallbackR
     const [error, setError] = useState<string|null>(null);
 
     const { auth } = useAuth();
-    const {error: errorParam, code: codeParam, state: stateParam} = useQueryParams();
+    const {error: errorParam, code: codeParam, state: stateParam} = useQueryParamsHook();
 
     const setErrorWithState = (msg: string): void => {
         setError(msg);
