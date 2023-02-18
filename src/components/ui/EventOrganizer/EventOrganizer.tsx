@@ -6,7 +6,7 @@ import ProfilePic from "../../../assets/images/default-profile-pic.svg";
 interface EventOrganizerProps {
     logo?: string;
     name: string;
-    bio?: string;
+    description?: string;
     links: {
         githubLink?: string;
         twitterLink?: string;
@@ -15,13 +15,36 @@ interface EventOrganizerProps {
     }
 }
 
-export const EventOrganizer: React.FC<EventOrganizerProps> = ({logo, name, bio, links}) => {
+export const EventOrganizer: React.FC<EventOrganizerProps> = (
+    {
+        logo,
+        name,
+        description,
+        links,
+    }
+) => {
     return (
         <div className={styles.organizerCard}>
-            {logo ? <img className={styles.organizerLogo} src={logo}/> : <ProfilePic className={styles.organizerLogo}/>}
-            <span className={styles.organizerName}>{name}</span>
-            {links && <SocialLinks links={links} className={styles.organizerLinksWrapper}/>}
-            {bio && <p className={styles.organizerBio}>{bio}</p>}
+            {logo
+                ? <img className={styles.organizerLogo} src={logo} />
+                : <ProfilePic className={styles.organizerLogo}/>
+            }
+
+            <span className={styles.organizerName}>
+                {name}
+            </span>
+
+            {links &&
+                <SocialLinks
+                    links={links}
+                    className={styles.organizerLinksWrapper}/>
+            }
+
+            {description &&
+                <p className={styles.organizerBio}>
+                    {description}
+                </p>
+            }
         </div>
     )
 }

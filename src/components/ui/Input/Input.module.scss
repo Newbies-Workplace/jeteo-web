@@ -1,12 +1,13 @@
 .inputWrapper {
     margin-block: .625rem;
+
     label {
         display: block;
         margin-bottom: 3px;
     }
 }
 
-.input {
+.oneline {
     min-height: 30px;
     
     width: 100%;
@@ -18,7 +19,6 @@
 
     background-color: #EDEDED;
 
-    resize: vertical;
     padding: 3px 9px;
 }
 
@@ -26,6 +26,14 @@
     box-sizing: border-box;
     border: 2px solid black;
     border-radius: 8px;
+    min-height: 60px;
+
+    background-color: #EDEDED;
+
+    padding: 3px 9px;
+
+    width: 100%;
+    resize: vertical;
 }
 
 .required::after {

@@ -10,7 +10,7 @@ import { NotFound } from './404/NotFound';
 import { HeroView } from './hero/HeroView';
 import { EventSkeleton } from '../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
 import { NavBar } from '../components/ui/NavBar/NavBar';
-import { UserOptions } from './studio/UserOptions/UserOptions';
+import { SettingsView } from './settings/SettingsView';
 import { RequireAuth } from '../components/utils/requireAuth/RequireAuth';
 
 
@@ -48,8 +48,8 @@ export const AppRouter: React.FC = () => {
                     path="/hero"
                 />
                 <Route
-                    element={<RequireAuth><UserOptions /></RequireAuth>}
-                    path="/options/*"
+                    element={<RequireAuth><SettingsView /></RequireAuth>}
+                    path="/settings/*"
                 />
 
                 <Route

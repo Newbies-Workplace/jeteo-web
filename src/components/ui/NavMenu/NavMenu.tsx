@@ -27,7 +27,7 @@ export const NavMenu: React.FC = () => {
                             jeteo™ studio
                         </NavMenuItemLink>
                         <NavMenuItemLink
-                            location="/options">
+                            location="/settings/personalization">
                             ustawienia
                         </NavMenuItemLink>
                         <hr className={styles.separator}/>

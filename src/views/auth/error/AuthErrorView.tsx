@@ -1,8 +1,8 @@
 import React from 'react';
-import {useQueryParams} from "../../../common/utils/useQueryParams";
+import {useQueryParamsHook} from "../../../contexts/auth/hooks/useQueryParams.hook";
 
 export const AuthErrorView: React.FC = () => {
-    const { message } = useQueryParams();
+    const { message } = useQueryParamsHook();
 
     return <>{(message || "").toString()}</>;
 }

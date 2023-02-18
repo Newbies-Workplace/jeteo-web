@@ -7,7 +7,7 @@ import { Portal } from 'react-portal';
 import { Button } from "../Button/Button";
 import {CoreLectureResponseFragment, useRateLectureMutation} from "../../../api/graphql";
 import {toast} from "react-toastify";
-import { useScrollBlock } from '../../../common/utils/useScrollBlock';
+import { useScrollBlockHook } from '../../../contexts/auth/hooks/useScrollBlock.hook';
 
 interface LectureRateDialogProps {
     lecture: CoreLectureResponseFragment
@@ -21,7 +21,7 @@ export const LectureRateDialog: React.FC<LectureRateDialogProps> = ({ onDismiss,
 
     const [rateLecture] = useRateLectureMutation()
 
-    useScrollBlock()
+    useScrollBlockHook()
 
     const onRateClick = () => {
         if (topicRate === -1 && presentationRate === -1) {

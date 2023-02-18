@@ -27,6 +27,10 @@
 }
 
 .eventOrganizerSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
     min-width: 275px;
 }
 
@@ -71,7 +75,7 @@
     margin: 10px 0 14px 0;
 }
 
-.reatingBtn {
+.ratingButton {
     color: white;
     font-family: var(--font);
     font-weight: 500;
@@ -85,7 +89,6 @@
 }
 
 @media (max-width: 918px) {
-
     .eventInnerContainer {
         flex-direction: column;
     }
@@ -97,11 +100,9 @@
         justify-content: center;
         align-items: center;
     }
-
 }
 
 @media (max-width: 520px) {
-
     .eventOrganizerSection {
         min-width: auto;
     }
@@ -109,5 +110,4 @@
     .contentCentred {
         padding: 0 14px;
     }
-
 }

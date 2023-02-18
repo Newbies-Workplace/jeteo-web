@@ -4,7 +4,6 @@ import styles from './StudioView.module.scss';
 import {Route, Routes} from "react-router-dom";
 import {Dashboard} from "./Dashboard/Dashboard";
 import {RequireAuth} from "../../components/utils/requireAuth/RequireAuth";
-import {StudioEventDetails} from "./StudioEventDetails/StudioEventDetails";
 import {Navigation} from "./Navigation/Navigation";
 import {EventList} from "./EventList/EventList";
 import {EventCreateForm} from "./EventCreate/EventCreateForm";
