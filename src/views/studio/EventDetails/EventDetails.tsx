@@ -24,7 +24,6 @@ export const EventDetails: React.FC = () => {
         }
     })
 
-
     const onEventDeleteClicked = () => {
         deleteEvent()
             .then(() => {
@@ -43,7 +42,7 @@ export const EventDetails: React.FC = () => {
             .catch(() => toast.error("Wystąpił błąd"))
     }
 
-    if (loading || !data ) return <>loading...</>;
+    if (loading || !data) return <>loading...</>;
     if (error) return <p>error <br/>{error.message}</p>;
 
     const {event, lectures} = data;
@@ -52,24 +51,24 @@ export const EventDetails: React.FC = () => {
         <div className={styles.container}>
             {event && <>
                 <Toolbar title={event.title} onBackPress={() => {navigate('/studio/events')}}/>
- 
+
                 <div className={styles.actionBar}>
                     <Link className={styles.action} to={`/event/${event.vanityUrl}`}><b>Zobacz</b>wydarzenie</Link>
                     <Link className={styles.action} to={`/studio/events/${event.vanityUrl}/edit`}><b>Edytuj</b>wydarzenie</Link>
                     <div className={styles.action} onClick={onEventDeleteClicked}><b>Usuń</b>wydarzenie</div>
                 </div>
                 <div>
-                    {lectures.map(lecture => Lecture.fromData(lecture)).map(lecture => 
+                    {lectures.map(lecture => Lecture.fromData(lecture)).map(lecture =>
                         <StudioLectureCard
-                        key={lecture.id}
-                        title={lecture.title}
-                        descriptionSnippet={lecture.description?.substring(0, 50) + "..."}
-                        startDate={lecture.startDate}
-                        finishDate={lecture.finishDate}
-                        speakers={[]}
-                        onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/edit`)}
-                        onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)} 
-                        onDeleteClick={() => onDeleteLectureClick(lecture)}
+                            key={lecture.id}
+                            title={lecture.title}
+                            descriptionSnippet={lecture.description?.substring(0, 50)}
+                            startDate={lecture.startDate}
+                            finishDate={lecture.finishDate}
+                            speakers={[]}
+                            onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/edit`)}
+                            onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)}
+                            onDeleteClick={() => onDeleteLectureClick(lecture)}
                         />
                     )}
                 </div>

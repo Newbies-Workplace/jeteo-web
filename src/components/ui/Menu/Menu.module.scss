@@ -2,11 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
 
   min-width: 150px;
   margin: 8px;
-  padding: 16px;
 
   background-color: #FFFFFF;
 
@@ -16,7 +14,25 @@
 
 .item {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  padding: 8px;
+  width: 100%;
 
   user-select: none;
   cursor: pointer;
+}
+
+.separator {
+  display: flex;
+  height: 2px;
+  margin: 0;
+  width: calc(100% - 32px);
+
+  box-sizing: border-box;
+
+  background-color: transparentize(#DBDCDD, 0.1);
+  border: none;
 }

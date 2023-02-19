@@ -185,7 +185,6 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                     control={control}
                     render={({field}) =>
                         <Input
-                            required
                             label={"Podtytuł"}
                             value={field.value ?? ''}
                             setValue={(value) => field.onChange(value)}/>
@@ -240,6 +239,7 @@ export const EventBasicInfoForm: React.FC<EventBasicInfoFormProps> = ({event, on
                             render={({field}) =>
                                 <Input
                                     label={"Adres"}
+                                    required
                                     value={field.value}
                                     setValue={(value) => field.onChange(value)}/>
                             }/>

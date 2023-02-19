@@ -37,6 +37,7 @@ export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, show
                         startDate={lecture.startDate}
                         finishDate={lecture.finishDate}
                         speakers={[]}
+                        onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)}
                         onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/edit`)}
                         onDeleteClick={() => onDeleteLectureClick(lecture)}/>
                 } />
