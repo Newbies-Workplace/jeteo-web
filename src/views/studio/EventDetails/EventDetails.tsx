@@ -54,7 +54,7 @@ export const EventDetails: React.FC = () => {
 
                 <div className={styles.actionBar}>
                     <Link className={styles.action} to={`/event/${event.vanityUrl}`}><b>Zobacz</b>wydarzenie</Link>
-                    <Link className={styles.action} to={`/studio/events/${event.vanityUrl}/edit`}><b>Edytuj</b>wydarzenie</Link>
+                    <Link className={styles.action} to={`/studio/events/edit/${event.vanityUrl}/basic`}><b>Edytuj</b>wydarzenie</Link>
                     <div className={styles.action} onClick={onEventDeleteClicked}><b>Usuń</b>wydarzenie</div>
                 </div>
                 <div>
@@ -66,7 +66,7 @@ export const EventDetails: React.FC = () => {
                             startDate={lecture.startDate}
                             finishDate={lecture.finishDate}
                             speakers={[]}
-                            onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/edit`)}
+                            onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/edit/${lecture.id}`)}
                             onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)}
                             onDeleteClick={() => onDeleteLectureClick(lecture)}
                         />

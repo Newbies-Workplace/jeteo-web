@@ -3,7 +3,7 @@ import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import Button from "../../../ui/Button/Button";
 import {EventVisibilityRequestInput, useChangeEventVisibilityMutation, Visibility} from "../../../../api/graphql";
 import {Event} from "../../../../common/models/Event";
-import RadioButtons from "../../../ui/RadioButtons/RadioButtons";
+import RadioButtons, {RadioItem} from "../../../ui/RadioButtons/RadioButtons";
 import formStyles from "../../Form.module.scss";
 import {toast} from "react-toastify";
 import {Controller, useForm} from "react-hook-form";
@@ -16,9 +16,9 @@ interface EventVisibilityFormProps {
 export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, onSubmitted}) => {
     const [changeVisibility] = useChangeEventVisibilityMutation()
 
-    const visibilities = [
-        {id: Visibility.PRIVATE, name: 'Prywatna'},
-        {id: Visibility.INVISIBLE, name: 'Niepubliczna'},
+    const visibilities: RadioItem[] = [
+        {id: Visibility.PRIVATE, name: 'Prywatna', description: "dostępna dla Ciebie i prelegentów"},
+        {id: Visibility.INVISIBLE, name: 'Niepubliczna', description: 'dostępna po linku'},
         {id: Visibility.PUBLIC, name: 'Publiczna'},
     ]
 
@@ -60,7 +60,6 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
                             values={visibilities}
                             selectedValueIndex={visibilities.findIndex((value) => value.id === field.value)}
                             onChange={(item) => field.onChange(item.id)} />
-
                     }/>
             </StudioSection>
 

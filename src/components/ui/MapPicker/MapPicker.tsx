@@ -15,7 +15,7 @@ export const MapPicker: React.FC<MapPickerProps> = ({value, onChange}) => {
         <div className={styles.mapDiv}>
             <MapContainer
                 style={{height: 300, borderRadius: 16}}
-                center={{
+                center={value ?? {
                     lat: 51.08549,
                     lng: 17.01040,
                 }}

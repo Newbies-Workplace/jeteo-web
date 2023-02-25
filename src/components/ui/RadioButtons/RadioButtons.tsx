@@ -2,9 +2,10 @@ import React, {useRef} from "react";
 import styles from "./RadioButtons.module.scss"
 import cs from "classnames";
 
-interface RadioItem {
+export interface RadioItem {
     id: string
     name: string
+    description?: string
 }
 
 interface RadioButtonsProps {
@@ -42,9 +43,18 @@ const RadioButtons: React.FC<RadioButtonsProps> = ({values, selectedValueIndex, 
                             checked={selectedValueIndex === index}
                             onChange={() => onItemClick(index, item)}/>
 
-                        <span className={styles.value}>
-                            {item.name}
-                        </span>
+                        <div className={styles.texts}>
+                            <span className={styles.name}>
+                                {item.name}
+                            </span>
+
+                            {item.description !== undefined &&
+                                <span>
+                                    {item.description}
+                                </span>
+                            }
+                        </div>
+
                     </div>
                 )
             })}

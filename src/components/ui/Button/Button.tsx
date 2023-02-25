@@ -15,7 +15,7 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (
         children,
         className,
         primary = false,
-        type,
+        type = 'button',
         onClick,
         size = 'medium',
     }

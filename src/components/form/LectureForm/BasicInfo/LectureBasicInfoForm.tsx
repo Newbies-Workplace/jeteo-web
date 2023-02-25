@@ -3,27 +3,34 @@ import {StudioSection} from "../../../ui/StudioSection/StudioSection";
 import formStyles from "../../Form.module.scss";
 import Button from "../../../ui/Button/Button";
 import dayjs from "dayjs";
-import {LectureRequestInput, useCreateLectureMutation, useReplaceLectureMutation} from "../../../../api/graphql";
-import {Lecture} from "../../../../common/models/Lecture";
+import {
+    CoreLectureResponseFragment,
+    LectureRequestInput, useCreateLectureInviteMutation,
+    useCreateLectureMutation, useDeleteLectureInviteMutation,
+    useReplaceLectureMutation
+} from "../../../../api/graphql";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 import {toast} from "react-toastify";
 import {Controller, useForm} from "react-hook-form";
 import {Input} from "../../../ui/Input/Input";
+import {LectureSpeakers} from "../../../ui/LectureSpeakers/LectureSpeakers";
 
 interface LectureBasicInfoFormProps {
     eventId: string
-    lecture?: Lecture
-    onSubmitted: (lecture: Lecture) => void
+    lecture?: CoreLectureResponseFragment
+    onSubmitted: (lecture: CoreLectureResponseFragment) => void
 }
 
 export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({eventId, lecture, onSubmitted}) => {
     const [createLecture] = useCreateLectureMutation()
     const [replaceLecture] = useReplaceLectureMutation()
+    const [deleteInvite] = useDeleteLectureInviteMutation()
+    const [createInvite] = useCreateLectureInviteMutation()
     const {user} = useAuth()
 
     const initialValues: LectureBasicFormValues = lecture ? {
-        startDate: dayjs(lecture.startDate).format("YYYY-MM-DDTHH:mm"),
-        finishDate:dayjs(lecture.finishDate).format("YYYY-MM-DDTHH:mm"),
+        startDate: dayjs(lecture.timeFrame.startDate).format("YYYY-MM-DDTHH:mm"),
+        finishDate:dayjs(lecture.timeFrame.finishDate).format("YYYY-MM-DDTHH:mm"),
         title: lecture.title,
         description: lecture.description,
     } : {
@@ -34,7 +41,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
     }
     const {register, control, handleSubmit} = useForm<LectureBasicFormValues>({defaultValues: initialValues});
 
-    const submitFunction = (request: LectureRequestInput): Promise<Lecture> => {
+    const submitFunction = (request: LectureRequestInput): Promise<CoreLectureResponseFragment> => {
         if (lecture) {
             return replaceLecture({
                 variables: {
@@ -44,7 +51,6 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
             })
                 .then((res) => res.data ?? Promise.reject("no data"))
                 .then((data) => data.replaceLecture)
-                .then(Lecture.fromData)
         } else {
             return createLecture({
                 variables: {
@@ -54,8 +60,34 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
             })
                 .then((res) => res.data ?? Promise.reject("no data"))
                 .then((data) => data.createLecture)
-                .then(Lecture.fromData)
         }
+    }
+
+    const onDeleteSpeaker = (speakerId: string) => {
+        // todo
+    }
+
+    const onDeleteInvite = (inviteId: string) => {
+        deleteInvite({
+            variables: {
+                inviteId: inviteId,
+            }
+        })
+            .then(() => {toast.success('Zaproszenie usunięto')})
+            .catch(() => {toast.error('Błąd podczas usuwania zaproszenia')})
+    }
+
+    const onCreateInvite = (name: string) => {
+        createInvite({
+            variables: {
+                lectureId: lecture?.id!,
+                request: {
+                    name: name
+                }
+            }
+        })
+            .then(() => {toast.success('Zaproszenie stworzono')})
+            .catch(() => {toast.error('Błąd podczas dodawania zaproszenia')})
     }
 
     const onSubmitClicked = (values: LectureBasicFormValues) => {
@@ -70,7 +102,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
         }
 
         submitFunction(request)
-            .then((submittedLecture: Lecture) => {
+            .then((submittedLecture: CoreLectureResponseFragment) => {
                 onSubmitted(submittedLecture)
 
                 toast.success(lecture ? "Prelekcja zaktualizowana" : "Prelekcja dodana")
@@ -98,7 +130,6 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                     </div>
                 </div>
 
-
                 <Controller
                     name={'title'}
                     control={control}
@@ -122,8 +153,25 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                     } />
             </StudioSection>
 
-            <StudioSection title={"Kto?"}>
-                W przyszłości
+            <StudioSection title={"Prelegenci (max 2 osoby)"}>
+                {/*todo fix no id*/}
+                {lecture?.id &&
+                    <LectureSpeakers
+                        lectureId={lecture?.id}
+                        speakers={lecture?.speakers?.map((value) => ({
+                            id: value.id,
+                            name: value.nickname,
+                            avatar: value.avatar,
+                        })) ?? []}
+                        invites={lecture?.invites?.map((value) => ({
+                            id: value.id,
+                            name: value.name,
+                        })) ?? []}
+                        onCreateInvite={onCreateInvite}
+                        onDeleteInvite={onDeleteInvite}
+                        onDeleteSpeaker={onDeleteSpeaker}
+                    />
+                }
             </StudioSection>
 
             <div className={formStyles.submit}>

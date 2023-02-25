@@ -31,7 +31,7 @@ export const EventList: React.FC = () => {
                     <Link
                         key={event.id}
                         style={{ textDecoration: 'none' }}
-                        to={`/studio/events/${event.id}`}>
+                        to={`/studio/events/${event.vanityUrl}`}>
                         <EventCard
                             title={event.title}
                             subtitle={event.author.nickname}

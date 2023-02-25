@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {LectureFilterInput, useLecturesListQuery} from "../../../api/graphql";
 import {Lecture} from "../../../common/models/Lecture";
 import {PlaceholderSwitcher} from "../../utils/animations/PlaceholderSwitcher";
