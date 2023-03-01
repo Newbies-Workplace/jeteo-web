@@ -6,15 +6,16 @@ import {RequireAuth} from "../../components/utils/requireAuth/RequireAuth";
 import {Navigation} from "./Navigation/Navigation";
 import {EventList} from "./EventList/EventList";
 import {EventDetails} from "./EventDetails/EventDetails";
-import {LectureCreateForm} from "./LectureFormNavigation/LectureCreateForm";
-import {LectureUpdateForm} from "./LectureFormNavigation/LectureUpdateForm";
+import {LectureCreateView} from "./LectureFormNavigation/LectureCreateView";
+import {LectureUpdateView} from "./LectureFormNavigation/LectureUpdateView";
 import {LectureStatsView} from "./LecutreStats/LectureStatsView";
-import {EventCreateForm} from "./EventFormNavigation/EventCreateForm";
-import {EventUpdateForm} from "./EventFormNavigation/EventUpdateForm";
-import {EventBasicInfoForm} from "../../components/form/EventForm/BasicInfo/EventBasicInfoForm";
+import {EventCreateView} from "./EventFormNavigation/EventCreateView";
+import {EventUpdateView} from "./EventFormNavigation/EventUpdateView";
+import {EventBasicInfoForm} from "./EventFormNavigation/BasicInfo/EventBasicInfoForm";
 import {Navigate} from "react-router";
 import {EventFormNavigation} from "./EventFormNavigation/EventFormNavigation";
 import {LectureFormNavigation} from "./LectureFormNavigation/LectureFormNavigation";
+import {LectureBasicInfoForm} from "./LectureFormNavigation/BasicInfo/LectureBasicInfoForm";
 
 export const StudioView: React.FC = () => {
     const navigate = useNavigate()
@@ -38,7 +39,8 @@ export const StudioView: React.FC = () => {
                                 path="/events"/>
                             <Route
                                 element={
-                                    <EventFormNavigation toolbarTitle={"Tworzenie wydarzenia"}>
+                                    <EventFormNavigation
+                                        toolbarTitle={"Tworzenie wydarzenia"}>
                                         <EventBasicInfoForm
                                             onSubmitted={(createdEvent) => {
                                                 navigate(`events/create/${createdEvent.vanityUrl}/theme`)
@@ -48,8 +50,9 @@ export const StudioView: React.FC = () => {
                                 path={'/events/create'}/>
                             <Route
                                 element={
-                                    <EventFormNavigation toolbarTitle={"Tworzenie wydarzenia"}>
-                                        <EventCreateForm/>
+                                    <EventFormNavigation
+                                        toolbarTitle={"Tworzenie wydarzenia"}>
+                                        <EventCreateView/>
                                     </EventFormNavigation>
                                 }
                                 path="/events/create/:name/*"/>
@@ -58,24 +61,39 @@ export const StudioView: React.FC = () => {
                                     <EventFormNavigation
                                         toolbarTitle={"Edycja wydarzenia"}
                                         clickable>
-                                        <EventUpdateForm/>
+                                        <EventUpdateView/>
                                     </EventFormNavigation>
                                 }
                                 path="/events/edit/:name/*"/>
                             <Route
                                 element={
-                                    <LectureFormNavigation toolbarTitle={"Tworzenie prelekcji"}>
-                                        <LectureCreateForm/>
+                                    <LectureFormNavigation
+                                        toolbarTitle={"Tworzenie prelekcji"}>
+                                        <LectureBasicInfoForm
+                                            onSubmitted={(lecture, name) => {
+                                                navigate(`events/create/${name}/theme`)
+                                            }}/>
                                     </LectureFormNavigation>
                                 }
                                 path="/events/:name/lectures/create"/>
                             <Route
                                 element={
-                                    <LectureFormNavigation toolbarTitle={"Edycja prelekcji"}>
-                                        <LectureUpdateForm/>
+                                    <LectureFormNavigation
+                                        toolbarTitle={"Tworzenie prelekcji"}>
+                                        <LectureCreateView/>
                                     </LectureFormNavigation>
                                 }
-                                path="/events/:name/lectures/edit/:lectureId"/>
+                                path="/events/:name/lectures/create/:lectureId/"/>
+
+                            <Route
+                                element={
+                                    <LectureFormNavigation
+                                        toolbarTitle={"Edycja prelekcji"}
+                                        clickable>
+                                        <LectureUpdateView/>
+                                    </LectureFormNavigation>
+                                }
+                                path="/events/:name/lectures/edit/:lectureId/*"/>
                             <Route
                                 element={<LectureStatsView/>}
                                 path="/events/:name/lectures/:lectureId/*"/>

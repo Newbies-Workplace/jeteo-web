@@ -66,7 +66,7 @@ export const EventDetails: React.FC = () => {
                             startDate={lecture.startDate}
                             finishDate={lecture.finishDate}
                             speakers={[]}
-                            onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/edit/${lecture.id}`)}
+                            onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/edit/${lecture.id}/basic`)}
                             onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)}
                             onDeleteClick={() => onDeleteLectureClick(lecture)}
                         />

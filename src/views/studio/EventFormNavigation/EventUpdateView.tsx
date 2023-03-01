@@ -1,16 +1,17 @@
 import React, {useState} from "react";
-import {Route, Routes, useNavigate, useParams} from "react-router-dom";
-import {EventVisibilityForm} from "../../../components/form/EventForm/Visibility/EventVisibilityForm";
-import {EventThemeForm} from "../../../components/form/EventForm/Theme/EventThemeForm";
-import {EventLecturesForm} from "../../../components/form/EventForm/Lectures/EventLecturesForm";
+import {Route, Routes, useParams} from "react-router-dom";
+import {EventBasicInfoForm} from "./BasicInfo/EventBasicInfoForm";
+import {EventVisibilityForm} from "./Visibility/EventVisibilityForm";
+import {EventThemeForm} from "./Theme/EventThemeForm";
+import {EventLecturesForm} from "./Lectures/EventLecturesForm";
+import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
 import {Event} from "../../../common/models/Event";
 import {useEventQuery} from "../../../api/graphql";
-import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
+import {Navigate} from "react-router";
 
-export const EventCreateForm: React.FC = () => {
-    const navigate = useNavigate()
+export const EventUpdateView: React.FC = () => {
+    const [event, setEvent] = useState<Event | undefined>(undefined)
     const {name} = useParams<{name: string}>()
-    const [event, setEvent] = useState<Event | null>(null)
 
     const {loading, error} = useEventQuery({
         variables: {
@@ -27,6 +28,18 @@ export const EventCreateForm: React.FC = () => {
     return (
         <Routes>
             <Route
+                element={<Navigate to={'basic'} />}
+                path={'/'}/>
+            <Route
+                element={
+                    <EventBasicInfoForm
+                        event={event}
+                        onSubmitted={(createdEvent) => {
+                            setEvent(createdEvent)
+                        }} />
+                }
+                path={'/basic'}/>
+            <Route
                 element={
                     <EventThemeForm
                         event={event}
@@ -35,7 +48,6 @@ export const EventCreateForm: React.FC = () => {
                         }}
                         onSubmitted={(event) => {
                             setEvent(event)
-                            navigate(`lectures`)
                         }}/>
                 }
                 path={'/theme'}/>
@@ -46,7 +58,6 @@ export const EventCreateForm: React.FC = () => {
                         showNextButton={true}
                         onSubmitted={(event) => {
                             setEvent(event)
-                            navigate(`visibility`)
                         }}/>
                 }
                 path={'/lectures'}/>
@@ -56,7 +67,6 @@ export const EventCreateForm: React.FC = () => {
                         event={event}
                         onSubmitted={(event) => {
                             setEvent(event)
-                            navigate('..')
                         }}/>
                 }
                 path={'/visibility'}/>

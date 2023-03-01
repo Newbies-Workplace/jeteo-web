@@ -34,6 +34,7 @@ export const EventFormNavigation: React.FC<React.PropsWithChildren<EventNavigati
 
     return (
         <div className={studioFormStyles.container}>
+            {/*todo handle back in edit*/}
             <Toolbar
                 title={toolbarTitle}
                 onBackPress={() => {navigate('/studio/events')}}/>
@@ -47,7 +48,6 @@ export const EventFormNavigation: React.FC<React.PropsWithChildren<EventNavigati
                     steps={steps.map(step => step.name)}
                     activeStepIndex={currentStep}/>
             }
-
 
             <div className={studioFormStyles.innerContainer}>
                 {children}

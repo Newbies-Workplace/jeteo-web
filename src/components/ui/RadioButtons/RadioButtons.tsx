@@ -1,6 +1,7 @@
 import React, {useRef} from "react";
 import styles from "./RadioButtons.module.scss"
 import cs from "classnames";
+import HelpIcon from "../../../assets/icons/help.svg"
 
 export interface RadioItem {
     id: string
@@ -14,7 +15,7 @@ interface RadioButtonsProps {
     onChange: (value: RadioItem) => void
 }
 
-const RadioButtons: React.FC<RadioButtonsProps> = ({values, selectedValueIndex, onChange}) => {
+export const RadioButtons: React.FC<RadioButtonsProps> = ({values, selectedValueIndex, onChange}) => {
     const inputRef = useRef<HTMLInputElement>(null)
 
     const onItemClick = (index: number, item: RadioItem) => {
@@ -35,31 +36,34 @@ const RadioButtons: React.FC<RadioButtonsProps> = ({values, selectedValueIndex, 
                         }
                         onClick={() => onItemClick(index, item)}
                         key={item.id}>
-                        <input
-                            className={styles.input}
-                            ref={inputRef}
-                            type="radio"
-                            value={item.id}
-                            checked={selectedValueIndex === index}
-                            onChange={() => onItemClick(index, item)}/>
 
-                        <div className={styles.texts}>
-                            <span className={styles.name}>
-                                {item.name}
-                            </span>
+                        <div className={styles.top}>
+                            <input
+                                ref={inputRef}
+                                type="radio"
+                                value={item.id}
+                                checked={selectedValueIndex === index}
+                                onChange={() => onItemClick(index, item)}/>
 
                             {item.description !== undefined &&
-                                <span>
-                                    {item.description}
-                                </span>
+                                <div className={styles.help}>
+                                    <HelpIcon
+                                        width={20}
+                                        height={20}/>
+
+                                    <span className={styles.helpText}>
+                                        {item.description}
+                                    </span>
+                                </div>
                             }
                         </div>
 
+                        <span className={styles.name}>
+                            {item.name}
+                        </span>
                     </div>
                 )
             })}
         </div>
     )
 }
-
-export default RadioButtons

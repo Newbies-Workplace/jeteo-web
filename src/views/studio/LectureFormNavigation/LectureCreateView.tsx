@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import {LectureBasicInfoForm} from "../../../components/form/LectureForm/BasicInfo/LectureBasicInfoForm";
+import {Route, Routes, useParams} from "react-router-dom";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
+import {LectureSpeakersForm} from "./Speakers/LectureSpeakersForm";
 import {CoreLectureResponseFragment, useLectureQuery} from "../../../api/graphql";
 
-export const LectureUpdateForm: React.FC = () => {
-    const navigate = useNavigate()
+export const LectureCreateView: React.FC = () => {
     const {name, lectureId} = useParams<{name: string, lectureId: string}>()
     const [lecture, setLecture] = useState<CoreLectureResponseFragment>()
     const {loading, error} = useLectureQuery({
@@ -21,9 +20,15 @@ export const LectureUpdateForm: React.FC = () => {
     if (error) return <p>error <br/>{error.message}</p>;
 
     return (
-        <LectureBasicInfoForm
-            eventId={getIdFromVanityUrl(name)}
-            lecture={lecture}
-            onSubmitted={() => navigate(`/studio/events/edit/${name}/lectures`)}/>
+        <Routes>
+            <Route
+                element={
+                    <LectureSpeakersForm
+                        eventId={getIdFromVanityUrl(name)}
+                        lecture={lecture}
+                        onLectureChange={setLecture}/>
+                }
+                path={"/speakers"} />
+        </Routes>
     )
 }

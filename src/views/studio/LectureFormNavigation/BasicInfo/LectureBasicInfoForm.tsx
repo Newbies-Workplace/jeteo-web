@@ -1,31 +1,31 @@
 import React from "react";
-import {StudioSection} from "../../../ui/StudioSection/StudioSection";
+import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
 import formStyles from "../../Form.module.scss";
-import Button from "../../../ui/Button/Button";
+import Button from "../../../../components/ui/Button/Button";
 import dayjs from "dayjs";
 import {
     CoreLectureResponseFragment,
-    LectureRequestInput, useCreateLectureInviteMutation,
-    useCreateLectureMutation, useDeleteLectureInviteMutation,
+    LectureRequestInput,
+    useCreateLectureMutation,
     useReplaceLectureMutation
 } from "../../../../api/graphql";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 import {toast} from "react-toastify";
 import {Controller, useForm} from "react-hook-form";
-import {Input} from "../../../ui/Input/Input";
-import {LectureSpeakers} from "../../../ui/LectureSpeakers/LectureSpeakers";
+import {Input} from "../../../../components/ui/Input/Input";
+import {getIdFromVanityUrl} from "../../../../common/utils/vanityUrlUtils";
+import {useParams} from "react-router-dom";
 
 interface LectureBasicInfoFormProps {
-    eventId: string
     lecture?: CoreLectureResponseFragment
-    onSubmitted: (lecture: CoreLectureResponseFragment) => void
+    onSubmitted: (lecture: CoreLectureResponseFragment, eventId: string) => void
 }
 
-export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({eventId, lecture, onSubmitted}) => {
+export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({lecture, onSubmitted}) => {
     const [createLecture] = useCreateLectureMutation()
     const [replaceLecture] = useReplaceLectureMutation()
-    const [deleteInvite] = useDeleteLectureInviteMutation()
-    const [createInvite] = useCreateLectureInviteMutation()
+    const {name} = useParams<{name: string}>()
+    const eventId = getIdFromVanityUrl(name)
     const {user} = useAuth()
 
     const initialValues: LectureBasicFormValues = lecture ? {
@@ -63,32 +63,6 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
         }
     }
 
-    const onDeleteSpeaker = (speakerId: string) => {
-        // todo
-    }
-
-    const onDeleteInvite = (inviteId: string) => {
-        deleteInvite({
-            variables: {
-                inviteId: inviteId,
-            }
-        })
-            .then(() => {toast.success('Zaproszenie usunięto')})
-            .catch(() => {toast.error('Błąd podczas usuwania zaproszenia')})
-    }
-
-    const onCreateInvite = (name: string) => {
-        createInvite({
-            variables: {
-                lectureId: lecture?.id!,
-                request: {
-                    name: name
-                }
-            }
-        })
-            .then(() => {toast.success('Zaproszenie stworzono')})
-            .catch(() => {toast.error('Błąd podczas dodawania zaproszenia')})
-    }
 
     const onSubmitClicked = (values: LectureBasicFormValues) => {
         const request = {
@@ -103,7 +77,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
 
         submitFunction(request)
             .then((submittedLecture: CoreLectureResponseFragment) => {
-                onSubmitted(submittedLecture)
+                onSubmitted(submittedLecture, name!)
 
                 toast.success(lecture ? "Prelekcja zaktualizowana" : "Prelekcja dodana")
             })
@@ -151,27 +125,6 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                             value={field.value ?? ''}
                             setValue={field.onChange} />
                     } />
-            </StudioSection>
-
-            <StudioSection title={"Prelegenci (max 2 osoby)"}>
-                {/*todo fix no id*/}
-                {lecture?.id &&
-                    <LectureSpeakers
-                        lectureId={lecture?.id}
-                        speakers={lecture?.speakers?.map((value) => ({
-                            id: value.id,
-                            name: value.nickname,
-                            avatar: value.avatar,
-                        })) ?? []}
-                        invites={lecture?.invites?.map((value) => ({
-                            id: value.id,
-                            name: value.name,
-                        })) ?? []}
-                        onCreateInvite={onCreateInvite}
-                        onDeleteInvite={onDeleteInvite}
-                        onDeleteSpeaker={onDeleteSpeaker}
-                    />
-                }
             </StudioSection>
 
             <div className={formStyles.submit}>

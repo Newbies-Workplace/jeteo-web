@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "../../../ui/Button/Button";
+import Button from "../../../../components/ui/Button/Button";
 import {Event} from "../../../../common/models/Event";
 import formStyles from "../../Form.module.scss"
-import {LectureList} from "../../../ui/LectureList/LectureList";
+import {LectureList} from "../../../../components/ui/LectureList/LectureList";
 import {useNavigate} from "react-router-dom";
-import {StudioLectureCard} from "../../../containers/StudioLectureCard/StudioLectureCard";
+import {StudioLectureCard} from "../../../../components/containers/StudioLectureCard/StudioLectureCard";
 import {useDeleteLectureMutation} from "../../../../api/graphql";
 import {Lecture} from "../../../../common/models/Lecture";
 import {toast} from "react-toastify";
@@ -38,7 +38,7 @@ export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, show
                         finishDate={lecture.finishDate}
                         speakers={[]}
                         onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)}
-                        onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/edit/${lecture.id}`)}
+                        onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/edit/${lecture.id}/basic`)}
                         onDeleteClick={() => onDeleteLectureClick(lecture)}/>
                 } />
 

@@ -1,9 +1,9 @@
 import React from "react";
-import {StudioSection} from "../../../ui/StudioSection/StudioSection";
-import Button from "../../../ui/Button/Button";
+import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
+import Button from "../../../../components/ui/Button/Button";
 import {EventVisibilityRequestInput, useChangeEventVisibilityMutation, Visibility} from "../../../../api/graphql";
 import {Event} from "../../../../common/models/Event";
-import RadioButtons, {RadioItem} from "../../../ui/RadioButtons/RadioButtons";
+import {RadioItem, RadioButtons} from "../../../../components/ui/RadioButtons/RadioButtons";
 import formStyles from "../../Form.module.scss";
 import {toast} from "react-toastify";
 import {Controller, useForm} from "react-hook-form";
@@ -17,9 +17,9 @@ export const EventVisibilityForm: React.FC<EventVisibilityFormProps> = ({event, 
     const [changeVisibility] = useChangeEventVisibilityMutation()
 
     const visibilities: RadioItem[] = [
-        {id: Visibility.PRIVATE, name: 'Prywatna', description: "dostępna dla Ciebie i prelegentów"},
-        {id: Visibility.INVISIBLE, name: 'Niepubliczna', description: 'dostępna po linku'},
-        {id: Visibility.PUBLIC, name: 'Publiczna'},
+        {id: Visibility.PRIVATE, name: 'Prywatna', description: "Widoczna tylko dla Ciebie i prelegentów"},
+        {id: Visibility.INVISIBLE, name: 'Niepubliczna', description: 'Widoczna tylko dla osób posiadających link wydarzenia'},
+        {id: Visibility.PUBLIC, name: 'Publiczna', description: "Widoczna dla każdego"},
     ]
 
     const initialValues: EventChangeVisibilityValues = event

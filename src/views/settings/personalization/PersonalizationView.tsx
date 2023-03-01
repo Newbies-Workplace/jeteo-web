@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import FileUpload from '../../../components/ui/FileUpload/FileUpload'
 import styles from './PersonalizationView.module.scss'
 import studioFormStyles from "./../../../common/styles/StudioFormStyles.module.scss";
-import formStyles from "../../../components/form/Form.module.scss"
+import formStyles from "../../studio/Form.module.scss"
 import {updateProfilePic} from "../../../api/rest/user/User";
 import {toast} from 'react-toastify';
 import {useAuth} from '../../../contexts/auth/hooks/useAuth.hook';
