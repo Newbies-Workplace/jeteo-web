@@ -1,7 +1,7 @@
 import React from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import styles from "./EventDetails.module.scss"
-import {Toolbar} from "../Toolbar/Toolbar";
+import {Toolbar} from "../../../components/ui/Toolbar/Toolbar";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
 import {useDeleteEventMutation, useDeleteLectureMutation, useEventQuery} from "../../../api/graphql";
 import { StudioLectureCard } from "../../../components/containers/StudioLectureCard/StudioLectureCard";
@@ -66,7 +66,7 @@ export const EventDetails: React.FC = () => {
                             startDate={lecture.startDate}
                             finishDate={lecture.finishDate}
                             speakers={[]}
-                            onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/edit/${lecture.id}/basic`)}
+                            onEditClick={() => navigate(`/studio/events/edit/${event.vanityUrl}/lectures/edit/${lecture.id}/basic`)}
                             onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)}
                             onDeleteClick={() => onDeleteLectureClick(lecture)}
                         />

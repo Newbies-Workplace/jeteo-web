@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-do
 import { useLectureWithRatesQuery } from "../../../api/graphql";
 import styles from "./LectureStats.module.scss";
 import { ClickableStepView } from "../../../components/ui/StepView/StepView";
-import { Toolbar } from "../Toolbar/Toolbar";
+import { Toolbar } from "../../../components/ui/Toolbar/Toolbar";
 import {LectureStats} from './Stats/LecutreStats'
 import {LectureQuestions} from "./Stats/LectureQuestions"
 

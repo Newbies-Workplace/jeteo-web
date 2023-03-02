@@ -21,7 +21,7 @@ const defaultCardRenderer: EventListItemRenderer = event => (
         to={`/event/${event.vanityUrl}`}>
         <EventCard
             title={event.title}
-            locationName={event.location?.city}
+            locationName={event.location?.place}
             subtitle={event.subtitle}
             startDate={event.startDate}
             color={event.primaryColor}

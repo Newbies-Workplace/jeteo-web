@@ -13,19 +13,16 @@ import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 import {toast} from "react-toastify";
 import {Controller, useForm} from "react-hook-form";
 import {Input} from "../../../../components/ui/Input/Input";
-import {getIdFromVanityUrl} from "../../../../common/utils/vanityUrlUtils";
-import {useParams} from "react-router-dom";
 
 interface LectureBasicInfoFormProps {
+    eventId: string
     lecture?: CoreLectureResponseFragment
-    onSubmitted: (lecture: CoreLectureResponseFragment, eventId: string) => void
+    onSubmitted: (lecture: CoreLectureResponseFragment) => void
 }
 
-export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({lecture, onSubmitted}) => {
+export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({eventId, lecture, onSubmitted}) => {
     const [createLecture] = useCreateLectureMutation()
     const [replaceLecture] = useReplaceLectureMutation()
-    const {name} = useParams<{name: string}>()
-    const eventId = getIdFromVanityUrl(name)
     const {user} = useAuth()
 
     const initialValues: LectureBasicFormValues = lecture ? {
@@ -77,7 +74,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({lectu
 
         submitFunction(request)
             .then((submittedLecture: CoreLectureResponseFragment) => {
-                onSubmitted(submittedLecture, name!)
+                onSubmitted(submittedLecture)
 
                 toast.success(lecture ? "Prelekcja zaktualizowana" : "Prelekcja dodana")
             })

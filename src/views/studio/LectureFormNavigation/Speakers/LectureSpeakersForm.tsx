@@ -12,12 +12,12 @@ import {toast} from "react-toastify";
 import dayjs from "dayjs";
 
 interface LectureSpeakersFormProps {
-    eventId: string
     lecture: CoreLectureResponseFragment
     onLectureChange: (lecture: CoreLectureResponseFragment) => void
+    onSubmitted: (lecture: CoreLectureResponseFragment) => void
 }
 
-export const LectureSpeakersForm: React.FC<LectureSpeakersFormProps> = ({eventId, lecture, onLectureChange}) => {
+export const LectureSpeakersForm: React.FC<LectureSpeakersFormProps> = ({lecture, onLectureChange, onSubmitted}) => {
     const [deleteInvite] = useDeleteLectureInviteMutation()
     const [createInvite] = useCreateLectureInviteMutation()
     const [replaceLecture] = useReplaceLectureMutation()
@@ -99,7 +99,7 @@ export const LectureSpeakersForm: React.FC<LectureSpeakersFormProps> = ({eventId
             </StudioSection>
 
             <div className={formStyles.submit}>
-                <Button type={"submit"}>
+                <Button onClick={() => onSubmitted(lecture)}>
                     Gotowe
                 </Button>
             </div>

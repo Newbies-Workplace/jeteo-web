@@ -10,12 +10,12 @@ import {Lecture} from "../../../../common/models/Lecture";
 import {toast} from "react-toastify";
 
 interface EventLecturesFormProps {
+    operation: 'create' | 'edit'
     event: Event
-    showNextButton?: boolean
     onSubmitted: (event: Event) => void
 }
 
-export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, showNextButton = false, onSubmitted}) => {
+export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, onSubmitted, operation}) => {
     const navigate = useNavigate()
     const [deleteLecture] = useDeleteLectureMutation()
 
@@ -38,16 +38,16 @@ export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, show
                         finishDate={lecture.finishDate}
                         speakers={[]}
                         onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)}
-                        onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/edit/${lecture.id}/basic`)}
+                        onEditClick={() => navigate(`/studio/events/${operation}/${event.vanityUrl}/lectures/edit/${lecture.id}/basic`)}
                         onDeleteClick={() => onDeleteLectureClick(lecture)}/>
                 } />
 
             <div className={formStyles.submit}>
-                <Button onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/create`)}>
+                <Button onClick={() => navigate(`create`)}>
                     Dodaj
                 </Button>
 
-                {showNextButton &&
+                {operation === 'create' &&
                     <Button primary onClick={() => onSubmitted(event)}>
                         Dalej
                     </Button>
