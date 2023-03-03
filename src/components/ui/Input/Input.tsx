@@ -25,7 +25,7 @@ export const Input: React.FC<InputProps> = (
     }
 ) => {
     return (
-        <>
+        <div>
             <label className={cs(required && styles.required)}>{label}</label>
 
             <div className={styles.inputWrapper}>
@@ -45,7 +45,7 @@ export const Input: React.FC<InputProps> = (
                         required={required}/>
                 }
             </div>
-        </>
+        </div>
     )
 };
     

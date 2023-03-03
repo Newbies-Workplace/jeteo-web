@@ -20,7 +20,7 @@ export const EventList: React.FC = () => {
             <div className={styles.topBar}>
                 <b>Wydarzenia</b>
 
-                <Link to={"/studio/events/create"}>
+                <Link to={"/studio/events/create/basic"}>
                     <Button primary>Dodaj</Button>
                 </Link>
             </div>
@@ -31,7 +31,7 @@ export const EventList: React.FC = () => {
                     <Link
                         key={event.id}
                         style={{ textDecoration: 'none' }}
-                        to={`/studio/events/${event.id}`}>
+                        to={`/studio/events/${event.vanityUrl}`}>
                         <EventCard
                             title={event.title}
                             subtitle={event.author.nickname}

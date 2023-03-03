@@ -100,6 +100,18 @@ export type LectureFilterInput = {
   eventId: Scalars['String'];
 };
 
+export type LectureInviteRequestInput = {
+  name: Scalars['String'];
+};
+
+export type LectureInviteResponse = {
+  __typename?: 'LectureInviteResponse';
+  createDate: Scalars['Instant'];
+  id: Scalars['String'];
+  lectureId: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type LectureRateRequestInput = {
   opinion?: InputMaybe<Scalars['String']>;
   presentationRate: Scalars['Int'];
@@ -129,6 +141,8 @@ export type LectureResponse = {
   createDate: Scalars['Instant'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['String'];
+  /** Lecture speaker invites */
+  invites: Array<LectureInviteResponse>;
   /** Lecture rates summary */
   rateSummary: RateSummary;
   /** Lecture rates */
@@ -147,12 +161,16 @@ export type Mutation = {
   createEvent: EventResponse;
   /** Create lecture with request */
   createLecture: LectureResponse;
+  /** Create lecture speaker invite */
+  createLectureInvite: LectureInviteResponse;
   /** Creates tag */
   createTag: TagResponse;
   /** Delete event by id */
   deleteEvent: Scalars['Boolean'];
   /** Delete lecture by id */
   deleteLecture: Scalars['Boolean'];
+  /** Delete lecture invite by id */
+  deleteLectureInvite: Scalars['Boolean'];
   /** Follow event by id */
   followEvent: Scalars['Boolean'];
   /** Appends new tags to followed list */
@@ -171,6 +189,8 @@ export type Mutation = {
   unfollowEvent: Scalars['Boolean'];
   /** Removes tags from followed list */
   unfollowTags: Scalars['Boolean'];
+  /** Use lecture invitation */
+  useLectureInvite: Scalars['Boolean'];
 };
 
 
@@ -191,6 +211,12 @@ export type MutationCreateLectureArgs = {
 };
 
 
+export type MutationCreateLectureInviteArgs = {
+  lectureId: Scalars['String'];
+  request: LectureInviteRequestInput;
+};
+
+
 export type MutationCreateTagArgs = {
   request: TagCreateRequestInput;
 };
@@ -203,6 +229,11 @@ export type MutationDeleteEventArgs = {
 
 export type MutationDeleteLectureArgs = {
   id: Scalars['String'];
+};
+
+
+export type MutationDeleteLectureInviteArgs = {
+  inviteId: Scalars['String'];
 };
 
 
@@ -252,6 +283,11 @@ export type MutationUnfollowEventArgs = {
 
 export type MutationUnfollowTagsArgs = {
   request: Array<TagRequestInput>;
+};
+
+
+export type MutationUseLectureInviteArgs = {
+  inviteId: Scalars['String'];
 };
 
 export type Query = {
@@ -401,7 +437,7 @@ export type EventQueryVariables = Exact<{
 }>;
 
 
-export type EventQuery = { __typename?: 'Query', event: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }, lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } }> };
+export type EventQuery = { __typename?: 'Query', event: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }, lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> }> };
 
 export type DeleteEventMutationVariables = Exact<{
   id: Scalars['String'];
@@ -448,21 +484,21 @@ export type LecturesListQueryVariables = Exact<{
 }>;
 
 
-export type LecturesListQuery = { __typename?: 'Query', lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } }> };
+export type LecturesListQuery = { __typename?: 'Query', lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> }> };
 
 export type LectureQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type LectureQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } } };
+export type LectureQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> } };
 
 export type LectureWithRatesQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type LectureWithRatesQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, rates: Array<{ __typename?: 'LectureRateResponse', id: string, opinion?: string | undefined }>, rateSummary: { __typename?: 'RateSummary', topicAvg: number, presentationAvg: number, votesCount: number }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } } };
+export type LectureWithRatesQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, rates: Array<{ __typename?: 'LectureRateResponse', id: string, opinion?: string | undefined }>, rateSummary: { __typename?: 'RateSummary', topicAvg: number, presentationAvg: number, votesCount: number }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> } };
 
 export type CreateLectureMutationVariables = Exact<{
   eventId: Scalars['String'];
@@ -470,7 +506,22 @@ export type CreateLectureMutationVariables = Exact<{
 }>;
 
 
-export type CreateLectureMutation = { __typename?: 'Mutation', createLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } } };
+export type CreateLectureMutation = { __typename?: 'Mutation', createLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> } };
+
+export type CreateLectureInviteMutationVariables = Exact<{
+  lectureId: Scalars['String'];
+  request: LectureInviteRequestInput;
+}>;
+
+
+export type CreateLectureInviteMutation = { __typename?: 'Mutation', createLectureInvite: { __typename?: 'LectureInviteResponse', id: string, name: string } };
+
+export type DeleteLectureInviteMutationVariables = Exact<{
+  inviteId: Scalars['String'];
+}>;
+
+
+export type DeleteLectureInviteMutation = { __typename?: 'Mutation', deleteLectureInvite: boolean };
 
 export type ReplaceLectureMutationVariables = Exact<{
   id: Scalars['String'];
@@ -478,7 +529,7 @@ export type ReplaceLectureMutationVariables = Exact<{
 }>;
 
 
-export type ReplaceLectureMutation = { __typename?: 'Mutation', replaceLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } } };
+export type ReplaceLectureMutation = { __typename?: 'Mutation', replaceLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> } };
 
 export type DeleteLectureMutationVariables = Exact<{
   id: Scalars['String'];
@@ -495,7 +546,7 @@ export type RateLectureMutationVariables = Exact<{
 
 export type RateLectureMutation = { __typename?: 'Mutation', rateLecture: { __typename?: 'LectureRateResponse', id: string } };
 
-export type CoreLectureResponseFragment = { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } } };
+export type CoreLectureResponseFragment = { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> };
 
 export type CreateTagMutationVariables = Exact<{
   request: TagCreateRequestInput;
@@ -580,6 +631,7 @@ export const CoreLectureResponseFragmentDoc = gql`
     finishDate
   }
   author {
+    id
     nickname
     avatar
     contact {
@@ -588,6 +640,15 @@ export const CoreLectureResponseFragmentDoc = gql`
       mail
       twitter
     }
+  }
+  speakers {
+    id
+    avatar
+    nickname
+  }
+  invites {
+    id
+    name
   }
 }
     `;
@@ -1000,6 +1061,72 @@ export function useCreateLectureMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateLectureMutationHookResult = ReturnType<typeof useCreateLectureMutation>;
 export type CreateLectureMutationResult = Apollo.MutationResult<CreateLectureMutation>;
 export type CreateLectureMutationOptions = Apollo.BaseMutationOptions<CreateLectureMutation, CreateLectureMutationVariables>;
+export const CreateLectureInviteDocument = gql`
+    mutation CreateLectureInvite($lectureId: String!, $request: LectureInviteRequestInput!) {
+  createLectureInvite(lectureId: $lectureId, request: $request) {
+    id
+    name
+  }
+}
+    `;
+export type CreateLectureInviteMutationFn = Apollo.MutationFunction<CreateLectureInviteMutation, CreateLectureInviteMutationVariables>;
+
+/**
+ * __useCreateLectureInviteMutation__
+ *
+ * To run a mutation, you first call `useCreateLectureInviteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateLectureInviteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createLectureInviteMutation, { data, loading, error }] = useCreateLectureInviteMutation({
+ *   variables: {
+ *      lectureId: // value for 'lectureId'
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useCreateLectureInviteMutation(baseOptions?: Apollo.MutationHookOptions<CreateLectureInviteMutation, CreateLectureInviteMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateLectureInviteMutation, CreateLectureInviteMutationVariables>(CreateLectureInviteDocument, options);
+      }
+export type CreateLectureInviteMutationHookResult = ReturnType<typeof useCreateLectureInviteMutation>;
+export type CreateLectureInviteMutationResult = Apollo.MutationResult<CreateLectureInviteMutation>;
+export type CreateLectureInviteMutationOptions = Apollo.BaseMutationOptions<CreateLectureInviteMutation, CreateLectureInviteMutationVariables>;
+export const DeleteLectureInviteDocument = gql`
+    mutation DeleteLectureInvite($inviteId: String!) {
+  deleteLectureInvite(inviteId: $inviteId)
+}
+    `;
+export type DeleteLectureInviteMutationFn = Apollo.MutationFunction<DeleteLectureInviteMutation, DeleteLectureInviteMutationVariables>;
+
+/**
+ * __useDeleteLectureInviteMutation__
+ *
+ * To run a mutation, you first call `useDeleteLectureInviteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteLectureInviteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteLectureInviteMutation, { data, loading, error }] = useDeleteLectureInviteMutation({
+ *   variables: {
+ *      inviteId: // value for 'inviteId'
+ *   },
+ * });
+ */
+export function useDeleteLectureInviteMutation(baseOptions?: Apollo.MutationHookOptions<DeleteLectureInviteMutation, DeleteLectureInviteMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteLectureInviteMutation, DeleteLectureInviteMutationVariables>(DeleteLectureInviteDocument, options);
+      }
+export type DeleteLectureInviteMutationHookResult = ReturnType<typeof useDeleteLectureInviteMutation>;
+export type DeleteLectureInviteMutationResult = Apollo.MutationResult<DeleteLectureInviteMutation>;
+export type DeleteLectureInviteMutationOptions = Apollo.BaseMutationOptions<DeleteLectureInviteMutation, DeleteLectureInviteMutationVariables>;
 export const ReplaceLectureDocument = gql`
     mutation ReplaceLecture($id: String!, $request: LectureRequestInput!) {
   replaceLecture(id: $id, request: $request) {

@@ -1,19 +1,23 @@
 import React from "react";
-import {StudioSection} from "../../../ui/StudioSection/StudioSection";
+import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
 import formStyles from "../../Form.module.scss";
-import Button from "../../../ui/Button/Button";
+import Button from "../../../../components/ui/Button/Button";
 import dayjs from "dayjs";
-import {LectureRequestInput, useCreateLectureMutation, useReplaceLectureMutation} from "../../../../api/graphql";
-import {Lecture} from "../../../../common/models/Lecture";
+import {
+    CoreLectureResponseFragment,
+    LectureRequestInput,
+    useCreateLectureMutation,
+    useReplaceLectureMutation
+} from "../../../../api/graphql";
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 import {toast} from "react-toastify";
 import {Controller, useForm} from "react-hook-form";
-import {Input} from "../../../ui/Input/Input";
+import {Input} from "../../../../components/ui/Input/Input";
 
 interface LectureBasicInfoFormProps {
     eventId: string
-    lecture?: Lecture
-    onSubmitted: (lecture: Lecture) => void
+    lecture?: CoreLectureResponseFragment
+    onSubmitted: (lecture: CoreLectureResponseFragment) => void
 }
 
 export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({eventId, lecture, onSubmitted}) => {
@@ -22,8 +26,8 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
     const {user} = useAuth()
 
     const initialValues: LectureBasicFormValues = lecture ? {
-        startDate: dayjs(lecture.startDate).format("YYYY-MM-DDTHH:mm"),
-        finishDate:dayjs(lecture.finishDate).format("YYYY-MM-DDTHH:mm"),
+        startDate: dayjs(lecture.timeFrame.startDate).format("YYYY-MM-DDTHH:mm"),
+        finishDate:dayjs(lecture.timeFrame.finishDate).format("YYYY-MM-DDTHH:mm"),
         title: lecture.title,
         description: lecture.description,
     } : {
@@ -34,7 +38,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
     }
     const {register, control, handleSubmit} = useForm<LectureBasicFormValues>({defaultValues: initialValues});
 
-    const submitFunction = (request: LectureRequestInput): Promise<Lecture> => {
+    const submitFunction = (request: LectureRequestInput): Promise<CoreLectureResponseFragment> => {
         if (lecture) {
             return replaceLecture({
                 variables: {
@@ -44,7 +48,6 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
             })
                 .then((res) => res.data ?? Promise.reject("no data"))
                 .then((data) => data.replaceLecture)
-                .then(Lecture.fromData)
         } else {
             return createLecture({
                 variables: {
@@ -54,9 +57,9 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
             })
                 .then((res) => res.data ?? Promise.reject("no data"))
                 .then((data) => data.createLecture)
-                .then(Lecture.fromData)
         }
     }
+
 
     const onSubmitClicked = (values: LectureBasicFormValues) => {
         const request = {
@@ -70,7 +73,7 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
         }
 
         submitFunction(request)
-            .then((submittedLecture: Lecture) => {
+            .then((submittedLecture: CoreLectureResponseFragment) => {
                 onSubmitted(submittedLecture)
 
                 toast.success(lecture ? "Prelekcja zaktualizowana" : "Prelekcja dodana")
@@ -98,7 +101,6 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                     </div>
                 </div>
 
-
                 <Controller
                     name={'title'}
                     control={control}
@@ -120,10 +122,6 @@ export const LectureBasicInfoForm: React.FC<LectureBasicInfoFormProps> = ({event
                             value={field.value ?? ''}
                             setValue={field.onChange} />
                     } />
-            </StudioSection>
-
-            <StudioSection title={"Kto?"}>
-                W przyszłości
             </StudioSection>
 
             <div className={formStyles.submit}>

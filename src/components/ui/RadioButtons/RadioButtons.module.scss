@@ -4,20 +4,22 @@
   gap: 8px;
 }
 
-
-.input {
-  align-self: flex-start;
+.top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.value {
-  display: flex;
+.name {
   align-self: flex-end;
 
-  user-select: none;
+  width: 100%;
 
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: end;
+  font-weight: bold;
+  user-select: none;
 }
 
 .item {
@@ -42,5 +44,44 @@
 
   &.selected {
     background-color: #009BF9;
+  }
+}
+
+.help {
+  position: relative;
+  display: inline-block;
+
+  & .helpText {
+    visibility: hidden;
+
+    width: 120px;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    margin-left: -60px;
+
+    background-color: black;
+    border-radius: 8px;
+    padding: 4px 0;
+
+    text-align: center;
+    color: #fff;
+
+    position: absolute;
+    z-index: 1;
+  }
+
+  &:hover .helpText {
+    visibility: visible;
+  }
+
+  & .helpText::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
   }
 }

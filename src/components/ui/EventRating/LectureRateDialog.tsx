@@ -87,7 +87,7 @@ export const LectureRateDialog: React.FC<LectureRateDialogProps> = ({ onDismiss,
                             value={topicRate}
                             setValue={setTopicRate}
                             className={styles.starRatingLabel}
-                            title="Jak ci siadł temat?" />
+                            title="Jak siadł Ci temat?" />
 
                         <StarRating
                             max={5}

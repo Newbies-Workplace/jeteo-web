@@ -21,16 +21,22 @@ export const Menu: React.FC<MenuProps> = ({position = 'left', isOpen, setIsOpen,
             isOpen={isOpen}
             setOpen={(open) => setIsOpen(open)}>
             <div className={styles.menu}>
-                {options.map((option) => (
-                    <span
-                        key={option.text}
-                        className={styles.item}
-                        onClick={(e) => {
-                            option.onClick()
-                            e.stopPropagation()
-                        }}>
-                      {option.text}
-                  </span>
+                {options.map((option, index) => (
+                    <React.Fragment key={option.text}>
+                        <span
+                            className={styles.item}
+                            onClick={(e) => {
+                                option.onClick()
+                                e.stopPropagation()
+                            }}
+                        >
+                            {option.text}
+                        </span>
+
+                        {index !== options.length -1 &&
+                            <hr className={styles.separator}/>
+                        }
+                    </React.Fragment>
                 ))}
             </div>
         </MenuBase>

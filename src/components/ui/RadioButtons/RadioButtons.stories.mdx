@@ -1,6 +1,6 @@
 import {Canvas, Meta, Story} from '@storybook/addon-docs';
 import {useState} from "react";
-import RadioButtons from "./RadioButtons";
+import {RadioButtons} from "./RadioButtons";
 
 <Meta title="ui/RadioButtons" component={RadioButtons} />
 
@@ -17,7 +17,7 @@ TagPicker
             const items = [
                 {id: 'a', name: 'Warszawa'},
                 {id: 'b', name: 'Wrocław'},
-                {id: 'c', name: 'Very very very veryverylonglonglong namenamename name'},
+                {id: 'c', name: 'Very very very veryverylonglonglong namenamename name', description: 'Some description'},
             ]
             const [value, setValue] = useState(1)
             return <>

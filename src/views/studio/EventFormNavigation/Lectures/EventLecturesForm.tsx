@@ -1,21 +1,21 @@
 import React from "react";
-import Button from "../../../ui/Button/Button";
+import Button from "../../../../components/ui/Button/Button";
 import {Event} from "../../../../common/models/Event";
 import formStyles from "../../Form.module.scss"
-import {LectureList} from "../../../ui/LectureList/LectureList";
+import {LectureList} from "../../../../components/ui/LectureList/LectureList";
 import {useNavigate} from "react-router-dom";
-import {StudioLectureCard} from "../../../containers/StudioLectureCard/StudioLectureCard";
+import {StudioLectureCard} from "../../../../components/containers/StudioLectureCard/StudioLectureCard";
 import {useDeleteLectureMutation} from "../../../../api/graphql";
 import {Lecture} from "../../../../common/models/Lecture";
 import {toast} from "react-toastify";
 
 interface EventLecturesFormProps {
+    operation: 'create' | 'edit'
     event: Event
-    showNextButton?: boolean
     onSubmitted: (event: Event) => void
 }
 
-export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, showNextButton = false, onSubmitted}) => {
+export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, onSubmitted, operation}) => {
     const navigate = useNavigate()
     const [deleteLecture] = useDeleteLectureMutation()
 
@@ -37,16 +37,17 @@ export const EventLecturesForm: React.FC<EventLecturesFormProps> = ({event, show
                         startDate={lecture.startDate}
                         finishDate={lecture.finishDate}
                         speakers={[]}
-                        onEditClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/edit`)}
+                        onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/${lecture.id}/review`)}
+                        onEditClick={() => navigate(`/studio/events/${operation}/${event.vanityUrl}/lectures/edit/${lecture.id}/basic`)}
                         onDeleteClick={() => onDeleteLectureClick(lecture)}/>
                 } />
 
             <div className={formStyles.submit}>
-                <Button onClick={() => navigate(`/studio/events/${event.vanityUrl}/lectures/create`)}>
+                <Button onClick={() => navigate(`/studio/events/${operation}/${event.vanityUrl}/lectures/create/basic`)}>
                     Dodaj
                 </Button>
 
-                {showNextButton &&
+                {operation === 'create' &&
                     <Button primary onClick={() => onSubmitted(event)}>
                         Dalej
                     </Button>
