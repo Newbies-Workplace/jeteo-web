@@ -27,7 +27,7 @@ export const EventDetails: React.FC = () => {
     const onEventDeleteClicked = () => {
         deleteEvent()
             .then(() => {
-                navigate(-1)
+                navigate('/studio/events')
             })
             .catch((e) => {
                 toast.error("Wystąpił błąd")
@@ -37,7 +37,6 @@ export const EventDetails: React.FC = () => {
 
     const onDeleteLectureClick = (lecture: Lecture) => {
         deleteLecture({variables: {id: lecture.id}})
-            .then()
             .then(() => toast.success("Prelekcja usunięta"))
             .catch(() => toast.error("Wystąpił błąd"))
     }

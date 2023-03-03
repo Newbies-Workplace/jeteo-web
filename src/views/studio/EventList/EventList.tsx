@@ -20,7 +20,7 @@ export const EventList: React.FC = () => {
             <div className={styles.topBar}>
                 <b>Wydarzenia</b>
 
-                <Link to={"/studio/events/create"}>
+                <Link to={"/studio/events/create/basic"}>
                     <Button primary>Dodaj</Button>
                 </Link>
             </div>

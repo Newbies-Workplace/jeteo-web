@@ -3,7 +3,7 @@ import studioFormStyles from "../../../common/styles/StudioFormStyles.module.scs
 import {Toolbar} from "../../../components/ui/Toolbar/Toolbar";
 import {ClickableStepView, StepView} from "../../../components/ui/StepView/StepView";
 import {Route, Routes, useNavigate, useParams} from "react-router-dom";
-import {Navigate, useLocation} from "react-router";
+import {useLocation} from "react-router";
 import {EventBasicInfoForm} from "./BasicInfo/EventBasicInfoForm";
 import {EventThemeForm} from "./Theme/EventThemeForm";
 import {EventLecturesForm} from "./Lectures/EventLecturesForm";
@@ -24,10 +24,8 @@ export const EventFormNavigation: React.FC = () => {
     const navigate = useNavigate()
     const { pathname } = useLocation();
     const path = pathname.split('/').at(-1)
-    const currentStep =
-        (operation ?? 'create') === 'create'
-            ? 0
-            : steps.findIndex(step => step.path === path)
+    const currentStep = steps.findIndex(step => step.path === path)
+    const loadEvent = name && !steps.map(step => step.path).includes(name)
 
     const [event, setEvent] = useState<Event | undefined>(undefined)
 
@@ -35,13 +33,13 @@ export const EventFormNavigation: React.FC = () => {
         variables: {
             id: getIdFromVanityUrl(name)
         },
-        skip: !name,
+        skip: !loadEvent,
         onCompleted: (data) => {
             setEvent(Event.fromData(data.event))
         }
     })
 
-    if (name && (loading || !event)) return <>loading...</>
+    if (loadEvent && (loading || !event)) return <>loading...</>
     if (error) return <p>error <br/>{error.message}</p>
 
     return (
@@ -70,18 +68,28 @@ export const EventFormNavigation: React.FC = () => {
 
             <div className={studioFormStyles.innerContainer}>
                 <Routes>
-                    {operation !== 'edit' &&
-                        <Route element={<Navigate to={'basic'}/>} path={'/'}/>
-                    }
-
                     <Route
                         element={
                             <EventBasicInfoForm
                                 event={event}
                                 onSubmitted={(createdEvent) => {
                                     setEvent(createdEvent)
+
                                     if (operation !== 'edit') {
-                                        navigate('theme')
+                                        navigate(`/studio/events/${operation}/${createdEvent.vanityUrl}/theme`)
+                                    }
+                                }} />
+                        }
+                        path={'/'}/>
+                    <Route
+                        element={
+                            <EventBasicInfoForm
+                                event={event}
+                                onSubmitted={(createdEvent) => {
+                                    setEvent(createdEvent)
+
+                                    if (operation !== 'edit') {
+                                        navigate(`${createdEvent.vanityUrl}/theme`)
                                     }
                                 }} />
                         }
@@ -105,7 +113,7 @@ export const EventFormNavigation: React.FC = () => {
                         element={
                             <EventLecturesForm
                                 event={event!}
-                                operation={operation!}
+                                operation={operation ?? 'create'}
                                 onSubmitted={(event) => {
                                     setEvent(event)
                                     if (operation !== 'edit') {

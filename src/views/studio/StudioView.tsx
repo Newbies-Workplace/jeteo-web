@@ -36,16 +36,10 @@ export const StudioView: React.FC = () => {
                             <Route
                                 element={<EventFormNavigation />}
                                 path={'/events/:operation/:name?/*'}/>
-                            <Route
-                                element={<EventFormNavigation />}
-                                path={'/events/create/*'}/>
 
                             <Route
                                 element={<LectureFormNavigation />}
-                                path={`/events/:operation/:name/lectures/:lectureOperation/:lectureId?/*`} />
-                            <Route
-                                element={<LectureFormNavigation />}
-                                path={`/events/:operation/:name/lectures/create/*`} />
+                                path={`/events/:operation/:name/lectures/:lectureOperation/:lectureId?/*`}/>
 
                             <Route
                                 element={<LectureStatsView/>}
