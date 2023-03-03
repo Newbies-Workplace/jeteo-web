@@ -22,9 +22,8 @@ export const Menu: React.FC<MenuProps> = ({position = 'left', isOpen, setIsOpen,
             setOpen={(open) => setIsOpen(open)}>
             <div className={styles.menu}>
                 {options.map((option, index) => (
-                    <>
+                    <React.Fragment key={option.text}>
                         <span
-                            key={option.text}
                             className={styles.item}
                             onClick={(e) => {
                                 option.onClick()
@@ -37,7 +36,7 @@ export const Menu: React.FC<MenuProps> = ({position = 'left', isOpen, setIsOpen,
                         {index !== options.length -1 &&
                             <hr className={styles.separator}/>
                         }
-                    </>
+                    </React.Fragment>
                 ))}
             </div>
         </MenuBase>
