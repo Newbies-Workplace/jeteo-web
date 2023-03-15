@@ -437,7 +437,7 @@ export type EventQueryVariables = Exact<{
 }>;
 
 
-export type EventQuery = { __typename?: 'Query', event: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }, lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> }> };
+export type EventQuery = { __typename?: 'Query', event: { __typename?: 'EventResponse', id: string, title: string, subtitle?: string | undefined, description?: string | undefined, vanityUrl: string, visibility: Visibility, author: { __typename?: 'UserResponse', nickname: string, avatar?: string | undefined, description?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, address?: { __typename?: 'AddressResponse', place: string, coordinates?: { __typename?: 'CoordinatesResponse', latitude: number, longitude: number } | undefined } | undefined, theme: { __typename?: 'ThemeResponse', primaryColor?: string | undefined, image?: string | undefined }, tags: Array<{ __typename?: 'TagResponse', id: string, name: string }> }, lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }> }> };
 
 export type DeleteEventMutationVariables = Exact<{
   id: Scalars['String'];
@@ -484,7 +484,7 @@ export type LecturesListQueryVariables = Exact<{
 }>;
 
 
-export type LecturesListQuery = { __typename?: 'Query', lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> }> };
+export type LecturesListQuery = { __typename?: 'Query', lectures: Array<{ __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }> }> };
 
 export type LectureQueryVariables = Exact<{
   id: Scalars['String'];
@@ -498,7 +498,7 @@ export type LectureWithRatesQueryVariables = Exact<{
 }>;
 
 
-export type LectureWithRatesQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, rates: Array<{ __typename?: 'LectureRateResponse', id: string, opinion?: string | undefined }>, rateSummary: { __typename?: 'RateSummary', topicAvg: number, presentationAvg: number, votesCount: number }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> } };
+export type LectureWithRatesQuery = { __typename?: 'Query', lecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, rates: Array<{ __typename?: 'LectureRateResponse', id: string, opinion?: string | undefined }>, rateSummary: { __typename?: 'RateSummary', topicAvg: number, presentationAvg: number, votesCount: number }, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }> } };
 
 export type CreateLectureMutationVariables = Exact<{
   eventId: Scalars['String'];
@@ -506,7 +506,7 @@ export type CreateLectureMutationVariables = Exact<{
 }>;
 
 
-export type CreateLectureMutation = { __typename?: 'Mutation', createLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> } };
+export type CreateLectureMutation = { __typename?: 'Mutation', createLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }> } };
 
 export type CreateLectureInviteMutationVariables = Exact<{
   lectureId: Scalars['String'];
@@ -529,7 +529,7 @@ export type ReplaceLectureMutationVariables = Exact<{
 }>;
 
 
-export type ReplaceLectureMutation = { __typename?: 'Mutation', replaceLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> } };
+export type ReplaceLectureMutation = { __typename?: 'Mutation', replaceLecture: { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }> } };
 
 export type DeleteLectureMutationVariables = Exact<{
   id: Scalars['String'];
@@ -546,7 +546,9 @@ export type RateLectureMutationVariables = Exact<{
 
 export type RateLectureMutation = { __typename?: 'Mutation', rateLecture: { __typename?: 'LectureRateResponse', id: string } };
 
-export type CoreLectureResponseFragment = { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }>, invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> };
+export type CoreLectureResponseFragment = { __typename?: 'LectureResponse', id: string, title: string, description?: string | undefined, timeFrame: { __typename?: 'TimeFrameResponse', startDate: string, finishDate?: string | undefined }, author: { __typename?: 'UserResponse', id: string, nickname: string, avatar?: string | undefined, contact: { __typename?: 'ContactResponse', github?: string | undefined, linkedin?: string | undefined, mail?: string | undefined, twitter?: string | undefined } }, speakers: Array<{ __typename?: 'UserResponse', id: string, avatar?: string | undefined, nickname: string }> };
+
+export type InviteLectureResponseFragment = { __typename?: 'LectureResponse', invites: Array<{ __typename?: 'LectureInviteResponse', id: string, name: string }> };
 
 export type CreateTagMutationVariables = Exact<{
   request: TagCreateRequestInput;
@@ -646,6 +648,10 @@ export const CoreLectureResponseFragmentDoc = gql`
     avatar
     nickname
   }
+}
+    `;
+export const InviteLectureResponseFragmentDoc = gql`
+    fragment InviteLectureResponse on LectureResponse {
   invites {
     id
     name
@@ -952,9 +958,11 @@ export const LectureDocument = gql`
     query Lecture($id: String!) {
   lecture(id: $id) {
     ...CoreLectureResponse
+    ...InviteLectureResponse
   }
 }
-    ${CoreLectureResponseFragmentDoc}`;
+    ${CoreLectureResponseFragmentDoc}
+${InviteLectureResponseFragmentDoc}`;
 
 /**
  * __useLectureQuery__
