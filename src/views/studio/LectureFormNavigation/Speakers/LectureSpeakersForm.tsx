@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    CoreLectureResponseFragment,
+    CoreLectureResponseFragment, InviteLectureResponseFragment,
     useCreateLectureInviteMutation,
     useDeleteLectureInviteMutation, useReplaceLectureMutation
 } from "../../../../api/graphql";
@@ -12,9 +12,9 @@ import {toast} from "react-toastify";
 import dayjs from "dayjs";
 
 interface LectureSpeakersFormProps {
-    lecture: CoreLectureResponseFragment
-    onLectureChange: (lecture: CoreLectureResponseFragment) => void
-    onSubmitted: (lecture: CoreLectureResponseFragment) => void
+    lecture: CoreLectureResponseFragment & InviteLectureResponseFragment
+    onLectureChange: (lecture: CoreLectureResponseFragment & InviteLectureResponseFragment) => void
+    onSubmitted: (lecture: CoreLectureResponseFragment & InviteLectureResponseFragment) => void
 }
 
 export const LectureSpeakersForm: React.FC<LectureSpeakersFormProps> = ({lecture, onLectureChange, onSubmitted}) => {

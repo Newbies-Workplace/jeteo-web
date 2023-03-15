@@ -4,7 +4,7 @@ import formStyles from "../../Form.module.scss";
 import Button from "../../../../components/ui/Button/Button";
 import dayjs from "dayjs";
 import {
-    CoreLectureResponseFragment,
+    CoreLectureResponseFragment, InviteLectureResponseFragment,
     LectureRequestInput,
     useCreateLectureMutation,
     useReplaceLectureMutation

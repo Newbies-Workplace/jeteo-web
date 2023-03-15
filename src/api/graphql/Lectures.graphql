@@ -7,6 +7,7 @@ query LecturesList($filter: LectureFilterInput!) {
 query Lecture($id: String!) {
     lecture(id: $id) {
         ...CoreLectureResponse
+        ...InviteLectureResponse
     }
 }
 
@@ -83,6 +84,9 @@ fragment CoreLectureResponse on LectureResponse {
         avatar
         nickname
     }
+}
+
+fragment InviteLectureResponse on LectureResponse {
     invites {
         id
         name

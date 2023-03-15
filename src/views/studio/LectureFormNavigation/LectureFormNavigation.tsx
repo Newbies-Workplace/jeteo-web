@@ -7,7 +7,7 @@ import {useLocation} from "react-router";
 import {LectureBasicInfoForm} from "./BasicInfo/LectureBasicInfoForm";
 import {LectureSpeakersForm} from "./Speakers/LectureSpeakersForm";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
-import {CoreLectureResponseFragment, useLectureQuery} from "../../../api/graphql";
+import {CoreLectureResponseFragment, InviteLectureResponseFragment, useLectureQuery} from "../../../api/graphql";
 
 const steps = [
     {name: "Podstawowe informacje", path: 'basic'},
@@ -16,7 +16,7 @@ const steps = [
 
 export const LectureFormNavigation: React.FC = () => {
     const navigate = useNavigate()
-    const [lecture, setLecture] = useState<CoreLectureResponseFragment>()
+    const [lecture, setLecture] = useState<CoreLectureResponseFragment & InviteLectureResponseFragment>()
     const {operation, lectureOperation, lectureId, name} = useParams<{
         operation?: 'create' | 'edit'
         lectureOperation?: 'create' | 'edit'
@@ -68,8 +68,8 @@ export const LectureFormNavigation: React.FC = () => {
                             <LectureBasicInfoForm
                                 eventId={eventId}
                                 lecture={lecture}
-                                onSubmitted={(lecture) => {
-                                    setLecture(lecture)
+                                onSubmitted={(submittedLecture) => {
+                                    setLecture({...submittedLecture, invites: lecture?.invites!})
 
                                     if (lectureOperation !== 'edit') {
                                         navigate(`/studio/events/${operation}/${name}/lectures/${lectureOperation}/${lectureId}/speakers`)
@@ -82,8 +82,8 @@ export const LectureFormNavigation: React.FC = () => {
                             <LectureBasicInfoForm
                                 eventId={eventId}
                                 lecture={lecture}
-                                onSubmitted={(lecture) => {
-                                    setLecture(lecture)
+                                onSubmitted={(submittedLecture) => {
+                                    setLecture({...submittedLecture, invites: lecture?.invites!})
 
                                     if (lectureOperation !== 'edit') {
                                         navigate(`speakers`)
