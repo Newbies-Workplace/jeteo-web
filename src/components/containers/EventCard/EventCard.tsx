@@ -1,6 +1,7 @@
 import React from 'react'
 import {LocationChip} from "./chips/LocationChip";
 import {StartDateChip} from "./chips/StartDateChip";
+import dayjs from 'dayjs';
 
 import styles from './EventCard.module.scss'
 
@@ -31,6 +32,16 @@ export const EventCard: React.FC<EventCardProps> = ({
         backgroundImage: `linear-gradient(90deg, ${color}a0, ${color}), url(${image})`,
     }
 
+    const currentDate = dayjs()
+    const eventDate = dayjs(startDate)
+
+    const timeAfterEvent = currentDate.diff(eventDate, "hours");
+
+    const timeToEvent = eventDate.diff(currentDate, "hours");
+    console.log(typeof(timeToEvent))
+    
+
+
     return (
         <div style={cardStyle} className={styles.card}>
             <h2 className={styles.title}>
@@ -47,6 +58,12 @@ export const EventCard: React.FC<EventCardProps> = ({
                 {startDate &&
                     <StartDateChip date={startDate}/>}
             </div>
+                {timeToEvent <= 72 && timeToEvent >= 0 ? 
+                <div className={styles.timeToEvent}>
+                    <span>{timeToEvent}h do rozpoczęcia</span>
+                </div> :
+                ''
+                }
         </div>
     )
 };

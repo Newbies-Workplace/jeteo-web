@@ -57,3 +57,11 @@
     -webkit-mask-image: -webkit-gradient(linear, 50% top, right top, from(#FFF), to(transparent));
     mask-image: linear-gradient(90deg, #FFF 50%, transparent);
 }
+
+
+.timeToEvent {
+    display: inline-block;
+    padding: 0 4px;
+    background-color: #fff;
+    border-radius:var(--border-radius);
+}
