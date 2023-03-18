@@ -3,7 +3,8 @@
 }
 .cardWrapper {
     margin: 8px 0;
-    position: relative;
+    background-color: #080736;
+    border-radius: var(--border-radius);
 }
 
 .card {
@@ -73,38 +74,37 @@
     border-radius: var(--border-radius);
 }
 
-.eventRating {
-    box-sizing: border-box;
+
+.eventRatingLink {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     width: 100%;
-    height: 46px;
-    margin-top: -16px;
-    z-index: -999;
-    background-color: red;
     position: relative;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    padding: 5px;
+    z-index: 999;
     text-decoration: none;
 }
 
 .clickToRate {
-    width: 70%;
+    width: 100%;
     text-align: center;
     color: #ffffff;
+    padding: 5px;
+    font-size: 15px;
+    
 }
 
 .timeAfterEventText {
-    display: flex;
-    justify-content: flex-end;
+    min-width: 150px;
+    text-align: center;
     margin-right: 6px;
-    width: 30%;
     color: #ffffff;
+    padding: 5px;
+    font-size: 15px;
 }
 
 @media screen and (max-width: 600px) {
-    .eventRating {
+    .eventRatingLink {
         justify-content: space-around;
     }
     .clickToRate {
