@@ -1,6 +1,10 @@
 .link {
     text-decoration: none;
 }
+.cardWrapper {
+    margin: 8px 0;
+    position: relative;
+}
 
 .card {
     box-sizing: border-box;
@@ -9,7 +13,6 @@
     background-size: 51%, 50%;
     background-repeat: no-repeat;
 
-    margin: 8px 0;
     min-height: 112px;
     padding: 16px;
 
@@ -37,10 +40,15 @@
         font-weight: 500;
     }
 
+    .infoSection {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .bottom {
         display: flex;
-
-        margin-top: 16px;
         height: 20px;
     }
 }
@@ -50,18 +58,59 @@
     height: 100%;
     left: 0;
     top: 0;
-
     border-radius: 16px;
     opacity: .4;
-
     -webkit-mask-image: -webkit-gradient(linear, 50% top, right top, from(#FFF), to(transparent));
     mask-image: linear-gradient(90deg, #FFF 50%, transparent);
 }
 
 
+
 .timeToEvent {
     display: inline-block;
-    padding: 0 4px;
-    background-color: #fff;
-    border-radius:var(--border-radius);
+    padding: 2px 5px;
+    background-color: #ffffff;
+    border-radius: var(--border-radius);
+}
+
+.eventRating {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 46px;
+    margin-top: -16px;
+    z-index: -999;
+    background-color: red;
+    position: relative;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    padding: 5px;
+    text-decoration: none;
+}
+
+.clickToRate {
+    width: 70%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.timeAfterEventText {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 6px;
+    width: 30%;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 600px) {
+    .eventRating {
+        justify-content: space-around;
+    }
+    .clickToRate {
+        width: auto;
+    }
+    .timeAfterEventText {
+        width: auto;
+    }
 }

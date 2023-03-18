@@ -15,18 +15,14 @@ export interface EventListProps {
 }
 
 const defaultCardRenderer: EventListItemRenderer = event => (
-    <Link
-        key={event.id}
-        style={{ textDecoration: 'none' }}
-        to={`/event/${event.vanityUrl}`}>
         <EventCard
             title={event.title}
             locationName={event.location?.place}
             subtitle={event.subtitle}
             startDate={event.startDate}
             color={event.primaryColor}
-            image={event.image} />
-    </Link>
+            image={event.image} 
+            link={`/event/${event.vanityUrl}`}/> 
 );
 
 export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defaultCardRenderer }) => {
