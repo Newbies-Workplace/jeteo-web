@@ -5,7 +5,8 @@ import dayjs from 'dayjs';
 import cs from 'classnames'
 import styles from './EventCard.module.scss'
 import { Link } from 'react-router-dom';
-
+import isBettwen from 'dayjs/plugin/isBetween';
+import 'dayjs/locale/pl'
 interface EventCardProps {
     title: string,
     subtitle?: string,
@@ -37,14 +38,31 @@ export const EventCard: React.FC<EventCardProps> = ({
         backgroundImage: `linear-gradient(90deg, ${color}a0, ${color}), url(${image})`,
     }
 
+    const afterEventCardStyle: React.CSSProperties = {
+        backgroundColor: `${color}`
+    }
+
+    console.log(color)
+
+
+    dayjs.locale('pl')
+    dayjs.extend(isBettwen)
+
     const currentDate = dayjs()
-    const eventDate = dayjs(startDate)
-    const timeToEvent = eventDate.diff(currentDate, "hours");
-    const timeAfterEvent = currentDate.diff(eventDate, "hours");
-    
+    const startEventDate = dayjs(startDate)
+    const finishEventDate = dayjs(finishDate)
+    const timeToEvent = startEventDate.diff(currentDate, "hours");
+    const timeAfterEvent = currentDate.diff(finishEventDate, "hours");
+    const timeLeftToFinish = finishEventDate.diff(currentDate, "hours");
+    const isDuringEvent = currentDate.isBetween(finishDate, startEventDate, 'hours')
+
+    console.log(finishEventDate)
+
+
     return (
         <>
-        <div className={cs(styles.cardWrapper)}>
+        <div className={styles.cardWrapper}>
+        <div className={styles.darkerBackground} style={afterEventCardStyle}></div>
             <Link to={link} className={styles.link}>
                 <div style={cardStyle} className={styles.card}>
                     <h2 className={styles.title}>
@@ -62,7 +80,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                         {startDate &&
                             <StartDateChip date={startDate}/>}
                     </div>
-                        {timeToEvent <= 72 && timeToEvent >= 0 &&
+                        {timeToEvent <= 72 && timeToEvent > 0 &&
                             <div className={styles.timeToEvent}>
                                 <span>{timeToEvent}h do rozpoczęcia</span>
                             </div>
@@ -70,12 +88,21 @@ export const EventCard: React.FC<EventCardProps> = ({
                     </div>
                 </div>
             </Link>
-            {timeAfterEvent <= 24 && timeAfterEvent >= 0 &&
+            { timeAfterEvent <= 24 && timeAfterEvent >= 0 &&
                 <Link to={link} className={styles.eventRatingLink}>
-                    <span className={styles.clickToRate}>Kliknij aby ocenić</span>
-                    <span className={styles.timeAfterEventText}>zakończono: {timeAfterEvent}h temu</span>
+                    <span className={styles.eventFooterText}>Kliknij aby ocenić</span>
+                    <span className={styles.eventFooterTime}>zakończono: {timeAfterEvent}h temu🎊</span>
                 </Link>
             }
+            {
+                isDuringEvent && 
+                <div className={styles.duringEventWrapper}>
+                    <span className={styles.eventFooterText}>W trakcie</span>
+                    <span className={styles.eventFooterTime}>pozostało: {timeLeftToFinish}h</span>
+                </div>
+            }
+            
+            
         </div>
         </>
     )

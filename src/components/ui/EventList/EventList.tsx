@@ -1,6 +1,5 @@
 import React from 'react';
 import {Event} from "../../../common/models/Event";
-import {Link} from "react-router-dom";
 import {EventListSkeleton} from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
 import {PlaceholderSwitcher} from "../../utils/animations/PlaceholderSwitcher";
 import {AnimatedList} from "../../utils/animations/AnimatedList";

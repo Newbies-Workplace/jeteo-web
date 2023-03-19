@@ -3,9 +3,33 @@
 }
 .cardWrapper {
     margin: 8px 0;
-    background-color: #080736;
-    border-radius: var(--border-radius);
+    position: relative;
 }
+
+.cardWrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: var(--border-radius);
+    z-index: -1;
+    opacity: 1;
+}
+
+.darkerBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--border-radius);
+    z-index: -1;
+    opacity: .4;
+}
+
 
 .card {
     box-sizing: border-box;
@@ -65,8 +89,6 @@
     mask-image: linear-gradient(90deg, #FFF 50%, transparent);
 }
 
-
-
 .timeToEvent {
     display: inline-block;
     padding: 2px 5px;
@@ -81,11 +103,11 @@
     align-items: flex-end;
     width: 100%;
     position: relative;
-    z-index: 999;
+    z-index: 1;
     text-decoration: none;
 }
 
-.clickToRate {
+.eventFooterText {
     width: 100%;
     text-align: center;
     color: #ffffff;
@@ -94,14 +116,21 @@
     
 }
 
-.timeAfterEventText {
-    min-width: 150px;
+.eventFooterTime {
+    min-width: 170px;
     text-align: center;
     margin-right: 6px;
     color: #ffffff;
     padding: 5px;
     font-size: 15px;
 }
+
+.duringEventWrapper {
+    display: flex;
+    justify-content: center;
+    background-color: aqua;
+}
+
 
 @media screen and (max-width: 600px) {
     .eventRatingLink {
