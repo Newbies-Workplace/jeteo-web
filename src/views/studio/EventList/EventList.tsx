@@ -28,19 +28,14 @@ export const EventList: React.FC = () => {
             <EventListComponent
                 filter={EVENT_LIST_FILTER}
                 renderItem={event =>
-                    <Link
-                        key={event.id}
-                        style={{ textDecoration: 'none' }}
-                        to={`/studio/events/${event.vanityUrl}`}>
-                        <EventCard
-                            title={event.title}
-                            subtitle={event.author.nickname}
-                            startDate={event.startDate}
-                            color={event.primaryColor}
-                            image={event.image}
-                            link={`/studio/events/${event.vanityUrl}`}
-                            />
-                    </Link>
+                    <EventCard
+                        title={event.title}
+                        subtitle={event.author.nickname}
+                        startDate={event.startDate}
+                        color={event.primaryColor}
+                        image={event.image}
+                        link={`/studio/events/${event.vanityUrl}`}
+                    />
                 } />
         </div>
     )

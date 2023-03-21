@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import styles from "./EventCard.module.scss";
 import { Link } from "react-router-dom";
 import { Tag } from "../../../common/models/Tag";
+
 interface EventCardProps {
     title: string;
     subtitle?: string;
@@ -22,7 +23,7 @@ interface EventCardProps {
 export const EventCard: React.FC<EventCardProps> = ({
     title,
     subtitle,
-    color,
+    color = "#4fd0bd",
     image,
     startDate,
     finishDate,
@@ -30,10 +31,6 @@ export const EventCard: React.FC<EventCardProps> = ({
     link,
     tags,
 }) => {
-    // color fallback
-    if (!color) color = "#4fd0bd";
-
-
     const currentDate = dayjs();
     const startEventDate = dayjs(startDate);
     const finishEventDate = dayjs(finishDate);
@@ -42,7 +39,7 @@ export const EventCard: React.FC<EventCardProps> = ({
     const timeLeftToFinish = finishEventDate.diff(currentDate, "hours");
     const isDuringEvent = currentDate.isBetween(finishDate, startEventDate, "hours");
 
-    if(timeAfterEvent > 24) {
+    if (timeAfterEvent > 24) {
         color = "#4E4D5A";
     }
 
@@ -66,11 +63,13 @@ export const EventCard: React.FC<EventCardProps> = ({
                 <div
                     className={styles.darkerBackground}
                     style={afterEventCardStyle}
-                ></div>
+                />
+
                 <Link to={link} className={styles.link}>
                     <div style={cardStyle} className={styles.card}>
                         <h2 className={styles.title}>{title}</h2>
                         <h3 className={styles.subtitle}>{subtitle}</h3>
+
                         {tagi}
 
                         <div className={styles.infoSection}>
@@ -87,6 +86,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                         </div>
                     </div>
                 </Link>
+
                 {timeAfterEvent <= 24 && timeAfterEvent >= 0 && (
                     <Link to={link} className={styles.eventRatingLink}>
                         <span className={styles.eventFooterText}>Kliknij aby ocenić</span>

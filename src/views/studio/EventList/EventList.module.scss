@@ -1,22 +1,18 @@
 body {
-  z-index: -5;
   position: relative;
 }
 
 main {
   position: relative;
-  z-index: -5;
 }
 
 .topBar {
   display: flex;
-
-  height: var(--studio-top-bar-height);
-
-  margin-bottom: 16px;
-
   align-items: center;
   justify-content: space-between;
+
+  height: var(--studio-top-bar-height);
+  margin-bottom: 16px;
 
   font-size: 32px;
 }

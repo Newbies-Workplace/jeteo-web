@@ -1,6 +1,7 @@
 .link {
     text-decoration: none;
 }
+
 .cardWrapper {
     margin: 8px 0;
     position: relative;
@@ -30,10 +31,8 @@
     opacity: .6;
 }
 
-
 .card {
     box-sizing: border-box;
-
     background-position: left;
     background-size: 51%, 50%;
     background-repeat: no-repeat;
@@ -54,6 +53,7 @@
         font-weight: 600;
         line-height: 29px;
     }
+
     .subtitle {
         margin: 0;
 
@@ -66,10 +66,11 @@
     }
 
     .infoSection {
-        margin-top: 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        margin-top: 16px;
     }
 
     .bottom {
@@ -96,7 +97,6 @@
     border-radius: var(--border-radius);
     color: black;
 }
-
 
 .eventRatingLink {
     display: flex;
@@ -131,7 +131,6 @@
     justify-content: center;
     background-color: aqua;
 }
-
 
 @media screen and (max-width: 600px) {
     .eventRatingLink {
