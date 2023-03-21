@@ -3,14 +3,17 @@ import { AuthContextProvider } from './contexts/auth/AuthContext';
 import { AppRouter } from './views/AppRouter';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import 'dayjs/locale/pl';
 
 export const App: React.FC = () => {
+    dayjs.locale('pl')
+    dayjs.extend(isBetween)
 
     return (
         <AuthContextProvider>
-            <ToastContainer
-                position={'top-right'} />
-
+            <ToastContainer position={'top-right'} />
             <AppRouter />
         </AuthContextProvider>
     );

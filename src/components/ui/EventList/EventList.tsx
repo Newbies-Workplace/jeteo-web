@@ -1,6 +1,5 @@
 import React from 'react';
 import {Event} from "../../../common/models/Event";
-import {Link} from "react-router-dom";
 import {EventListSkeleton} from "../../loaders/Skeletons/EventListSkeleton/EventListSkeleton";
 import {PlaceholderSwitcher} from "../../utils/animations/PlaceholderSwitcher";
 import {AnimatedList} from "../../utils/animations/AnimatedList";
@@ -15,18 +14,17 @@ export interface EventListProps {
 }
 
 const defaultCardRenderer: EventListItemRenderer = event => (
-    <Link
-        key={event.id}
-        style={{ textDecoration: 'none' }}
-        to={`/event/${event.vanityUrl}`}>
-        <EventCard
-            title={event.title}
-            locationName={event.location?.place}
-            subtitle={event.subtitle}
-            startDate={event.startDate}
-            color={event.primaryColor}
-            image={event.image} />
-    </Link>
+    <EventCard
+        title={event.title}
+        locationName={event.location?.place}
+        subtitle={event.subtitle}
+        startDate={event.startDate}
+        finishDate={event.finishDate}
+        color={event.primaryColor}
+        image={event.image}
+        link={`/event/${event.vanityUrl}`}
+        tags={event.tags}
+    />
 );
 
 export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defaultCardRenderer }) => {

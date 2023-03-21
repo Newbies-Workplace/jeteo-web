@@ -1,19 +1,22 @@
 .tagsWrapper {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
     align-items: center;
     gap: 6px;
-    min-height: 30px;
 }
 
 
 .tag {
-    background-color: transparent;
-    border-radius: 16px;
     padding: 2px 6px;
-    border: 2px solid #fff;
-    color: #fff;
+    border: 2px solid #ffffff;
+    border-radius: 16px;
+
+    color: #ffffff;
     font-size: 18px;
     font-family: var(--font);
+
+    &.small {
+        border-width: 1px;
+        font-size: 14px;
+    }
 }
