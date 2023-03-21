@@ -37,17 +37,18 @@ export const EventCard: React.FC<EventCardProps> = (
     const currentDate = dayjs();
     const startEventDate = dayjs(startDate);
     const finishEventDate = dayjs(finishDate);
-    const timeToEvent = startEventDate.diff(currentDate, "hours");
-    const timeAfterEvent = currentDate.diff(finishEventDate, "hours");
-    const timeLeftToFinish = finishEventDate.diff(currentDate, "hours");
-    const isDuringEvent = currentDate.isBetween(finishDate, startEventDate, "hours");
 
-    if (timeAfterEvent > 24) {
+    const timeToEvent = currentDate.diff(startEventDate, "hours");
+    const timeToFinish = currentDate.diff(finishEventDate, "hours");
+
+    const isDuringEvent = currentDate.isBetween(startEventDate, finishEventDate);
+
+    if (timeToFinish > 24) {
         color = "#4E4D5A";
     }
 
     const cardStyle: React.CSSProperties = {
-        backgroundColor: `${color}`,
+        backgroundColor: color,
         backgroundImage: `linear-gradient(90deg, ${color}a0, ${color}), url(${image})`,
     };
 
@@ -75,22 +76,22 @@ export const EventCard: React.FC<EventCardProps> = (
                             }
                         </div>
 
-                        {timeToEvent <= 72 && timeToEvent > 0 && (
+                        {-timeToEvent > 0 && -timeToEvent <= 72 && (
                             <div className={styles.timeToEvent}>
-                                <span>{timeToEvent}h do rozpoczęcia</span>
+                                <span>{-timeToEvent}h do rozpoczęcia</span>
                             </div>
                         )}
                     </div>
                 </div>
             </Link>
 
-            {timeAfterEvent <= 24 && timeAfterEvent >= 0 && (
+            {timeToFinish >= 0 && timeToFinish <= 24 && (
                 <Link
                     to={link}
                     className={styles.action}
                     style={{backgroundColor: color}}>
                     <span>Kliknij aby ocenić</span>
-                    <span>zakończono: {timeAfterEvent}h temu 🎊</span>
+                    <span>zakończono: {timeToFinish}h temu 🎊</span>
                 </Link>
             )}
             {isDuringEvent && (
@@ -98,7 +99,7 @@ export const EventCard: React.FC<EventCardProps> = (
                     className={styles.action}
                     style={{backgroundColor: color}}>
                     <span>W trakcie</span>
-                    <span>pozostało: {timeLeftToFinish}h</span>
+                    <span>pozostało: {-timeToFinish}h</span>
                 </div>
             )}
         </div>
