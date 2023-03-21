@@ -56,12 +56,18 @@ export const EventCard: React.FC<EventCardProps> = (
         <div className={styles.cardWrapper}>
             <Link to={link} className={styles.link}>
                 <div style={cardStyle} className={styles.card}>
-                    <h2 className={styles.title}>{title}</h2>
-                    <h3 className={styles.subtitle}>{subtitle}</h3>
+                    <div className={styles.topSection}>
+                        <div className={styles.nameContainer}>
+                            <h2 className={styles.title}>{title}</h2>
+                            {subtitle && <h3 className={styles.subtitle}>{subtitle}</h3>}
+                        </div>
 
-                    {tags &&
-                        <EventTags tags={tags?.map(tag => tag.name)} size={'small'}/>
-                    }
+                        <div className={styles.tagsContainer}>
+                            {tags &&
+                                <EventTags tags={tags?.map(tag => tag.name)} size={'small'}/>
+                            }
+                        </div>
+                    </div>
 
                     <div className={styles.infoSection}>
                         <div className={styles.bottom}>
