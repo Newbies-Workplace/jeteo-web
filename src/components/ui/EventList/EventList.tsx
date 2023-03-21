@@ -22,7 +22,9 @@ const defaultCardRenderer: EventListItemRenderer = event => (
             finishDate={event.finishDate}
             color={event.primaryColor}
             image={event.image} 
-            link={`/event/${event.vanityUrl}`}/> 
+            link={`/event/${event.vanityUrl}`}
+            tags={event.tags}
+            /> 
 );
 
 export const EventList: React.FC<EventListProps> = ({ filter, renderItem = defaultCardRenderer }) => {

@@ -1,3 +1,13 @@
+body {
+  z-index: -5;
+  position: relative;
+}
+
+main {
+  position: relative;
+  z-index: -5;
+}
+
 .topBar {
   display: flex;
 

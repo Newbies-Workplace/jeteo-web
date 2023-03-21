@@ -37,7 +37,9 @@ export const EventList: React.FC = () => {
                             subtitle={event.author.nickname}
                             startDate={event.startDate}
                             color={event.primaryColor}
-                            image={event.image} />
+                            image={event.image}
+                            link={`/studio/events/${event.vanityUrl}`}
+                            />
                     </Link>
                 } />
         </div>

@@ -4,6 +4,7 @@ import { StartDateChip } from "./chips/StartDateChip";
 import dayjs from "dayjs";
 import styles from "./EventCard.module.scss";
 import { Link } from "react-router-dom";
+import { Tag } from "../../../common/models/Tag";
 interface EventCardProps {
     title: string;
     subtitle?: string;
@@ -15,6 +16,7 @@ interface EventCardProps {
     finishDate?: Date;
     locationName?: string;
     link: string;
+    tags?: Tag[]; 
 }
 
 export const EventCard: React.FC<EventCardProps> = ({
@@ -26,9 +28,23 @@ export const EventCard: React.FC<EventCardProps> = ({
     finishDate,
     locationName,
     link,
+    tags,
 }) => {
     // color fallback
     if (!color) color = "#4fd0bd";
+
+
+    const currentDate = dayjs();
+    const startEventDate = dayjs(startDate);
+    const finishEventDate = dayjs(finishDate);
+    const timeToEvent = startEventDate.diff(currentDate, "hours");
+    const timeAfterEvent = currentDate.diff(finishEventDate, "hours");
+    const timeLeftToFinish = finishEventDate.diff(currentDate, "hours");
+    const isDuringEvent = currentDate.isBetween(finishDate, startEventDate, "hours");
+
+    if(timeAfterEvent > 24) {
+        color = "#4E4D5A";
+    }
 
     const cardStyle: React.CSSProperties = {
         backgroundColor: `${color}`,
@@ -39,13 +55,10 @@ export const EventCard: React.FC<EventCardProps> = ({
         backgroundColor: `${color}`,
     };
 
-    const currentDate = dayjs();
-    const startEventDate = dayjs(startDate);
-    const finishEventDate = dayjs(finishDate);
-    const timeToEvent = startEventDate.diff(currentDate, "hours");
-    const timeAfterEvent = currentDate.diff(finishEventDate, "hours");
-    const timeLeftToFinish = finishEventDate.diff(currentDate, "hours");
-    const isDuringEvent = currentDate.isBetween(finishDate, startEventDate, "hours");
+
+    const tagi = tags?.map((tag) => (
+        <div key={tag.id}>{tag.name}</div>
+    ))
 
     return (
         <>
@@ -58,6 +71,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                     <div style={cardStyle} className={styles.card}>
                         <h2 className={styles.title}>{title}</h2>
                         <h3 className={styles.subtitle}>{subtitle}</h3>
+                        {tagi}
 
                         <div className={styles.infoSection}>
                             <div className={styles.bottom}>
