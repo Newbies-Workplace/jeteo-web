@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import styles from "./EventCard.module.scss";
 import { Link } from "react-router-dom";
 import { Tag } from "../../../common/models/Tag";
+import EventTags from "../../ui/EventTags/EventTags";
 
 interface EventCardProps {
     title: string;
@@ -17,20 +18,22 @@ interface EventCardProps {
     finishDate?: Date;
     locationName?: string;
     link: string;
-    tags?: Tag[]; 
+    tags?: Tag[];
 }
 
-export const EventCard: React.FC<EventCardProps> = ({
-    title,
-    subtitle,
-    color = "#4fd0bd",
-    image,
-    startDate,
-    finishDate,
-    locationName,
-    link,
-    tags,
-}) => {
+export const EventCard: React.FC<EventCardProps> = (
+    {
+        title,
+        subtitle,
+        color = "#4fd0bd",
+        image,
+        startDate,
+        finishDate,
+        locationName,
+        link,
+        tags,
+    }
+) => {
     const currentDate = dayjs();
     const startEventDate = dayjs(startDate);
     const finishEventDate = dayjs(finishDate);
@@ -48,62 +51,56 @@ export const EventCard: React.FC<EventCardProps> = ({
         backgroundImage: `linear-gradient(90deg, ${color}a0, ${color}), url(${image})`,
     };
 
-    const afterEventCardStyle: React.CSSProperties = {
-        backgroundColor: `${color}`,
-    };
-
-
-    const tagi = tags?.map((tag) => (
-        <div key={tag.id}>{tag.name}</div>
-    ))
-
     return (
-        <>
-            <div className={styles.cardWrapper}>
-                <div
-                    className={styles.darkerBackground}
-                    style={afterEventCardStyle}
-                />
+        <div className={styles.cardWrapper}>
+            <Link to={link} className={styles.link}>
+                <div style={cardStyle} className={styles.card}>
+                    <h2 className={styles.title}>{title}</h2>
+                    <h3 className={styles.subtitle}>{subtitle}</h3>
 
-                <Link to={link} className={styles.link}>
-                    <div style={cardStyle} className={styles.card}>
-                        <h2 className={styles.title}>{title}</h2>
-                        <h3 className={styles.subtitle}>{subtitle}</h3>
+                    {tags &&
+                        <EventTags tags={tags?.map(tag => tag.name)} size={'small'}/>
+                    }
 
-                        {tagi}
+                    <div className={styles.infoSection}>
+                        <div className={styles.bottom}>
+                            {locationName &&
+                                <LocationChip>
+                                    {locationName}
+                                </LocationChip>
+                            }
 
-                        <div className={styles.infoSection}>
-                            <div className={styles.bottom}>
-                                {locationName && <LocationChip>{locationName}</LocationChip>}
-
-                                {startDate && <StartDateChip date={startDate} />}
-                            </div>
-                            {timeToEvent <= 72 && timeToEvent > 0 && (
-                                <div className={styles.timeToEvent}>
-                                    <span>{timeToEvent}h do rozpoczęcia</span>
-                                </div>
-                            )}
+                            {startDate &&
+                                <StartDateChip date={startDate} />
+                            }
                         </div>
-                    </div>
-                </Link>
 
-                {timeAfterEvent <= 24 && timeAfterEvent >= 0 && (
-                    <Link to={link} className={styles.eventRatingLink}>
-                        <span className={styles.eventFooterText}>Kliknij aby ocenić</span>
-                        <span className={styles.eventFooterTime}>
-                            zakończono: {timeAfterEvent}h temu🎊
-                        </span>
-                    </Link>
-                )}
-                {isDuringEvent && (
-                    <div className={styles.duringEventWrapper}>
-                        <span className={styles.eventFooterText}>W trakcie</span>
-                        <span className={styles.eventFooterTime}>
-                            pozostało: {timeLeftToFinish}h
-                        </span>
+                        {timeToEvent <= 72 && timeToEvent > 0 && (
+                            <div className={styles.timeToEvent}>
+                                <span>{timeToEvent}h do rozpoczęcia</span>
+                            </div>
+                        )}
                     </div>
-                )}
-            </div>
-        </>
+                </div>
+            </Link>
+
+            {timeAfterEvent <= 24 && timeAfterEvent >= 0 && (
+                <Link
+                    to={link}
+                    className={styles.action}
+                    style={{backgroundColor: color}}>
+                    <span>Kliknij aby ocenić</span>
+                    <span>zakończono: {timeAfterEvent}h temu 🎊</span>
+                </Link>
+            )}
+            {isDuringEvent && (
+                <div
+                    className={styles.action}
+                    style={{backgroundColor: color}}>
+                    <span>W trakcie</span>
+                    <span>pozostało: {timeLeftToFinish}h</span>
+                </div>
+            )}
+        </div>
     );
 };

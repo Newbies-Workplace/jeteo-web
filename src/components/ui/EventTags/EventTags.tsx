@@ -1,22 +1,33 @@
 import React from "react";
 import styles from "./EventTags.module.scss";
+import cs from "classnames";
 
 interface EventTagsProps {
   tags: string[],
+  size?: 'normal' | 'small';
 }
 
-const EventTags: React.FC<EventTagsProps> = ({
-  tags
-}) => {
-  const tag = tags.map(el => 
-    <span className={styles.tag} key={el}>{el}</span>
-  )
+const EventTags: React.FC<EventTagsProps> = (
+    {
+      tags,
+      size= 'normal'
+    }
+) => {
   return (
+      <div className={styles.tagsWrapper}>
+        {tags.map(el =>
+            <span
+                className={cs(
+                    styles.tag,
+                    {
+                      [styles.small]: size === 'small',
+                    }
+                )}
+                key={el}>
+              {el}
+            </span>
+        )}
+      </div>
+  )};
 
-    <div className={styles.tagsWrapper}>
-      {tag}
-    </div>
-
-)};
 export default EventTags;
-
