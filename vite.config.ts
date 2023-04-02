@@ -20,8 +20,8 @@ export default defineConfig(({command, /* mode */}) => {
             port: 8080,
         },
         define: {
-            "__RESTAPI_URI__": "'http://jeteo.newbies.pl:8080'",
-            "__GRAPHQL_URI__": "'http://jeteo.newbies.pl:8080'",
+            "__RESTAPI_URI__": "'https://jeteo.newbies.pl'",
+            "__GRAPHQL_URI__": "'https://jeteo.newbies.pl'",
             "__DEV__": command === "serve",
         },
     }
