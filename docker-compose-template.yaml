@@ -3,14 +3,13 @@ version: "3"
 services:
   jeteo-web:
     image: ghcr.io/newbies-workplace/jeteo-web:latest
-    build:
-      context: .
-      args:
-        API_URL: '' # API_URL is backed in static files
-    restart: always
+    restart: unless-stopped
     container_name: jeteo-web
     ports:
       - "80:8080"
-    # in future API_URL will be located here
-    environment:
-      API_URL: ''
+    networks:
+      - reverse-proxy_global
+
+networks:
+  reverse-proxy_global:
+    external: true
