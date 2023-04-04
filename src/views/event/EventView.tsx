@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { useParams, Navigate } from "react-router-dom";
-import { EventBackground } from "../../components/containers/EventBackground/EventBackground";
-import { NavBar } from "../../components/ui/NavBar/NavBar";
+import { EventBackground } from "../../components/atoms/EventBackground/EventBackground";
+import { NavBar } from "../../components/organisms/NavBar/NavBar";
 import { getIdFromVanityUrl } from "../../common/utils/vanityUrlUtils";
-import {EventDescriptionSection} from "../../components/containers/EventDescriptionSection/EventDescriptionSection";
+import {EventDescriptionSection} from "../../components/molecules/EventDescriptionSection/EventDescriptionSection";
 import {useEventQuery} from "../../api/graphql";
-import { CentredContainer } from "../../components/primitives/CenteredContainers";
+import { CentredContainer } from "../../components/atoms/CenteredContainers";
 import styles from './EventView.module.scss';
-import EventTags from '../../components/ui/EventTags/EventTags';
-import { EventHeadline } from '../../components/ui/EventHeadline/EventHeadline';
+import EventTags from '../../components/molecules/EventTags/EventTags';
+import { EventHeadline } from '../../components/atoms/EventHeadline/EventHeadline';
 import dayjs from 'dayjs';
-import LectureCard from '../../components/ui/Lecture/LectureCard';
-import { EventOrganizer } from '../../components/ui/EventOrganizer/EventOrganizer';
-import { LocationMap } from '../../components/ui/LocationMap/LocationMap';
-import { EventSkeleton } from '../../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
-import { LectureRateDialog } from '../../components/ui/EventRating/LectureRateDialog';
+import LectureCard from '../../components/molecules/Lecture/LectureCard';
+import { EventOrganizer } from '../../components/molecules/EventOrganizer/EventOrganizer';
+import { LocationMap } from '../../components/molecules/LocationMap/LocationMap';
+import { EventSkeleton } from '../../components/molecules/Skeletons/EventDetailsSkeleton/EventSkeleton';
+import { LectureRateDialog } from '../../components/organisms/LectureRateDialog/LectureRateDialog';
 
 export const EventView: React.FC = () => {
     const [openRatingId, setOpenRatingId] = useState<string | null>(null);

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import studioFormStyles from "../../../common/styles/StudioFormStyles.module.scss";
-import {Toolbar} from "../../../components/ui/Toolbar/Toolbar";
-import {ClickableStepView, StepView} from "../../../components/ui/StepView/StepView";
+import {Toolbar} from "../../../components/atoms/Toolbar/Toolbar";
+import {ClickableStepView, StepView} from "../../../components/molecules/StepView/StepView";
 import {Route, Routes, useNavigate, useParams} from "react-router-dom";
 import {useLocation} from "react-router";
 import {EventBasicInfoForm} from "./BasicInfo/EventBasicInfoForm";

@@ -1,0 +1,60 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import LectureCard from "./LectureCard";
+
+<Meta title="molecules/LectureCard" component={LectureCard} />
+
+export const Template = (args) => <LectureCard {...args} />
+
+Speaker Component
+
+<Canvas style={{background: "silver"}}>
+    <Story
+        name="LectureCard-secondary"
+        parameters={{
+            layout: 'centered',
+        }}
+        args={{
+            title: "Lorem ipsum dolor sit amet",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper dictum ex, sollicitudin pretium orci maximus sit amet. Vivamus maximus, quam eget porttitor tincidunt, lacus mi suscipit enim, quis viverra quam lorem eget sem. Integer tristique metus vel lacus cursus commodo.",
+            speaker: {
+                name: "Example User Name",
+                avatar: undefined,
+                contact: {
+                    githubLink: '#',
+                    twitterLink: "#",
+                    emailLink: "#",
+                    linkedInLink: "#",
+                },
+                },
+            status: {
+                color: '#4340BE',
+                content: <div>Oceń</div>,
+            }
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas style={{background: "silver"}}>
+    <Story
+        name="LectureCard-primary"
+        parameters={{
+            layout: 'centered',
+        }}
+        args={{
+            title: "Lorem ipsum dolor sit amet",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper dictum ex, sollicitudin pretium orci maximus sit amet. Vivamus maximus, quam eget porttitor tincidunt, lacus mi suscipit enim, quis viverra quam lorem eget sem. Integer tristique metus vel lacus cursus commodo.",
+            speaker: {
+                name: "Example User Name",
+                avatar: undefined,
+                contact: {
+                    githubLink: '#',
+                    twitterLink: "#",
+                },
+                },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

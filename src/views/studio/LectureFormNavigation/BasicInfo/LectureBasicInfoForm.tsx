@@ -1,7 +1,7 @@
 import React from "react";
-import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
+import {StudioSection} from "../../../../components/molecules/StudioSection/StudioSection";
 import formStyles from "../../Form.module.scss";
-import Button from "../../../../components/ui/Button/Button";
+import Button from "../../../../components/atoms/Button/Button";
 import dayjs from "dayjs";
 import {
     CoreLectureResponseFragment, InviteLectureResponseFragment,
@@ -12,7 +12,7 @@ import {
 import {useAuth} from "../../../../contexts/auth/hooks/useAuth.hook";
 import {toast} from "react-toastify";
 import {Controller, useForm} from "react-hook-form";
-import {Input} from "../../../../components/ui/Input/Input";
+import {Input} from "../../../../components/atoms/Input/Input";
 
 interface LectureBasicInfoFormProps {
     eventId: string

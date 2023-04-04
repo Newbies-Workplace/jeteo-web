@@ -1,0 +1,18 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import FileItem from "./FileItem";
+
+<Meta title="atoms/FileItem" component={FileItem} />
+
+export const Template = (args) => <FileItem {...args} />;
+
+<Story
+    name="Normal"
+    parameters={{
+        backgrounds: { default: 'white' }
+    }}
+    args={{
+        filename: 'bruh.jpg',
+        onDeleteClick: () => {},
+    }}>
+    {Template.bind({})}
+</Story>

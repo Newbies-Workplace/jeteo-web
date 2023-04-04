@@ -1,0 +1,49 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {EventOrganizer} from './EventOrganizer';
+
+<Meta title="molecules/EventOrganizer" component={EventOrganizer}/>
+
+export const Template = (args) => <EventOrganizer {...args} />
+
+Event organizer component for the event details page.
+
+<Canvas style={{background: "silver"}}>
+    <Story
+        name="Short bio"
+        parameters={{
+            layout: 'centered',
+        }}
+        args={{
+            logo: "",
+            name: "Lorem Ipsum",
+            bio: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim nemo expedita inventore veniam reprehenderit dolores magnam assumenda magni velit et.",
+            links: {
+                githubLink: "https://github.com",
+                twitterLink: "https://twitter.com"
+            }
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas style={{background: "silver"}}>
+    <Story
+        name="Long bio"
+        parameters =  {{
+            layout: 'centered',
+        }}
+        args={{
+            logo: "",
+            name: "Lorem Ipsum",
+            bio: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim nemo expedita inventore veniam reprehenderit dolores magnam assumenda magni velit et. Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+            links: {
+                githubLink: "https://github.com",
+                twitterLink: "https://twitter.com",
+                linkedInLink: "https://linkedin.com"
+            }
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

@@ -4,10 +4,10 @@ import {
     useCreateLectureInviteMutation,
     useDeleteLectureInviteMutation, useReplaceLectureMutation
 } from "../../../../api/graphql";
-import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
-import {LectureSpeakers} from "../../../../components/ui/LectureSpeakers/LectureSpeakers";
+import {StudioSection} from "../../../../components/molecules/StudioSection/StudioSection";
+import {LectureSpeakers} from "../../../../components/molecules/LectureSpeakers/LectureSpeakers";
 import formStyles from "../../Form.module.scss";
-import Button from "../../../../components/ui/Button/Button";
+import Button from "../../../../components/atoms/Button/Button";
 import {toast} from "react-toastify";
 import dayjs from "dayjs";
 

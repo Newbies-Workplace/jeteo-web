@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 
 import ProvidersList from "../../../api/rest/auth/oauth/OAuthProvider.enum";
-import SocialMediaButton from "../../../components/ui/SocialMediaButton/SocialMediaButton";
+import SocialMediaButton from "../../../components/atoms/SocialMediaButton/SocialMediaButton";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
 import {useQueryParamsHook} from "../../../contexts/auth/hooks/useQueryParams.hook";

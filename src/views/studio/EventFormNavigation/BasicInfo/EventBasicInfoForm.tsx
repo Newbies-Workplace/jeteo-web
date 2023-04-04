@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
+import {StudioSection} from "../../../../components/molecules/StudioSection/StudioSection";
 import formStyles from "../../Form.module.scss"
-import Button from "../../../../components/ui/Button/Button";
+import Button from "../../../../components/atoms/Button/Button";
 import dayjs from "dayjs";
-import TagPicker from "../../../../components/ui/TagPicker/TagPicker";
+import TagPicker from "../../../../components/molecules/TagPicker/TagPicker";
 import {Tag} from "../../../../common/models/Tag";
 import {Event} from "../../../../common/models/Event";
 import {
@@ -15,9 +15,9 @@ import {
 } from "../../../../api/graphql";
 import MDEditor from "@uiw/react-md-editor";
 import {toast} from 'react-toastify';
-import {MapPicker} from "../../../../components/ui/MapPicker/MapPicker";
-import {Input} from "../../../../components/ui/Input/Input";
-import {RadioButtons} from "../../../../components/ui/RadioButtons/RadioButtons";
+import {MapPicker} from "../../../../components/molecules/MapPicker/MapPicker";
+import {Input} from "../../../../components/atoms/Input/Input";
+import {RadioButtons} from "../../../../components/atoms/RadioButtons/RadioButtons";
 import {useForm, Controller} from "react-hook-form";
 import styles from "./EventBasicInfoForm.module.scss"
 

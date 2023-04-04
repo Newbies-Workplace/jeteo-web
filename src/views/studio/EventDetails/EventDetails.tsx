@@ -1,10 +1,10 @@
 import React from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import styles from "./EventDetails.module.scss"
-import {Toolbar} from "../../../components/ui/Toolbar/Toolbar";
+import {Toolbar} from "../../../components/atoms/Toolbar/Toolbar";
 import {getIdFromVanityUrl} from "../../../common/utils/vanityUrlUtils";
 import {useDeleteEventMutation, useDeleteLectureMutation, useEventQuery} from "../../../api/graphql";
-import { StudioLectureCard } from "../../../components/containers/StudioLectureCard/StudioLectureCard";
+import { StudioLectureCard } from "../../../components/molecules/StudioLectureCard/StudioLectureCard";
 import { Lecture } from "../../../common/models/Lecture";
 import { toast } from "react-toastify";
 

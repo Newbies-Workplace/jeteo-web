@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth } from "../../contexts/auth/hooks/useAuth.hook";
-import { EventList } from "../../components/ui/EventList/EventList";
-import { NavBar } from "../../components/ui/NavBar/NavBar";
+import { EventList } from "../../components/organisms/EventList/EventList";
+import { NavBar } from "../../components/organisms/NavBar/NavBar";
 import styles from "./HomeView.module.scss";
 
 export const HomeView: React.FC = () => {

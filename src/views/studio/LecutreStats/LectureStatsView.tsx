@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { useLectureWithRatesQuery } from "../../../api/graphql";
 import styles from "./LectureStats.module.scss";
-import { ClickableStepView } from "../../../components/ui/StepView/StepView";
-import { Toolbar } from "../../../components/ui/Toolbar/Toolbar";
+import { ClickableStepView } from "../../../components/molecules/StepView/StepView";
+import { Toolbar } from "../../../components/atoms/Toolbar/Toolbar";
 import {LectureStats} from './Stats/LecutreStats'
 import {LectureQuestions} from "./Stats/LectureQuestions"
 

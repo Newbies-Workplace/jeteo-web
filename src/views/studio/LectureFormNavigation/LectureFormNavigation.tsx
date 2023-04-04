@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import studioFormStyles from "../../../common/styles/StudioFormStyles.module.scss";
-import {Toolbar} from "../../../components/ui/Toolbar/Toolbar";
+import {Toolbar} from "../../../components/atoms/Toolbar/Toolbar";
 import {Route, Routes, useNavigate, useParams} from "react-router-dom";
-import {ClickableStepView, StepView} from "../../../components/ui/StepView/StepView";
+import {ClickableStepView, StepView} from "../../../components/molecules/StepView/StepView";
 import {useLocation} from "react-router";
 import {LectureBasicInfoForm} from "./BasicInfo/LectureBasicInfoForm";
 import {LectureSpeakersForm} from "./Speakers/LectureSpeakersForm";

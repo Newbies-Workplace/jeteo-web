@@ -1,8 +1,8 @@
 import React from "react";
-import GalaxyBackground from "../../components/containers/GalaxyBackground/GalaxyBackground";
-import { NavBar } from "../../components/ui/NavBar/NavBar";
+import GalaxyBackground from "../../components/molecules/GalaxyBackground/GalaxyBackground";
+import { NavBar } from "../../components/organisms/NavBar/NavBar";
 import NotFoundImage from "../../assets/images/not-found.svg"
-import Button from "../../components/ui/Button/Button";
+import Button from "../../components/atoms/Button/Button";
 import styles from "./NotFound.module.scss"
 
 export const NotFound: React.FC = () => {

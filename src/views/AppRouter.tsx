@@ -8,10 +8,10 @@ import { HomeView } from './home/HomeView';
 import { withSuspense } from "../components/utils/hoc/withSuspense";
 import { NotFound } from './404/NotFound';
 import { HeroView } from './hero/HeroView';
-import { EventSkeleton } from '../components/loaders/Skeletons/EventDetailsSkeleton/EventSkeleton';
-import { NavBar } from '../components/ui/NavBar/NavBar';
+import { EventSkeleton } from '../components/molecules/Skeletons/EventDetailsSkeleton/EventSkeleton';
+import { NavBar } from '../components/organisms/NavBar/NavBar';
 import { SettingsView } from './settings/SettingsView';
-import { RequireAuth } from '../components/utils/requireAuth/RequireAuth';
+import { RequireAuth } from '../contexts/auth/RequireAuth';
 
 
 const StudioView = React.lazy(() => import('./studio/StudioView'));

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "../../../components/ui/Button/Button";
+import Button from "../../../components/atoms/Button/Button";
 import authStyles from "../../../common/styles/AuthStyles.module.scss"
 import styles from "./SignUpView.module.scss"
 

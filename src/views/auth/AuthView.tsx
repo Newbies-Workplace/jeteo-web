@@ -3,11 +3,11 @@ import {Route, Routes} from 'react-router-dom';
 import {CallbackRouter} from './callback/CallbackRouter';
 import {SignInView} from './signIn/SignInView';
 import {SignUpView} from './signUp/SignUpView';
-import GalaxyBackground from "../../components/containers/GalaxyBackground/GalaxyBackground";
-import Dialog from "../../components/containers/Dialog/Dialog";
-import {AppLogo} from "../../components/ui/AppLogo/AppLogo";
+import GalaxyBackground from "../../components/molecules/GalaxyBackground/GalaxyBackground";
+import Dialog from "../../components/atoms/Dialog/Dialog";
+import {AppLogo} from "../../components/atoms/AppLogo/AppLogo";
 import {AuthErrorView} from "./error/AuthErrorView";
-import {NavBar} from "../../components/ui/NavBar/NavBar";
+import {NavBar} from "../../components/organisms/NavBar/NavBar";
 import {ErrorBoundary} from "react-error-boundary";
 import {Navigate} from "react-router";
 import styles from "./AuthView.module.scss"

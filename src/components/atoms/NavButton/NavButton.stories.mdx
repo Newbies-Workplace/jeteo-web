@@ -1,0 +1,43 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {NavButton} from "./NavButton";
+import {HashRouter} from 'react-router-dom';
+
+<Meta
+    title="atoms/NavButton"
+    component={NavButton}/>
+
+export const Template = (args) => <HashRouter><NavButton {...args} /></HashRouter>
+
+# NavButton
+navigation button
+
+Active state
+
+<Canvas style={{background: "silver"}} withSource="open">
+    <Story
+        name="Active"
+        args={{
+            children: 'content',
+            name: 'Przycisk',
+            to: '/'
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+
+Inactive state
+
+<Canvas style={{background: "silver"}} withSource="open">
+    <Story
+        name="Inactive"
+        args={{
+            children: 'content',
+            name: 'Przycisk',
+            to: '/test'
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

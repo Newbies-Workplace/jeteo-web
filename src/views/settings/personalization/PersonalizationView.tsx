@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
-import FileUpload from '../../../components/ui/FileUpload/FileUpload'
+import FileUpload from '../../../components/atoms/FileUpload/FileUpload'
 import styles from './PersonalizationView.module.scss'
 import studioFormStyles from "./../../../common/styles/StudioFormStyles.module.scss";
 import formStyles from "../../studio/Form.module.scss"
 import {updateProfilePic} from "../../../api/rest/user/User";
 import {toast} from 'react-toastify';
 import {useAuth} from '../../../contexts/auth/hooks/useAuth.hook';
-import {Input} from '../../../components/ui/Input/Input';
-import Button from '../../../components/ui/Button/Button';
+import {Input} from '../../../components/atoms/Input/Input';
+import Button from '../../../components/atoms/Button/Button';
 import {CoreUserResponseFragment, useReplaceMyUserMutation, UserRequestInput, useUserQuery} from '../../../api/graphql';
-import {StudioSection} from "../../../components/ui/StudioSection/StudioSection";
+import {StudioSection} from "../../../components/molecules/StudioSection/StudioSection";
 import {Controller, useForm} from "react-hook-form";
 import {AxiosInstance} from "axios";
 

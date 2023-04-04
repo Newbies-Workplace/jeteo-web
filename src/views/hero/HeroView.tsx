@@ -2,8 +2,8 @@ import React from "react";
 import styles from './HeroView.module.scss'
 import cs from 'classnames'
 
-import Button from "../../components/ui/Button/Button";
-import GalaxyBackground from "../../components/containers/GalaxyBackground/GalaxyBackground";
+import Button from "../../components/atoms/Button/Button";
+import GalaxyBackground from "../../components/molecules/GalaxyBackground/GalaxyBackground";
 
 import PlanetLogo from "../../assets/images/planet-logo.svg"
 import MoonSeparator from "../../assets/images/moon-decoration.svg"

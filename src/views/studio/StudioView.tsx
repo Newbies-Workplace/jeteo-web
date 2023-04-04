@@ -1,8 +1,8 @@
 import React from 'react';
-import {NavBar} from "../../components/ui/NavBar/NavBar";
+import {NavBar} from "../../components/organisms/NavBar/NavBar";
 import styles from './StudioView.module.scss';
 import {Route, Routes} from "react-router-dom";
-import {RequireAuth} from "../../components/utils/requireAuth/RequireAuth";
+import {RequireAuth} from "../../contexts/auth/RequireAuth";
 import {Navigation} from "./Navigation/Navigation";
 import {EventList} from "./EventList/EventList";
 import {EventDetails} from "./EventDetails/EventDetails";

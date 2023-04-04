@@ -1,9 +1,9 @@
 import React from "react";
-import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
-import Button from "../../../../components/ui/Button/Button";
+import {StudioSection} from "../../../../components/molecules/StudioSection/StudioSection";
+import Button from "../../../../components/atoms/Button/Button";
 import {EventVisibilityRequestInput, useChangeEventVisibilityMutation, Visibility} from "../../../../api/graphql";
 import {Event} from "../../../../common/models/Event";
-import {RadioItem, RadioButtons} from "../../../../components/ui/RadioButtons/RadioButtons";
+import {RadioItem, RadioButtons} from "../../../../components/atoms/RadioButtons/RadioButtons";
 import formStyles from "../../Form.module.scss";
 import {toast} from "react-toastify";
 import {Controller, useForm} from "react-hook-form";

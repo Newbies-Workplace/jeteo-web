@@ -1,9 +1,9 @@
 import React from "react";
-import {StudioSection} from "../../../../components/ui/StudioSection/StudioSection";
-import Button from "../../../../components/ui/Button/Button";
-import FileUpload from "../../../../components/ui/FileUpload/FileUpload";
-import FileItem from "../../../../components/ui/FileItem/FileItem";
-import {EventCard} from "../../../../components/containers/EventCard/EventCard";
+import {StudioSection} from "../../../../components/molecules/StudioSection/StudioSection";
+import Button from "../../../../components/atoms/Button/Button";
+import FileUpload from "../../../../components/atoms/FileUpload/FileUpload";
+import FileItem from "../../../../components/atoms/FileItem/FileItem";
+import {EventCard} from "../../../../components/molecules/EventCard/EventCard";
 import {Event} from "../../../../common/models/Event";
 import formStyles from "../../Form.module.scss";
 import {deleteImage, updateImage} from "../../../../api/rest/event/Event";

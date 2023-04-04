@@ -1,0 +1,23 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import {EventCard} from "./EventCard";
+
+<Meta title="molecules/EventCard" component={EventCard} />
+
+export const Template = (args) => <EventCard {...args} />;
+
+Event component
+
+<Canvas>
+    <Story
+        name="Active"
+        args={{
+            title: 'Just an event title',
+            subtitle: 'With an optional subtitle',
+            color: '#121212',
+            startDate: new Date(),
+            locationName: "Time Square, NY"
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>

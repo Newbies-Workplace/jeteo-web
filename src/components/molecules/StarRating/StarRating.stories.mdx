@@ -1,0 +1,49 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import StarRating from "./StarRating";
+import { useState } from "react";
+
+<Meta title="molecules/StarRating" component={StarRating} />
+
+export const Template = (args) => <StarRating {...args} />;
+
+StarRating component
+
+<Canvas style={{ background: "silver" }}>
+  <Story
+    name="StarRating-interactive"
+    args={{
+      max: 5,
+      value: 0,
+      title: "Example title text",
+      width: "30px",
+      height: "30px",
+    }}
+    
+  >
+    {() => {
+      const [value, setValue] = useState(-1);
+      return (
+        <StarRating
+          value={value}
+          setValue={setValue}
+          title="Jak Ci się podobało"
+        />
+      );
+    }}
+  </Story>
+</Canvas>
+
+<Canvas style={{ background: "silver" }}>
+  <Story
+    name="StarRating-noneInteractive"
+    args={{
+      max: 5,
+      value: 0,
+      title: "Example title text",
+      width: "30px",
+      height: "30px",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

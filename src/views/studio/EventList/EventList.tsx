@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./EventList.module.scss";
 import {Link} from "react-router-dom";
-import Button from "../../../components/ui/Button/Button";
-import {EventList as EventListComponent} from "../../../components/ui/EventList/EventList";
-import {EventCard} from "../../../components/containers/EventCard/EventCard";
+import Button from "../../../components/atoms/Button/Button";
+import {EventList as EventListComponent} from "../../../components/organisms/EventList/EventList";
+import {EventCard} from "../../../components/molecules/EventCard/EventCard";
 import {useAuth} from "../../../contexts/auth/hooks/useAuth.hook";
 import {EventFilterInput, Visibility} from "../../../api/graphql";
 

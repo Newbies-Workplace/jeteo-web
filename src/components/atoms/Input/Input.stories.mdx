@@ -1,0 +1,32 @@
+import {Canvas, Meta, Story} from '@storybook/addon-docs';
+import { Input } from './Input';
+
+<Meta title="atoms/Input" component={Input} />
+
+export const Template = (args) => <Input {...args} />
+
+Studio Input Button
+
+<Canvas>
+    <Story 
+        name="oneline"
+        args={{
+            label: 'test',
+            placeholder: 'tekst',
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas>
+    <Story
+        name="multiline"
+        args={{
+            label: 'Test',
+            placeholder: 'Tu wpisz tekst',
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
