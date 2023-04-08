@@ -34,18 +34,18 @@ export const SignInView: React.FC = () => {
                 <SocialMediaButton
                     label="GitHub"
                     icon={<Github width={20} height={20}/>}
-                    href={`${__RESTAPI_URI__}/oauth/login/${ProvidersList.github}`} />
+                    href={`${__RESTAPI_URI__}/api/oauth/login/${ProvidersList.github}`} />
 
                 <SocialMediaButton
                     label="Google"
                     icon={<Google width={20} height={20}/>}
-                    href={`${__RESTAPI_URI__}/oauth/login/${ProvidersList.google}`} />
+                    href={`${__RESTAPI_URI__}/api/oauth/login/${ProvidersList.google}`} />
 
                 {__DEV__ &&
                     <SocialMediaButton
                         label="GitHub Dev"
                         icon={<Roadblock width={20} height={20}/>}
-                        href={`${__RESTAPI_URI__}/oauth/login/${ProvidersList.githubDev}`} />
+                        href={`${__RESTAPI_URI__}/api/oauth/login/${ProvidersList.githubDev}`} />
                 }
             </div>
 
